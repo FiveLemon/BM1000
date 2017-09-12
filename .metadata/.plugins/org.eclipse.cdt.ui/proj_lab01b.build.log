@@ -1,0 +1,15 @@
+
+**** Clean-only build of configuration Flash for project proj_lab01b ****
+
+"C:\\ti\\ccsv6\\utils\\bin\\gmake" -k clean 
+DEL /F  "proj_lab01b.out"  "proj_lab01b.hex" 
+DEL /F "adc.d" "angle_gen.d" "clarke.d" "clk.d" "cpu.d" "cpu_time.d" "ctrl.d" "datalog.d" "filter_fo.d" "flash.d" "fw.d" "gpio.d" "hal.d" "ipark.d" "memCopy.d" "offset.d" "osc.d" "park.d" "pid.d" "pie.d" "pll.d" "proj_lab01b.d" "pwm.d" "pwr.d" "spi.d" "svgen.d" "svgen_current.d" "timer.d" "traj.d" "user.d" "vs_freq.d" "wdog.d" 
+DEL /F "CodeStartBranch.obj" "adc.obj" "angle_gen.obj" "clarke.obj" "clk.obj" "cpu.obj" "cpu_time.obj" "ctrl.obj" "datalog.obj" "filter_fo.obj" "flash.obj" "fw.obj" "gpio.obj" "hal.obj" "ipark.obj" "memCopy.obj" "offset.obj" "osc.obj" "park.obj" "pid.obj" "pie.obj" "pll.obj" "proj_lab01b.obj" "pwm.obj" "pwr.obj" "spi.obj" "svgen.obj" "svgen_current.obj" "timer.obj" "traj.obj" "usDelay.obj" "user.obj" "vs_freq.obj" "wdog.obj" 
+DEL /F "CodeStartBranch.d" "usDelay.d" 
+找不到 D:\BM1000\sw\solutions\instaspin_foc\boards\hvkit_rev1p1\f28x\f2802xF\projects\ccs\proj_lab01b\Flash\proj_lab01b.out
+找不到 D:\BM1000\sw\solutions\instaspin_foc\boards\hvkit_rev1p1\f28x\f2802xF\projects\ccs\proj_lab01b\Flash\CodeStartBranch.obj
+找不到 D:\BM1000\sw\solutions\instaspin_foc\boards\hvkit_rev1p1\f28x\f2802xF\projects\ccs\proj_lab01b\Flash\CodeStartBranch.d
+'Finished clean'
+' '
+
+**** Build Finished ****

@@ -10,12 +10,12 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"D:/BM1000Code/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_IQ_ROMSymbols.lib" \
-"D:/BM1000Code/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_ONLY_ROMSymbols.lib" \
-"D:/BM1000Code/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_RTS_ROMSymbols.lib" \
+"D:/BM1000/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_IQ_ROMSymbols.lib" \
+"D:/BM1000/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_ONLY_ROMSymbols.lib" \
+"D:/BM1000/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_RTS_ROMSymbols.lib" \
 -lrts2800_ml.lib \
-"D:/BM1000Code/sw/modules/fast/lib/32b/f28x/f2802x/fast_public.lib" \
-"D:/BM1000Code/sw/modules/iqmath/lib/f28x/32b/IQmath.lib" \
+"D:/BM1000/sw/modules/fast/lib/32b/f28x/f2802x/fast_public.lib" \
+"D:/BM1000/sw/modules/iqmath/lib/f28x/32b/IQmath.lib" \
 "./CodeStartBranch.obj" \
 "./adc.obj" \
 "./angle_gen.obj" \
@@ -50,7 +50,7 @@ ORDERED_OBJS += \
 "./user.obj" \
 "./vs_freq.obj" \
 "./wdog.obj" \
-"D:/BM1000Code/sw/ide/ccs/cmd/f2802x/F28027F.cmd" \
+"D:/BM1000/sw/ide/ccs/cmd/f2802x/F28027F.cmd" \
 $(GEN_CMDS__FLAG) \
 
 -include ../makefile.init

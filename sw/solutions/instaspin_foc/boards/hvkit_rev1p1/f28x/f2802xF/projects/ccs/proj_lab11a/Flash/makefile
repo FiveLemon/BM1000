@@ -10,10 +10,10 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"D:/BM1000Code/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_IQ_ROMSymbols.lib" \
-"D:/BM1000Code/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_ONLY_ROMSymbols.lib" \
-"D:/BM1000Code/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_RTS_ROMSymbols.lib" \
-"D:/BM1000Code/sw/modules/iqmath/lib/f28x/32b/IQmath.lib" \
+"D:/BM1000/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_IQ_ROMSymbols.lib" \
+"D:/BM1000/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_ONLY_ROMSymbols.lib" \
+"D:/BM1000/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_RTS_ROMSymbols.lib" \
+"D:/BM1000/sw/modules/iqmath/lib/f28x/32b/IQmath.lib" \
 "./CodeStartBranch.obj" \
 "./adc.obj" \
 "./clarke.obj" \
@@ -42,11 +42,11 @@ ORDERED_OBJS += \
 "./usDelay.obj" \
 "./user.obj" \
 "./wdog.obj" \
-"D:/BM1000Code/sw/modules/fast/lib/32b/f28x/EST_getIdq_pu.lib" \
-"D:/BM1000Code/sw/modules/fast/lib/32b/f28x/EST_runPowerWarp.lib" \
-"D:/BM1000Code/sw/modules/fast/lib/32b/f28x/EST_setEstParams.lib" \
-"D:/BM1000Code/sw/modules/fast/lib/32b/f28x/EST_setupEstIdleState.lib" \
-"D:/BM1000Code/sw/ide/ccs/cmd/f2802x/F28027F.cmd" \
+"D:/BM1000/sw/modules/fast/lib/32b/f28x/EST_getIdq_pu.lib" \
+"D:/BM1000/sw/modules/fast/lib/32b/f28x/EST_runPowerWarp.lib" \
+"D:/BM1000/sw/modules/fast/lib/32b/f28x/EST_setEstParams.lib" \
+"D:/BM1000/sw/modules/fast/lib/32b/f28x/EST_setupEstIdleState.lib" \
+"D:/BM1000/sw/ide/ccs/cmd/f2802x/F28027F.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
 
