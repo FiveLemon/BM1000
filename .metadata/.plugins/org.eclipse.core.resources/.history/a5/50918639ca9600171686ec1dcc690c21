@@ -1,0 +1,168 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+CMD_SRCS += \
+D:/FOC_27/sw/ide/ccs/cmd/f2802x/F28027F.cmd 
+
+LIB_SRCS += \
+D:/FOC_27/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_IQ_ROMSymbols.lib \
+D:/FOC_27/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_ONLY_ROMSymbols.lib \
+D:/FOC_27/sw/modules/fast/lib/32b/f28x/f2802x/2802xRevB_Fast_RTS_ROMSymbols.lib \
+D:/FOC_27/sw/modules/iqmath/lib/f28x/32b/IQmath.lib \
+D:/FOC_27/sw/modules/fast/lib/32b/f28x/f2802x/fast_public.lib 
+
+ASM_SRCS += \
+D:/FOC_27/sw/drivers/cpu/src/32b/f28x/f2802x/CodeStartBranch.asm \
+D:/FOC_27/sw/modules/usDelay/src/32b/f28x/usDelay.asm 
+
+C_SRCS += \
+D:/FOC_27/sw/drivers/adc/src/32b/f28x/f2802x/adc.c \
+D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c \
+D:/FOC_27/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c \
+D:/FOC_27/sw/drivers/flash/src/32b/f28x/f2802x/flash.c \
+D:/FOC_27/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c \
+D:/FOC_27/sw/modules/hal/boards/hvkit_rev1p1/f28x/f2802x/src/hal.c \
+D:/FOC_27/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.c \
+D:/FOC_27/sw/drivers/drvic/modbus/mb.c \
+D:/FOC_27/sw/modules/memCopy/src/memCopy.c \
+D:/FOC_27/sw/drivers/osc/src/32b/f28x/f2802x/osc.c \
+D:/FOC_27/sw/drivers/pie/src/32b/f28x/f2802x/pie.c \
+D:/FOC_27/sw/drivers/pll/src/32b/f28x/f2802x/pll.c \
+D:/FOC_27/sw/solutions/instaspin_foc/src/proj_lab01.c \
+D:/FOC_27/sw/drivers/pwm/src/32b/f28x/f2802x/pwm.c \
+D:/FOC_27/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c \
+D:/FOC_27/sw/drivers/sci/src/32b/f28x/f2802x/sci.c \
+D:/FOC_27/sw/drivers/spi/src/32b/f28x/f2802x/spi.c \
+D:/FOC_27/sw/drivers/timer/src/32b/f28x/f2802x/timer.c \
+D:/FOC_27/sw/modules/user/src/32b/user.c \
+D:/FOC_27/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c 
+
+OBJS += \
+./CodeStartBranch.obj \
+./adc.obj \
+./clk.obj \
+./cpu.obj \
+./flash.obj \
+./gpio.obj \
+./hal.obj \
+./i2c.obj \
+./mb.obj \
+./memCopy.obj \
+./osc.obj \
+./pie.obj \
+./pll.obj \
+./proj_lab01.obj \
+./pwm.obj \
+./pwr.obj \
+./sci.obj \
+./spi.obj \
+./timer.obj \
+./usDelay.obj \
+./user.obj \
+./wdog.obj 
+
+ASM_DEPS += \
+./CodeStartBranch.d \
+./usDelay.d 
+
+C_DEPS += \
+./adc.d \
+./clk.d \
+./cpu.d \
+./flash.d \
+./gpio.d \
+./hal.d \
+./i2c.d \
+./mb.d \
+./memCopy.d \
+./osc.d \
+./pie.d \
+./pll.d \
+./proj_lab01.d \
+./pwm.d \
+./pwr.d \
+./sci.d \
+./spi.d \
+./timer.d \
+./user.d \
+./wdog.d 
+
+C_DEPS__QUOTED += \
+"adc.d" \
+"clk.d" \
+"cpu.d" \
+"flash.d" \
+"gpio.d" \
+"hal.d" \
+"i2c.d" \
+"mb.d" \
+"memCopy.d" \
+"osc.d" \
+"pie.d" \
+"pll.d" \
+"proj_lab01.d" \
+"pwm.d" \
+"pwr.d" \
+"sci.d" \
+"spi.d" \
+"timer.d" \
+"user.d" \
+"wdog.d" 
+
+OBJS__QUOTED += \
+"CodeStartBranch.obj" \
+"adc.obj" \
+"clk.obj" \
+"cpu.obj" \
+"flash.obj" \
+"gpio.obj" \
+"hal.obj" \
+"i2c.obj" \
+"mb.obj" \
+"memCopy.obj" \
+"osc.obj" \
+"pie.obj" \
+"pll.obj" \
+"proj_lab01.obj" \
+"pwm.obj" \
+"pwr.obj" \
+"sci.obj" \
+"spi.obj" \
+"timer.obj" \
+"usDelay.obj" \
+"user.obj" \
+"wdog.obj" 
+
+ASM_DEPS__QUOTED += \
+"CodeStartBranch.d" \
+"usDelay.d" 
+
+ASM_SRCS__QUOTED += \
+"D:/FOC_27/sw/drivers/cpu/src/32b/f28x/f2802x/CodeStartBranch.asm" \
+"D:/FOC_27/sw/modules/usDelay/src/32b/f28x/usDelay.asm" 
+
+C_SRCS__QUOTED += \
+"D:/FOC_27/sw/drivers/adc/src/32b/f28x/f2802x/adc.c" \
+"D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c" \
+"D:/FOC_27/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c" \
+"D:/FOC_27/sw/drivers/flash/src/32b/f28x/f2802x/flash.c" \
+"D:/FOC_27/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c" \
+"D:/FOC_27/sw/modules/hal/boards/hvkit_rev1p1/f28x/f2802x/src/hal.c" \
+"D:/FOC_27/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.c" \
+"D:/FOC_27/sw/drivers/drvic/modbus/mb.c" \
+"D:/FOC_27/sw/modules/memCopy/src/memCopy.c" \
+"D:/FOC_27/sw/drivers/osc/src/32b/f28x/f2802x/osc.c" \
+"D:/FOC_27/sw/drivers/pie/src/32b/f28x/f2802x/pie.c" \
+"D:/FOC_27/sw/drivers/pll/src/32b/f28x/f2802x/pll.c" \
+"D:/FOC_27/sw/solutions/instaspin_foc/src/proj_lab01.c" \
+"D:/FOC_27/sw/drivers/pwm/src/32b/f28x/f2802x/pwm.c" \
+"D:/FOC_27/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c" \
+"D:/FOC_27/sw/drivers/sci/src/32b/f28x/f2802x/sci.c" \
+"D:/FOC_27/sw/drivers/spi/src/32b/f28x/f2802x/spi.c" \
+"D:/FOC_27/sw/drivers/timer/src/32b/f28x/f2802x/timer.c" \
+"D:/FOC_27/sw/modules/user/src/32b/user.c" \
+"D:/FOC_27/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c" 
+
+

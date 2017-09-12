@@ -1,0 +1,683 @@
+TMS320C2000 Assembler PC v6.2.5 Tue Aug 15 11:38:40 2017
+
+Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
+C:\Users\wmj\AppData\Local\Temp\7494410                              PAGE    1
+
+       1              ;***************************************************************
+       2              ;* TMS320C2000 C/C++ Codegen                         PC v6.2.5 *
+       3              ;* Date/Time created: Tue Aug 15 11:38:40 2017                 *
+       4              ;***************************************************************
+       5                      .compiler_opts --float_support=softlib --hll_source=on --mem_model:code=flat --mem_model:data=large -
+       6        0002  FP      .set    XAR2
+       7              
+       8              $C$DW$CU        .dwtag  DW_TAG_compile_unit
+       9                      .dwattr $C$DW$CU, DW_AT_name("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+      10                      .dwattr $C$DW$CU, DW_AT_producer("TMS320C2000 C/C++ Codegen PC v6.2.5 Copyright (c) 1996-2014 Texas I
+      11                      .dwattr $C$DW$CU, DW_AT_TI_version(0x01)
+      12                      .dwattr $C$DW$CU, DW_AT_comp_dir("D:\FOC_27\sw\solutions\instaspin_foc\boards\hvkit_rev1p1\f28x\f2802
+      13              $C$DW$1 .dwtag  DW_TAG_variable, DW_AT_name("pxMBFrameCBTransmitterEmpty")
+      14                      .dwattr $C$DW$1, DW_AT_TI_symbol_name("_pxMBFrameCBTransmitterEmpty")
+      15                      .dwattr $C$DW$1, DW_AT_type(*$C$DW$T$35)
+      16                      .dwattr $C$DW$1, DW_AT_declaration
+      17                      .dwattr $C$DW$1, DW_AT_external
+      18              $C$DW$2 .dwtag  DW_TAG_variable, DW_AT_name("pxMBFrameCBByteReceived")
+      19                      .dwattr $C$DW$2, DW_AT_TI_symbol_name("_pxMBFrameCBByteReceived")
+      20                      .dwattr $C$DW$2, DW_AT_type(*$C$DW$T$35)
+      21                      .dwattr $C$DW$2, DW_AT_declaration
+      22                      .dwattr $C$DW$2, DW_AT_external
+      23              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\749442 C
+      24              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\7494416
+      25 00000000               .sect   ".text"
+      26                      .clink
+      27                      .global _xMBPortSerialPutByte
+      28              
+      29              $C$DW$3 .dwtag  DW_TAG_subprogram, DW_AT_name("xMBPortSerialPutByte")
+      30                      .dwattr $C$DW$3, DW_AT_low_pc(_xMBPortSerialPutByte)
+      31                      .dwattr $C$DW$3, DW_AT_high_pc(0x00)
+      32                      .dwattr $C$DW$3, DW_AT_TI_symbol_name("_xMBPortSerialPutByte")
+      33                      .dwattr $C$DW$3, DW_AT_external
+      34                      .dwattr $C$DW$3, DW_AT_type(*$C$DW$T$22)
+      35                      .dwattr $C$DW$3, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+      36                      .dwattr $C$DW$3, DW_AT_TI_begin_line(0x82)
+      37                      .dwattr $C$DW$3, DW_AT_TI_begin_column(0x01)
+      38                      .dwattr $C$DW$3, DW_AT_TI_max_frame_size(-2)
+      39                      .dwpsn  file "D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c",line 131,column 1,is_stmt,addr
+      40              
+      41                      .dwfde $C$DW$CIE, _xMBPortSerialPutByte
+      42              $C$DW$4 .dwtag  DW_TAG_formal_parameter, DW_AT_name("ucByte")
+      43                      .dwattr $C$DW$4, DW_AT_TI_symbol_name("_ucByte")
+      44                      .dwattr $C$DW$4, DW_AT_type(*$C$DW$T$30)
+      45                      .dwattr $C$DW$4, DW_AT_location[DW_OP_reg0]
+      46              
+      47              ;***************************************************************
+      48              ;* FNAME: _xMBPortSerialPutByte         FR SIZE:   0           *
+      49              ;*                                                             *
+      50              ;* FUNCTION ENVIRONMENT                                        *
+      51              ;*                                                             *
+      52              ;* FUNCTION PROPERTIES                                         *
+      53              ;*                            0 Parameter,  0 Auto,  0 SOE     *
+      54              ;***************************************************************
+      55              
+TMS320C2000 Assembler PC v6.2.5 Tue Aug 15 11:38:40 2017
+
+Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
+C:\Users\wmj\AppData\Local\Temp\7494410                              PAGE    2
+
+      56 00000000       _xMBPortSerialPutByte:
+      57                      .dwcfi  cfa_offset, -2
+      58                      .dwcfi  save_reg_to_mem, 26, 0
+      59                      .dwcfi  save_reg_to_reg, 78, 26
+      60                      .dwpsn  file "D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c",line 133,column 5,is_stmt
+      61 00000000 9A01          MOVB      AL,#1                 ; [CPU_] |133| 
+      62              $C$DW$5 .dwtag  DW_TAG_TI_branch
+      63                      .dwattr $C$DW$5, DW_AT_low_pc(0x00)
+      64                      .dwattr $C$DW$5, DW_AT_TI_return
+      65 00000001 0006          LRETR     ; [CPU_] 
+      66                      ; return occurs ; [] 
+      67                      .dwattr $C$DW$3, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+      68                      .dwattr $C$DW$3, DW_AT_TI_end_line(0x86)
+      69                      .dwattr $C$DW$3, DW_AT_TI_end_column(0x01)
+      70                      .dwendentry
+      71                      .dwendtag $C$DW$3
+      72              
+      73 00000002               .sect   ".text"
+      74                      .clink
+      75                      .global _xMBPortSerialInit
+      76              
+      77              $C$DW$6 .dwtag  DW_TAG_subprogram, DW_AT_name("xMBPortSerialInit")
+      78                      .dwattr $C$DW$6, DW_AT_low_pc(_xMBPortSerialInit)
+      79                      .dwattr $C$DW$6, DW_AT_high_pc(0x00)
+      80                      .dwattr $C$DW$6, DW_AT_TI_symbol_name("_xMBPortSerialInit")
+      81                      .dwattr $C$DW$6, DW_AT_external
+      82                      .dwattr $C$DW$6, DW_AT_type(*$C$DW$T$22)
+      83                      .dwattr $C$DW$6, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+      84                      .dwattr $C$DW$6, DW_AT_TI_begin_line(0x3a)
+      85                      .dwattr $C$DW$6, DW_AT_TI_begin_column(0x01)
+      86                      .dwattr $C$DW$6, DW_AT_TI_max_frame_size(-2)
+      87                      .dwpsn  file "D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c",line 59,column 1,is_stmt,addre
+      88              
+      89                      .dwfde $C$DW$CIE, _xMBPortSerialInit
+      90              $C$DW$7 .dwtag  DW_TAG_formal_parameter, DW_AT_name("ucPORT")
+      91                      .dwattr $C$DW$7, DW_AT_TI_symbol_name("_ucPORT")
+      92                      .dwattr $C$DW$7, DW_AT_type(*$C$DW$T$25)
+      93                      .dwattr $C$DW$7, DW_AT_location[DW_OP_reg12]
+      94              $C$DW$8 .dwtag  DW_TAG_formal_parameter, DW_AT_name("ulBaudRate")
+      95                      .dwattr $C$DW$8, DW_AT_TI_symbol_name("_ulBaudRate")
+      96                      .dwattr $C$DW$8, DW_AT_type(*$C$DW$T$27)
+      97                      .dwattr $C$DW$8, DW_AT_location[DW_OP_reg0]
+      98              $C$DW$9 .dwtag  DW_TAG_formal_parameter, DW_AT_name("ucDataBits")
+      99                      .dwattr $C$DW$9, DW_AT_TI_symbol_name("_ucDataBits")
+     100                      .dwattr $C$DW$9, DW_AT_type(*$C$DW$T$25)
+     101                      .dwattr $C$DW$9, DW_AT_location[DW_OP_reg14]
+     102              $C$DW$10        .dwtag  DW_TAG_formal_parameter, DW_AT_name("eParity")
+     103                      .dwattr $C$DW$10, DW_AT_TI_symbol_name("_eParity")
+     104                      .dwattr $C$DW$10, DW_AT_type(*$C$DW$T$20)
+     105                      .dwattr $C$DW$10, DW_AT_location[DW_OP_breg20 -3]
+     106              
+     107              ;***************************************************************
+     108              ;* FNAME: _xMBPortSerialInit            FR SIZE:   0           *
+     109              ;*                                                             *
+     110              ;* FUNCTION ENVIRONMENT                                        *
+TMS320C2000 Assembler PC v6.2.5 Tue Aug 15 11:38:40 2017
+
+Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
+C:\Users\wmj\AppData\Local\Temp\7494410                              PAGE    3
+
+     111              ;*                                                             *
+     112              ;* FUNCTION PROPERTIES                                         *
+     113              ;*                            0 Parameter,  0 Auto,  0 SOE     *
+     114              ;***************************************************************
+     115              
+     116 00000002       _xMBPortSerialInit:
+     117                      .dwcfi  cfa_offset, -2
+     118                      .dwcfi  save_reg_to_mem, 26, 0
+     119                      .dwcfi  save_reg_to_reg, 78, 26
+     120                      .dwpsn  file "D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c",line 123,column 5,is_stmt
+     121 00000002 9A01          MOVB      AL,#1                 ; [CPU_] |123| 
+     122              $C$DW$11        .dwtag  DW_TAG_TI_branch
+     123                      .dwattr $C$DW$11, DW_AT_low_pc(0x00)
+     124                      .dwattr $C$DW$11, DW_AT_TI_return
+     125 00000003 0006          LRETR     ; [CPU_] 
+     126                      ; return occurs ; [] 
+     127                      .dwattr $C$DW$6, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+     128                      .dwattr $C$DW$6, DW_AT_TI_end_line(0x7d)
+     129                      .dwattr $C$DW$6, DW_AT_TI_end_column(0x01)
+     130                      .dwendentry
+     131                      .dwendtag $C$DW$6
+     132              
+     133 00000004               .sect   ".text"
+     134                      .clink
+     135                      .global _xMBPortSerialGetByte
+     136              
+     137              $C$DW$12        .dwtag  DW_TAG_subprogram, DW_AT_name("xMBPortSerialGetByte")
+     138                      .dwattr $C$DW$12, DW_AT_low_pc(_xMBPortSerialGetByte)
+     139                      .dwattr $C$DW$12, DW_AT_high_pc(0x00)
+     140                      .dwattr $C$DW$12, DW_AT_TI_symbol_name("_xMBPortSerialGetByte")
+     141                      .dwattr $C$DW$12, DW_AT_external
+     142                      .dwattr $C$DW$12, DW_AT_type(*$C$DW$T$22)
+     143                      .dwattr $C$DW$12, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+     144                      .dwattr $C$DW$12, DW_AT_TI_begin_line(0x89)
+     145                      .dwattr $C$DW$12, DW_AT_TI_begin_column(0x01)
+     146                      .dwattr $C$DW$12, DW_AT_TI_max_frame_size(-2)
+     147                      .dwpsn  file "D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c",line 138,column 1,is_stmt,addr
+     148              
+     149                      .dwfde $C$DW$CIE, _xMBPortSerialGetByte
+     150              $C$DW$13        .dwtag  DW_TAG_formal_parameter, DW_AT_name("pucByte")
+     151                      .dwattr $C$DW$13, DW_AT_TI_symbol_name("_pucByte")
+     152                      .dwattr $C$DW$13, DW_AT_type(*$C$DW$T$32)
+     153                      .dwattr $C$DW$13, DW_AT_location[DW_OP_reg12]
+     154              
+     155              ;***************************************************************
+     156              ;* FNAME: _xMBPortSerialGetByte         FR SIZE:   0           *
+     157              ;*                                                             *
+     158              ;* FUNCTION ENVIRONMENT                                        *
+     159              ;*                                                             *
+     160              ;* FUNCTION PROPERTIES                                         *
+     161              ;*                            0 Parameter,  0 Auto,  0 SOE     *
+     162              ;***************************************************************
+     163              
+     164 00000004       _xMBPortSerialGetByte:
+     165                      .dwcfi  cfa_offset, -2
+TMS320C2000 Assembler PC v6.2.5 Tue Aug 15 11:38:40 2017
+
+Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
+C:\Users\wmj\AppData\Local\Temp\7494410                              PAGE    4
+
+     166                      .dwcfi  save_reg_to_mem, 26, 0
+     167                      .dwcfi  save_reg_to_reg, 78, 26
+     168                      .dwpsn  file "D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c",line 140,column 5,is_stmt
+     169 00000004 9A01          MOVB      AL,#1                 ; [CPU_] |140| 
+     170              $C$DW$14        .dwtag  DW_TAG_TI_branch
+     171                      .dwattr $C$DW$14, DW_AT_low_pc(0x00)
+     172                      .dwattr $C$DW$14, DW_AT_TI_return
+     173 00000005 0006          LRETR     ; [CPU_] 
+     174                      ; return occurs ; [] 
+     175                      .dwattr $C$DW$12, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+     176                      .dwattr $C$DW$12, DW_AT_TI_end_line(0x8d)
+     177                      .dwattr $C$DW$12, DW_AT_TI_end_column(0x01)
+     178                      .dwendentry
+     179                      .dwendtag $C$DW$12
+     180              
+     181 00000006               .sect   ".text"
+     182                      .clink
+     183                      .global _vMBPortSerialEnable
+     184              
+     185              $C$DW$15        .dwtag  DW_TAG_subprogram, DW_AT_name("vMBPortSerialEnable")
+     186                      .dwattr $C$DW$15, DW_AT_low_pc(_vMBPortSerialEnable)
+     187                      .dwattr $C$DW$15, DW_AT_high_pc(0x00)
+     188                      .dwattr $C$DW$15, DW_AT_TI_symbol_name("_vMBPortSerialEnable")
+     189                      .dwattr $C$DW$15, DW_AT_external
+     190                      .dwattr $C$DW$15, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+     191                      .dwattr $C$DW$15, DW_AT_TI_begin_line(0x1c)
+     192                      .dwattr $C$DW$15, DW_AT_TI_begin_column(0x06)
+     193                      .dwattr $C$DW$15, DW_AT_TI_max_frame_size(-2)
+     194                      .dwpsn  file "D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c",line 29,column 1,is_stmt,addre
+     195              
+     196                      .dwfde $C$DW$CIE, _vMBPortSerialEnable
+     197              $C$DW$16        .dwtag  DW_TAG_formal_parameter, DW_AT_name("xRxEnable")
+     198                      .dwattr $C$DW$16, DW_AT_TI_symbol_name("_xRxEnable")
+     199                      .dwattr $C$DW$16, DW_AT_type(*$C$DW$T$22)
+     200                      .dwattr $C$DW$16, DW_AT_location[DW_OP_reg0]
+     201              $C$DW$17        .dwtag  DW_TAG_formal_parameter, DW_AT_name("xTxEnable")
+     202                      .dwattr $C$DW$17, DW_AT_TI_symbol_name("_xTxEnable")
+     203                      .dwattr $C$DW$17, DW_AT_type(*$C$DW$T$22)
+     204                      .dwattr $C$DW$17, DW_AT_location[DW_OP_reg1]
+     205              
+     206              ;***************************************************************
+     207              ;* FNAME: _vMBPortSerialEnable          FR SIZE:   0           *
+     208              ;*                                                             *
+     209              ;* FUNCTION ENVIRONMENT                                        *
+     210              ;*                                                             *
+     211              ;* FUNCTION PROPERTIES                                         *
+     212              ;*                            0 Parameter,  0 Auto,  0 SOE     *
+     213              ;***************************************************************
+     214              
+     215 00000006       _vMBPortSerialEnable:
+     216                      .dwcfi  cfa_offset, -2
+     217                      .dwcfi  save_reg_to_mem, 26, 0
+     218                      .dwcfi  save_reg_to_reg, 78, 26
+     219              $C$DW$18        .dwtag  DW_TAG_TI_branch
+     220                      .dwattr $C$DW$18, DW_AT_low_pc(0x00)
+TMS320C2000 Assembler PC v6.2.5 Tue Aug 15 11:38:40 2017
+
+Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
+C:\Users\wmj\AppData\Local\Temp\7494410                              PAGE    5
+
+     221                      .dwattr $C$DW$18, DW_AT_TI_return
+     222 00000006 0006          LRETR     ; [CPU_] 
+     223                      ; return occurs ; [] 
+     224                      .dwattr $C$DW$15, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+     225                      .dwattr $C$DW$15, DW_AT_TI_end_line(0x30)
+     226                      .dwattr $C$DW$15, DW_AT_TI_end_column(0x01)
+     227                      .dwendentry
+     228                      .dwendtag $C$DW$15
+     229              
+     230 00000007               .sect   ".text"
+     231                      .clink
+     232                      .global _vMBPortClose
+     233              
+     234              $C$DW$19        .dwtag  DW_TAG_subprogram, DW_AT_name("vMBPortClose")
+     235                      .dwattr $C$DW$19, DW_AT_low_pc(_vMBPortClose)
+     236                      .dwattr $C$DW$19, DW_AT_high_pc(0x00)
+     237                      .dwattr $C$DW$19, DW_AT_TI_symbol_name("_vMBPortClose")
+     238                      .dwattr $C$DW$19, DW_AT_external
+     239                      .dwattr $C$DW$19, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+     240                      .dwattr $C$DW$19, DW_AT_TI_begin_line(0x33)
+     241                      .dwattr $C$DW$19, DW_AT_TI_begin_column(0x01)
+     242                      .dwattr $C$DW$19, DW_AT_TI_max_frame_size(-2)
+     243                      .dwpsn  file "D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c",line 52,column 1,is_stmt,addre
+     244              
+     245                      .dwfde $C$DW$CIE, _vMBPortClose
+     246              
+     247              ;***************************************************************
+     248              ;* FNAME: _vMBPortClose                 FR SIZE:   0           *
+     249              ;*                                                             *
+     250              ;* FUNCTION ENVIRONMENT                                        *
+     251              ;*                                                             *
+     252              ;* FUNCTION PROPERTIES                                         *
+     253              ;*                            0 Parameter,  0 Auto,  0 SOE     *
+     254              ;***************************************************************
+     255              
+     256 00000007       _vMBPortClose:
+     257                      .dwcfi  cfa_offset, -2
+     258                      .dwcfi  save_reg_to_mem, 26, 0
+     259                      .dwcfi  save_reg_to_reg, 78, 26
+     260              $C$DW$20        .dwtag  DW_TAG_TI_branch
+     261                      .dwattr $C$DW$20, DW_AT_low_pc(0x00)
+     262                      .dwattr $C$DW$20, DW_AT_TI_return
+     263 00000007 0006          LRETR     ; [CPU_] 
+     264                      ; return occurs ; [] 
+     265                      .dwattr $C$DW$19, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+     266                      .dwattr $C$DW$19, DW_AT_TI_end_line(0x37)
+     267                      .dwattr $C$DW$19, DW_AT_TI_end_column(0x01)
+     268                      .dwendentry
+     269                      .dwendtag $C$DW$19
+     270              
+     271 00000008               .sect   ".text"
+     272                      .clink
+     273                      .global _prvvUARTTxReadyISR
+     274              
+     275              $C$DW$21        .dwtag  DW_TAG_subprogram, DW_AT_name("prvvUARTTxReadyISR")
+TMS320C2000 Assembler PC v6.2.5 Tue Aug 15 11:38:40 2017
+
+Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
+C:\Users\wmj\AppData\Local\Temp\7494410                              PAGE    6
+
+     276                      .dwattr $C$DW$21, DW_AT_low_pc(_prvvUARTTxReadyISR)
+     277                      .dwattr $C$DW$21, DW_AT_high_pc(0x00)
+     278                      .dwattr $C$DW$21, DW_AT_TI_symbol_name("_prvvUARTTxReadyISR")
+     279                      .dwattr $C$DW$21, DW_AT_external
+     280                      .dwattr $C$DW$21, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+     281                      .dwattr $C$DW$21, DW_AT_TI_begin_line(0x96)
+     282                      .dwattr $C$DW$21, DW_AT_TI_begin_column(0x06)
+     283                      .dwattr $C$DW$21, DW_AT_TI_max_frame_size(-2)
+     284                      .dwpsn  file "D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c",line 151,column 1,is_stmt,addr
+     285              
+     286                      .dwfde $C$DW$CIE, _prvvUARTTxReadyISR
+     287              
+     288              ;***************************************************************
+     289              ;* FNAME: _prvvUARTTxReadyISR           FR SIZE:   0           *
+     290              ;*                                                             *
+     291              ;* FUNCTION ENVIRONMENT                                        *
+     292              ;*                                                             *
+     293              ;* FUNCTION PROPERTIES                                         *
+     294              ;*                            0 Parameter,  0 Auto,  0 SOE     *
+     295              ;***************************************************************
+     296              
+     297 00000008       _prvvUARTTxReadyISR:
+     298                      .dwcfi  cfa_offset, -2
+     299                      .dwcfi  save_reg_to_mem, 26, 0
+     300                      .dwcfi  save_reg_to_reg, 78, 26
+     301 00000008 761F!         MOVW      DP,#_pxMBFrameCBTransmitterEmpty ; [CPU_U] 
+         00000009 0000 
+     302                      .dwpsn  file "D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c",line 152,column 5,is_stmt
+     303 0000000a C500!         MOVL      XAR7,@_pxMBFrameCBTransmitterEmpty ; [CPU_] |152| 
+     304              $C$DW$22        .dwtag  DW_TAG_TI_branch
+     305                      .dwattr $C$DW$22, DW_AT_low_pc(0x00)
+     306                      .dwattr $C$DW$22, DW_AT_TI_call
+     307                      .dwattr $C$DW$22, DW_AT_TI_indirect
+     308 0000000b 3E67          LCR       *XAR7                 ; [CPU_] |152| 
+     309                      ; call occurs [XAR7] ; [] |152| 
+     310              $C$DW$23        .dwtag  DW_TAG_TI_branch
+     311                      .dwattr $C$DW$23, DW_AT_low_pc(0x00)
+     312                      .dwattr $C$DW$23, DW_AT_TI_return
+     313 0000000c 0006          LRETR     ; [CPU_] 
+     314                      ; return occurs ; [] 
+     315                      .dwattr $C$DW$21, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+     316                      .dwattr $C$DW$21, DW_AT_TI_end_line(0x99)
+     317                      .dwattr $C$DW$21, DW_AT_TI_end_column(0x01)
+     318                      .dwendentry
+     319                      .dwendtag $C$DW$21
+     320              
+     321 0000000d               .sect   ".text"
+     322                      .clink
+     323                      .global _prvvUARTRxISR
+     324              
+     325              $C$DW$24        .dwtag  DW_TAG_subprogram, DW_AT_name("prvvUARTRxISR")
+     326                      .dwattr $C$DW$24, DW_AT_low_pc(_prvvUARTRxISR)
+     327                      .dwattr $C$DW$24, DW_AT_high_pc(0x00)
+     328                      .dwattr $C$DW$24, DW_AT_TI_symbol_name("_prvvUARTRxISR")
+     329                      .dwattr $C$DW$24, DW_AT_external
+TMS320C2000 Assembler PC v6.2.5 Tue Aug 15 11:38:40 2017
+
+Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
+C:\Users\wmj\AppData\Local\Temp\7494410                              PAGE    7
+
+     330                      .dwattr $C$DW$24, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+     331                      .dwattr $C$DW$24, DW_AT_TI_begin_line(0xa1)
+     332                      .dwattr $C$DW$24, DW_AT_TI_begin_column(0x06)
+     333                      .dwattr $C$DW$24, DW_AT_TI_max_frame_size(-2)
+     334                      .dwpsn  file "D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c",line 162,column 1,is_stmt,addr
+     335              
+     336                      .dwfde $C$DW$CIE, _prvvUARTRxISR
+     337              
+     338              ;***************************************************************
+     339              ;* FNAME: _prvvUARTRxISR                FR SIZE:   0           *
+     340              ;*                                                             *
+     341              ;* FUNCTION ENVIRONMENT                                        *
+     342              ;*                                                             *
+     343              ;* FUNCTION PROPERTIES                                         *
+     344              ;*                            0 Parameter,  0 Auto,  0 SOE     *
+     345              ;***************************************************************
+     346              
+     347 0000000d       _prvvUARTRxISR:
+     348                      .dwcfi  cfa_offset, -2
+     349                      .dwcfi  save_reg_to_mem, 26, 0
+     350                      .dwcfi  save_reg_to_reg, 78, 26
+     351 0000000d 761F!         MOVW      DP,#_pxMBFrameCBByteReceived ; [CPU_U] 
+         0000000e 0000 
+     352                      .dwpsn  file "D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c",line 163,column 5,is_stmt
+     353 0000000f C500!         MOVL      XAR7,@_pxMBFrameCBByteReceived ; [CPU_] |163| 
+     354              $C$DW$25        .dwtag  DW_TAG_TI_branch
+     355                      .dwattr $C$DW$25, DW_AT_low_pc(0x00)
+     356                      .dwattr $C$DW$25, DW_AT_TI_call
+     357                      .dwattr $C$DW$25, DW_AT_TI_indirect
+     358 00000010 3E67          LCR       *XAR7                 ; [CPU_] |163| 
+     359                      ; call occurs [XAR7] ; [] |163| 
+     360              $C$DW$26        .dwtag  DW_TAG_TI_branch
+     361                      .dwattr $C$DW$26, DW_AT_low_pc(0x00)
+     362                      .dwattr $C$DW$26, DW_AT_TI_return
+     363 00000011 0006          LRETR     ; [CPU_] 
+     364                      ; return occurs ; [] 
+     365                      .dwattr $C$DW$24, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/drvic/FreeModbus/port/portserial.c")
+     366                      .dwattr $C$DW$24, DW_AT_TI_end_line(0xa4)
+     367                      .dwattr $C$DW$24, DW_AT_TI_end_column(0x01)
+     368                      .dwendentry
+     369                      .dwendtag $C$DW$24
+     370              
+     371              ;**************************************************************
+     372              ;* UNDEFINED EXTERNAL REFERENCES                              *
+     373              ;**************************************************************
+     374                      .global _pxMBFrameCBTransmitterEmpty
+     375                      .global _pxMBFrameCBByteReceived
+     376              
+     377              ;***************************************************************
+     378              ;* TYPE INFORMATION                                            *
+     379              ;***************************************************************
+     380              
+     381              $C$DW$T$19      .dwtag  DW_TAG_enumeration_type
+     382                      .dwattr $C$DW$T$19, DW_AT_byte_size(0x01)
+     383              $C$DW$27        .dwtag  DW_TAG_enumerator, DW_AT_name("MB_PAR_NONE"), DW_AT_const_value(0x00)
+TMS320C2000 Assembler PC v6.2.5 Tue Aug 15 11:38:40 2017
+
+Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
+C:\Users\wmj\AppData\Local\Temp\7494410                              PAGE    8
+
+     384              $C$DW$28        .dwtag  DW_TAG_enumerator, DW_AT_name("MB_PAR_ODD"), DW_AT_const_value(0x01)
+     385              $C$DW$29        .dwtag  DW_TAG_enumerator, DW_AT_name("MB_PAR_EVEN"), DW_AT_const_value(0x02)
+     386                      .dwendtag $C$DW$T$19
+     387              
+     388              $C$DW$T$20      .dwtag  DW_TAG_typedef, DW_AT_name("eMBParity")
+     389                      .dwattr $C$DW$T$20, DW_AT_type(*$C$DW$T$19)
+     390                      .dwattr $C$DW$T$20, DW_AT_language(DW_LANG_C)
+     391              $C$DW$T$4       .dwtag  DW_TAG_base_type
+     392                      .dwattr $C$DW$T$4, DW_AT_encoding(DW_ATE_boolean)
+     393                      .dwattr $C$DW$T$4, DW_AT_name("bool")
+     394                      .dwattr $C$DW$T$4, DW_AT_byte_size(0x01)
+     395              $C$DW$T$5       .dwtag  DW_TAG_base_type
+     396                      .dwattr $C$DW$T$5, DW_AT_encoding(DW_ATE_signed_char)
+     397                      .dwattr $C$DW$T$5, DW_AT_name("signed char")
+     398                      .dwattr $C$DW$T$5, DW_AT_byte_size(0x01)
+     399              $C$DW$T$6       .dwtag  DW_TAG_base_type
+     400                      .dwattr $C$DW$T$6, DW_AT_encoding(DW_ATE_unsigned_char)
+     401                      .dwattr $C$DW$T$6, DW_AT_name("unsigned char")
+     402                      .dwattr $C$DW$T$6, DW_AT_byte_size(0x01)
+     403              $C$DW$T$25      .dwtag  DW_TAG_typedef, DW_AT_name("UCHAR")
+     404                      .dwattr $C$DW$T$25, DW_AT_type(*$C$DW$T$6)
+     405                      .dwattr $C$DW$T$25, DW_AT_language(DW_LANG_C)
+     406              $C$DW$T$21      .dwtag  DW_TAG_typedef, DW_AT_name("_Bool")
+     407                      .dwattr $C$DW$T$21, DW_AT_type(*$C$DW$T$6)
+     408                      .dwattr $C$DW$T$21, DW_AT_language(DW_LANG_C)
+     409              $C$DW$T$22      .dwtag  DW_TAG_typedef, DW_AT_name("BOOL")
+     410                      .dwattr $C$DW$T$22, DW_AT_type(*$C$DW$T$21)
+     411                      .dwattr $C$DW$T$22, DW_AT_language(DW_LANG_C)
+     412              
+     413              $C$DW$T$34      .dwtag  DW_TAG_subroutine_type
+     414                      .dwattr $C$DW$T$34, DW_AT_type(*$C$DW$T$22)
+     415                      .dwattr $C$DW$T$34, DW_AT_language(DW_LANG_C)
+     416              $C$DW$T$35      .dwtag  DW_TAG_pointer_type
+     417                      .dwattr $C$DW$T$35, DW_AT_type(*$C$DW$T$34)
+     418                      .dwattr $C$DW$T$35, DW_AT_address_class(0x16)
+     419              $C$DW$T$7       .dwtag  DW_TAG_base_type
+     420                      .dwattr $C$DW$T$7, DW_AT_encoding(DW_ATE_signed_char)
+     421                      .dwattr $C$DW$T$7, DW_AT_name("wchar_t")
+     422                      .dwattr $C$DW$T$7, DW_AT_byte_size(0x01)
+     423              $C$DW$T$8       .dwtag  DW_TAG_base_type
+     424                      .dwattr $C$DW$T$8, DW_AT_encoding(DW_ATE_signed)
+     425                      .dwattr $C$DW$T$8, DW_AT_name("short")
+     426                      .dwattr $C$DW$T$8, DW_AT_byte_size(0x01)
+     427              $C$DW$T$9       .dwtag  DW_TAG_base_type
+     428                      .dwattr $C$DW$T$9, DW_AT_encoding(DW_ATE_unsigned)
+     429                      .dwattr $C$DW$T$9, DW_AT_name("unsigned short")
+     430                      .dwattr $C$DW$T$9, DW_AT_byte_size(0x01)
+     431              $C$DW$T$10      .dwtag  DW_TAG_base_type
+     432                      .dwattr $C$DW$T$10, DW_AT_encoding(DW_ATE_signed)
+     433                      .dwattr $C$DW$T$10, DW_AT_name("int")
+     434                      .dwattr $C$DW$T$10, DW_AT_byte_size(0x01)
+     435              $C$DW$T$11      .dwtag  DW_TAG_base_type
+     436                      .dwattr $C$DW$T$11, DW_AT_encoding(DW_ATE_unsigned)
+     437                      .dwattr $C$DW$T$11, DW_AT_name("unsigned int")
+     438                      .dwattr $C$DW$T$11, DW_AT_byte_size(0x01)
+TMS320C2000 Assembler PC v6.2.5 Tue Aug 15 11:38:40 2017
+
+Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
+C:\Users\wmj\AppData\Local\Temp\7494410                              PAGE    9
+
+     439              $C$DW$T$12      .dwtag  DW_TAG_base_type
+     440                      .dwattr $C$DW$T$12, DW_AT_encoding(DW_ATE_signed)
+     441                      .dwattr $C$DW$T$12, DW_AT_name("long")
+     442                      .dwattr $C$DW$T$12, DW_AT_byte_size(0x02)
+     443              $C$DW$T$13      .dwtag  DW_TAG_base_type
+     444                      .dwattr $C$DW$T$13, DW_AT_encoding(DW_ATE_unsigned)
+     445                      .dwattr $C$DW$T$13, DW_AT_name("unsigned long")
+     446                      .dwattr $C$DW$T$13, DW_AT_byte_size(0x02)
+     447              $C$DW$T$26      .dwtag  DW_TAG_typedef, DW_AT_name("uint32_t")
+     448                      .dwattr $C$DW$T$26, DW_AT_type(*$C$DW$T$13)
+     449                      .dwattr $C$DW$T$26, DW_AT_language(DW_LANG_C)
+     450              $C$DW$T$27      .dwtag  DW_TAG_typedef, DW_AT_name("ULONG")
+     451                      .dwattr $C$DW$T$27, DW_AT_type(*$C$DW$T$26)
+     452                      .dwattr $C$DW$T$27, DW_AT_language(DW_LANG_C)
+     453              $C$DW$T$14      .dwtag  DW_TAG_base_type
+     454                      .dwattr $C$DW$T$14, DW_AT_encoding(DW_ATE_signed)
+     455                      .dwattr $C$DW$T$14, DW_AT_name("long long")
+     456                      .dwattr $C$DW$T$14, DW_AT_byte_size(0x04)
+     457              $C$DW$T$15      .dwtag  DW_TAG_base_type
+     458                      .dwattr $C$DW$T$15, DW_AT_encoding(DW_ATE_unsigned)
+     459                      .dwattr $C$DW$T$15, DW_AT_name("unsigned long long")
+     460                      .dwattr $C$DW$T$15, DW_AT_byte_size(0x04)
+     461              $C$DW$T$16      .dwtag  DW_TAG_base_type
+     462                      .dwattr $C$DW$T$16, DW_AT_encoding(DW_ATE_float)
+     463                      .dwattr $C$DW$T$16, DW_AT_name("float")
+     464                      .dwattr $C$DW$T$16, DW_AT_byte_size(0x02)
+     465              $C$DW$T$17      .dwtag  DW_TAG_base_type
+     466                      .dwattr $C$DW$T$17, DW_AT_encoding(DW_ATE_float)
+     467                      .dwattr $C$DW$T$17, DW_AT_name("double")
+     468                      .dwattr $C$DW$T$17, DW_AT_byte_size(0x02)
+     469              $C$DW$T$18      .dwtag  DW_TAG_base_type
+     470                      .dwattr $C$DW$T$18, DW_AT_encoding(DW_ATE_float)
+     471                      .dwattr $C$DW$T$18, DW_AT_name("long double")
+     472                      .dwattr $C$DW$T$18, DW_AT_byte_size(0x04)
+     473              $C$DW$T$30      .dwtag  DW_TAG_typedef, DW_AT_name("CHAR")
+     474                      .dwattr $C$DW$T$30, DW_AT_type(*$C$DW$T$5)
+     475                      .dwattr $C$DW$T$30, DW_AT_language(DW_LANG_C)
+     476              $C$DW$T$32      .dwtag  DW_TAG_pointer_type
+     477                      .dwattr $C$DW$T$32, DW_AT_type(*$C$DW$T$30)
+     478                      .dwattr $C$DW$T$32, DW_AT_address_class(0x16)
+     479                      .dwattr $C$DW$CU, DW_AT_language(DW_LANG_C)
+     480              
+     481              ;***************************************************************
+     482              ;* DWARF CIE ENTRIES                                           *
+     483              ;***************************************************************
+     484              
+     485              $C$DW$CIE       .dwcie 78
+     486                      .dwcfi  cfa_register, 20
+     487                      .dwcfi  cfa_offset, 0
+     488                      .dwcfi  undefined, 0
+     489                      .dwcfi  undefined, 1
+     490                      .dwcfi  undefined, 2
+     491                      .dwcfi  undefined, 3
+     492                      .dwcfi  undefined, 20
+     493                      .dwcfi  undefined, 21
+TMS320C2000 Assembler PC v6.2.5 Tue Aug 15 11:38:40 2017
+
+Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
+C:\Users\wmj\AppData\Local\Temp\7494410                              PAGE   10
+
+     494                      .dwcfi  undefined, 22
+     495                      .dwcfi  undefined, 23
+     496                      .dwcfi  undefined, 24
+     497                      .dwcfi  undefined, 25
+     498                      .dwcfi  undefined, 26
+     499                      .dwcfi  same_value, 28
+     500                      .dwcfi  undefined, 29
+     501                      .dwcfi  undefined, 30
+     502                      .dwcfi  undefined, 31
+     503                      .dwcfi  undefined, 32
+     504                      .dwcfi  undefined, 33
+     505                      .dwcfi  undefined, 34
+     506                      .dwcfi  undefined, 35
+     507                      .dwcfi  undefined, 36
+     508                      .dwcfi  undefined, 37
+     509                      .dwcfi  undefined, 38
+     510                      .dwcfi  undefined, 75
+     511                      .dwcfi  undefined, 76
+     512                      .dwcfi  undefined, 77
+     513                      .dwcfi  undefined, 4
+     514                      .dwcfi  same_value, 6
+     515                      .dwcfi  same_value, 8
+     516                      .dwcfi  same_value, 10
+     517                      .dwcfi  undefined, 12
+     518                      .dwcfi  undefined, 14
+     519                      .dwcfi  undefined, 16
+     520                      .dwcfi  undefined, 17
+     521                      .dwcfi  undefined, 18
+     522                      .dwcfi  undefined, 19
+     523                      .dwcfi  undefined, 5
+     524                      .dwcfi  same_value, 7
+     525                      .dwcfi  same_value, 9
+     526                      .dwcfi  same_value, 11
+     527                      .dwcfi  undefined, 13
+     528                      .dwcfi  undefined, 15
+     529                      .dwcfi  undefined, 78
+     530                      .dwendentry
+     531              
+     532              ;***************************************************************
+     533              ;* DWARF REGISTER MAP                                          *
+     534              ;***************************************************************
+     535              
+     536              $C$DW$30        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AL")
+     537                      .dwattr $C$DW$30, DW_AT_location[DW_OP_reg0]
+     538              $C$DW$31        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AH")
+     539                      .dwattr $C$DW$31, DW_AT_location[DW_OP_reg1]
+     540              $C$DW$32        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("PL")
+     541                      .dwattr $C$DW$32, DW_AT_location[DW_OP_reg2]
+     542              $C$DW$33        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("PH")
+     543                      .dwattr $C$DW$33, DW_AT_location[DW_OP_reg3]
+     544              $C$DW$34        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("SP")
+     545                      .dwattr $C$DW$34, DW_AT_location[DW_OP_reg20]
+     546              $C$DW$35        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("XT")
+     547                      .dwattr $C$DW$35, DW_AT_location[DW_OP_reg21]
+     548              $C$DW$36        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("T")
+TMS320C2000 Assembler PC v6.2.5 Tue Aug 15 11:38:40 2017
+
+Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
+C:\Users\wmj\AppData\Local\Temp\7494410                              PAGE   11
+
+     549                      .dwattr $C$DW$36, DW_AT_location[DW_OP_reg22]
+     550              $C$DW$37        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("ST0")
+     551                      .dwattr $C$DW$37, DW_AT_location[DW_OP_reg23]
+     552              $C$DW$38        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("ST1")
+     553                      .dwattr $C$DW$38, DW_AT_location[DW_OP_reg24]
+     554              $C$DW$39        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("PC")
+     555                      .dwattr $C$DW$39, DW_AT_location[DW_OP_reg25]
+     556              $C$DW$40        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("RPC")
+     557                      .dwattr $C$DW$40, DW_AT_location[DW_OP_reg26]
+     558              $C$DW$41        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("FP")
+     559                      .dwattr $C$DW$41, DW_AT_location[DW_OP_reg28]
+     560              $C$DW$42        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("DP")
+     561                      .dwattr $C$DW$42, DW_AT_location[DW_OP_reg29]
+     562              $C$DW$43        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("SXM")
+     563                      .dwattr $C$DW$43, DW_AT_location[DW_OP_reg30]
+     564              $C$DW$44        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("PM")
+     565                      .dwattr $C$DW$44, DW_AT_location[DW_OP_reg31]
+     566              $C$DW$45        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("OVM")
+     567                      .dwattr $C$DW$45, DW_AT_location[DW_OP_regx 0x20]
+     568              $C$DW$46        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("PAGE0")
+     569                      .dwattr $C$DW$46, DW_AT_location[DW_OP_regx 0x21]
+     570              $C$DW$47        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AMODE")
+     571                      .dwattr $C$DW$47, DW_AT_location[DW_OP_regx 0x22]
+     572              $C$DW$48        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("INTM")
+     573                      .dwattr $C$DW$48, DW_AT_location[DW_OP_regx 0x23]
+     574              $C$DW$49        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("IFR")
+     575                      .dwattr $C$DW$49, DW_AT_location[DW_OP_regx 0x24]
+     576              $C$DW$50        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("IER")
+     577                      .dwattr $C$DW$50, DW_AT_location[DW_OP_regx 0x25]
+     578              $C$DW$51        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("V")
+     579                      .dwattr $C$DW$51, DW_AT_location[DW_OP_regx 0x26]
+     580              $C$DW$52        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("PSEUDOH")
+     581                      .dwattr $C$DW$52, DW_AT_location[DW_OP_regx 0x4c]
+     582              $C$DW$53        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("VOL")
+     583                      .dwattr $C$DW$53, DW_AT_location[DW_OP_regx 0x4d]
+     584              $C$DW$54        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR0")
+     585                      .dwattr $C$DW$54, DW_AT_location[DW_OP_reg4]
+     586              $C$DW$55        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR1")
+     587                      .dwattr $C$DW$55, DW_AT_location[DW_OP_reg6]
+     588              $C$DW$56        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR2")
+     589                      .dwattr $C$DW$56, DW_AT_location[DW_OP_reg8]
+     590              $C$DW$57        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR3")
+     591                      .dwattr $C$DW$57, DW_AT_location[DW_OP_reg10]
+     592              $C$DW$58        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR4")
+     593                      .dwattr $C$DW$58, DW_AT_location[DW_OP_reg12]
+     594              $C$DW$59        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR5")
+     595                      .dwattr $C$DW$59, DW_AT_location[DW_OP_reg14]
+     596              $C$DW$60        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR6")
+     597                      .dwattr $C$DW$60, DW_AT_location[DW_OP_reg16]
+     598              $C$DW$61        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("XAR6")
+     599                      .dwattr $C$DW$61, DW_AT_location[DW_OP_reg17]
+     600              $C$DW$62        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR7")
+     601                      .dwattr $C$DW$62, DW_AT_location[DW_OP_reg18]
+     602              $C$DW$63        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("XAR7")
+     603                      .dwattr $C$DW$63, DW_AT_location[DW_OP_reg19]
+TMS320C2000 Assembler PC v6.2.5 Tue Aug 15 11:38:40 2017
+
+Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
+C:\Users\wmj\AppData\Local\Temp\7494410                              PAGE   12
+
+     604              $C$DW$64        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("XAR0")
+     605                      .dwattr $C$DW$64, DW_AT_location[DW_OP_reg5]
+     606              $C$DW$65        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("XAR1")
+     607                      .dwattr $C$DW$65, DW_AT_location[DW_OP_reg7]
+     608              $C$DW$66        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("XAR2")
+     609                      .dwattr $C$DW$66, DW_AT_location[DW_OP_reg9]
+     610              $C$DW$67        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("XAR3")
+     611                      .dwattr $C$DW$67, DW_AT_location[DW_OP_reg11]
+     612              $C$DW$68        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("XAR4")
+     613                      .dwattr $C$DW$68, DW_AT_location[DW_OP_reg13]
+     614              $C$DW$69        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("XAR5")
+     615                      .dwattr $C$DW$69, DW_AT_location[DW_OP_reg15]
+     616              $C$DW$70        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("CIE_RETA")
+     617                      .dwattr $C$DW$70, DW_AT_location[DW_OP_regx 0x4e]
+     618                      .dwendtag $C$DW$CU
+     619              
+
+No Assembly Errors, No Assembly Warnings
