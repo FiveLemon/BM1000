@@ -78,7 +78,6 @@ uint16_t asdf;
 
 
 
-
 MB_Handle MyMBhandle;
 MB_Obj  My_ModBus;
 
@@ -131,6 +130,7 @@ void scia_msg(char * msg);
 void main(void)
 {
 
+
   // Only used if running from FLASH
   // Note that the variable FLASH is defined by the project
   #ifdef FLASH
@@ -157,6 +157,7 @@ void main(void)
   // initialize the hardware abstraction layer
   halHandle = HAL_init(&hal,sizeof(hal));
 
+
   MyMBhandle = MB_init(&My_ModBus, sizeof(My_ModBus));
 
   MB_setSciHandle(MyMBhandle, halHandle->sciHandle);
@@ -164,6 +165,14 @@ void main(void)
   MB_setGpioHandle(MyMBhandle, halHandle->gpioHandle);
   MB_setSlaveAddress(MyMBhandle, 0x01);
 
+
+  // initialize the user parameters
+  USER_setParams(&gUserParams);
+
+  // set the hardware abstraction layer parameters
+  HAL_setParams(halHandle,&gUserParams);
+
+  USER_setMotorParams(&gUserParams);
 
   // check for errors in user parameters
   USER_checkForErrors(&gUserParams);
@@ -180,11 +189,7 @@ void main(void)
         }
     }
 
-  // initialize the user parameters
-  USER_setParams(&gUserParams);
 
-  // set the hardware abstraction layer parameters
-  HAL_setParams(halHandle,&gUserParams);
 
 #ifdef LAUNCHPAD
   // Setup GPIOs 0 and 1 as outputs for use in project lab1 only.
@@ -279,45 +284,6 @@ interrupt void mainISR(void)
 
   return;
 } // end of mainISR() function
-
-
-/*
-interrupt void sciaTxFifoIsr(void)
-{
-	uint16_t i;
-
-    for(i=0; i< 2; i++)                 //Increment send data for next cycle
-    {
-	  SCI_putDataBlocking(halHandle->sciHandle, sdataA[i]);
-    }
-    for(i=0; i<2; i++)
-    {
-    	sdataA[i] = (sdataA[i]+1 ) & 0x00ff;
-    }
-
-	SCI_clearTxFifoInt(halHandle->sciHandle);
-	PIE_clearInt(halHandle->pieHandle,PIE_GroupNumber_9);
-
-}
-
-
-interrupt void RsISR(void)
-{
-
-
-    static uint16_t i =0;
-
-	rdataA[i] = halHandle->sciHandle->SCIRXBUF;
-    SCI_putDataBlocking(halHandle->sciHandle,rdataA[i]);
-	i++;
-	if(i>=2)
-	{
-		i=0;
-	}
-
-   return;
-}
-*/
 
 
 void scia_msg(char * msg)

@@ -1,11 +1,11 @@
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:50 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    1
+C:\Users\wmj\AppData\Local\Temp\1204010                              PAGE    1
 
        1              ;***************************************************************
        2              ;* TMS320C2000 C/C++ Codegen                         PC v6.2.5 *
-       3              ;* Date/Time created: Tue Sep 12 20:58:50 2017                 *
+       3              ;* Date/Time created: Fri Sep 15 10:15:52 2017                 *
        4              ;***************************************************************
        5                      .compiler_opts --float_support=softlib --hll_source=on --mem_model:code=flat --mem_model:data=large -
        6        0002  FP      .set    XAR2
@@ -15,8 +15,8 @@ C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    1
       10                      .dwattr $C$DW$CU, DW_AT_producer("TMS320C2000 C/C++ Codegen PC v6.2.5 Copyright (c) 1996-2014 Texas I
       11                      .dwattr $C$DW$CU, DW_AT_TI_version(0x01)
       12                      .dwattr $C$DW$CU, DW_AT_comp_dir("D:\BM1000\sw\solutions\instaspin_foc\boards\hvkit_rev1p1\f28x\f2802
-      13              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\119885 C
-      14              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\1198819
+      13              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\120402 C
+      14              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\1204016
       15 00000000               .sect   ".text"
       16                      .clink
       17                      .global _OSC_setTrim
@@ -58,10 +58,10 @@ C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    1
       53              _OSC_setTrim:
       54              ;* AH    assigned to _trimValue
       55              $C$DW$5 .dwtag  DW_TAG_variable, DW_AT_name("trimValue")
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:50 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    2
+C:\Users\wmj\AppData\Local\Temp\1204010                              PAGE    2
 
       56                      .dwattr $C$DW$5, DW_AT_TI_symbol_name("_trimValue")
       57                      .dwattr $C$DW$5, DW_AT_type(*$C$DW$T$38)
@@ -118,10 +118,10 @@ C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    2
      106              
      107                      .dwfde $C$DW$CIE, _OSC_setFineTrim
      108              $C$DW$10        .dwtag  DW_TAG_formal_parameter, DW_AT_name("clkHandle")
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:50 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    3
+C:\Users\wmj\AppData\Local\Temp\1204010                              PAGE    3
 
      109                      .dwattr $C$DW$10, DW_AT_TI_symbol_name("_clkHandle")
      110                      .dwattr $C$DW$10, DW_AT_type(*$C$DW$T$27)
@@ -178,10 +178,10 @@ C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    3
      159 00000011 6F06          B         $C$L2,UNC             ; [CPU_] |125| 
      160                      ; branch occurs ; [] |125| 
      161 00000012       $C$L1:    
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:50 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    4
+C:\Users\wmj\AppData\Local\Temp\1204010                              PAGE    4
 
      162                      .dwpsn  file "D:/BM1000/sw/drivers/osc/src/32b/f28x/f2802x/osc.c",line 114,column 7,is_stmt
      163 00000012 18C4          AND       *+XAR4[0],#0x81ff     ; [CPU_] |114| 
@@ -238,10 +238,10 @@ C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    4
      212              ;*                                                             *
      213              ;* FUNCTION ENVIRONMENT                                        *
      214              ;*                                                             *
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:50 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    5
+C:\Users\wmj\AppData\Local\Temp\1204010                              PAGE    5
 
      215              ;* FUNCTION PROPERTIES                                         *
      216              ;*                            0 Parameter,  0 Auto,  0 SOE     *
@@ -298,10 +298,10 @@ C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    5
      265                      .dwendentry
      266                      .dwendtag $C$DW$17
      267              
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:50 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    6
+C:\Users\wmj\AppData\Local\Temp\1204010                              PAGE    6
 
      268 00000027               .sect   ".text"
      269                      .clink
@@ -358,10 +358,10 @@ C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    6
      320 00000029 0FA6          CMPL      ACC,XAR6              ; [CPU_] |63| 
      321 0000002a 6902          B         $C$L5,LOS             ; [CPU_] |63| 
      322                      ; branchcc occurs ; [] |63| 
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:50 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    7
+C:\Users\wmj\AppData\Local\Temp\1204010                              PAGE    7
 
      323 0000002b D400          MOVB      XAR4,#0               ; [CPU_] |63| 
      324              $C$L5:    
@@ -418,10 +418,10 @@ C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    7
      375                      .dwattr $C$DW$36, DW_AT_accessibility(DW_ACCESS_public)
      376                      .dwendtag $C$DW$T$21
      377              
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:50 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    8
+C:\Users\wmj\AppData\Local\Temp\1204010                              PAGE    8
 
      378              $C$DW$T$25      .dwtag  DW_TAG_typedef, DW_AT_name("OSC_Obj")
      379                      .dwattr $C$DW$T$25, DW_AT_type(*$C$DW$T$21)
@@ -478,10 +478,10 @@ C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    8
      430              $C$DW$T$38      .dwtag  DW_TAG_const_type
      431                      .dwattr $C$DW$T$38, DW_AT_type(*$C$DW$40)
      432              $C$DW$T$35      .dwtag  DW_TAG_typedef, DW_AT_name("uint_least8_t")
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:50 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    9
+C:\Users\wmj\AppData\Local\Temp\1204010                              PAGE    9
 
      433                      .dwattr $C$DW$T$35, DW_AT_type(*$C$DW$T$19)
      434                      .dwattr $C$DW$T$35, DW_AT_language(DW_LANG_C)
@@ -538,10 +538,10 @@ C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE    9
      485              ;* DWARF CIE ENTRIES                                           *
      486              ;***************************************************************
      487              
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:50 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE   10
+C:\Users\wmj\AppData\Local\Temp\1204010                              PAGE   10
 
      488              $C$DW$CIE       .dwcie 78
      489                      .dwcfi  cfa_register, 20
@@ -598,10 +598,10 @@ C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE   10
      540                      .dwattr $C$DW$43, DW_AT_location[DW_OP_reg0]
      541              $C$DW$44        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AH")
      542                      .dwattr $C$DW$44, DW_AT_location[DW_OP_reg1]
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:50 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE   11
+C:\Users\wmj\AppData\Local\Temp\1204010                              PAGE   11
 
      543              $C$DW$45        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("PL")
      544                      .dwattr $C$DW$45, DW_AT_location[DW_OP_reg2]
@@ -658,10 +658,10 @@ C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE   11
      595              $C$DW$71        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR4")
      596                      .dwattr $C$DW$71, DW_AT_location[DW_OP_reg12]
      597              $C$DW$72        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR5")
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:50 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1198813                              PAGE   12
+C:\Users\wmj\AppData\Local\Temp\1204010                              PAGE   12
 
      598                      .dwattr $C$DW$72, DW_AT_location[DW_OP_reg14]
      599              $C$DW$73        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR6")

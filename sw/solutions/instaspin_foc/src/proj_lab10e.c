@@ -306,10 +306,25 @@ void main(void)
   PROCTRL_setNxtState(proctrlHandle, PROCTRL_State_IDLE);
 
 
+
+  USER_checkDefErrors(&gUserParams);
+
+  // initialize the user parameters
+  USER_setParams(&gUserParams);
+
+  // set the hardware abstraction layer parameters
+  HAL_setParams(halHandle,&gUserParams);
+
+
+  USER_setMotorIDs(&gUserParams, HAL_getBoardAddr(halHandle));
+
+  USER_setMotorParams(&gUserParams);
+
+  USER_setWaitTimeParams(&gUserParams);
+
   // check for errors in user parameters
   USER_checkForErrors(&gUserParams);
 
-//  gMotorVars.Flag_enableUserParams = false;
 
   // store user parameter error in global variable
   gMotorVars.UserErrorCode = USER_getErrorCode(&gUserParams);
@@ -323,12 +338,6 @@ void main(void)
           gMotorVars.Flag_enableSys = false;
         }
     }
-
-  // initialize the user parameters
-  USER_setParams(&gUserParams);
-
-  // set the hardware abstraction layer parameters
-  HAL_setParams(halHandle,&gUserParams);
 
   PROCTRL_setParams(proctrlHandle);
 
@@ -347,6 +356,9 @@ void main(void)
 
     gMotorVars.CtrlVersion = version;
   }
+
+
+
 
   // set the default controller parameters
   CTRL_setParams(ctrlHandle,&gUserParams);
@@ -445,17 +457,17 @@ void main(void)
 
 
   // compute scaling factors for flux and torque calculations
-  gFlux_pu_to_Wb_sf = USER_computeFlux_pu_to_Wb_sf();
-  gFlux_pu_to_VpHz_sf = USER_computeFlux_pu_to_VpHz_sf();
-  gTorque_Ls_Id_Iq_pu_to_Nm_sf = USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf();
-  gTorque_Flux_Iq_pu_to_Nm_sf = USER_computeTorque_Flux_Iq_pu_to_Nm_sf();
+  gFlux_pu_to_Wb_sf = USER_computeFlux_pu_to_Wb_sf(&gUserParams);
+  gFlux_pu_to_VpHz_sf = USER_computeFlux_pu_to_VpHz_sf(&gUserParams);
+  gTorque_Ls_Id_Iq_pu_to_Nm_sf = USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf(&gUserParams);
+  gTorque_Flux_Iq_pu_to_Nm_sf = USER_computeTorque_Flux_Iq_pu_to_Nm_sf(&gUserParams);
 
   // Below two lines code for Flash Testing, need to be commented
   //gMotorVars.Flag_enableSys = true;
   gMotorVars.Flag_enablePowerWarp = true;
 //  gMotorVars.Flag_enableRun = true;
   PCA955x_ReadStatus(proctrlHandle->pca955xHandle,PCA955x_PortNum_Port1);
-  MB_PortTimersEnable(MyMBhandle);
+  //MB_PortTimersEnable(MyMBhandle);
 
   for(;;)
   {

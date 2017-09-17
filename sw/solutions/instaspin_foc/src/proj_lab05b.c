@@ -187,6 +187,21 @@ void main(void)
 
   //MB_PortTimersEnable(MyMBhandle);
 
+  USER_checkDefErrors(&gUserParams);
+
+  // initialize the user parameters
+  USER_setParams(&gUserParams);
+
+  // set the hardware abstraction layer parameters
+  HAL_setParams(halHandle,&gUserParams);
+
+
+  USER_setMotorIDs(&gUserParams, HAL_getBoardAddr(halHandle));
+
+  USER_setMotorParams(&gUserParams);
+
+  USER_setWaitTimeParams(&gUserParams);
+
   // check for errors in user parameters
   USER_checkForErrors(&gUserParams);
 
@@ -204,22 +219,8 @@ void main(void)
         }
     }
 
-
-  // initialize the user parameters
-  USER_setParams(&gUserParams);
-
-
-  // set the hardware abstraction layer parameters
-  HAL_setParams(halHandle,&gUserParams);
-/*
-  //configure the Pac9555 for init
-  HAL_I2c_Pca9555_WrData(halHandle,0x06,0x00);
-  //getData[1] = 0x0f | HAL_I2c_Pca9555_RdData(halHandle,0x01);
-  HAL_I2c_Pca9555_WrData(halHandle,0x02,0x58);
-  HAL_I2c_Pca9555_WrData(halHandle,0x02,0x5c);
-*/
-    // must be after  (hardware abstraction layer parameters setting)
-    PROCTRL_setParams(proctrlHandle);
+  // must be after  (hardware abstraction layer parameters setting)
+  PROCTRL_setParams(proctrlHandle);
 
 
   // initialize the controller
@@ -239,10 +240,6 @@ void main(void)
 
     gMotorVars.CtrlVersion = version;
   }
-
-
-  // set the default controller parameters
-  CTRL_setParams(ctrlHandle,&gUserParams);
 
 
   // setup faults
@@ -292,18 +289,25 @@ void main(void)
 
 
   // compute scaling factors for flux and torque calculations
-  gFlux_pu_to_Wb_sf = USER_computeFlux_pu_to_Wb_sf();
-  gFlux_pu_to_VpHz_sf = USER_computeFlux_pu_to_VpHz_sf();
-  gTorque_Ls_Id_Iq_pu_to_Nm_sf = USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf();
-  gTorque_Flux_Iq_pu_to_Nm_sf = USER_computeTorque_Flux_Iq_pu_to_Nm_sf();
+  gFlux_pu_to_Wb_sf = USER_computeFlux_pu_to_Wb_sf(&gUserParams);
+  gFlux_pu_to_VpHz_sf = USER_computeFlux_pu_to_VpHz_sf(&gUserParams);
+  gTorque_Ls_Id_Iq_pu_to_Nm_sf = USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf(&gUserParams);
+  gTorque_Flux_Iq_pu_to_Nm_sf = USER_computeTorque_Flux_Iq_pu_to_Nm_sf(&gUserParams);
 
 //  GPIO_setLow(halHandle->gpioHandle,GPIO_Number_8);
 //  HAL_turnLedOn(halHandle,(GPIO_Number_e)HAL_Gpio_LED2);
 
+
+  // set the default controller parameters
+  CTRL_setParams(ctrlHandle,&gUserParams);
+
   for(;;)
   {
     // Waiting for enable system flag to be set
-    while(!(gMotorVars.Flag_enableSys));
+    while(!(gMotorVars.Flag_enableSys))
+    	{
+          MB_Poll(MyMBhandle);
+    	};
 
     // Enable the Library internal PI.  Iq is referenced by the speed PI now
     CTRL_setFlag_enableSpeedCtrl(ctrlHandle, true);
@@ -477,6 +481,7 @@ void main(void)
         HAL_readDrvData(halHandle,&gDrvSpi8305Vars);
 #endif
       } // end of while(gFlag_enableSys) loop
+
 
 
     // disable the PWM

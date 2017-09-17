@@ -146,32 +146,32 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-proj_lab01.out \
+proj27_lab01.out \
 
 EXE_OUTPUTS__QUOTED += \
-"proj_lab01.out" \
+"proj27_lab01.out" \
 
 BIN_OUTPUTS += \
-proj_lab01.hex \
+proj27_lab01.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"proj_lab01.hex" \
+"proj27_lab01.hex" \
 
 
 # All Target
-all: proj_lab01.out
+all: proj27_lab01.out
 
 # Tool invocations
-proj_lab01.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
+proj27_lab01.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/bin/cl2000" -v28 -ml -mt -O2 -g --define=FLASH --define=FAST_ROM_V1p7 --define=F2802xF --diag_warning=225 --display_error_number --asm_listing -z -m"proj_lab01.map" --stack_size=0x200 --warn_sections -i"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/lib" -i"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include" --reread_libs --priority --disable_auto_rts --diag_suppress=16002 --xml_link_info="proj_lab01_linkInfo.xml" --rom_model -o "proj_lab01.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/bin/cl2000" -v28 -ml -mt -O2 -g --define=FLASH --define=FAST_ROM_V1p7 --define=F2802xF --diag_warning=225 --display_error_number --asm_listing -z -m"proj27_lab01.map" --stack_size=0x200 --warn_sections -i"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/lib" -i"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include" --reread_libs --priority --disable_auto_rts --diag_suppress=16002 --xml_link_info="proj27_lab01_linkInfo.xml" --rom_model -o "proj27_lab01.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-proj_lab01.hex: $(EXE_OUTPUTS)
+proj27_lab01.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/bin/hex2000"  -o "proj_lab01.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/bin/hex2000"  -o "proj27_lab01.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 

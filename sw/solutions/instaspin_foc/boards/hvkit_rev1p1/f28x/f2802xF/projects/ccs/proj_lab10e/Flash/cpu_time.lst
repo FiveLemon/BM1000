@@ -1,22 +1,22 @@
-TMS320C2000 Assembler PC v6.2.5 Mon Sep 11 13:57:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sat Sep 16 14:55:43 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    1
+C:\Users\wmj\AppData\Local\Temp\1275211                              PAGE    1
 
        1              ;***************************************************************
        2              ;* TMS320C2000 C/C++ Codegen                         PC v6.2.5 *
-       3              ;* Date/Time created: Mon Sep 11 13:57:36 2017                 *
+       3              ;* Date/Time created: Sat Sep 16 14:55:43 2017                 *
        4              ;***************************************************************
        5                      .compiler_opts --float_support=softlib --hll_source=on --mem_model:code=flat --mem_model:data=large -
        6        0002  FP      .set    XAR2
        7              
        8              $C$DW$CU        .dwtag  DW_TAG_compile_unit
-       9                      .dwattr $C$DW$CU, DW_AT_name("D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c")
+       9                      .dwattr $C$DW$CU, DW_AT_name("D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c")
       10                      .dwattr $C$DW$CU, DW_AT_producer("TMS320C2000 C/C++ Codegen PC v6.2.5 Copyright (c) 1996-2014 Texas I
       11                      .dwattr $C$DW$CU, DW_AT_TI_version(0x01)
-      12                      .dwattr $C$DW$CU, DW_AT_comp_dir("D:\FOC_27\sw\solutions\instaspin_foc\boards\hvkit_rev1p1\f28x\f2802
-      13              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\135122 C
-      14              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\1351216
+      12                      .dwattr $C$DW$CU, DW_AT_comp_dir("D:\BM1000\sw\solutions\instaspin_foc\boards\hvkit_rev1p1\f28x\f2802
+      13              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\127523 C
+      14              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\1275217
       15 00000000               .sect   ".text"
       16                      .clink
       17                      .global _CPU_TIME_setParams
@@ -26,11 +26,11 @@ C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    1
       21                      .dwattr $C$DW$1, DW_AT_high_pc(0x00)
       22                      .dwattr $C$DW$1, DW_AT_TI_symbol_name("_CPU_TIME_setParams")
       23                      .dwattr $C$DW$1, DW_AT_external
-      24                      .dwattr $C$DW$1, DW_AT_TI_begin_file("D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c")
+      24                      .dwattr $C$DW$1, DW_AT_TI_begin_file("D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c")
       25                      .dwattr $C$DW$1, DW_AT_TI_begin_line(0x22)
       26                      .dwattr $C$DW$1, DW_AT_TI_begin_column(0x06)
       27                      .dwattr $C$DW$1, DW_AT_TI_max_frame_size(-2)
-      28                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 35,column 1,is_stmt,address _CPU
+      28                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 35,column 1,is_stmt,address _CPU
       29              
       30                      .dwfde $C$DW$CIE, _CPU_TIME_setParams
       31              $C$DW$2 .dwtag  DW_TAG_formal_parameter, DW_AT_name("handle")
@@ -58,10 +58,10 @@ C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    1
       53                      .dwattr $C$DW$4, DW_AT_type(*$C$DW$T$26)
       54                      .dwattr $C$DW$4, DW_AT_location[DW_OP_reg12]
       55              ;* AL    assigned to _pwm_period
-TMS320C2000 Assembler PC v6.2.5 Mon Sep 11 13:57:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sat Sep 16 14:55:43 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    2
+C:\Users\wmj\AppData\Local\Temp\1275211                              PAGE    2
 
       56              $C$DW$5 .dwtag  DW_TAG_variable, DW_AT_name("pwm_period")
       57                      .dwattr $C$DW$5, DW_AT_TI_symbol_name("_pwm_period")
@@ -70,36 +70,36 @@ C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    2
       60                      .dwcfi  cfa_offset, -2
       61                      .dwcfi  save_reg_to_mem, 26, 0
       62                      .dwcfi  save_reg_to_reg, 78, 26
-      63                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 38,column 3,is_stmt
+      63                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 38,column 3,is_stmt
       64 00000000 96C4          MOV       *+XAR4[0],AL          ; [CPU_] |38| 
-      65                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 40,column 3,is_stmt
+      65                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 40,column 3,is_stmt
       66 00000001 0200          MOVB      ACC,#0                ; [CPU_] |40| 
-      67                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 44,column 3,is_stmt
+      67                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 44,column 3,is_stmt
       68 00000002 D008          MOVB      XAR0,#8               ; [CPU_] |44| 
-      69                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 40,column 3,is_stmt
+      69                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 40,column 3,is_stmt
       70 00000003 1ED4          MOVL      *+XAR4[2],ACC         ; [CPU_] |40| 
-      71                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 41,column 3,is_stmt
+      71                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 41,column 3,is_stmt
       72 00000004 1EE4          MOVL      *+XAR4[4],ACC         ; [CPU_] |41| 
-      73                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 43,column 3,is_stmt
+      73                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 43,column 3,is_stmt
       74 00000005 1EF4          MOVL      *+XAR4[6],ACC         ; [CPU_] |43| 
-      75                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 44,column 3,is_stmt
+      75                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 44,column 3,is_stmt
       76 00000006 1E94          MOVL      *+XAR4[AR0],ACC       ; [CPU_] |44| 
-      77                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 46,column 3,is_stmt
+      77                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 46,column 3,is_stmt
       78 00000007 D012          MOVB      XAR0,#18              ; [CPU_] |46| 
       79 00000008 1E94          MOVL      *+XAR4[AR0],ACC       ; [CPU_] |46| 
-      80                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 47,column 3,is_stmt
+      80                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 47,column 3,is_stmt
       81 00000009 D014          MOVB      XAR0,#20              ; [CPU_] |47| 
       82 0000000a 1E94          MOVL      *+XAR4[AR0],ACC       ; [CPU_] |47| 
-      83                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 49,column 3,is_stmt
+      83                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 49,column 3,is_stmt
       84 0000000b D00C          MOVB      XAR0,#12              ; [CPU_] |49| 
       85 0000000c 1E94          MOVL      *+XAR4[AR0],ACC       ; [CPU_] |49| 
-      86                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 50,column 3,is_stmt
+      86                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 50,column 3,is_stmt
       87 0000000d D00A          MOVB      XAR0,#10              ; [CPU_] |50| 
       88 0000000e 1E94          MOVL      *+XAR4[AR0],ACC       ; [CPU_] |50| 
-      89                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 51,column 3,is_stmt
+      89                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 51,column 3,is_stmt
       90 0000000f D00E          MOVB      XAR0,#14              ; [CPU_] |51| 
       91 00000010 1E94          MOVL      *+XAR4[AR0],ACC       ; [CPU_] |51| 
-      92                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 53,column 3,is_stmt
+      92                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 53,column 3,is_stmt
       93 00000011 D016          MOVB      XAR0,#22              ; [CPU_] |53| 
       94 00000012 2B94          MOV       *+XAR4[AR0],#0        ; [CPU_] |53| 
       95              $C$DW$6 .dwtag  DW_TAG_TI_branch
@@ -107,7 +107,7 @@ C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    2
       97                      .dwattr $C$DW$6, DW_AT_TI_return
       98 00000013 0006          LRETR     ; [CPU_] 
       99                      ; return occurs ; [] 
-     100                      .dwattr $C$DW$1, DW_AT_TI_end_file("D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c")
+     100                      .dwattr $C$DW$1, DW_AT_TI_end_file("D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c")
      101                      .dwattr $C$DW$1, DW_AT_TI_end_line(0x38)
      102                      .dwattr $C$DW$1, DW_AT_TI_end_column(0x01)
      103                      .dwendentry
@@ -118,21 +118,21 @@ C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    2
      108                      .global _CPU_TIME_init
      109              
      110              $C$DW$7 .dwtag  DW_TAG_subprogram, DW_AT_name("CPU_TIME_init")
-TMS320C2000 Assembler PC v6.2.5 Mon Sep 11 13:57:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sat Sep 16 14:55:43 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    3
+C:\Users\wmj\AppData\Local\Temp\1275211                              PAGE    3
 
      111                      .dwattr $C$DW$7, DW_AT_low_pc(_CPU_TIME_init)
      112                      .dwattr $C$DW$7, DW_AT_high_pc(0x00)
      113                      .dwattr $C$DW$7, DW_AT_TI_symbol_name("_CPU_TIME_init")
      114                      .dwattr $C$DW$7, DW_AT_external
      115                      .dwattr $C$DW$7, DW_AT_type(*$C$DW$T$25)
-     116                      .dwattr $C$DW$7, DW_AT_TI_begin_file("D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c")
+     116                      .dwattr $C$DW$7, DW_AT_TI_begin_file("D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c")
      117                      .dwattr $C$DW$7, DW_AT_TI_begin_line(0x15)
      118                      .dwattr $C$DW$7, DW_AT_TI_begin_column(0x11)
      119                      .dwattr $C$DW$7, DW_AT_TI_max_frame_size(-2)
-     120                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 22,column 1,is_stmt,address _CPU
+     120                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 22,column 1,is_stmt,address _CPU
      121              
      122                      .dwfde $C$DW$CIE, _CPU_TIME_init
      123              $C$DW$8 .dwtag  DW_TAG_formal_parameter, DW_AT_name("pMemory")
@@ -168,7 +168,7 @@ C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    3
      153                      .dwcfi  save_reg_to_mem, 26, 0
      154                      .dwcfi  save_reg_to_reg, 78, 26
      155 00000014 1EA6          MOVL      XAR6,ACC              ; [CPU_] |22| 
-     156                      .dwpsn  file "D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c",line 26,column 5,is_stmt
+     156                      .dwpsn  file "D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c",line 26,column 5,is_stmt
      157 00000015 0218          MOVB      ACC,#24               ; [CPU_] |26| 
      158 00000016 0FA6          CMPL      ACC,XAR6              ; [CPU_] |26| 
      159 00000017 6902          B         $C$L1,LOS             ; [CPU_] |26| 
@@ -178,14 +178,14 @@ C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    3
      163              $C$DW$12        .dwtag  DW_TAG_TI_branch
      164                      .dwattr $C$DW$12, DW_AT_low_pc(0x00)
      165                      .dwattr $C$DW$12, DW_AT_TI_return
-TMS320C2000 Assembler PC v6.2.5 Mon Sep 11 13:57:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sat Sep 16 14:55:43 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    4
+C:\Users\wmj\AppData\Local\Temp\1275211                              PAGE    4
 
      166 00000019 0006          LRETR     ; [CPU_] 
      167                      ; return occurs ; [] 
-     168                      .dwattr $C$DW$7, DW_AT_TI_end_file("D:/FOC_27/sw/modules/cpu_time/src/32b/cpu_time.c")
+     168                      .dwattr $C$DW$7, DW_AT_TI_end_file("D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.c")
      169                      .dwattr $C$DW$7, DW_AT_TI_end_line(0x20)
      170                      .dwattr $C$DW$7, DW_AT_TI_end_column(0x01)
      171                      .dwendentry
@@ -238,10 +238,10 @@ C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    4
      218              $C$DW$19        .dwtag  DW_TAG_member
      219                      .dwattr $C$DW$19, DW_AT_type(*$C$DW$T$20)
      220                      .dwattr $C$DW$19, DW_AT_name("timer_delta_max")
-TMS320C2000 Assembler PC v6.2.5 Mon Sep 11 13:57:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sat Sep 16 14:55:43 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    5
+C:\Users\wmj\AppData\Local\Temp\1275211                              PAGE    5
 
      221                      .dwattr $C$DW$19, DW_AT_TI_symbol_name("_timer_delta_max")
      222                      .dwattr $C$DW$19, DW_AT_data_member_location[DW_OP_plus_uconst 0xc]
@@ -298,10 +298,10 @@ C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    5
      273              $C$DW$T$32      .dwtag  DW_TAG_const_type
      274                      .dwattr $C$DW$T$32, DW_AT_type(*$C$DW$26)
      275              $C$DW$T$4       .dwtag  DW_TAG_base_type
-TMS320C2000 Assembler PC v6.2.5 Mon Sep 11 13:57:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sat Sep 16 14:55:43 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    6
+C:\Users\wmj\AppData\Local\Temp\1275211                              PAGE    6
 
      276                      .dwattr $C$DW$T$4, DW_AT_encoding(DW_ATE_boolean)
      277                      .dwattr $C$DW$T$4, DW_AT_name("bool")
@@ -358,10 +358,10 @@ C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    6
      328              $C$DW$28        .dwtag  DW_TAG_TI_far_type
      329                      .dwattr $C$DW$28, DW_AT_type(*$C$DW$T$27)
      330              $C$DW$T$28      .dwtag  DW_TAG_const_type
-TMS320C2000 Assembler PC v6.2.5 Mon Sep 11 13:57:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sat Sep 16 14:55:43 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    7
+C:\Users\wmj\AppData\Local\Temp\1275211                              PAGE    7
 
      331                      .dwattr $C$DW$T$28, DW_AT_type(*$C$DW$28)
      332              $C$DW$T$20      .dwtag  DW_TAG_typedef, DW_AT_name("uint32_t")
@@ -418,10 +418,10 @@ C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    7
      383                      .dwcfi  undefined, 36
      384                      .dwcfi  undefined, 37
      385                      .dwcfi  undefined, 38
-TMS320C2000 Assembler PC v6.2.5 Mon Sep 11 13:57:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sat Sep 16 14:55:43 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    8
+C:\Users\wmj\AppData\Local\Temp\1275211                              PAGE    8
 
      386                      .dwcfi  undefined, 75
      387                      .dwcfi  undefined, 76
@@ -478,10 +478,10 @@ C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    8
      438              $C$DW$42        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("SXM")
      439                      .dwattr $C$DW$42, DW_AT_location[DW_OP_reg30]
      440              $C$DW$43        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("PM")
-TMS320C2000 Assembler PC v6.2.5 Mon Sep 11 13:57:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sat Sep 16 14:55:43 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    9
+C:\Users\wmj\AppData\Local\Temp\1275211                              PAGE    9
 
      441                      .dwattr $C$DW$43, DW_AT_location[DW_OP_reg31]
      442              $C$DW$44        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("OVM")
@@ -538,10 +538,10 @@ C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE    9
      493                      .dwattr $C$DW$69, DW_AT_location[DW_OP_regx 0x4e]
      494                      .dwendtag $C$DW$CU
      495              
-TMS320C2000 Assembler PC v6.2.5 Mon Sep 11 13:57:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sat Sep 16 14:55:43 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1351210                              PAGE   10
+C:\Users\wmj\AppData\Local\Temp\1275211                              PAGE   10
 
 
 No Assembly Errors, No Assembly Warnings

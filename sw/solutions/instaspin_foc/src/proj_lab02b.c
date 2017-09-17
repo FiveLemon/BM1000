@@ -133,7 +133,7 @@ DRV_SPI_8305_Vars_t gDrvSpi8305Vars;
 // the functions
 
 void main(void)
-{
+ {
   uint_least8_t estNumber = 0;
 
 #ifdef FAST_ROM_V1p6
@@ -170,22 +170,10 @@ void main(void)
   proctrlHandle = PROCTRL_init(&MyProcessCtrl,sizeof(MyProcessCtrl));
   PROCTRL_setHalHandle(proctrlHandle, halHandle);
 
+
+
   // check for errors in user parameters
-  USER_checkForErrors(&gUserParams);
-
-
-  // store user parameter error in global variable
-  gMotorVars.UserErrorCode = USER_getErrorCode(&gUserParams);
-
-
-  // do not allow code execution if there is a user parameter error
-  if(gMotorVars.UserErrorCode != USER_ErrorCode_NoError)
-    {
-      for(;;)
-        {
-          gMotorVars.Flag_enableSys = false;
-        }
-    }
+  USER_checkDefErrors(&gUserParams);
 
 
   // initialize the user parameters
@@ -195,13 +183,29 @@ void main(void)
   // set the hardware abstraction layer parameters
   HAL_setParams(halHandle,&gUserParams);
 
-/*
-  //configure the Pac9555 for init
-  HAL_I2c_Pca9555_WrData(halHandle,0x06,0x00);
-  //getData[1] = 0x0f | HAL_I2c_Pca9555_RdData(halHandle,0x01);
-  HAL_I2c_Pca9555_WrData(halHandle,0x02,0x58);
-  HAL_I2c_Pca9555_WrData(halHandle,0x02,0x5c);
-*/
+  USER_setMotorIDs(&gUserParams, HAL_getBoardAddr(halHandle));
+
+  USER_setMotorParams(&gUserParams);
+
+  USER_setWaitTimeParams(&gUserParams);
+
+  USER_checkForErrors(&gUserParams);
+
+
+   // store user parameter error in global variable
+   gMotorVars.UserErrorCode = USER_getErrorCode(&gUserParams);
+
+
+   // do not allow code execution if there is a user parameter error
+   if(gMotorVars.UserErrorCode != USER_ErrorCode_NoError)
+     {
+       for(;;)
+         {
+           gMotorVars.Flag_enableSys = false;
+         }
+     }
+
+
 
   PROCTRL_setParams(proctrlHandle);
 

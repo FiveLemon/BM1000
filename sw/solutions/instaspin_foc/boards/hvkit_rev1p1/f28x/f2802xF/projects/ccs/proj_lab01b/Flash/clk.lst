@@ -1,22 +1,22 @@
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    1
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE    1
 
        1              ;***************************************************************
        2              ;* TMS320C2000 C/C++ Codegen                   PC v15.12.3.LTS *
-       3              ;* Date/Time created: Tue Aug 29 09:30:29 2017                 *
+       3              ;* Date/Time created: Tue Sep 12 21:32:29 2017                 *
        4              ;***************************************************************
        5                      .compiler_opts --abi=coffabi --float_support=softlib --hll_source=on --mem_model:code=flat --mem_mode
        6        0002  FP      .set    XAR2
        7              
        8              $C$DW$CU        .dwtag  DW_TAG_compile_unit
-       9                      .dwattr $C$DW$CU, DW_AT_name("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+       9                      .dwattr $C$DW$CU, DW_AT_name("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
       10                      .dwattr $C$DW$CU, DW_AT_producer("TI TMS320C2000 C/C++ Codegen PC v15.12.3.LTS Copyright (c) 1996-201
       11                      .dwattr $C$DW$CU, DW_AT_TI_version(0x01)
-      12                      .dwattr $C$DW$CU, DW_AT_comp_dir("D:\FOC_27\sw\solutions\instaspin_foc\boards\hvkit_rev1p1\f28x\f2802
-      13              ;       C:\ti\ccsv6\tools\compiler\c2000_15.12.3.LTS\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\10
-      14              ;       C:\ti\ccsv6\tools\compiler\c2000_15.12.3.LTS\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\1
+      12                      .dwattr $C$DW$CU, DW_AT_comp_dir("D:\BM1000\sw\solutions\instaspin_foc\boards\hvkit_rev1p1\f28x\f2802
+      13              ;       C:\ti\ccsv6\tools\compiler\c2000_15.12.3.LTS\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\23
+      14              ;       C:\ti\ccsv6\tools\compiler\c2000_15.12.3.LTS\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\2
       15 00000000               .sect   ".text"
       16                      .clink
       17                      .global _CLK_setXClkInSrc
@@ -27,11 +27,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    1
       22                      .dwattr $C$DW$1, DW_AT_high_pc(0x00)
       23                      .dwattr $C$DW$1, DW_AT_TI_symbol_name("_CLK_setXClkInSrc")
       24                      .dwattr $C$DW$1, DW_AT_external
-      25                      .dwattr $C$DW$1, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+      25                      .dwattr $C$DW$1, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
       26                      .dwattr $C$DW$1, DW_AT_TI_begin_line(0x2cf)
       27                      .dwattr $C$DW$1, DW_AT_TI_begin_column(0x06)
       28                      .dwattr $C$DW$1, DW_AT_TI_max_frame_size(-2)
-      29                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 720,column 1,is_stmt,address _
+      29                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 720,column 1,is_stmt,address _
       30              
       31                      .dwfde $C$DW$CIE, _CLK_setXClkInSrc
       32              $C$DW$2 .dwtag  DW_TAG_formal_parameter
@@ -58,10 +58,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    1
       53              
       54              _CLK_setXClkInSrc:
       55              ;* AR4   assigned to _clkHandle
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    2
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE    2
 
       56              $C$DW$4 .dwtag  DW_TAG_variable
       57                      .dwattr $C$DW$4, DW_AT_name("clkHandle")
@@ -79,10 +79,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    2
       69                      .dwcfi  cfa_offset, -2
       70                      .dwcfi  save_reg_to_mem, 26, 0
       71 00000000 7622   EALLOW
-      72                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 726,column 2,is_stmt,isa 0
+      72                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 726,column 2,is_stmt,isa 0
       73 00000001 18C4          AND       *+XAR4[0],#0xffbf     ; [CPU_] |726| 
          00000002 FFBF 
-      74                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 729,column 2,is_stmt,isa 0
+      74                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 729,column 2,is_stmt,isa 0
       75 00000003 98C4          OR        *+XAR4[0],AL          ; [CPU_] |729| 
       76 00000004 761A   EDIS
       77 00000005 FF69          SPM       #0                    ; [CPU_] 
@@ -92,7 +92,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    2
       81              
       82 00000006 0006          LRETR     ; [CPU_] 
       83                      ; return occurs ; [] 
-      84                      .dwattr $C$DW$1, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+      84                      .dwattr $C$DW$1, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
       85                      .dwattr $C$DW$1, DW_AT_TI_end_line(0x2de)
       86                      .dwattr $C$DW$1, DW_AT_TI_end_column(0x01)
       87                      .dwendentry
@@ -108,20 +108,20 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    2
       97                      .dwattr $C$DW$7, DW_AT_high_pc(0x00)
       98                      .dwattr $C$DW$7, DW_AT_TI_symbol_name("_CLK_setWatchDogSrc")
       99                      .dwattr $C$DW$7, DW_AT_external
-     100                      .dwattr $C$DW$7, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     100                      .dwattr $C$DW$7, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      101                      .dwattr $C$DW$7, DW_AT_TI_begin_line(0x308)
      102                      .dwattr $C$DW$7, DW_AT_TI_begin_column(0x06)
      103                      .dwattr $C$DW$7, DW_AT_TI_max_frame_size(-2)
-     104                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 777,column 1,is_stmt,address _
+     104                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 777,column 1,is_stmt,address _
      105              
      106                      .dwfde $C$DW$CIE, _CLK_setWatchDogSrc
      107              $C$DW$8 .dwtag  DW_TAG_formal_parameter
      108                      .dwattr $C$DW$8, DW_AT_name("clkHandle")
      109                      .dwattr $C$DW$8, DW_AT_TI_symbol_name("_clkHandle")
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    3
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE    3
 
      110                      .dwattr $C$DW$8, DW_AT_type(*$C$DW$T$59)
      111                      .dwattr $C$DW$8, DW_AT_location[DW_OP_reg12]
@@ -160,10 +160,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    3
      144                      .dwcfi  cfa_offset, -2
      145                      .dwcfi  save_reg_to_mem, 26, 0
      146 00000007 7622   EALLOW
-     147                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 784,column 3,is_stmt,isa 0
+     147                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 784,column 3,is_stmt,isa 0
      148 00000008 18D4          AND       *+XAR4[2],#0xfffb     ; [CPU_] |784| 
          00000009 FFFB 
-     149                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 787,column 3,is_stmt,isa 0
+     149                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 787,column 3,is_stmt,isa 0
      150 0000000a 98D4          OR        *+XAR4[2],AL          ; [CPU_] |787| 
      151 0000000b 761A   EDIS
      152 0000000c FF69          SPM       #0                    ; [CPU_] 
@@ -173,15 +173,15 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    3
      156              
      157 0000000d 0006          LRETR     ; [CPU_] 
      158                      ; return occurs ; [] 
-     159                      .dwattr $C$DW$7, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     159                      .dwattr $C$DW$7, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      160                      .dwattr $C$DW$7, DW_AT_TI_end_line(0x318)
      161                      .dwattr $C$DW$7, DW_AT_TI_end_column(0x01)
      162                      .dwendentry
      163                      .dwendtag $C$DW$7
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    4
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE    4
 
      164              
      165 0000000e               .sect   ".text"
@@ -194,11 +194,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    4
      172                      .dwattr $C$DW$13, DW_AT_high_pc(0x00)
      173                      .dwattr $C$DW$13, DW_AT_TI_symbol_name("_CLK_setTimer2Src")
      174                      .dwattr $C$DW$13, DW_AT_external
-     175                      .dwattr $C$DW$13, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     175                      .dwattr $C$DW$13, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      176                      .dwattr $C$DW$13, DW_AT_TI_begin_line(0x2f5)
      177                      .dwattr $C$DW$13, DW_AT_TI_begin_column(0x06)
      178                      .dwattr $C$DW$13, DW_AT_TI_max_frame_size(-2)
-     179                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 758,column 1,is_stmt,address _
+     179                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 758,column 1,is_stmt,address _
      180              
      181                      .dwfde $C$DW$CIE, _CLK_setTimer2Src
      182              $C$DW$14        .dwtag  DW_TAG_formal_parameter
@@ -238,18 +238,18 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    4
      216                      .dwattr $C$DW$17, DW_AT_type(*$C$DW$T$53)
      217                      .dwattr $C$DW$17, DW_AT_location[DW_OP_reg0]
      218              
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    5
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE    5
 
      219                      .dwcfi  cfa_offset, -2
      220                      .dwcfi  save_reg_to_mem, 26, 0
      221 0000000e 7622   EALLOW
-     222                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 765,column 3,is_stmt,isa 0
+     222                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 765,column 3,is_stmt,isa 0
      223 0000000f 18D4          AND       *+XAR4[2],#0xffe7     ; [CPU_] |765| 
          00000010 FFE7 
-     224                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 768,column 3,is_stmt,isa 0
+     224                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 768,column 3,is_stmt,isa 0
      225 00000011 98D4          OR        *+XAR4[2],AL          ; [CPU_] |768| 
      226 00000012 761A   EDIS
      227 00000013 FF69          SPM       #0                    ; [CPU_] 
@@ -259,7 +259,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    5
      231              
      232 00000014 0006          LRETR     ; [CPU_] 
      233                      ; return occurs ; [] 
-     234                      .dwattr $C$DW$13, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     234                      .dwattr $C$DW$13, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      235                      .dwattr $C$DW$13, DW_AT_TI_end_line(0x305)
      236                      .dwattr $C$DW$13, DW_AT_TI_end_column(0x01)
      237                      .dwendentry
@@ -275,11 +275,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    5
      247                      .dwattr $C$DW$19, DW_AT_high_pc(0x00)
      248                      .dwattr $C$DW$19, DW_AT_TI_symbol_name("_CLK_setTimer2PreScale")
      249                      .dwattr $C$DW$19, DW_AT_external
-     250                      .dwattr $C$DW$19, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     250                      .dwattr $C$DW$19, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      251                      .dwattr $C$DW$19, DW_AT_TI_begin_line(0x2e1)
      252                      .dwattr $C$DW$19, DW_AT_TI_begin_column(0x06)
      253                      .dwattr $C$DW$19, DW_AT_TI_max_frame_size(-2)
-     254                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 739,column 1,is_stmt,address _
+     254                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 739,column 1,is_stmt,address _
      255              
      256                      .dwfde $C$DW$CIE, _CLK_setTimer2PreScale
      257              $C$DW$20        .dwtag  DW_TAG_formal_parameter
@@ -298,10 +298,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    5
      270              ;***************************************************************
      271              ;* FNAME: _CLK_setTimer2PreScale        FR SIZE:   0           *
      272              ;*                                                             *
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    6
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE    6
 
      273              ;* FUNCTION ENVIRONMENT                                        *
      274              ;*                                                             *
@@ -327,10 +327,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    6
      294                      .dwcfi  cfa_offset, -2
      295                      .dwcfi  save_reg_to_mem, 26, 0
      296 00000015 7622   EALLOW
-     297                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 746,column 3,is_stmt,isa 0
+     297                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 746,column 3,is_stmt,isa 0
      298 00000016 18D4          AND       *+XAR4[2],#0xff1f     ; [CPU_] |746| 
          00000017 FF1F 
-     299                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 749,column 3,is_stmt,isa 0
+     299                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 749,column 3,is_stmt,isa 0
      300 00000018 98D4          OR        *+XAR4[2],AL          ; [CPU_] |749| 
      301 00000019 761A   EDIS
      302 0000001a FF69          SPM       #0                    ; [CPU_] 
@@ -340,7 +340,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    6
      306              
      307 0000001b 0006          LRETR     ; [CPU_] 
      308                      ; return occurs ; [] 
-     309                      .dwattr $C$DW$19, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     309                      .dwattr $C$DW$19, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      310                      .dwattr $C$DW$19, DW_AT_TI_end_line(0x2f2)
      311                      .dwattr $C$DW$19, DW_AT_TI_end_column(0x01)
      312                      .dwendentry
@@ -356,16 +356,16 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    6
      322                      .dwattr $C$DW$25, DW_AT_high_pc(0x00)
      323                      .dwattr $C$DW$25, DW_AT_TI_symbol_name("_CLK_setOscSrc")
      324                      .dwattr $C$DW$25, DW_AT_external
-     325                      .dwattr $C$DW$25, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     325                      .dwattr $C$DW$25, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      326                      .dwattr $C$DW$25, DW_AT_TI_begin_line(0x2a9)
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    7
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE    7
 
      327                      .dwattr $C$DW$25, DW_AT_TI_begin_column(0x06)
      328                      .dwattr $C$DW$25, DW_AT_TI_max_frame_size(-2)
-     329                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 682,column 1,is_stmt,address _
+     329                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 682,column 1,is_stmt,address _
      330              
      331                      .dwfde $C$DW$CIE, _CLK_setOscSrc
      332              $C$DW$26        .dwtag  DW_TAG_formal_parameter
@@ -408,25 +408,25 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    7
      369                      .dwcfi  cfa_offset, -2
      370                      .dwcfi  save_reg_to_mem, 26, 0
      371 0000001c 7622   EALLOW
-     372                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 689,column 3,is_stmt,isa 0
+     372                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 689,column 3,is_stmt,isa 0
      373 0000001d 18D4          AND       *+XAR4[2],#0xfffe     ; [CPU_] |689| 
          0000001e FFFE 
-     374                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 692,column 3,is_stmt,isa 0
+     374                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 692,column 3,is_stmt,isa 0
      375 0000001f 98D4          OR        *+XAR4[2],AL          ; [CPU_] |692| 
      376 00000020 761A   EDIS
      377 00000021 FF69          SPM       #0                    ; [CPU_] 
      378              $C$DW$30        .dwtag  DW_TAG_TI_branch
      379                      .dwattr $C$DW$30, DW_AT_low_pc(0x00)
      380                      .dwattr $C$DW$30, DW_AT_TI_return
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    8
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE    8
 
      381              
      382 00000022 0006          LRETR     ; [CPU_] 
      383                      ; return occurs ; [] 
-     384                      .dwattr $C$DW$25, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     384                      .dwattr $C$DW$25, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      385                      .dwattr $C$DW$25, DW_AT_TI_end_line(0x2b9)
      386                      .dwattr $C$DW$25, DW_AT_TI_end_column(0x01)
      387                      .dwendentry
@@ -442,11 +442,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    8
      397                      .dwattr $C$DW$31, DW_AT_high_pc(0x00)
      398                      .dwattr $C$DW$31, DW_AT_TI_symbol_name("_CLK_setOsc2Src")
      399                      .dwattr $C$DW$31, DW_AT_external
-     400                      .dwattr $C$DW$31, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     400                      .dwattr $C$DW$31, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      401                      .dwattr $C$DW$31, DW_AT_TI_begin_line(0x2bc)
      402                      .dwattr $C$DW$31, DW_AT_TI_begin_column(0x06)
      403                      .dwattr $C$DW$31, DW_AT_TI_max_frame_size(-2)
-     404                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 701,column 1,is_stmt,address _
+     404                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 701,column 1,is_stmt,address _
      405              
      406                      .dwfde $C$DW$CIE, _CLK_setOsc2Src
      407              $C$DW$32        .dwtag  DW_TAG_formal_parameter
@@ -478,10 +478,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    8
      433                      .dwattr $C$DW$34, DW_AT_TI_symbol_name("_clkHandle")
      434                      .dwattr $C$DW$34, DW_AT_type(*$C$DW$T$60)
      435                      .dwattr $C$DW$34, DW_AT_location[DW_OP_reg12]
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    9
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE    9
 
      436              
      437              ;* AL    assigned to _src
@@ -494,10 +494,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    9
      444                      .dwcfi  cfa_offset, -2
      445                      .dwcfi  save_reg_to_mem, 26, 0
      446 00000023 7622   EALLOW
-     447                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 708,column 3,is_stmt,isa 0
+     447                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 708,column 3,is_stmt,isa 0
      448 00000024 18D4          AND       *+XAR4[2],#0xfffd     ; [CPU_] |708| 
          00000025 FFFD 
-     449                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 711,column 3,is_stmt,isa 0
+     449                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 711,column 3,is_stmt,isa 0
      450 00000026 98D4          OR        *+XAR4[2],AL          ; [CPU_] |711| 
      451 00000027 761A   EDIS
      452 00000028 FF69          SPM       #0                    ; [CPU_] 
@@ -507,7 +507,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    9
      456              
      457 00000029 0006          LRETR     ; [CPU_] 
      458                      ; return occurs ; [] 
-     459                      .dwattr $C$DW$31, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     459                      .dwattr $C$DW$31, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      460                      .dwattr $C$DW$31, DW_AT_TI_end_line(0x2cc)
      461                      .dwattr $C$DW$31, DW_AT_TI_end_column(0x01)
      462                      .dwendentry
@@ -523,11 +523,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    9
      472                      .dwattr $C$DW$37, DW_AT_high_pc(0x00)
      473                      .dwattr $C$DW$37, DW_AT_TI_symbol_name("_CLK_setLowSpdPreScaler")
      474                      .dwattr $C$DW$37, DW_AT_external
-     475                      .dwattr $C$DW$37, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     475                      .dwattr $C$DW$37, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      476                      .dwattr $C$DW$37, DW_AT_TI_begin_line(0x298)
      477                      .dwattr $C$DW$37, DW_AT_TI_begin_column(0x06)
      478                      .dwattr $C$DW$37, DW_AT_TI_max_frame_size(-2)
-     479                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 666,column 1,is_stmt,address _
+     479                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 666,column 1,is_stmt,address _
      480              
      481                      .dwfde $C$DW$CIE, _CLK_setLowSpdPreScaler
      482              $C$DW$38        .dwtag  DW_TAG_formal_parameter
@@ -538,10 +538,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE    9
      487              
      488              $C$DW$39        .dwtag  DW_TAG_formal_parameter
      489                      .dwattr $C$DW$39, DW_AT_name("preScaler")
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   10
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   10
 
      490                      .dwattr $C$DW$39, DW_AT_TI_symbol_name("_preScaler")
      491                      .dwattr $C$DW$39, DW_AT_type(*$C$DW$T$38)
@@ -575,7 +575,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   10
      519                      .dwcfi  cfa_offset, -2
      520                      .dwcfi  save_reg_to_mem, 26, 0
      521 0000002a 7622   EALLOW
-     522                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 673,column 5,is_stmt,isa 0
+     522                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 673,column 5,is_stmt,isa 0
      523 0000002b D00B          MOVB      XAR0,#11              ; [CPU_] |673| 
      524 0000002c 9694          MOV       *+XAR4[AR0],AL        ; [CPU_] |673| 
      525 0000002d 761A   EDIS
@@ -586,7 +586,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   10
      530              
      531 0000002f 0006          LRETR     ; [CPU_] 
      532                      ; return occurs ; [] 
-     533                      .dwattr $C$DW$37, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     533                      .dwattr $C$DW$37, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      534                      .dwattr $C$DW$37, DW_AT_TI_end_line(0x2a6)
      535                      .dwattr $C$DW$37, DW_AT_TI_end_column(0x01)
      536                      .dwendentry
@@ -598,20 +598,20 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   10
      542              
      543              $C$DW$43        .dwtag  DW_TAG_subprogram
      544                      .dwattr $C$DW$43, DW_AT_name("CLK_setClkOutPreScaler")
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   11
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   11
 
      545                      .dwattr $C$DW$43, DW_AT_low_pc(_CLK_setClkOutPreScaler)
      546                      .dwattr $C$DW$43, DW_AT_high_pc(0x00)
      547                      .dwattr $C$DW$43, DW_AT_TI_symbol_name("_CLK_setClkOutPreScaler")
      548                      .dwattr $C$DW$43, DW_AT_external
-     549                      .dwattr $C$DW$43, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     549                      .dwattr $C$DW$43, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      550                      .dwattr $C$DW$43, DW_AT_TI_begin_line(0x284)
      551                      .dwattr $C$DW$43, DW_AT_TI_begin_column(0x06)
      552                      .dwattr $C$DW$43, DW_AT_TI_max_frame_size(-2)
-     553                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 646,column 1,is_stmt,address _
+     553                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 646,column 1,is_stmt,address _
      554              
      555                      .dwfde $C$DW$CIE, _CLK_setClkOutPreScaler
      556              $C$DW$44        .dwtag  DW_TAG_formal_parameter
@@ -654,14 +654,14 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   11
      593                      .dwcfi  cfa_offset, -2
      594                      .dwcfi  save_reg_to_mem, 26, 0
      595 00000030 7622   EALLOW
-     596                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 653,column 3,is_stmt,isa 0
+     596                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 653,column 3,is_stmt,isa 0
      597 00000031 18C4          AND       *+XAR4[0],#0xfffc     ; [CPU_] |653| 
          00000032 FFFC 
-     598                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 656,column 3,is_stmt,isa 0
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+     598                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 656,column 3,is_stmt,isa 0
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   12
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   12
 
      599 00000033 98C4          OR        *+XAR4[0],AL          ; [CPU_] |656| 
      600 00000034 761A   EDIS
@@ -672,7 +672,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   12
      605              
      606 00000036 0006          LRETR     ; [CPU_] 
      607                      ; return occurs ; [] 
-     608                      .dwattr $C$DW$43, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     608                      .dwattr $C$DW$43, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      609                      .dwattr $C$DW$43, DW_AT_TI_end_line(0x295)
      610                      .dwattr $C$DW$43, DW_AT_TI_end_column(0x01)
      611                      .dwendentry
@@ -689,11 +689,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   12
      622                      .dwattr $C$DW$49, DW_AT_TI_symbol_name("_CLK_init")
      623                      .dwattr $C$DW$49, DW_AT_external
      624                      .dwattr $C$DW$49, DW_AT_type(*$C$DW$T$59)
-     625                      .dwattr $C$DW$49, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     625                      .dwattr $C$DW$49, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      626                      .dwattr $C$DW$49, DW_AT_TI_begin_line(0x275)
      627                      .dwattr $C$DW$49, DW_AT_TI_begin_column(0x0c)
      628                      .dwattr $C$DW$49, DW_AT_TI_max_frame_size(-2)
-     629                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 630,column 1,is_stmt,address _
+     629                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 630,column 1,is_stmt,address _
      630              
      631                      .dwfde $C$DW$CIE, _CLK_init
      632              $C$DW$50        .dwtag  DW_TAG_formal_parameter
@@ -718,10 +718,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   12
      651              ;*                            0 Parameter,  0 Auto,  0 SOE     *
      652              ;***************************************************************
      653              
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   13
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   13
 
      654              _CLK_init:
      655              ;* AR6   assigned to _numBytes
@@ -734,7 +734,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   13
      662                      .dwcfi  cfa_offset, -2
      663                      .dwcfi  save_reg_to_mem, 26, 0
      664 00000037 1EA6          MOVL      XAR6,ACC              ; [CPU_] |630| 
-     665                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 635,column 5,is_stmt,isa 0
+     665                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 635,column 5,is_stmt,isa 0
      666 00000038 0211          MOVB      ACC,#17               ; [CPU_] |635| 
      667 00000039 0FA6          CMPL      ACC,XAR6              ; [CPU_] |635| 
      668 0000003a 6902          B         $C$L1,LOS             ; [CPU_] |635| 
@@ -747,7 +747,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   13
      675              
      676 0000003c 0006          LRETR     ; [CPU_] 
      677                      ; return occurs ; [] 
-     678                      .dwattr $C$DW$49, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     678                      .dwattr $C$DW$49, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      679                      .dwattr $C$DW$49, DW_AT_TI_end_line(0x281)
      680                      .dwattr $C$DW$49, DW_AT_TI_end_column(0x01)
      681                      .dwendentry
@@ -763,11 +763,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   13
      691                      .dwattr $C$DW$54, DW_AT_high_pc(0x00)
      692                      .dwattr $C$DW$54, DW_AT_TI_symbol_name("_CLK_enableWatchDogHaltMode")
      693                      .dwattr $C$DW$54, DW_AT_external
-     694                      .dwattr $C$DW$54, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     694                      .dwattr $C$DW$54, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      695                      .dwattr $C$DW$54, DW_AT_TI_begin_line(0x265)
      696                      .dwattr $C$DW$54, DW_AT_TI_begin_column(0x06)
      697                      .dwattr $C$DW$54, DW_AT_TI_max_frame_size(-2)
-     698                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 614,column 1,is_stmt,address _
+     698                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 614,column 1,is_stmt,address _
      699              
      700                      .dwfde $C$DW$CIE, _CLK_enableWatchDogHaltMode
      701              $C$DW$55        .dwtag  DW_TAG_formal_parameter
@@ -778,10 +778,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   13
      706              
      707              
      708              ;***************************************************************
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   14
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   14
 
      709              ;* FNAME: _CLK_enableWatchDogHaltMode   FR SIZE:   0           *
      710              ;*                                                             *
@@ -802,7 +802,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   14
      725                      .dwcfi  cfa_offset, -2
      726                      .dwcfi  save_reg_to_mem, 26, 0
      727 0000003d 7622   EALLOW
-     728                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 621,column 3,is_stmt,isa 0
+     728                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 621,column 3,is_stmt,isa 0
      729 0000003e 18D4          AND       *+XAR4[2],#0xefff     ; [CPU_] |621| 
          0000003f EFFF 
      730 00000040 761A   EDIS
@@ -813,7 +813,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   14
      735              
      736 00000042 0006          LRETR     ; [CPU_] 
      737                      ; return occurs ; [] 
-     738                      .dwattr $C$DW$54, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     738                      .dwattr $C$DW$54, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      739                      .dwattr $C$DW$54, DW_AT_TI_end_line(0x272)
      740                      .dwattr $C$DW$54, DW_AT_TI_end_column(0x01)
      741                      .dwendentry
@@ -829,19 +829,19 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   14
      751                      .dwattr $C$DW$58, DW_AT_high_pc(0x00)
      752                      .dwattr $C$DW$58, DW_AT_TI_symbol_name("_CLK_enableTbClockSync")
      753                      .dwattr $C$DW$58, DW_AT_external
-     754                      .dwattr $C$DW$58, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     754                      .dwattr $C$DW$58, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      755                      .dwattr $C$DW$58, DW_AT_TI_begin_line(0x255)
      756                      .dwattr $C$DW$58, DW_AT_TI_begin_column(0x06)
      757                      .dwattr $C$DW$58, DW_AT_TI_max_frame_size(-2)
-     758                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 598,column 1,is_stmt,address _
+     758                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 598,column 1,is_stmt,address _
      759              
      760                      .dwfde $C$DW$CIE, _CLK_enableTbClockSync
      761              $C$DW$59        .dwtag  DW_TAG_formal_parameter
      762                      .dwattr $C$DW$59, DW_AT_name("clkHandle")
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   15
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   15
 
      763                      .dwattr $C$DW$59, DW_AT_TI_symbol_name("_clkHandle")
      764                      .dwattr $C$DW$59, DW_AT_type(*$C$DW$T$59)
@@ -861,7 +861,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   15
      778                      .dwcfi  cfa_offset, -2
      779                      .dwcfi  save_reg_to_mem, 26, 0
      780 00000043 7622   EALLOW
-     781                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 605,column 3,is_stmt,isa 0
+     781                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 605,column 3,is_stmt,isa 0
      782 00000044 DC0C          ADDB      XAR4,#12              ; [CPU_] |605| 
      783 00000045 1AC4          OR        *+XAR4[0],#0x0004     ; [CPU_] |605| 
          00000046 0004 
@@ -873,7 +873,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   15
      789              
      790 00000049 0006          LRETR     ; [CPU_] 
      791                      ; return occurs ; [] 
-     792                      .dwattr $C$DW$58, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     792                      .dwattr $C$DW$58, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      793                      .dwattr $C$DW$58, DW_AT_TI_end_line(0x262)
      794                      .dwattr $C$DW$58, DW_AT_TI_end_column(0x01)
      795                      .dwendentry
@@ -889,19 +889,19 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   15
      805                      .dwattr $C$DW$61, DW_AT_high_pc(0x00)
      806                      .dwattr $C$DW$61, DW_AT_TI_symbol_name("_CLK_enableSpiaClock")
      807                      .dwattr $C$DW$61, DW_AT_external
-     808                      .dwattr $C$DW$61, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     808                      .dwattr $C$DW$61, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      809                      .dwattr $C$DW$61, DW_AT_TI_begin_line(0x245)
      810                      .dwattr $C$DW$61, DW_AT_TI_begin_column(0x06)
      811                      .dwattr $C$DW$61, DW_AT_TI_max_frame_size(-2)
-     812                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 582,column 1,is_stmt,address _
+     812                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 582,column 1,is_stmt,address _
      813              
      814                      .dwfde $C$DW$CIE, _CLK_enableSpiaClock
      815              $C$DW$62        .dwtag  DW_TAG_formal_parameter
      816                      .dwattr $C$DW$62, DW_AT_name("clkHandle")
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   16
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   16
 
      817                      .dwattr $C$DW$62, DW_AT_TI_symbol_name("_clkHandle")
      818                      .dwattr $C$DW$62, DW_AT_type(*$C$DW$T$59)
@@ -921,7 +921,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   16
      832                      .dwcfi  cfa_offset, -2
      833                      .dwcfi  save_reg_to_mem, 26, 0
      834 0000004a 7622   EALLOW
-     835                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 589,column 3,is_stmt,isa 0
+     835                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 589,column 3,is_stmt,isa 0
      836 0000004b DC0C          ADDB      XAR4,#12              ; [CPU_] |589| 
      837 0000004c 1AC4          OR        *+XAR4[0],#0x0100     ; [CPU_] |589| 
          0000004d 0100 
@@ -933,7 +933,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   16
      843              
      844 00000050 0006          LRETR     ; [CPU_] 
      845                      ; return occurs ; [] 
-     846                      .dwattr $C$DW$61, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     846                      .dwattr $C$DW$61, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      847                      .dwattr $C$DW$61, DW_AT_TI_end_line(0x252)
      848                      .dwattr $C$DW$61, DW_AT_TI_end_column(0x01)
      849                      .dwendentry
@@ -949,19 +949,19 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   16
      859                      .dwattr $C$DW$64, DW_AT_high_pc(0x00)
      860                      .dwattr $C$DW$64, DW_AT_TI_symbol_name("_CLK_enableSciaClock")
      861                      .dwattr $C$DW$64, DW_AT_external
-     862                      .dwattr $C$DW$64, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     862                      .dwattr $C$DW$64, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      863                      .dwattr $C$DW$64, DW_AT_TI_begin_line(0x235)
      864                      .dwattr $C$DW$64, DW_AT_TI_begin_column(0x06)
      865                      .dwattr $C$DW$64, DW_AT_TI_max_frame_size(-2)
-     866                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 566,column 1,is_stmt,address _
+     866                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 566,column 1,is_stmt,address _
      867              
      868                      .dwfde $C$DW$CIE, _CLK_enableSciaClock
      869              $C$DW$65        .dwtag  DW_TAG_formal_parameter
      870                      .dwattr $C$DW$65, DW_AT_name("clkHandle")
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   17
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   17
 
      871                      .dwattr $C$DW$65, DW_AT_TI_symbol_name("_clkHandle")
      872                      .dwattr $C$DW$65, DW_AT_type(*$C$DW$T$59)
@@ -981,7 +981,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   17
      886                      .dwcfi  cfa_offset, -2
      887                      .dwcfi  save_reg_to_mem, 26, 0
      888 00000051 7622   EALLOW
-     889                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 573,column 3,is_stmt,isa 0
+     889                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 573,column 3,is_stmt,isa 0
      890 00000052 DC0C          ADDB      XAR4,#12              ; [CPU_] |573| 
      891 00000053 1AC4          OR        *+XAR4[0],#0x0400     ; [CPU_] |573| 
          00000054 0400 
@@ -993,7 +993,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   17
      897              
      898 00000057 0006          LRETR     ; [CPU_] 
      899                      ; return occurs ; [] 
-     900                      .dwattr $C$DW$64, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     900                      .dwattr $C$DW$64, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      901                      .dwattr $C$DW$64, DW_AT_TI_end_line(0x242)
      902                      .dwattr $C$DW$64, DW_AT_TI_end_column(0x01)
      903                      .dwendentry
@@ -1009,19 +1009,19 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   17
      913                      .dwattr $C$DW$67, DW_AT_high_pc(0x00)
      914                      .dwattr $C$DW$67, DW_AT_TI_symbol_name("_CLK_enablePwmClock")
      915                      .dwattr $C$DW$67, DW_AT_external
-     916                      .dwattr $C$DW$67, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     916                      .dwattr $C$DW$67, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      917                      .dwattr $C$DW$67, DW_AT_TI_begin_line(0x225)
      918                      .dwattr $C$DW$67, DW_AT_TI_begin_column(0x06)
      919                      .dwattr $C$DW$67, DW_AT_TI_max_frame_size(-2)
-     920                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 550,column 1,is_stmt,address _
+     920                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 550,column 1,is_stmt,address _
      921              
      922                      .dwfde $C$DW$CIE, _CLK_enablePwmClock
      923              $C$DW$68        .dwtag  DW_TAG_formal_parameter
      924                      .dwattr $C$DW$68, DW_AT_name("clkHandle")
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   18
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   18
 
      925                      .dwattr $C$DW$68, DW_AT_TI_symbol_name("_clkHandle")
      926                      .dwattr $C$DW$68, DW_AT_type(*$C$DW$T$59)
@@ -1055,7 +1055,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   18
      954                      .dwcfi  save_reg_to_mem, 26, 0
      955 00000058 2DA9          MOV       T,AL                  ; [CPU_] |550| 
      956 00000059 7622   EALLOW
-     957                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 557,column 3,is_stmt,isa 0
+     957                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 557,column 3,is_stmt,isa 0
      958 0000005a DC0D          ADDB      XAR4,#13              ; [CPU_] |557| 
      959 0000005b 9A01          MOVB      AL,#1                 ; [CPU_] |557| 
      960 0000005c FF66          LSL       AL,T                  ; [CPU_] |557| 
@@ -1068,7 +1068,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   18
      967              
      968 00000060 0006          LRETR     ; [CPU_] 
      969                      ; return occurs ; [] 
-     970                      .dwattr $C$DW$67, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     970                      .dwattr $C$DW$67, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      971                      .dwattr $C$DW$67, DW_AT_TI_end_line(0x232)
      972                      .dwattr $C$DW$67, DW_AT_TI_end_column(0x01)
      973                      .dwendentry
@@ -1078,10 +1078,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   18
      977                      .clink
      978                      .global _CLK_enableOsc2HaltMode
      979              
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   19
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   19
 
      980              $C$DW$72        .dwtag  DW_TAG_subprogram
      981                      .dwattr $C$DW$72, DW_AT_name("CLK_enableOsc2HaltMode")
@@ -1089,11 +1089,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   19
      983                      .dwattr $C$DW$72, DW_AT_high_pc(0x00)
      984                      .dwattr $C$DW$72, DW_AT_TI_symbol_name("_CLK_enableOsc2HaltMode")
      985                      .dwattr $C$DW$72, DW_AT_external
-     986                      .dwattr $C$DW$72, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+     986                      .dwattr $C$DW$72, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
      987                      .dwattr $C$DW$72, DW_AT_TI_begin_line(0x215)
      988                      .dwattr $C$DW$72, DW_AT_TI_begin_column(0x06)
      989                      .dwattr $C$DW$72, DW_AT_TI_max_frame_size(-2)
-     990                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 534,column 1,is_stmt,address _
+     990                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 534,column 1,is_stmt,address _
      991              
      992                      .dwfde $C$DW$CIE, _CLK_enableOsc2HaltMode
      993              $C$DW$73        .dwtag  DW_TAG_formal_parameter
@@ -1123,7 +1123,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   19
     1017                      .dwcfi  cfa_offset, -2
     1018                      .dwcfi  save_reg_to_mem, 26, 0
     1019 00000061 7622   EALLOW
-    1020                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 541,column 3,is_stmt,isa 0
+    1020                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 541,column 3,is_stmt,isa 0
     1021 00000062 18D4          AND       *+XAR4[2],#0xf7ff     ; [CPU_] |541| 
          00000063 F7FF 
     1022 00000064 761A   EDIS
@@ -1134,14 +1134,14 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   19
     1027              
     1028 00000066 0006          LRETR     ; [CPU_] 
     1029                      ; return occurs ; [] 
-    1030                      .dwattr $C$DW$72, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1030                      .dwattr $C$DW$72, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1031                      .dwattr $C$DW$72, DW_AT_TI_end_line(0x222)
     1032                      .dwattr $C$DW$72, DW_AT_TI_end_column(0x01)
     1033                      .dwendentry
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   20
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   20
 
     1034                      .dwendtag $C$DW$72
     1035              
@@ -1155,11 +1155,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   20
     1043                      .dwattr $C$DW$76, DW_AT_high_pc(0x00)
     1044                      .dwattr $C$DW$76, DW_AT_TI_symbol_name("_CLK_enableOsc2")
     1045                      .dwattr $C$DW$76, DW_AT_external
-    1046                      .dwattr $C$DW$76, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1046                      .dwattr $C$DW$76, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1047                      .dwattr $C$DW$76, DW_AT_TI_begin_line(0x205)
     1048                      .dwattr $C$DW$76, DW_AT_TI_begin_column(0x06)
     1049                      .dwattr $C$DW$76, DW_AT_TI_max_frame_size(-2)
-    1050                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 518,column 1,is_stmt,address _
+    1050                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 518,column 1,is_stmt,address _
     1051              
     1052                      .dwfde $C$DW$CIE, _CLK_enableOsc2
     1053              $C$DW$77        .dwtag  DW_TAG_formal_parameter
@@ -1189,7 +1189,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   20
     1077                      .dwcfi  cfa_offset, -2
     1078                      .dwcfi  save_reg_to_mem, 26, 0
     1079 00000067 7622   EALLOW
-    1080                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 525,column 3,is_stmt,isa 0
+    1080                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 525,column 3,is_stmt,isa 0
     1081 00000068 18D4          AND       *+XAR4[2],#0xfbff     ; [CPU_] |525| 
          00000069 FBFF 
     1082 0000006a 761A   EDIS
@@ -1198,14 +1198,14 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   20
     1085                      .dwattr $C$DW$79, DW_AT_low_pc(0x00)
     1086                      .dwattr $C$DW$79, DW_AT_TI_return
     1087              
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   21
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   21
 
     1088 0000006c 0006          LRETR     ; [CPU_] 
     1089                      ; return occurs ; [] 
-    1090                      .dwattr $C$DW$76, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1090                      .dwattr $C$DW$76, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1091                      .dwattr $C$DW$76, DW_AT_TI_end_line(0x212)
     1092                      .dwattr $C$DW$76, DW_AT_TI_end_column(0x01)
     1093                      .dwendentry
@@ -1221,11 +1221,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   21
     1103                      .dwattr $C$DW$80, DW_AT_high_pc(0x00)
     1104                      .dwattr $C$DW$80, DW_AT_TI_symbol_name("_CLK_enableOsc1HaltMode")
     1105                      .dwattr $C$DW$80, DW_AT_external
-    1106                      .dwattr $C$DW$80, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1106                      .dwattr $C$DW$80, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1107                      .dwattr $C$DW$80, DW_AT_TI_begin_line(0x1f5)
     1108                      .dwattr $C$DW$80, DW_AT_TI_begin_column(0x06)
     1109                      .dwattr $C$DW$80, DW_AT_TI_max_frame_size(-2)
-    1110                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 502,column 1,is_stmt,address _
+    1110                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 502,column 1,is_stmt,address _
     1111              
     1112                      .dwfde $C$DW$CIE, _CLK_enableOsc1HaltMode
     1113              $C$DW$81        .dwtag  DW_TAG_formal_parameter
@@ -1255,13 +1255,13 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   21
     1137                      .dwcfi  cfa_offset, -2
     1138                      .dwcfi  save_reg_to_mem, 26, 0
     1139 0000006d 7622   EALLOW
-    1140                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 509,column 3,is_stmt,isa 0
+    1140                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 509,column 3,is_stmt,isa 0
     1141 0000006e 18D4          AND       *+XAR4[2],#0xfdff     ; [CPU_] |509| 
          0000006f FDFF 
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   22
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   22
 
     1142 00000070 761A   EDIS
     1143 00000071 FF69          SPM       #0                    ; [CPU_] 
@@ -1271,7 +1271,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   22
     1147              
     1148 00000072 0006          LRETR     ; [CPU_] 
     1149                      ; return occurs ; [] 
-    1150                      .dwattr $C$DW$80, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1150                      .dwattr $C$DW$80, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1151                      .dwattr $C$DW$80, DW_AT_TI_end_line(0x202)
     1152                      .dwattr $C$DW$80, DW_AT_TI_end_column(0x01)
     1153                      .dwendentry
@@ -1287,11 +1287,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   22
     1163                      .dwattr $C$DW$84, DW_AT_high_pc(0x00)
     1164                      .dwattr $C$DW$84, DW_AT_TI_symbol_name("_CLK_enableOsc1")
     1165                      .dwattr $C$DW$84, DW_AT_external
-    1166                      .dwattr $C$DW$84, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1166                      .dwattr $C$DW$84, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1167                      .dwattr $C$DW$84, DW_AT_TI_begin_line(0x1e5)
     1168                      .dwattr $C$DW$84, DW_AT_TI_begin_column(0x06)
     1169                      .dwattr $C$DW$84, DW_AT_TI_max_frame_size(-2)
-    1170                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 486,column 1,is_stmt,address _
+    1170                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 486,column 1,is_stmt,address _
     1171              
     1172                      .dwfde $C$DW$CIE, _CLK_enableOsc1
     1173              $C$DW$85        .dwtag  DW_TAG_formal_parameter
@@ -1318,15 +1318,15 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   22
     1194                      .dwattr $C$DW$86, DW_AT_type(*$C$DW$T$60)
     1195                      .dwattr $C$DW$86, DW_AT_location[DW_OP_reg12]
     1196              
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   23
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   23
 
     1197                      .dwcfi  cfa_offset, -2
     1198                      .dwcfi  save_reg_to_mem, 26, 0
     1199 00000073 7622   EALLOW
-    1200                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 493,column 3,is_stmt,isa 0
+    1200                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 493,column 3,is_stmt,isa 0
     1201 00000074 18D4          AND       *+XAR4[2],#0xfeff     ; [CPU_] |493| 
          00000075 FEFF 
     1202 00000076 761A   EDIS
@@ -1337,7 +1337,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   23
     1207              
     1208 00000078 0006          LRETR     ; [CPU_] 
     1209                      ; return occurs ; [] 
-    1210                      .dwattr $C$DW$84, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1210                      .dwattr $C$DW$84, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1211                      .dwattr $C$DW$84, DW_AT_TI_end_line(0x1f2)
     1212                      .dwattr $C$DW$84, DW_AT_TI_end_column(0x01)
     1213                      .dwendentry
@@ -1353,11 +1353,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   23
     1223                      .dwattr $C$DW$88, DW_AT_high_pc(0x00)
     1224                      .dwattr $C$DW$88, DW_AT_TI_symbol_name("_CLK_enableI2cClock")
     1225                      .dwattr $C$DW$88, DW_AT_external
-    1226                      .dwattr $C$DW$88, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1226                      .dwattr $C$DW$88, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1227                      .dwattr $C$DW$88, DW_AT_TI_begin_line(0x1d5)
     1228                      .dwattr $C$DW$88, DW_AT_TI_begin_column(0x06)
     1229                      .dwattr $C$DW$88, DW_AT_TI_max_frame_size(-2)
-    1230                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 470,column 1,is_stmt,address _
+    1230                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 470,column 1,is_stmt,address _
     1231              
     1232                      .dwfde $C$DW$CIE, _CLK_enableI2cClock
     1233              $C$DW$89        .dwtag  DW_TAG_formal_parameter
@@ -1378,14 +1378,14 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   23
     1248              
     1249 00000079       _CLK_enableI2cClock:
     1250                      .dwcfi  cfa_offset, -2
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   24
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   24
 
     1251                      .dwcfi  save_reg_to_mem, 26, 0
     1252 00000079 7622   EALLOW
-    1253                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 477,column 3,is_stmt,isa 0
+    1253                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 477,column 3,is_stmt,isa 0
     1254 0000007a DC0C          ADDB      XAR4,#12              ; [CPU_] |477| 
     1255 0000007b 1AC4          OR        *+XAR4[0],#0x0010     ; [CPU_] |477| 
          0000007c 0010 
@@ -1397,7 +1397,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   24
     1261              
     1262 0000007f 0006          LRETR     ; [CPU_] 
     1263                      ; return occurs ; [] 
-    1264                      .dwattr $C$DW$88, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1264                      .dwattr $C$DW$88, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1265                      .dwattr $C$DW$88, DW_AT_TI_end_line(0x1e2)
     1266                      .dwattr $C$DW$88, DW_AT_TI_end_column(0x01)
     1267                      .dwendentry
@@ -1413,11 +1413,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   24
     1277                      .dwattr $C$DW$91, DW_AT_high_pc(0x00)
     1278                      .dwattr $C$DW$91, DW_AT_TI_symbol_name("_CLK_enableHrPwmClock")
     1279                      .dwattr $C$DW$91, DW_AT_external
-    1280                      .dwattr $C$DW$91, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1280                      .dwattr $C$DW$91, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1281                      .dwattr $C$DW$91, DW_AT_TI_begin_line(0x1c5)
     1282                      .dwattr $C$DW$91, DW_AT_TI_begin_column(0x06)
     1283                      .dwattr $C$DW$91, DW_AT_TI_max_frame_size(-2)
-    1284                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 454,column 1,is_stmt,address _
+    1284                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 454,column 1,is_stmt,address _
     1285              
     1286                      .dwfde $C$DW$CIE, _CLK_enableHrPwmClock
     1287              $C$DW$92        .dwtag  DW_TAG_formal_parameter
@@ -1438,14 +1438,14 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   24
     1302              
     1303 00000080       _CLK_enableHrPwmClock:
     1304                      .dwcfi  cfa_offset, -2
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   25
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   25
 
     1305                      .dwcfi  save_reg_to_mem, 26, 0
     1306 00000080 7622   EALLOW
-    1307                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 461,column 3,is_stmt,isa 0
+    1307                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 461,column 3,is_stmt,isa 0
     1308 00000081 DC0C          ADDB      XAR4,#12              ; [CPU_] |461| 
     1309 00000082 1AC4          OR        *+XAR4[0],#0x0001     ; [CPU_] |461| 
          00000083 0001 
@@ -1457,7 +1457,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   25
     1315              
     1316 00000086 0006          LRETR     ; [CPU_] 
     1317                      ; return occurs ; [] 
-    1318                      .dwattr $C$DW$91, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1318                      .dwattr $C$DW$91, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1319                      .dwattr $C$DW$91, DW_AT_TI_end_line(0x1d2)
     1320                      .dwattr $C$DW$91, DW_AT_TI_end_column(0x01)
     1321                      .dwendentry
@@ -1473,11 +1473,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   25
     1331                      .dwattr $C$DW$94, DW_AT_high_pc(0x00)
     1332                      .dwattr $C$DW$94, DW_AT_TI_symbol_name("_CLK_enableGpioInputClock")
     1333                      .dwattr $C$DW$94, DW_AT_external
-    1334                      .dwattr $C$DW$94, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1334                      .dwattr $C$DW$94, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1335                      .dwattr $C$DW$94, DW_AT_TI_begin_line(0x1b5)
     1336                      .dwattr $C$DW$94, DW_AT_TI_begin_column(0x06)
     1337                      .dwattr $C$DW$94, DW_AT_TI_max_frame_size(-2)
-    1338                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 438,column 1,is_stmt,address _
+    1338                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 438,column 1,is_stmt,address _
     1339              
     1340                      .dwfde $C$DW$CIE, _CLK_enableGpioInputClock
     1341              $C$DW$95        .dwtag  DW_TAG_formal_parameter
@@ -1498,14 +1498,14 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   25
     1356              
     1357 00000087       _CLK_enableGpioInputClock:
     1358                      .dwcfi  cfa_offset, -2
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   26
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   26
 
     1359                      .dwcfi  save_reg_to_mem, 26, 0
     1360 00000087 7622   EALLOW
-    1361                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 445,column 3,is_stmt,isa 0
+    1361                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 445,column 3,is_stmt,isa 0
     1362 00000088 DC10          ADDB      XAR4,#16              ; [CPU_] |445| 
     1363 00000089 1AC4          OR        *+XAR4[0],#0x2000     ; [CPU_] |445| 
          0000008a 2000 
@@ -1517,7 +1517,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   26
     1369              
     1370 0000008d 0006          LRETR     ; [CPU_] 
     1371                      ; return occurs ; [] 
-    1372                      .dwattr $C$DW$94, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1372                      .dwattr $C$DW$94, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1373                      .dwattr $C$DW$94, DW_AT_TI_end_line(0x1c2)
     1374                      .dwattr $C$DW$94, DW_AT_TI_end_column(0x01)
     1375                      .dwendentry
@@ -1533,11 +1533,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   26
     1385                      .dwattr $C$DW$97, DW_AT_high_pc(0x00)
     1386                      .dwattr $C$DW$97, DW_AT_TI_symbol_name("_CLK_enableEcap1Clock")
     1387                      .dwattr $C$DW$97, DW_AT_external
-    1388                      .dwattr $C$DW$97, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1388                      .dwattr $C$DW$97, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1389                      .dwattr $C$DW$97, DW_AT_TI_begin_line(0x195)
     1390                      .dwattr $C$DW$97, DW_AT_TI_begin_column(0x06)
     1391                      .dwattr $C$DW$97, DW_AT_TI_max_frame_size(-2)
-    1392                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 406,column 1,is_stmt,address _
+    1392                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 406,column 1,is_stmt,address _
     1393              
     1394                      .dwfde $C$DW$CIE, _CLK_enableEcap1Clock
     1395              $C$DW$98        .dwtag  DW_TAG_formal_parameter
@@ -1558,14 +1558,14 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   26
     1410              
     1411 0000008e       _CLK_enableEcap1Clock:
     1412                      .dwcfi  cfa_offset, -2
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   27
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   27
 
     1413                      .dwcfi  save_reg_to_mem, 26, 0
     1414 0000008e 7622   EALLOW
-    1415                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 413,column 3,is_stmt,isa 0
+    1415                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 413,column 3,is_stmt,isa 0
     1416 0000008f DC0D          ADDB      XAR4,#13              ; [CPU_] |413| 
     1417 00000090 1AC4          OR        *+XAR4[0],#0x0100     ; [CPU_] |413| 
          00000091 0100 
@@ -1577,7 +1577,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   27
     1423              
     1424 00000094 0006          LRETR     ; [CPU_] 
     1425                      ; return occurs ; [] 
-    1426                      .dwattr $C$DW$97, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1426                      .dwattr $C$DW$97, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1427                      .dwattr $C$DW$97, DW_AT_TI_end_line(0x1a2)
     1428                      .dwattr $C$DW$97, DW_AT_TI_end_column(0x01)
     1429                      .dwendentry
@@ -1593,11 +1593,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   27
     1439                      .dwattr $C$DW$100, DW_AT_high_pc(0x00)
     1440                      .dwattr $C$DW$100, DW_AT_TI_symbol_name("_CLK_enableCrystalOsc")
     1441                      .dwattr $C$DW$100, DW_AT_external
-    1442                      .dwattr $C$DW$100, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1442                      .dwattr $C$DW$100, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1443                      .dwattr $C$DW$100, DW_AT_TI_begin_line(0x185)
     1444                      .dwattr $C$DW$100, DW_AT_TI_begin_column(0x06)
     1445                      .dwattr $C$DW$100, DW_AT_TI_max_frame_size(-2)
-    1446                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 390,column 1,is_stmt,address _
+    1446                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 390,column 1,is_stmt,address _
     1447              
     1448                      .dwfde $C$DW$CIE, _CLK_enableCrystalOsc
     1449              $C$DW$101       .dwtag  DW_TAG_formal_parameter
@@ -1618,10 +1618,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   27
     1464              
     1465              _CLK_enableCrystalOsc:
     1466              ;* AR4   assigned to _clkHandle
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   28
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   28
 
     1467              $C$DW$102       .dwtag  DW_TAG_variable
     1468                      .dwattr $C$DW$102, DW_AT_name("clkHandle")
@@ -1632,7 +1632,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   28
     1473                      .dwcfi  cfa_offset, -2
     1474                      .dwcfi  save_reg_to_mem, 26, 0
     1475 00000095 7622   EALLOW
-    1476                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 397,column 3,is_stmt,isa 0
+    1476                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 397,column 3,is_stmt,isa 0
     1477 00000096 18D4          AND       *+XAR4[2],#0xbfff     ; [CPU_] |397| 
          00000097 BFFF 
     1478 00000098 761A   EDIS
@@ -1643,7 +1643,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   28
     1483              
     1484 0000009a 0006          LRETR     ; [CPU_] 
     1485                      ; return occurs ; [] 
-    1486                      .dwattr $C$DW$100, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1486                      .dwattr $C$DW$100, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1487                      .dwattr $C$DW$100, DW_AT_TI_end_line(0x192)
     1488                      .dwattr $C$DW$100, DW_AT_TI_end_column(0x01)
     1489                      .dwendentry
@@ -1659,11 +1659,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   28
     1499                      .dwattr $C$DW$104, DW_AT_high_pc(0x00)
     1500                      .dwattr $C$DW$104, DW_AT_TI_symbol_name("_CLK_enableCpuTimerClock")
     1501                      .dwattr $C$DW$104, DW_AT_external
-    1502                      .dwattr $C$DW$104, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1502                      .dwattr $C$DW$104, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1503                      .dwattr $C$DW$104, DW_AT_TI_begin_line(0x175)
     1504                      .dwattr $C$DW$104, DW_AT_TI_begin_column(0x06)
     1505                      .dwattr $C$DW$104, DW_AT_TI_max_frame_size(-2)
-    1506                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 374,column 1,is_stmt,address _
+    1506                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 374,column 1,is_stmt,address _
     1507              
     1508                      .dwfde $C$DW$CIE, _CLK_enableCpuTimerClock
     1509              $C$DW$105       .dwtag  DW_TAG_formal_parameter
@@ -1678,10 +1678,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   28
     1518                      .dwattr $C$DW$106, DW_AT_type(*$C$DW$T$29)
     1519                      .dwattr $C$DW$106, DW_AT_location[DW_OP_reg0]
     1520              
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   29
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   29
 
     1521              
     1522              ;***************************************************************
@@ -1704,7 +1704,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   29
     1539                      .dwcfi  cfa_offset, -2
     1540                      .dwcfi  save_reg_to_mem, 26, 0
     1541 0000009b 7622   EALLOW
-    1542                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 381,column 3,is_stmt,isa 0
+    1542                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 381,column 3,is_stmt,isa 0
     1543 0000009c DC10          ADDB      XAR4,#16              ; [CPU_] |381| 
     1544 0000009d 98C4          OR        *+XAR4[0],AL          ; [CPU_] |381| 
     1545 0000009e 761A   EDIS
@@ -1715,7 +1715,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   29
     1550              
     1551 000000a0 0006          LRETR     ; [CPU_] 
     1552                      ; return occurs ; [] 
-    1553                      .dwattr $C$DW$104, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1553                      .dwattr $C$DW$104, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1554                      .dwattr $C$DW$104, DW_AT_TI_end_line(0x182)
     1555                      .dwattr $C$DW$104, DW_AT_TI_end_column(0x01)
     1556                      .dwendentry
@@ -1731,17 +1731,17 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   29
     1566                      .dwattr $C$DW$109, DW_AT_high_pc(0x00)
     1567                      .dwattr $C$DW$109, DW_AT_TI_symbol_name("_CLK_enableCompClock")
     1568                      .dwattr $C$DW$109, DW_AT_external
-    1569                      .dwattr $C$DW$109, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1569                      .dwattr $C$DW$109, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1570                      .dwattr $C$DW$109, DW_AT_TI_begin_line(0x165)
     1571                      .dwattr $C$DW$109, DW_AT_TI_begin_column(0x06)
     1572                      .dwattr $C$DW$109, DW_AT_TI_max_frame_size(-2)
-    1573                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 358,column 1,is_stmt,address _
+    1573                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 358,column 1,is_stmt,address _
     1574              
     1575                      .dwfde $C$DW$CIE, _CLK_enableCompClock
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   30
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   30
 
     1576              $C$DW$110       .dwtag  DW_TAG_formal_parameter
     1577                      .dwattr $C$DW$110, DW_AT_name("clkHandle")
@@ -1776,7 +1776,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   30
     1606                      .dwcfi  cfa_offset, -2
     1607                      .dwcfi  save_reg_to_mem, 26, 0
     1608 000000a1 7622   EALLOW
-    1609                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 365,column 3,is_stmt,isa 0
+    1609                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 365,column 3,is_stmt,isa 0
     1610 000000a2 DC10          ADDB      XAR4,#16              ; [CPU_] |365| 
     1611 000000a3 98C4          OR        *+XAR4[0],AL          ; [CPU_] |365| 
     1612 000000a4 761A   EDIS
@@ -1787,7 +1787,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   30
     1617              
     1618 000000a6 0006          LRETR     ; [CPU_] 
     1619                      ; return occurs ; [] 
-    1620                      .dwattr $C$DW$109, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1620                      .dwattr $C$DW$109, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1621                      .dwattr $C$DW$109, DW_AT_TI_end_line(0x172)
     1622                      .dwattr $C$DW$109, DW_AT_TI_end_column(0x01)
     1623                      .dwendentry
@@ -1798,21 +1798,21 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   30
     1628                      .global _CLK_enableClkIn
     1629              
     1630              $C$DW$114       .dwtag  DW_TAG_subprogram
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   31
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   31
 
     1631                      .dwattr $C$DW$114, DW_AT_name("CLK_enableClkIn")
     1632                      .dwattr $C$DW$114, DW_AT_low_pc(_CLK_enableClkIn)
     1633                      .dwattr $C$DW$114, DW_AT_high_pc(0x00)
     1634                      .dwattr $C$DW$114, DW_AT_TI_symbol_name("_CLK_enableClkIn")
     1635                      .dwattr $C$DW$114, DW_AT_external
-    1636                      .dwattr $C$DW$114, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1636                      .dwattr $C$DW$114, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1637                      .dwattr $C$DW$114, DW_AT_TI_begin_line(0x1a5)
     1638                      .dwattr $C$DW$114, DW_AT_TI_begin_column(0x06)
     1639                      .dwattr $C$DW$114, DW_AT_TI_max_frame_size(-2)
-    1640                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 422,column 1,is_stmt,address _
+    1640                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 422,column 1,is_stmt,address _
     1641              
     1642                      .dwfde $C$DW$CIE, _CLK_enableClkIn
     1643              $C$DW$115       .dwtag  DW_TAG_formal_parameter
@@ -1842,7 +1842,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   31
     1667                      .dwcfi  cfa_offset, -2
     1668                      .dwcfi  save_reg_to_mem, 26, 0
     1669 000000a7 7622   EALLOW
-    1670                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 429,column 3,is_stmt,isa 0
+    1670                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 429,column 3,is_stmt,isa 0
     1671 000000a8 18D4          AND       *+XAR4[2],#0xdfff     ; [CPU_] |429| 
          000000a9 DFFF 
     1672 000000aa 761A   EDIS
@@ -1853,15 +1853,15 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   31
     1677              
     1678 000000ac 0006          LRETR     ; [CPU_] 
     1679                      ; return occurs ; [] 
-    1680                      .dwattr $C$DW$114, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1680                      .dwattr $C$DW$114, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1681                      .dwattr $C$DW$114, DW_AT_TI_end_line(0x1b2)
     1682                      .dwattr $C$DW$114, DW_AT_TI_end_column(0x01)
     1683                      .dwendentry
     1684                      .dwendtag $C$DW$114
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   32
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   32
 
     1685              
     1686 000000ad               .sect   ".text"
@@ -1874,11 +1874,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   32
     1693                      .dwattr $C$DW$118, DW_AT_high_pc(0x00)
     1694                      .dwattr $C$DW$118, DW_AT_TI_symbol_name("_CLK_enableAdcClock")
     1695                      .dwattr $C$DW$118, DW_AT_external
-    1696                      .dwattr $C$DW$118, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1696                      .dwattr $C$DW$118, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1697                      .dwattr $C$DW$118, DW_AT_TI_begin_line(0x155)
     1698                      .dwattr $C$DW$118, DW_AT_TI_begin_column(0x06)
     1699                      .dwattr $C$DW$118, DW_AT_TI_max_frame_size(-2)
-    1700                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 342,column 1,is_stmt,address _
+    1700                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 342,column 1,is_stmt,address _
     1701              
     1702                      .dwfde $C$DW$CIE, _CLK_enableAdcClock
     1703              $C$DW$119       .dwtag  DW_TAG_formal_parameter
@@ -1901,7 +1901,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   32
     1720                      .dwcfi  cfa_offset, -2
     1721                      .dwcfi  save_reg_to_mem, 26, 0
     1722 000000ad 7622   EALLOW
-    1723                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 349,column 3,is_stmt,isa 0
+    1723                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 349,column 3,is_stmt,isa 0
     1724 000000ae DC0C          ADDB      XAR4,#12              ; [CPU_] |349| 
     1725 000000af 1AC4          OR        *+XAR4[0],#0x0008     ; [CPU_] |349| 
          000000b0 0008 
@@ -1913,15 +1913,15 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   32
     1731              
     1732 000000b3 0006          LRETR     ; [CPU_] 
     1733                      ; return occurs ; [] 
-    1734                      .dwattr $C$DW$118, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1734                      .dwattr $C$DW$118, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1735                      .dwattr $C$DW$118, DW_AT_TI_end_line(0x162)
     1736                      .dwattr $C$DW$118, DW_AT_TI_end_column(0x01)
     1737                      .dwendentry
     1738                      .dwendtag $C$DW$118
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   33
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   33
 
     1739              
     1740 000000b4               .sect   ".text"
@@ -1934,11 +1934,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   33
     1747                      .dwattr $C$DW$121, DW_AT_high_pc(0x00)
     1748                      .dwattr $C$DW$121, DW_AT_TI_symbol_name("_CLK_disableWatchDogHaltMode")
     1749                      .dwattr $C$DW$121, DW_AT_external
-    1750                      .dwattr $C$DW$121, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1750                      .dwattr $C$DW$121, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1751                      .dwattr $C$DW$121, DW_AT_TI_begin_line(0x145)
     1752                      .dwattr $C$DW$121, DW_AT_TI_begin_column(0x06)
     1753                      .dwattr $C$DW$121, DW_AT_TI_max_frame_size(-2)
-    1754                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 326,column 1,is_stmt,address _
+    1754                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 326,column 1,is_stmt,address _
     1755              
     1756                      .dwfde $C$DW$CIE, _CLK_disableWatchDogHaltMode
     1757              $C$DW$122       .dwtag  DW_TAG_formal_parameter
@@ -1968,7 +1968,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   33
     1781                      .dwcfi  cfa_offset, -2
     1782                      .dwcfi  save_reg_to_mem, 26, 0
     1783 000000b4 7622   EALLOW
-    1784                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 333,column 3,is_stmt,isa 0
+    1784                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 333,column 3,is_stmt,isa 0
     1785 000000b5 1AD4          OR        *+XAR4[2],#0x1000     ; [CPU_] |333| 
          000000b6 1000 
     1786 000000b7 761A   EDIS
@@ -1978,13 +1978,13 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   33
     1790                      .dwattr $C$DW$124, DW_AT_TI_return
     1791              
     1792 000000b9 0006          LRETR     ; [CPU_] 
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   34
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   34
 
     1793                      ; return occurs ; [] 
-    1794                      .dwattr $C$DW$121, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1794                      .dwattr $C$DW$121, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1795                      .dwattr $C$DW$121, DW_AT_TI_end_line(0x152)
     1796                      .dwattr $C$DW$121, DW_AT_TI_end_column(0x01)
     1797                      .dwendentry
@@ -2000,11 +2000,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   34
     1807                      .dwattr $C$DW$125, DW_AT_high_pc(0x00)
     1808                      .dwattr $C$DW$125, DW_AT_TI_symbol_name("_CLK_disableTbClockSync")
     1809                      .dwattr $C$DW$125, DW_AT_external
-    1810                      .dwattr $C$DW$125, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1810                      .dwattr $C$DW$125, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1811                      .dwattr $C$DW$125, DW_AT_TI_begin_line(0x135)
     1812                      .dwattr $C$DW$125, DW_AT_TI_begin_column(0x06)
     1813                      .dwattr $C$DW$125, DW_AT_TI_max_frame_size(-2)
-    1814                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 310,column 1,is_stmt,address _
+    1814                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 310,column 1,is_stmt,address _
     1815              
     1816                      .dwfde $C$DW$CIE, _CLK_disableTbClockSync
     1817              $C$DW$126       .dwtag  DW_TAG_formal_parameter
@@ -2027,7 +2027,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   34
     1834                      .dwcfi  cfa_offset, -2
     1835                      .dwcfi  save_reg_to_mem, 26, 0
     1836 000000ba 7622   EALLOW
-    1837                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 317,column 3,is_stmt,isa 0
+    1837                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 317,column 3,is_stmt,isa 0
     1838 000000bb DC0C          ADDB      XAR4,#12              ; [CPU_] |317| 
     1839 000000bc 18C4          AND       *+XAR4[0],#0xfffb     ; [CPU_] |317| 
          000000bd FFFB 
@@ -2038,13 +2038,13 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   34
     1844                      .dwattr $C$DW$127, DW_AT_TI_return
     1845              
     1846 000000c0 0006          LRETR     ; [CPU_] 
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   35
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   35
 
     1847                      ; return occurs ; [] 
-    1848                      .dwattr $C$DW$125, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1848                      .dwattr $C$DW$125, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1849                      .dwattr $C$DW$125, DW_AT_TI_end_line(0x142)
     1850                      .dwattr $C$DW$125, DW_AT_TI_end_column(0x01)
     1851                      .dwendentry
@@ -2060,11 +2060,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   35
     1861                      .dwattr $C$DW$128, DW_AT_high_pc(0x00)
     1862                      .dwattr $C$DW$128, DW_AT_TI_symbol_name("_CLK_disableSpiaClock")
     1863                      .dwattr $C$DW$128, DW_AT_external
-    1864                      .dwattr $C$DW$128, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1864                      .dwattr $C$DW$128, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1865                      .dwattr $C$DW$128, DW_AT_TI_begin_line(0x125)
     1866                      .dwattr $C$DW$128, DW_AT_TI_begin_column(0x06)
     1867                      .dwattr $C$DW$128, DW_AT_TI_max_frame_size(-2)
-    1868                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 294,column 1,is_stmt,address _
+    1868                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 294,column 1,is_stmt,address _
     1869              
     1870                      .dwfde $C$DW$CIE, _CLK_disableSpiaClock
     1871              $C$DW$129       .dwtag  DW_TAG_formal_parameter
@@ -2087,7 +2087,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   35
     1888                      .dwcfi  cfa_offset, -2
     1889                      .dwcfi  save_reg_to_mem, 26, 0
     1890 000000c1 7622   EALLOW
-    1891                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 301,column 3,is_stmt,isa 0
+    1891                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 301,column 3,is_stmt,isa 0
     1892 000000c2 DC0C          ADDB      XAR4,#12              ; [CPU_] |301| 
     1893 000000c3 18C4          AND       *+XAR4[0],#0xfeff     ; [CPU_] |301| 
          000000c4 FEFF 
@@ -2098,13 +2098,13 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   35
     1898                      .dwattr $C$DW$130, DW_AT_TI_return
     1899              
     1900 000000c7 0006          LRETR     ; [CPU_] 
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   36
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   36
 
     1901                      ; return occurs ; [] 
-    1902                      .dwattr $C$DW$128, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1902                      .dwattr $C$DW$128, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1903                      .dwattr $C$DW$128, DW_AT_TI_end_line(0x132)
     1904                      .dwattr $C$DW$128, DW_AT_TI_end_column(0x01)
     1905                      .dwendentry
@@ -2120,11 +2120,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   36
     1915                      .dwattr $C$DW$131, DW_AT_high_pc(0x00)
     1916                      .dwattr $C$DW$131, DW_AT_TI_symbol_name("_CLK_disableSciaClock")
     1917                      .dwattr $C$DW$131, DW_AT_external
-    1918                      .dwattr $C$DW$131, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1918                      .dwattr $C$DW$131, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1919                      .dwattr $C$DW$131, DW_AT_TI_begin_line(0x115)
     1920                      .dwattr $C$DW$131, DW_AT_TI_begin_column(0x06)
     1921                      .dwattr $C$DW$131, DW_AT_TI_max_frame_size(-2)
-    1922                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 278,column 1,is_stmt,address _
+    1922                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 278,column 1,is_stmt,address _
     1923              
     1924                      .dwfde $C$DW$CIE, _CLK_disableSciaClock
     1925              $C$DW$132       .dwtag  DW_TAG_formal_parameter
@@ -2147,7 +2147,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   36
     1942                      .dwcfi  cfa_offset, -2
     1943                      .dwcfi  save_reg_to_mem, 26, 0
     1944 000000c8 7622   EALLOW
-    1945                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 285,column 3,is_stmt,isa 0
+    1945                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 285,column 3,is_stmt,isa 0
     1946 000000c9 DC0C          ADDB      XAR4,#12              ; [CPU_] |285| 
     1947 000000ca 18C4          AND       *+XAR4[0],#0xfbff     ; [CPU_] |285| 
          000000cb FBFF 
@@ -2158,13 +2158,13 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   36
     1952                      .dwattr $C$DW$133, DW_AT_TI_return
     1953              
     1954 000000ce 0006          LRETR     ; [CPU_] 
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   37
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   37
 
     1955                      ; return occurs ; [] 
-    1956                      .dwattr $C$DW$131, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1956                      .dwattr $C$DW$131, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1957                      .dwattr $C$DW$131, DW_AT_TI_end_line(0x122)
     1958                      .dwattr $C$DW$131, DW_AT_TI_end_column(0x01)
     1959                      .dwendentry
@@ -2180,11 +2180,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   37
     1969                      .dwattr $C$DW$134, DW_AT_high_pc(0x00)
     1970                      .dwattr $C$DW$134, DW_AT_TI_symbol_name("_CLK_disablePwmClock")
     1971                      .dwattr $C$DW$134, DW_AT_external
-    1972                      .dwattr $C$DW$134, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    1972                      .dwattr $C$DW$134, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     1973                      .dwattr $C$DW$134, DW_AT_TI_begin_line(0x105)
     1974                      .dwattr $C$DW$134, DW_AT_TI_begin_column(0x06)
     1975                      .dwattr $C$DW$134, DW_AT_TI_max_frame_size(-2)
-    1976                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 262,column 1,is_stmt,address _
+    1976                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 262,column 1,is_stmt,address _
     1977              
     1978                      .dwfde $C$DW$CIE, _CLK_disablePwmClock
     1979              $C$DW$135       .dwtag  DW_TAG_formal_parameter
@@ -2218,15 +2218,15 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   37
     2007                      .dwattr $C$DW$137, DW_AT_location[DW_OP_reg22]
     2008              
     2009                      .dwcfi  cfa_offset, -2
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   38
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   38
 
     2010                      .dwcfi  save_reg_to_mem, 26, 0
     2011 000000cf 2DA9          MOV       T,AL                  ; [CPU_] |262| 
     2012 000000d0 7622   EALLOW
-    2013                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 269,column 3,is_stmt,isa 0
+    2013                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 269,column 3,is_stmt,isa 0
     2014 000000d1 9A01          MOVB      AL,#1                 ; [CPU_] |269| 
     2015 000000d2 DC0D          ADDB      XAR4,#13              ; [CPU_] |269| 
     2016 000000d3 FF66          LSL       AL,T                  ; [CPU_] |269| 
@@ -2240,7 +2240,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   38
     2024              
     2025 000000d8 0006          LRETR     ; [CPU_] 
     2026                      ; return occurs ; [] 
-    2027                      .dwattr $C$DW$134, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2027                      .dwattr $C$DW$134, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2028                      .dwattr $C$DW$134, DW_AT_TI_end_line(0x112)
     2029                      .dwattr $C$DW$134, DW_AT_TI_end_column(0x01)
     2030                      .dwendentry
@@ -2256,11 +2256,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   38
     2040                      .dwattr $C$DW$139, DW_AT_high_pc(0x00)
     2041                      .dwattr $C$DW$139, DW_AT_TI_symbol_name("_CLK_disableOsc2HaltMode")
     2042                      .dwattr $C$DW$139, DW_AT_external
-    2043                      .dwattr $C$DW$139, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2043                      .dwattr $C$DW$139, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2044                      .dwattr $C$DW$139, DW_AT_TI_begin_line(0xf5)
     2045                      .dwattr $C$DW$139, DW_AT_TI_begin_column(0x06)
     2046                      .dwattr $C$DW$139, DW_AT_TI_max_frame_size(-2)
-    2047                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 246,column 1,is_stmt,address _
+    2047                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 246,column 1,is_stmt,address _
     2048              
     2049                      .dwfde $C$DW$CIE, _CLK_disableOsc2HaltMode
     2050              $C$DW$140       .dwtag  DW_TAG_formal_parameter
@@ -2278,10 +2278,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   38
     2062              ;* FUNCTION PROPERTIES                                         *
     2063              ;*                            0 Parameter,  0 Auto,  0 SOE     *
     2064              ;***************************************************************
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   39
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   39
 
     2065              
     2066              _CLK_disableOsc2HaltMode:
@@ -2295,7 +2295,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   39
     2074                      .dwcfi  cfa_offset, -2
     2075                      .dwcfi  save_reg_to_mem, 26, 0
     2076 000000d9 7622   EALLOW
-    2077                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 253,column 3,is_stmt,isa 0
+    2077                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 253,column 3,is_stmt,isa 0
     2078 000000da 1AD4          OR        *+XAR4[2],#0x0800     ; [CPU_] |253| 
          000000db 0800 
     2079 000000dc 761A   EDIS
@@ -2306,7 +2306,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   39
     2084              
     2085 000000de 0006          LRETR     ; [CPU_] 
     2086                      ; return occurs ; [] 
-    2087                      .dwattr $C$DW$139, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2087                      .dwattr $C$DW$139, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2088                      .dwattr $C$DW$139, DW_AT_TI_end_line(0x102)
     2089                      .dwattr $C$DW$139, DW_AT_TI_end_column(0x01)
     2090                      .dwendentry
@@ -2322,11 +2322,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   39
     2100                      .dwattr $C$DW$143, DW_AT_high_pc(0x00)
     2101                      .dwattr $C$DW$143, DW_AT_TI_symbol_name("_CLK_disableOsc2")
     2102                      .dwattr $C$DW$143, DW_AT_external
-    2103                      .dwattr $C$DW$143, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2103                      .dwattr $C$DW$143, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2104                      .dwattr $C$DW$143, DW_AT_TI_begin_line(0xe5)
     2105                      .dwattr $C$DW$143, DW_AT_TI_begin_column(0x06)
     2106                      .dwattr $C$DW$143, DW_AT_TI_max_frame_size(-2)
-    2107                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 230,column 1,is_stmt,address _
+    2107                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 230,column 1,is_stmt,address _
     2108              
     2109                      .dwfde $C$DW$CIE, _CLK_disableOsc2
     2110              $C$DW$144       .dwtag  DW_TAG_formal_parameter
@@ -2338,10 +2338,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   39
     2116              
     2117              ;***************************************************************
     2118              ;* FNAME: _CLK_disableOsc2              FR SIZE:   0           *
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   40
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   40
 
     2119              ;*                                                             *
     2120              ;* FUNCTION ENVIRONMENT                                        *
@@ -2361,7 +2361,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   40
     2134                      .dwcfi  cfa_offset, -2
     2135                      .dwcfi  save_reg_to_mem, 26, 0
     2136 000000df 7622   EALLOW
-    2137                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 237,column 3,is_stmt,isa 0
+    2137                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 237,column 3,is_stmt,isa 0
     2138 000000e0 1AD4          OR        *+XAR4[2],#0x0400     ; [CPU_] |237| 
          000000e1 0400 
     2139 000000e2 761A   EDIS
@@ -2372,7 +2372,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   40
     2144              
     2145 000000e4 0006          LRETR     ; [CPU_] 
     2146                      ; return occurs ; [] 
-    2147                      .dwattr $C$DW$143, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2147                      .dwattr $C$DW$143, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2148                      .dwattr $C$DW$143, DW_AT_TI_end_line(0xf2)
     2149                      .dwattr $C$DW$143, DW_AT_TI_end_column(0x01)
     2150                      .dwendentry
@@ -2388,20 +2388,20 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   40
     2160                      .dwattr $C$DW$147, DW_AT_high_pc(0x00)
     2161                      .dwattr $C$DW$147, DW_AT_TI_symbol_name("_CLK_disableOsc1HaltMode")
     2162                      .dwattr $C$DW$147, DW_AT_external
-    2163                      .dwattr $C$DW$147, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2163                      .dwattr $C$DW$147, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2164                      .dwattr $C$DW$147, DW_AT_TI_begin_line(0xd5)
     2165                      .dwattr $C$DW$147, DW_AT_TI_begin_column(0x06)
     2166                      .dwattr $C$DW$147, DW_AT_TI_max_frame_size(-2)
-    2167                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 214,column 1,is_stmt,address _
+    2167                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 214,column 1,is_stmt,address _
     2168              
     2169                      .dwfde $C$DW$CIE, _CLK_disableOsc1HaltMode
     2170              $C$DW$148       .dwtag  DW_TAG_formal_parameter
     2171                      .dwattr $C$DW$148, DW_AT_name("clkHandle")
     2172                      .dwattr $C$DW$148, DW_AT_TI_symbol_name("_clkHandle")
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   41
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   41
 
     2173                      .dwattr $C$DW$148, DW_AT_type(*$C$DW$T$59)
     2174                      .dwattr $C$DW$148, DW_AT_location[DW_OP_reg12]
@@ -2427,7 +2427,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   41
     2194                      .dwcfi  cfa_offset, -2
     2195                      .dwcfi  save_reg_to_mem, 26, 0
     2196 000000e5 7622   EALLOW
-    2197                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 221,column 3,is_stmt,isa 0
+    2197                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 221,column 3,is_stmt,isa 0
     2198 000000e6 1AD4          OR        *+XAR4[2],#0x0200     ; [CPU_] |221| 
          000000e7 0200 
     2199 000000e8 761A   EDIS
@@ -2438,7 +2438,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   41
     2204              
     2205 000000ea 0006          LRETR     ; [CPU_] 
     2206                      ; return occurs ; [] 
-    2207                      .dwattr $C$DW$147, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2207                      .dwattr $C$DW$147, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2208                      .dwattr $C$DW$147, DW_AT_TI_end_line(0xe2)
     2209                      .dwattr $C$DW$147, DW_AT_TI_end_column(0x01)
     2210                      .dwendentry
@@ -2454,16 +2454,16 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   41
     2220                      .dwattr $C$DW$151, DW_AT_high_pc(0x00)
     2221                      .dwattr $C$DW$151, DW_AT_TI_symbol_name("_CLK_disableOsc1")
     2222                      .dwattr $C$DW$151, DW_AT_external
-    2223                      .dwattr $C$DW$151, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2223                      .dwattr $C$DW$151, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2224                      .dwattr $C$DW$151, DW_AT_TI_begin_line(0xc5)
     2225                      .dwattr $C$DW$151, DW_AT_TI_begin_column(0x06)
     2226                      .dwattr $C$DW$151, DW_AT_TI_max_frame_size(-2)
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   42
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   42
 
-    2227                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 198,column 1,is_stmt,address _
+    2227                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 198,column 1,is_stmt,address _
     2228              
     2229                      .dwfde $C$DW$CIE, _CLK_disableOsc1
     2230              $C$DW$152       .dwtag  DW_TAG_formal_parameter
@@ -2493,7 +2493,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   42
     2254                      .dwcfi  cfa_offset, -2
     2255                      .dwcfi  save_reg_to_mem, 26, 0
     2256 000000eb 7622   EALLOW
-    2257                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 205,column 3,is_stmt,isa 0
+    2257                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 205,column 3,is_stmt,isa 0
     2258 000000ec 1AD4          OR        *+XAR4[2],#0x0100     ; [CPU_] |205| 
          000000ed 0100 
     2259 000000ee 761A   EDIS
@@ -2504,7 +2504,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   42
     2264              
     2265 000000f0 0006          LRETR     ; [CPU_] 
     2266                      ; return occurs ; [] 
-    2267                      .dwattr $C$DW$151, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2267                      .dwattr $C$DW$151, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2268                      .dwattr $C$DW$151, DW_AT_TI_end_line(0xd2)
     2269                      .dwattr $C$DW$151, DW_AT_TI_end_column(0x01)
     2270                      .dwendentry
@@ -2518,18 +2518,18 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   42
     2278                      .dwattr $C$DW$155, DW_AT_name("CLK_disableI2cClock")
     2279                      .dwattr $C$DW$155, DW_AT_low_pc(_CLK_disableI2cClock)
     2280                      .dwattr $C$DW$155, DW_AT_high_pc(0x00)
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   43
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   43
 
     2281                      .dwattr $C$DW$155, DW_AT_TI_symbol_name("_CLK_disableI2cClock")
     2282                      .dwattr $C$DW$155, DW_AT_external
-    2283                      .dwattr $C$DW$155, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2283                      .dwattr $C$DW$155, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2284                      .dwattr $C$DW$155, DW_AT_TI_begin_line(0xb5)
     2285                      .dwattr $C$DW$155, DW_AT_TI_begin_column(0x06)
     2286                      .dwattr $C$DW$155, DW_AT_TI_max_frame_size(-2)
-    2287                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 182,column 1,is_stmt,address _
+    2287                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 182,column 1,is_stmt,address _
     2288              
     2289                      .dwfde $C$DW$CIE, _CLK_disableI2cClock
     2290              $C$DW$156       .dwtag  DW_TAG_formal_parameter
@@ -2552,7 +2552,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   43
     2307                      .dwcfi  cfa_offset, -2
     2308                      .dwcfi  save_reg_to_mem, 26, 0
     2309 000000f1 7622   EALLOW
-    2310                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 189,column 3,is_stmt,isa 0
+    2310                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 189,column 3,is_stmt,isa 0
     2311 000000f2 DC0C          ADDB      XAR4,#12              ; [CPU_] |189| 
     2312 000000f3 18C4          AND       *+XAR4[0],#0xffef     ; [CPU_] |189| 
          000000f4 FFEF 
@@ -2564,7 +2564,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   43
     2318              
     2319 000000f7 0006          LRETR     ; [CPU_] 
     2320                      ; return occurs ; [] 
-    2321                      .dwattr $C$DW$155, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2321                      .dwattr $C$DW$155, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2322                      .dwattr $C$DW$155, DW_AT_TI_end_line(0xc2)
     2323                      .dwattr $C$DW$155, DW_AT_TI_end_column(0x01)
     2324                      .dwendentry
@@ -2578,18 +2578,18 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   43
     2332                      .dwattr $C$DW$158, DW_AT_name("CLK_disableHrPwmClock")
     2333                      .dwattr $C$DW$158, DW_AT_low_pc(_CLK_disableHrPwmClock)
     2334                      .dwattr $C$DW$158, DW_AT_high_pc(0x00)
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   44
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   44
 
     2335                      .dwattr $C$DW$158, DW_AT_TI_symbol_name("_CLK_disableHrPwmClock")
     2336                      .dwattr $C$DW$158, DW_AT_external
-    2337                      .dwattr $C$DW$158, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2337                      .dwattr $C$DW$158, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2338                      .dwattr $C$DW$158, DW_AT_TI_begin_line(0xa5)
     2339                      .dwattr $C$DW$158, DW_AT_TI_begin_column(0x06)
     2340                      .dwattr $C$DW$158, DW_AT_TI_max_frame_size(-2)
-    2341                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 166,column 1,is_stmt,address _
+    2341                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 166,column 1,is_stmt,address _
     2342              
     2343                      .dwfde $C$DW$CIE, _CLK_disableHrPwmClock
     2344              $C$DW$159       .dwtag  DW_TAG_formal_parameter
@@ -2612,7 +2612,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   44
     2361                      .dwcfi  cfa_offset, -2
     2362                      .dwcfi  save_reg_to_mem, 26, 0
     2363 000000f8 7622   EALLOW
-    2364                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 173,column 3,is_stmt,isa 0
+    2364                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 173,column 3,is_stmt,isa 0
     2365 000000f9 DC0C          ADDB      XAR4,#12              ; [CPU_] |173| 
     2366 000000fa 18C4          AND       *+XAR4[0],#0xfffe     ; [CPU_] |173| 
          000000fb FFFE 
@@ -2624,7 +2624,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   44
     2372              
     2373 000000fe 0006          LRETR     ; [CPU_] 
     2374                      ; return occurs ; [] 
-    2375                      .dwattr $C$DW$158, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2375                      .dwattr $C$DW$158, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2376                      .dwattr $C$DW$158, DW_AT_TI_end_line(0xb2)
     2377                      .dwattr $C$DW$158, DW_AT_TI_end_column(0x01)
     2378                      .dwendentry
@@ -2638,18 +2638,18 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   44
     2386                      .dwattr $C$DW$161, DW_AT_name("CLK_disableGpioInputClock")
     2387                      .dwattr $C$DW$161, DW_AT_low_pc(_CLK_disableGpioInputClock)
     2388                      .dwattr $C$DW$161, DW_AT_high_pc(0x00)
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   45
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   45
 
     2389                      .dwattr $C$DW$161, DW_AT_TI_symbol_name("_CLK_disableGpioInputClock")
     2390                      .dwattr $C$DW$161, DW_AT_external
-    2391                      .dwattr $C$DW$161, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2391                      .dwattr $C$DW$161, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2392                      .dwattr $C$DW$161, DW_AT_TI_begin_line(0x95)
     2393                      .dwattr $C$DW$161, DW_AT_TI_begin_column(0x06)
     2394                      .dwattr $C$DW$161, DW_AT_TI_max_frame_size(-2)
-    2395                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 150,column 1,is_stmt,address _
+    2395                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 150,column 1,is_stmt,address _
     2396              
     2397                      .dwfde $C$DW$CIE, _CLK_disableGpioInputClock
     2398              $C$DW$162       .dwtag  DW_TAG_formal_parameter
@@ -2672,7 +2672,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   45
     2415                      .dwcfi  cfa_offset, -2
     2416                      .dwcfi  save_reg_to_mem, 26, 0
     2417 000000ff 7622   EALLOW
-    2418                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 157,column 3,is_stmt,isa 0
+    2418                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 157,column 3,is_stmt,isa 0
     2419 00000100 DC10          ADDB      XAR4,#16              ; [CPU_] |157| 
     2420 00000101 18C4          AND       *+XAR4[0],#0xdfff     ; [CPU_] |157| 
          00000102 DFFF 
@@ -2684,7 +2684,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   45
     2426              
     2427 00000105 0006          LRETR     ; [CPU_] 
     2428                      ; return occurs ; [] 
-    2429                      .dwattr $C$DW$161, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2429                      .dwattr $C$DW$161, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2430                      .dwattr $C$DW$161, DW_AT_TI_end_line(0xa2)
     2431                      .dwattr $C$DW$161, DW_AT_TI_end_column(0x01)
     2432                      .dwendentry
@@ -2698,18 +2698,18 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   45
     2440                      .dwattr $C$DW$164, DW_AT_name("CLK_disableEcap1Clock")
     2441                      .dwattr $C$DW$164, DW_AT_low_pc(_CLK_disableEcap1Clock)
     2442                      .dwattr $C$DW$164, DW_AT_high_pc(0x00)
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   46
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   46
 
     2443                      .dwattr $C$DW$164, DW_AT_TI_symbol_name("_CLK_disableEcap1Clock")
     2444                      .dwattr $C$DW$164, DW_AT_external
-    2445                      .dwattr $C$DW$164, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2445                      .dwattr $C$DW$164, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2446                      .dwattr $C$DW$164, DW_AT_TI_begin_line(0x85)
     2447                      .dwattr $C$DW$164, DW_AT_TI_begin_column(0x06)
     2448                      .dwattr $C$DW$164, DW_AT_TI_max_frame_size(-2)
-    2449                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 134,column 1,is_stmt,address _
+    2449                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 134,column 1,is_stmt,address _
     2450              
     2451                      .dwfde $C$DW$CIE, _CLK_disableEcap1Clock
     2452              $C$DW$165       .dwtag  DW_TAG_formal_parameter
@@ -2732,7 +2732,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   46
     2469                      .dwcfi  cfa_offset, -2
     2470                      .dwcfi  save_reg_to_mem, 26, 0
     2471 00000106 7622   EALLOW
-    2472                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 141,column 3,is_stmt,isa 0
+    2472                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 141,column 3,is_stmt,isa 0
     2473 00000107 DC0D          ADDB      XAR4,#13              ; [CPU_] |141| 
     2474 00000108 18C4          AND       *+XAR4[0],#0xfeff     ; [CPU_] |141| 
          00000109 FEFF 
@@ -2744,7 +2744,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   46
     2480              
     2481 0000010c 0006          LRETR     ; [CPU_] 
     2482                      ; return occurs ; [] 
-    2483                      .dwattr $C$DW$164, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2483                      .dwattr $C$DW$164, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2484                      .dwattr $C$DW$164, DW_AT_TI_end_line(0x92)
     2485                      .dwattr $C$DW$164, DW_AT_TI_end_column(0x01)
     2486                      .dwendentry
@@ -2758,18 +2758,18 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   46
     2494                      .dwattr $C$DW$167, DW_AT_name("CLK_disableCrystalOsc")
     2495                      .dwattr $C$DW$167, DW_AT_low_pc(_CLK_disableCrystalOsc)
     2496                      .dwattr $C$DW$167, DW_AT_high_pc(0x00)
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   47
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   47
 
     2497                      .dwattr $C$DW$167, DW_AT_TI_symbol_name("_CLK_disableCrystalOsc")
     2498                      .dwattr $C$DW$167, DW_AT_external
-    2499                      .dwattr $C$DW$167, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2499                      .dwattr $C$DW$167, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2500                      .dwattr $C$DW$167, DW_AT_TI_begin_line(0x75)
     2501                      .dwattr $C$DW$167, DW_AT_TI_begin_column(0x06)
     2502                      .dwattr $C$DW$167, DW_AT_TI_max_frame_size(-2)
-    2503                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 118,column 1,is_stmt,address _
+    2503                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 118,column 1,is_stmt,address _
     2504              
     2505                      .dwfde $C$DW$CIE, _CLK_disableCrystalOsc
     2506              $C$DW$168       .dwtag  DW_TAG_formal_parameter
@@ -2799,7 +2799,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   47
     2530                      .dwcfi  cfa_offset, -2
     2531                      .dwcfi  save_reg_to_mem, 26, 0
     2532 0000010d 7622   EALLOW
-    2533                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 125,column 3,is_stmt,isa 0
+    2533                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 125,column 3,is_stmt,isa 0
     2534 0000010e 1AD4          OR        *+XAR4[2],#0x4000     ; [CPU_] |125| 
          0000010f 4000 
     2535 00000110 761A   EDIS
@@ -2810,7 +2810,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   47
     2540              
     2541 00000112 0006          LRETR     ; [CPU_] 
     2542                      ; return occurs ; [] 
-    2543                      .dwattr $C$DW$167, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2543                      .dwattr $C$DW$167, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2544                      .dwattr $C$DW$167, DW_AT_TI_end_line(0x82)
     2545                      .dwattr $C$DW$167, DW_AT_TI_end_column(0x01)
     2546                      .dwendentry
@@ -2818,10 +2818,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   47
     2548              
     2549 00000113               .sect   ".text"
     2550                      .clink
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   48
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   48
 
     2551                      .global _CLK_disableCpuTimerClock
     2552              
@@ -2831,11 +2831,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   48
     2556                      .dwattr $C$DW$171, DW_AT_high_pc(0x00)
     2557                      .dwattr $C$DW$171, DW_AT_TI_symbol_name("_CLK_disableCpuTimerClock")
     2558                      .dwattr $C$DW$171, DW_AT_external
-    2559                      .dwattr $C$DW$171, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2559                      .dwattr $C$DW$171, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2560                      .dwattr $C$DW$171, DW_AT_TI_begin_line(0x65)
     2561                      .dwattr $C$DW$171, DW_AT_TI_begin_column(0x06)
     2562                      .dwattr $C$DW$171, DW_AT_TI_max_frame_size(-2)
-    2563                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 102,column 1,is_stmt,address _
+    2563                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 102,column 1,is_stmt,address _
     2564              
     2565                      .dwfde $C$DW$CIE, _CLK_disableCpuTimerClock
     2566              $C$DW$172       .dwtag  DW_TAG_formal_parameter
@@ -2864,7 +2864,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   48
     2589                      .dwcfi  cfa_offset, -2
     2590                      .dwcfi  save_reg_to_mem, 26, 0
     2591 00000113 7622   EALLOW
-    2592                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 109,column 3,is_stmt,isa 0
+    2592                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 109,column 3,is_stmt,isa 0
     2593 00000114 DC10          ADDB      XAR4,#16              ; [CPU_] |109| 
     2594 00000115 FF5E          NOT       AL                    ; [CPU_] |109| 
     2595 00000116 C0C4          AND       *+XAR4[0],AL          ; [CPU_] |109| 
@@ -2876,12 +2876,12 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   48
     2601              
     2602 00000119 0006          LRETR     ; [CPU_] 
     2603                      ; return occurs ; [] 
-    2604                      .dwattr $C$DW$171, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2604                      .dwattr $C$DW$171, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2605                      .dwattr $C$DW$171, DW_AT_TI_end_line(0x72)
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   49
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   49
 
     2606                      .dwattr $C$DW$171, DW_AT_TI_end_column(0x01)
     2607                      .dwendentry
@@ -2897,11 +2897,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   49
     2617                      .dwattr $C$DW$175, DW_AT_high_pc(0x00)
     2618                      .dwattr $C$DW$175, DW_AT_TI_symbol_name("_CLK_disableCompClock")
     2619                      .dwattr $C$DW$175, DW_AT_external
-    2620                      .dwattr $C$DW$175, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2620                      .dwattr $C$DW$175, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2621                      .dwattr $C$DW$175, DW_AT_TI_begin_line(0x59)
     2622                      .dwattr $C$DW$175, DW_AT_TI_begin_column(0x06)
     2623                      .dwattr $C$DW$175, DW_AT_TI_max_frame_size(-2)
-    2624                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 90,column 1,is_stmt,address _C
+    2624                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 90,column 1,is_stmt,address _C
     2625              
     2626                      .dwfde $C$DW$CIE, _CLK_disableCompClock
     2627              $C$DW$176       .dwtag  DW_TAG_formal_parameter
@@ -2929,7 +2929,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   49
     2649 0000011a       _CLK_disableCompClock:
     2650                      .dwcfi  cfa_offset, -2
     2651                      .dwcfi  save_reg_to_mem, 26, 0
-    2652                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 95,column 3,is_stmt,isa 0
+    2652                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 95,column 3,is_stmt,isa 0
     2653 0000011a FF5E          NOT       AL                    ; [CPU_] |95| 
     2654 0000011b DC10          ADDB      XAR4,#16              ; [CPU_] |95| 
     2655 0000011c C0C4          AND       *+XAR4[0],AL          ; [CPU_] |95| 
@@ -2938,13 +2938,13 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   49
     2658                      .dwattr $C$DW$178, DW_AT_TI_return
     2659              
     2660 0000011d 0006          LRETR     ; [CPU_] 
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   50
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   50
 
     2661                      ; return occurs ; [] 
-    2662                      .dwattr $C$DW$175, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2662                      .dwattr $C$DW$175, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2663                      .dwattr $C$DW$175, DW_AT_TI_end_line(0x62)
     2664                      .dwattr $C$DW$175, DW_AT_TI_end_column(0x01)
     2665                      .dwendentry
@@ -2960,11 +2960,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   50
     2675                      .dwattr $C$DW$179, DW_AT_high_pc(0x00)
     2676                      .dwattr $C$DW$179, DW_AT_TI_symbol_name("_CLK_disableClkIn")
     2677                      .dwattr $C$DW$179, DW_AT_external
-    2678                      .dwattr $C$DW$179, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2678                      .dwattr $C$DW$179, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2679                      .dwattr $C$DW$179, DW_AT_TI_begin_line(0x49)
     2680                      .dwattr $C$DW$179, DW_AT_TI_begin_column(0x06)
     2681                      .dwattr $C$DW$179, DW_AT_TI_max_frame_size(-2)
-    2682                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 74,column 1,is_stmt,address _C
+    2682                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 74,column 1,is_stmt,address _C
     2683              
     2684                      .dwfde $C$DW$CIE, _CLK_disableClkIn
     2685              $C$DW$180       .dwtag  DW_TAG_formal_parameter
@@ -2994,14 +2994,14 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   50
     2709                      .dwcfi  cfa_offset, -2
     2710                      .dwcfi  save_reg_to_mem, 26, 0
     2711 0000011e 7622   EALLOW
-    2712                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 81,column 3,is_stmt,isa 0
+    2712                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 81,column 3,is_stmt,isa 0
     2713 0000011f 1AD4          OR        *+XAR4[2],#0x2000     ; [CPU_] |81| 
          00000120 2000 
     2714 00000121 761A   EDIS
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   51
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   51
 
     2715 00000122 FF69          SPM       #0                    ; [CPU_] 
     2716              $C$DW$182       .dwtag  DW_TAG_TI_branch
@@ -3010,7 +3010,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   51
     2719              
     2720 00000123 0006          LRETR     ; [CPU_] 
     2721                      ; return occurs ; [] 
-    2722                      .dwattr $C$DW$179, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2722                      .dwattr $C$DW$179, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2723                      .dwattr $C$DW$179, DW_AT_TI_end_line(0x56)
     2724                      .dwattr $C$DW$179, DW_AT_TI_end_column(0x01)
     2725                      .dwendentry
@@ -3026,11 +3026,11 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   51
     2735                      .dwattr $C$DW$183, DW_AT_high_pc(0x00)
     2736                      .dwattr $C$DW$183, DW_AT_TI_symbol_name("_CLK_disableAdcClock")
     2737                      .dwattr $C$DW$183, DW_AT_external
-    2738                      .dwattr $C$DW$183, DW_AT_TI_begin_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2738                      .dwattr $C$DW$183, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2739                      .dwattr $C$DW$183, DW_AT_TI_begin_line(0x39)
     2740                      .dwattr $C$DW$183, DW_AT_TI_begin_column(0x06)
     2741                      .dwattr $C$DW$183, DW_AT_TI_max_frame_size(-2)
-    2742                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 58,column 1,is_stmt,address _C
+    2742                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 58,column 1,is_stmt,address _C
     2743              
     2744                      .dwfde $C$DW$CIE, _CLK_disableAdcClock
     2745              $C$DW$184       .dwtag  DW_TAG_formal_parameter
@@ -3053,15 +3053,15 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   51
     2762                      .dwcfi  cfa_offset, -2
     2763                      .dwcfi  save_reg_to_mem, 26, 0
     2764 00000124 7622   EALLOW
-    2765                      .dwpsn  file "D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 65,column 3,is_stmt,isa 0
+    2765                      .dwpsn  file "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c",line 65,column 3,is_stmt,isa 0
     2766 00000125 DC0C          ADDB      XAR4,#12              ; [CPU_] |65| 
     2767 00000126 18C4          AND       *+XAR4[0],#0xfff7     ; [CPU_] |65| 
          00000127 FFF7 
     2768 00000128 761A   EDIS
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   52
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   52
 
     2769 00000129 FF69          SPM       #0                    ; [CPU_] 
     2770              $C$DW$185       .dwtag  DW_TAG_TI_branch
@@ -3070,7 +3070,7 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   52
     2773              
     2774 0000012a 0006          LRETR     ; [CPU_] 
     2775                      ; return occurs ; [] 
-    2776                      .dwattr $C$DW$183, DW_AT_TI_end_file("D:/FOC_27/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
+    2776                      .dwattr $C$DW$183, DW_AT_TI_end_file("D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c")
     2777                      .dwattr $C$DW$183, DW_AT_TI_end_line(0x46)
     2778                      .dwattr $C$DW$183, DW_AT_TI_end_column(0x01)
     2779                      .dwendentry
@@ -3118,10 +3118,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   52
     2821              $C$DW$191       .dwtag  DW_TAG_enumerator
     2822                      .dwattr $C$DW$191, DW_AT_name("CLK_CpuTimerNumber_1")
     2823                      .dwattr $C$DW$191, DW_AT_const_value(0x200)
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   53
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   53
 
     2824              
     2825              $C$DW$192       .dwtag  DW_TAG_enumerator
@@ -3178,10 +3178,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   53
     2876                      .dwattr $C$DW$T$33, DW_AT_byte_size(0x01)
     2877              $C$DW$199       .dwtag  DW_TAG_enumerator
     2878                      .dwattr $C$DW$199, DW_AT_name("CLK_ClkOutPreScaler_SysClkOut_by_4")
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   54
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   54
 
     2879                      .dwattr $C$DW$199, DW_AT_const_value(0x00)
     2880              
@@ -3238,10 +3238,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   54
     2931                      .dwattr $C$DW$209, DW_AT_const_value(0x05)
     2932              
     2933              $C$DW$210       .dwtag  DW_TAG_enumerator
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   55
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   55
 
     2934                      .dwattr $C$DW$210, DW_AT_name("CLK_LowSpdPreScaler_SysClkOut_by_12")
     2935                      .dwattr $C$DW$210, DW_AT_const_value(0x06)
@@ -3298,10 +3298,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   55
     2986                      .dwattr $C$DW$217, DW_AT_name("CLK_Osc2Src_External")
     2987                      .dwattr $C$DW$217, DW_AT_const_value(0x00)
     2988              
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   56
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   56
 
     2989                      .dwendtag $C$DW$T$42
     2990              
@@ -3358,10 +3358,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   56
     3041              $C$DW$225       .dwtag  DW_TAG_enumerator
     3042                      .dwattr $C$DW$225, DW_AT_name("CLK_Timer2PreScaler_by_8")
     3043                      .dwattr $C$DW$225, DW_AT_const_value(0x60)
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   57
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   57
 
     3044              
     3045              $C$DW$226       .dwtag  DW_TAG_enumerator
@@ -3418,10 +3418,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   57
     3096                      .dwattr $C$DW$T$54, DW_AT_byte_size(0x01)
     3097              $C$DW$233       .dwtag  DW_TAG_enumerator
     3098                      .dwattr $C$DW$233, DW_AT_name("CLK_WdClkSrc_IntOsc1")
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   58
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   58
 
     3099                      .dwattr $C$DW$233, DW_AT_const_value(0x00)
     3100              
@@ -3478,10 +3478,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   58
     3151                      .dwattr $C$DW$240, DW_AT_type(*$C$DW$T$20)
     3152                      .dwattr $C$DW$240, DW_AT_name("LOSPCP")
     3153                      .dwattr $C$DW$240, DW_AT_TI_symbol_name("_LOSPCP")
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   59
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   59
 
     3154                      .dwattr $C$DW$240, DW_AT_data_member_location[DW_OP_plus_uconst 0xb]
     3155                      .dwattr $C$DW$240, DW_AT_accessibility(DW_ACCESS_public)
@@ -3538,10 +3538,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   59
     3206              
     3207              $C$DW$T$2       .dwtag  DW_TAG_unspecified_type
     3208                      .dwattr $C$DW$T$2, DW_AT_name("void")
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   60
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   60
 
     3209              
     3210              $C$DW$T$3       .dwtag  DW_TAG_pointer_type
@@ -3598,10 +3598,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   60
     3261              
     3262              $C$DW$T$20      .dwtag  DW_TAG_volatile_type
     3263                      .dwattr $C$DW$T$20, DW_AT_type(*$C$DW$246)
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   61
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   61
 
     3264              
     3265              
@@ -3658,10 +3658,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   61
     3316              $C$DW$T$16      .dwtag  DW_TAG_base_type
     3317                      .dwattr $C$DW$T$16, DW_AT_encoding(DW_ATE_float)
     3318                      .dwattr $C$DW$T$16, DW_AT_name("float")
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   62
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   62
 
     3319                      .dwattr $C$DW$T$16, DW_AT_byte_size(0x02)
     3320              
@@ -3718,10 +3718,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   62
     3371                      .dwcfi  same_value, 10
     3372                      .dwcfi  same_value, 11
     3373                      .dwcfi  undefined, 12
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   63
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   63
 
     3374                      .dwcfi  undefined, 13
     3375                      .dwcfi  undefined, 14
@@ -3778,10 +3778,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   63
     3426              
     3427              $C$DW$260       .dwtag  DW_TAG_TI_assign_register
     3428                      .dwattr $C$DW$260, DW_AT_name("RPC")
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   64
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   64
 
     3429                      .dwattr $C$DW$260, DW_AT_location[DW_OP_reg26]
     3430              
@@ -3838,10 +3838,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   64
     3481                      .dwattr $C$DW$273, DW_AT_location[DW_OP_regx 0x4d]
     3482              
     3483              $C$DW$274       .dwtag  DW_TAG_TI_assign_register
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   65
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   65
 
     3484                      .dwattr $C$DW$274, DW_AT_name("AR0")
     3485                      .dwattr $C$DW$274, DW_AT_location[DW_OP_reg4]
@@ -3898,10 +3898,10 @@ C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   65
     3536                      .dwattr $C$DW$287, DW_AT_name("XAR6")
     3537                      .dwattr $C$DW$287, DW_AT_location[DW_OP_reg17]
     3538              
-TMS320C2000 Assembler PC v15.12.3 Tue Aug 29 09:30:29 2017
+TMS320C2000 Assembler PC v15.12.3 Tue Sep 12 21:32:29 2017
 
 Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1061212                              PAGE   66
+C:\Users\wmj\AppData\Local\Temp\2334810                              PAGE   66
 
     3539              $C$DW$288       .dwtag  DW_TAG_TI_assign_register
     3540                      .dwattr $C$DW$288, DW_AT_name("AR7")

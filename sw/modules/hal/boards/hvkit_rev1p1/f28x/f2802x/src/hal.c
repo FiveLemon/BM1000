@@ -91,6 +91,7 @@ void HAL_cal(HAL_Handle handle)
   // run offsets calibration in user's memory
   HAL_AdcOffsetSelfCal(handle);
 
+  HAL_GetBoardNum(handle);
   // run oscillator compensation
   HAL_OscTempComp(handle);
 
@@ -696,27 +697,6 @@ void HAL_setParams(HAL_Handle handle,const USER_Params *pUserParams)
 {
   uint_least8_t cnt;
   HAL_Obj *obj = (HAL_Obj *)handle;
-  _iq beta_lp_pu = _IQ(pUserParams->offsetPole_rps/(float_t)pUserParams->ctrlFreq_Hz);
-
-
-  HAL_setNumCurrentSensors(handle,pUserParams->numCurrentSensors);
-  HAL_setNumVoltageSensors(handle,pUserParams->numVoltageSensors);
-
-
-  for(cnt=0;cnt<HAL_getNumCurrentSensors(handle);cnt++)
-    {
-      HAL_setOffsetBeta_lp_pu(handle,HAL_SensorType_Current,cnt,beta_lp_pu);
-      HAL_setOffsetInitCond(handle,HAL_SensorType_Current,cnt,_IQ(0.0));
-      HAL_setOffsetValue(handle,HAL_SensorType_Current,cnt,_IQ(0.0));
-    }
-
-
-  for(cnt=0;cnt<HAL_getNumVoltageSensors(handle);cnt++)
-    {
-      HAL_setOffsetBeta_lp_pu(handle,HAL_SensorType_Voltage,cnt,beta_lp_pu);
-      HAL_setOffsetInitCond(handle,HAL_SensorType_Voltage,cnt,_IQ(0.0));
-      HAL_setOffsetValue(handle,HAL_SensorType_Voltage,cnt,_IQ(0.0));
-    }
 
 
   // disable global interrupts
@@ -746,7 +726,6 @@ void HAL_setParams(HAL_Handle handle,const USER_Params *pUserParams)
   // run the device calibration
   HAL_cal(handle);
 
-
   // setup the peripheral clocks
   HAL_setupPeripheralClks(handle);
 
@@ -762,6 +741,27 @@ void HAL_setParams(HAL_Handle handle,const USER_Params *pUserParams)
   // setup the ADCs
   HAL_setupAdcs(handle);
 
+  _iq beta_lp_pu = _IQ(pUserParams->offsetPole_rps/(float_t)pUserParams->ctrlFreq_Hz);
+
+
+  HAL_setNumCurrentSensors(handle,pUserParams->numCurrentSensors);
+  HAL_setNumVoltageSensors(handle,pUserParams->numVoltageSensors);
+
+
+  for(cnt=0;cnt<HAL_getNumCurrentSensors(handle);cnt++)
+    {
+      HAL_setOffsetBeta_lp_pu(handle,HAL_SensorType_Current,cnt,beta_lp_pu);
+      HAL_setOffsetInitCond(handle,HAL_SensorType_Current,cnt,_IQ(0.0));
+      HAL_setOffsetValue(handle,HAL_SensorType_Current,cnt,_IQ(0.0));
+    }
+
+
+  for(cnt=0;cnt<HAL_getNumVoltageSensors(handle);cnt++)
+    {
+      HAL_setOffsetBeta_lp_pu(handle,HAL_SensorType_Voltage,cnt,beta_lp_pu);
+      HAL_setOffsetInitCond(handle,HAL_SensorType_Voltage,cnt,_IQ(0.0));
+      HAL_setOffsetValue(handle,HAL_SensorType_Voltage,cnt,_IQ(0.0));
+    }
 
   // setup the PWMs
   HAL_setupPwms(handle,
@@ -1381,6 +1381,61 @@ void HAL_setupScia(HAL_Handle handle)
 
 
 }
+
+void HAL_GetBoardNum(HAL_Handle handle)
+{
+	HAL_Obj *obj = (HAL_Obj *)handle;
+	uint16_t AdcConvMean;
+
+	  // disable the ADCs
+	  ADC_disable(obj->adcHandle);
+
+	  // power up the bandgap circuit
+	  ADC_enableBandGap(obj->adcHandle);
+
+	  // set the ADC voltage reference source to internal
+	  ADC_setVoltRefSrc(obj->adcHandle,ADC_VoltageRefSrc_Int);
+
+	  // enable the ADC reference buffers
+	  ADC_enableRefBuffers(obj->adcHandle);
+
+	  // power up the ADCs
+	  ADC_powerUp(obj->adcHandle);
+
+	  // enable the ADCs
+	  ADC_enable(obj->adcHandle);
+
+	  HAL_AdcCalChanSelect(handle, ADC_SocChanNumber_B3);
+
+	  //Capture ADC conversion on VREFLO
+	  AdcConvMean = HAL_AdcCalConversion(handle);
+
+	  if(AdcConvMean > BOARD_OPEN_LEVEL)
+		obj->boardAddress = HAL_BoardAddr_OpenLoop;
+	  else if(AdcConvMean > BOARD_MOTOR7_LEVEL_L && AdcConvMean < BOARD_MOTOR7_LEVEL_H)
+	    obj->boardAddress = HAL_BoardAddr_Motor7;
+      else if(AdcConvMean > BOARD_MOTOR6_LEVEL_L && AdcConvMean < BOARD_MOTOR6_LEVEL_H)
+  	    obj->boardAddress = HAL_BoardAddr_Motor6;
+      else if(AdcConvMean > BOARD_MOTOR5_LEVEL_L && AdcConvMean < BOARD_MOTOR5_LEVEL_H)
+  	    obj->boardAddress = HAL_BoardAddr_Motor5;
+      else if(AdcConvMean > BOARD_MOTOR4_LEVEL_L && AdcConvMean < BOARD_MOTOR4_LEVEL_H)
+        obj->boardAddress = HAL_BoardAddr_Motor4;
+      else if(AdcConvMean > BOARD_MOTOR3_LEVEL_L && AdcConvMean < BOARD_MOTOR3_LEVEL_H)
+        obj->boardAddress = HAL_BoardAddr_Motor3;
+      else if(AdcConvMean > BOARD_MOTOR2_LEVEL_L && AdcConvMean < BOARD_MOTOR2_LEVEL_H)
+        obj->boardAddress = HAL_BoardAddr_Motor2;
+      else if(AdcConvMean > BOARD_MOTOR1_LEVEL_L && AdcConvMean < BOARD_MOTOR1_LEVEL_H)
+    	obj->boardAddress = HAL_BoardAddr_Motor1;
+      else if(AdcConvMean > BOARD_HEATER_LEVEL_L && AdcConvMean < BOARD_HEATER_LEVEL_H)
+    	obj->boardAddress = HAL_BoardAddr_Heater;
+      else
+        obj->boardAddress = HAL_BoardAddr_Short;
+
+	  return;
+}
+
+
+
 
 
 // end of file

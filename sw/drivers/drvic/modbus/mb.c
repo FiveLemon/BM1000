@@ -392,14 +392,31 @@ eMBErrorCode MB_Poll(MB_Handle handle)
         break;
 
     case EV_EXECUTE:
-        if( obj->RTU_Frame->PDU_FunctionCode == 0x06)
-        {
-      //  	MB_FuncWriteRegister(handle);
-        }
-        else if( obj->RTU_Frame->PDU_FunctionCode == 0x03)
-        {
-       // 	MB_FuncReadRegister(handle);
-        }
+
+    	ucFunctionCode =  obj->RTU_Frame->PDU_FunctionCode;
+
+    	switch(ucFunctionCode)
+    	{
+			case 0x01: // read Coils Register
+
+				break;
+			case 0x02: // read Discrete Input Register
+				break;
+			case 0x03: // read Holding Register
+					   MB_FuncReadHoldingRegister(handle);
+				break;
+			case 0x04: // read Input Register
+				break;
+			case 0x05: // Write Single Coils Register
+				break;
+			case 0x06: // Write Single Holding Register
+					   MB_FuncWriteHoldingRegister(handle);
+				break;
+			case 0x10: // Write multiply Holding Register
+				break;
+			default: break;
+    	}
+
 
         // If the request was not sent to the broadcast address we return a reply.
         if( obj->RTU_Frame->PDU_Address != MB_ADDRESS_BROADCAST )
@@ -424,7 +441,7 @@ eMBErrorCode MB_Poll(MB_Handle handle)
   return MB_ENOERR;
 }
 
-void MB_FuncReadRegister(MB_Handle handle)
+void MB_FuncReadHoldingRegister(MB_Handle handle)
 {
   MB_Obj *obj = (MB_Obj *)handle;
 
@@ -450,7 +467,7 @@ void MB_FuncReadRegister(MB_Handle handle)
   return;
 }
 
-void MB_FuncWriteRegister(MB_Handle handle)
+void MB_FuncWriteHoldingRegister(MB_Handle handle)
 {
   MB_Obj *obj = (MB_Obj *)handle;
 
@@ -468,7 +485,7 @@ void MB_FuncWriteRegister(MB_Handle handle)
   switch(RegAddress)
   {
 
-  case 0x0002:break;
+  case 0x0001:break;
 
   default:RegData = 0xffff;break;
 

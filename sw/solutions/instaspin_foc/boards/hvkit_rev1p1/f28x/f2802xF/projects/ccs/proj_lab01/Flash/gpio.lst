@@ -1,11 +1,11 @@
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    1
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE    1
 
        1              ;***************************************************************
        2              ;* TMS320C2000 C/C++ Codegen                         PC v6.2.5 *
-       3              ;* Date/Time created: Tue Sep 12 20:58:48 2017                 *
+       3              ;* Date/Time created: Fri Sep 15 10:15:50 2017                 *
        4              ;***************************************************************
        5                      .compiler_opts --float_support=softlib --hll_source=on --mem_model:code=flat --mem_model:data=large -
        6        0002  FP      .set    XAR2
@@ -15,8 +15,8 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    1
       10                      .dwattr $C$DW$CU, DW_AT_producer("TMS320C2000 C/C++ Codegen PC v6.2.5 Copyright (c) 1996-2014 Texas I
       11                      .dwattr $C$DW$CU, DW_AT_TI_version(0x01)
       12                      .dwattr $C$DW$CU, DW_AT_comp_dir("D:\BM1000\sw\solutions\instaspin_foc\boards\hvkit_rev1p1\f28x\f2802
-      13              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\124564 C
-      14              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\1245618
+      13              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\108882 C
+      14              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\1088816
       15 00000000               .sect   ".text"
       16                      .clink
       17                      .global _GPIO_toggle
@@ -58,10 +58,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    1
       53                      .dwattr $C$DW$4, DW_AT_type(*$C$DW$T$32)
       54                      .dwattr $C$DW$4, DW_AT_location[DW_OP_reg22]
       55              ;* AR4   assigned to _gpioHandle
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    2
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE    2
 
       56              $C$DW$5 .dwtag  DW_TAG_variable, DW_AT_name("gpioHandle")
       57                      .dwattr $C$DW$5, DW_AT_TI_symbol_name("_gpioHandle")
@@ -118,10 +118,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    2
      108                      .dwattr $C$DW$7, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c")
      109                      .dwattr $C$DW$7, DW_AT_TI_begin_line(0x168)
      110                      .dwattr $C$DW$7, DW_AT_TI_begin_column(0x06)
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    3
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE    3
 
      111                      .dwattr $C$DW$7, DW_AT_TI_max_frame_size(-2)
      112                      .dwpsn  file "D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c",line 361,column 1,is_stmt,address
@@ -178,10 +178,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    3
      163 00000017 6419          B         $C$L5,LT              ; [CPU_] |372| 
      164                      ; branchcc occurs ; [] |372| 
      165                      .dwpsn  file "D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c",line 378,column 8,is_stmt
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    4
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE    4
 
      166 00000018 5218          CMPB      AL,#24                ; [CPU_] |378| 
      167 00000019 6412          B         $C$L4,LT              ; [CPU_] |378| 
@@ -238,10 +238,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    4
          00000034 08A8 
      213                      .dwpsn  file "D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c",line 377,column 5,is_stmt
      214 00000035 6F04          B         $C$L8,UNC             ; [CPU_] |377| 
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    5
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE    5
 
      215                      ; branch occurs ; [] |377| 
      216 00000036       $C$L6:    
@@ -298,10 +298,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    5
      266                      .dwattr $C$DW$18, DW_AT_location[DW_OP_reg1]
      267              
      268              ;***************************************************************
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    6
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE    6
 
      269              ;* FNAME: _GPIO_setQualification        FR SIZE:   0           *
      270              ;*                                                             *
@@ -358,10 +358,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    6
      320                      .dwpsn  file "D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c",line 352,column 9,is_stmt
      321 0000004d DC12          ADDB      XAR4,#18              ; [CPU_] |352| 
      322                      .dwpsn  file "D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c",line 351,column 9,is_stmt
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    7
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE    7
 
      323 0000004e DD12          ADDB      XAR5,#18              ; [CPU_] |351| 
      324 0000004f 563B          LSLL      ACC,T                 ; [CPU_] |351| 
@@ -418,10 +418,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    7
      373                      .dwattr $C$DW$22, DW_AT_low_pc(0x00)
      374                      .dwattr $C$DW$22, DW_AT_TI_return
      375 00000076 0006          LRETR     ; [CPU_] 
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    8
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE    8
 
      376                      ; return occurs ; [] 
      377                      .dwattr $C$DW$15, DW_AT_TI_end_file("D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c")
@@ -478,10 +478,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    8
      428              ;* T     assigned to _gpioNumber
      429              $C$DW$28        .dwtag  DW_TAG_variable, DW_AT_name("gpioNumber")
      430                      .dwattr $C$DW$28, DW_AT_TI_symbol_name("_gpioNumber")
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    9
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE    9
 
      431                      .dwattr $C$DW$28, DW_AT_type(*$C$DW$T$32)
      432                      .dwattr $C$DW$28, DW_AT_location[DW_OP_reg22]
@@ -538,10 +538,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE    9
      483 00000091 0006          LRETR     ; [CPU_] 
      484                      ; return occurs ; [] 
      485                      .dwattr $C$DW$23, DW_AT_TI_end_file("D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c")
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   10
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   10
 
      486                      .dwattr $C$DW$23, DW_AT_TI_end_line(0xa6)
      487                      .dwattr $C$DW$23, DW_AT_TI_end_column(0x01)
@@ -598,10 +598,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   10
      538                      .dwattr $C$DW$36, DW_AT_type(*$C$DW$T$35)
      539                      .dwattr $C$DW$36, DW_AT_location[DW_OP_reg0]
      540              ;* AR4   assigned to _gpioHandle
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   11
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   11
 
      541              $C$DW$37        .dwtag  DW_TAG_variable, DW_AT_name("gpioHandle")
      542                      .dwattr $C$DW$37, DW_AT_TI_symbol_name("_gpioHandle")
@@ -658,10 +658,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   11
      593              $C$DW$40        .dwtag  DW_TAG_formal_parameter, DW_AT_name("gpioHandle")
      594                      .dwattr $C$DW$40, DW_AT_TI_symbol_name("_gpioHandle")
      595                      .dwattr $C$DW$40, DW_AT_type(*$C$DW$T$53)
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   12
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   12
 
      596                      .dwattr $C$DW$40, DW_AT_location[DW_OP_reg12]
      597              $C$DW$41        .dwtag  DW_TAG_formal_parameter, DW_AT_name("gpioNumber")
@@ -718,10 +718,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   12
      648 000000a4 5230          CMPB      AL,#48                ; [CPU_] |290| 
      649 000000a5 6327          B         $C$L20,GEQ            ; [CPU_] |290| 
      650                      ; branchcc occurs ; [] |290| 
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   13
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   13
 
      651                      .dwpsn  file "D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c",line 297,column 7,is_stmt
      652 000000a6 83A4          MOVL      XAR5,XAR4             ; [CPU_] |297| 
@@ -778,10 +778,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   13
      700 000000ca 98F4          OR        *+XAR4[6],AL          ; [CPU_] |276| 
      701 000000cb 99FC          OR        *+XAR4[7],AH          ; [CPU_] |276| 
      702 000000cc       $C$L20:    
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   14
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   14
 
      703 000000cc 761A   EDIS
      704 000000cd FF69          SPM       #0                    ; [CPU_] 
@@ -838,10 +838,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   14
      755                      .dwattr $C$DW$50, DW_AT_location[DW_OP_reg22]
      756              ;* AR4   assigned to _gpioHandle
      757              $C$DW$51        .dwtag  DW_TAG_variable, DW_AT_name("gpioHandle")
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   15
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   15
 
      758                      .dwattr $C$DW$51, DW_AT_TI_symbol_name("_gpioHandle")
      759                      .dwattr $C$DW$51, DW_AT_type(*$C$DW$T$54)
@@ -898,10 +898,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   15
      810                      .dwattr $C$DW$53, DW_AT_TI_begin_line(0xd7)
      811                      .dwattr $C$DW$53, DW_AT_TI_begin_column(0x06)
      812                      .dwattr $C$DW$53, DW_AT_TI_max_frame_size(-2)
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   16
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   16
 
      813                      .dwpsn  file "D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c",line 216,column 1,is_stmt,address
      814              
@@ -958,10 +958,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   16
      865                      .dwpsn  file "D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c",line 224,column 7,is_stmt
      866 000000ee 0201          MOVB      ACC,#1                ; [CPU_] |224| 
      867 000000ef D042          MOVB      XAR0,#66              ; [CPU_] |224| 
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   17
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   17
 
      868 000000f0       $C$L24:    
      869 000000f0 563B          LSLL      ACC,T                 ; [CPU_] |224| 
@@ -1018,10 +1018,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   17
      920              ;***************************************************************
      921              
      922              _GPIO_setExtInt:
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   18
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   18
 
      923              ;* AR4   assigned to _gpioHandle
      924              $C$DW$63        .dwtag  DW_TAG_variable, DW_AT_name("gpioHandle")
@@ -1078,10 +1078,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   18
      974                      .dwattr $C$DW$67, DW_AT_TI_max_frame_size(-2)
      975                      .dwpsn  file "D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c",line 110,column 1,is_stmt,address
      976              
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   19
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   19
 
      977                      .dwfde $C$DW$CIE, _GPIO_setDirection
      978              $C$DW$68        .dwtag  DW_TAG_formal_parameter, DW_AT_name("gpioHandle")
@@ -1138,10 +1138,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   19
     1029 00000106 9CE0          ADDB      AL,#-32               ; [CPU_] |127| 
     1030 00000107 2DA9          MOV       T,AL                  ; [CPU_] |127| 
     1031                      .dwpsn  file "D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c",line 130,column 7,is_stmt
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   20
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   20
 
     1032 00000108 DC1A          ADDB      XAR4,#26              ; [CPU_] |130| 
     1033                      .dwpsn  file "D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c",line 127,column 7,is_stmt
@@ -1198,10 +1198,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   20
     1084                      .dwpsn  file "D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c",line 186,column 1,is_stmt,address
     1085              
     1086                      .dwfde $C$DW$CIE, _GPIO_read
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   21
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   21
 
     1087              $C$DW$76        .dwtag  DW_TAG_formal_parameter, DW_AT_name("gpioHandle")
     1088                      .dwattr $C$DW$76, DW_AT_TI_symbol_name("_gpioHandle")
@@ -1258,10 +1258,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   21
     1139 00000120 D040          MOVB      XAR0,#64              ; [CPU_] |194| 
     1140 00000121 563B          LSLL      ACC,T                 ; [CPU_] |194| 
     1141 00000122 FF5A          MOVL      P,ACC                 ; [CPU_] |194| 
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   22
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   22
 
     1142 00000123 0694          MOVL      ACC,*+XAR4[AR0]       ; [CPU_] |194| 
     1143 00000124 1E42          MOVL      *-SP[2],ACC           ; [CPU_] |194| 
@@ -1318,10 +1318,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   22
     1193                      .dwattr $C$DW$83, DW_AT_TI_symbol_name("_GPIO_lpmSelect")
     1194                      .dwattr $C$DW$83, DW_AT_external
     1195                      .dwattr $C$DW$83, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c")
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   23
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   23
 
     1196                      .dwattr $C$DW$83, DW_AT_TI_begin_line(0x1a9)
     1197                      .dwattr $C$DW$83, DW_AT_TI_begin_column(0x06)
@@ -1378,10 +1378,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   23
     1248                      ; return occurs ; [] 
     1249                      .dwattr $C$DW$83, DW_AT_TI_end_file("D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c")
     1250                      .dwattr $C$DW$83, DW_AT_TI_end_line(0x1b4)
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   24
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   24
 
     1251                      .dwattr $C$DW$83, DW_AT_TI_end_column(0x01)
     1252                      .dwendentry
@@ -1438,10 +1438,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   24
     1303                      .dwcfi  save_reg_to_reg, 78, 26
     1304 0000014b 1EA6          MOVL      XAR6,ACC              ; [CPU_] |93| 
     1305                      .dwpsn  file "D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c",line 99,column 7,is_stmt
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   25
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   25
 
     1306 0000014c 026A          MOVB      ACC,#106              ; [CPU_] |99| 
     1307 0000014d 0FA6          CMPL      ACC,XAR6              ; [CPU_] |99| 
@@ -1498,10 +1498,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   25
     1358              _GPIO_getPortData:
     1359              ;* AL    assigned to _gpioPort
     1360              $C$DW$98        .dwtag  DW_TAG_variable, DW_AT_name("gpioPort")
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   26
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   26
 
     1361                      .dwattr $C$DW$98, DW_AT_TI_symbol_name("_gpioPort")
     1362                      .dwattr $C$DW$98, DW_AT_type(*$C$DW$T$35)
@@ -1558,10 +1558,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   26
     1413                      .dwattr $C$DW$102, DW_AT_type(*$C$DW$T$53)
     1414                      .dwattr $C$DW$102, DW_AT_location[DW_OP_reg12]
     1415              $C$DW$103       .dwtag  DW_TAG_formal_parameter, DW_AT_name("gpioNumber")
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   27
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   27
 
     1416                      .dwattr $C$DW$103, DW_AT_TI_symbol_name("_gpioNumber")
     1417                      .dwattr $C$DW$103, DW_AT_type(*$C$DW$T$32)
@@ -1618,10 +1618,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   27
     1468 00000167 0006          LRETR     ; [CPU_] 
     1469                      ; return occurs ; [] 
     1470                      .dwattr $C$DW$101, DW_AT_TI_end_file("D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2802x/gpio.c")
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   28
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   28
 
     1471                      .dwattr $C$DW$101, DW_AT_TI_end_line(0x47)
     1472                      .dwattr $C$DW$101, DW_AT_TI_end_column(0x01)
@@ -1678,10 +1678,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   28
     1523                      .dwendtag $C$DW$T$30
     1524              
     1525              $C$DW$T$31      .dwtag  DW_TAG_typedef, DW_AT_name("GPIO_Number_e")
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   29
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   29
 
     1526                      .dwattr $C$DW$T$31, DW_AT_type(*$C$DW$T$30)
     1527                      .dwattr $C$DW$T$31, DW_AT_language(DW_LANG_C)
@@ -1738,10 +1738,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   29
     1578              $C$DW$158       .dwtag  DW_TAG_enumerator, DW_AT_name("CPU_ExtIntNumber_2"), DW_AT_const_value(0x01)
     1579              $C$DW$159       .dwtag  DW_TAG_enumerator, DW_AT_name("CPU_ExtIntNumber_3"), DW_AT_const_value(0x02)
     1580                      .dwendtag $C$DW$T$42
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   30
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   30
 
     1581              
     1582              $C$DW$T$43      .dwtag  DW_TAG_typedef, DW_AT_name("CPU_ExtIntNumber_e")
@@ -1798,10 +1798,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   30
     1633              $C$DW$202       .dwtag  DW_TAG_enumerator, DW_AT_name("GPIO_17_Mode_SPISOMIA"), DW_AT_const_value(0x01)
     1634              $C$DW$203       .dwtag  DW_TAG_enumerator, DW_AT_name("GPIO_17_Mode_Rsvd_2"), DW_AT_const_value(0x02)
     1635              $C$DW$204       .dwtag  DW_TAG_enumerator, DW_AT_name("GPIO_17_Mode_TZ3_NOT"), DW_AT_const_value(0x03)
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   31
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   31
 
     1636              $C$DW$205       .dwtag  DW_TAG_enumerator, DW_AT_name("GPIO_18_Mode_GeneralPurpose"), DW_AT_const_value(0x00)
     1637              $C$DW$206       .dwtag  DW_TAG_enumerator, DW_AT_name("GPIO_18_Mode_SPICLKA"), DW_AT_const_value(0x01)
@@ -1858,10 +1858,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   31
     1688                      .dwattr $C$DW$T$47, DW_AT_type(*$C$DW$249)
     1689              
     1690              $C$DW$T$48      .dwtag  DW_TAG_enumeration_type
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   32
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   32
 
     1691                      .dwattr $C$DW$T$48, DW_AT_byte_size(0x01)
     1692              $C$DW$250       .dwtag  DW_TAG_enumerator, DW_AT_name("GPIO_Qual_Sync"), DW_AT_const_value(0x00)
@@ -1918,10 +1918,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   32
     1743                      .dwattr $C$DW$260, DW_AT_data_member_location[DW_OP_plus_uconst 0xa]
     1744                      .dwattr $C$DW$260, DW_AT_accessibility(DW_ACCESS_public)
     1745              $C$DW$261       .dwtag  DW_TAG_member
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   33
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   33
 
     1746                      .dwattr $C$DW$261, DW_AT_type(*$C$DW$T$20)
     1747                      .dwattr $C$DW$261, DW_AT_name("GPAPUD")
@@ -1978,10 +1978,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   33
     1798                      .dwattr $C$DW$269, DW_AT_accessibility(DW_ACCESS_public)
     1799              $C$DW$270       .dwtag  DW_TAG_member
     1800                      .dwattr $C$DW$270, DW_AT_type(*$C$DW$T$24)
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   34
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   34
 
     1801                      .dwattr $C$DW$270, DW_AT_name("rsvd_4")
     1802                      .dwattr $C$DW$270, DW_AT_TI_symbol_name("_rsvd_4")
@@ -2038,10 +2038,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   34
     1853              $C$DW$279       .dwtag  DW_TAG_member
     1854                      .dwattr $C$DW$279, DW_AT_type(*$C$DW$T$20)
     1855                      .dwattr $C$DW$279, DW_AT_name("GPBDAT")
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   35
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   35
 
     1856                      .dwattr $C$DW$279, DW_AT_TI_symbol_name("_GPBDAT")
     1857                      .dwattr $C$DW$279, DW_AT_data_member_location[DW_OP_plus_uconst 0x48]
@@ -2098,10 +2098,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   35
     1908                      .dwattr $C$DW$288, DW_AT_type(*$C$DW$T$27)
     1909                      .dwattr $C$DW$288, DW_AT_name("GPIOXINTnSEL")
     1910                      .dwattr $C$DW$288, DW_AT_TI_symbol_name("_GPIOXINTnSEL")
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   36
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   36
 
     1911                      .dwattr $C$DW$288, DW_AT_data_member_location[DW_OP_plus_uconst 0x60]
     1912                      .dwattr $C$DW$288, DW_AT_accessibility(DW_ACCESS_public)
@@ -2158,10 +2158,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   36
     1963                      .dwattr $C$DW$T$7, DW_AT_name("wchar_t")
     1964                      .dwattr $C$DW$T$7, DW_AT_byte_size(0x01)
     1965              $C$DW$T$8       .dwtag  DW_TAG_base_type
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   37
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   37
 
     1966                      .dwattr $C$DW$T$8, DW_AT_encoding(DW_ATE_signed)
     1967                      .dwattr $C$DW$T$8, DW_AT_name("short")
@@ -2218,10 +2218,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   37
     2018                      .dwattr $C$DW$T$27, DW_AT_type(*$C$DW$T$22)
     2019                      .dwattr $C$DW$T$27, DW_AT_language(DW_LANG_C)
     2020                      .dwattr $C$DW$T$27, DW_AT_byte_size(0x03)
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   38
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   38
 
     2021              $C$DW$298       .dwtag  DW_TAG_subrange_type
     2022                      .dwattr $C$DW$298, DW_AT_upper_bound(0x02)
@@ -2278,10 +2278,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   38
     2073              $C$DW$T$66      .dwtag  DW_TAG_const_type
     2074                      .dwattr $C$DW$T$66, DW_AT_type(*$C$DW$303)
     2075              $C$DW$T$14      .dwtag  DW_TAG_base_type
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   39
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   39
 
     2076                      .dwattr $C$DW$T$14, DW_AT_encoding(DW_ATE_signed)
     2077                      .dwattr $C$DW$T$14, DW_AT_name("long long")
@@ -2338,10 +2338,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   39
     2128                      .dwcfi  undefined, 77
     2129                      .dwcfi  undefined, 4
     2130                      .dwcfi  same_value, 6
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   40
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   40
 
     2131                      .dwcfi  same_value, 8
     2132                      .dwcfi  same_value, 10
@@ -2398,10 +2398,10 @@ C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   40
     2183                      .dwattr $C$DW$319, DW_AT_location[DW_OP_regx 0x20]
     2184              $C$DW$320       .dwtag  DW_TAG_TI_assign_register, DW_AT_name("PAGE0")
     2185                      .dwattr $C$DW$320, DW_AT_location[DW_OP_regx 0x21]
-TMS320C2000 Assembler PC v6.2.5 Tue Sep 12 20:58:48 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 15 10:15:50 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1245612                              PAGE   41
+C:\Users\wmj\AppData\Local\Temp\1088810                              PAGE   41
 
     2186              $C$DW$321       .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AMODE")
     2187                      .dwattr $C$DW$321, DW_AT_location[DW_OP_regx 0x22]

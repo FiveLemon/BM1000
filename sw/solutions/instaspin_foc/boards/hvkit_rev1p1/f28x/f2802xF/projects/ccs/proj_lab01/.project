@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>proj_lab01</name>
+	<name>proj27_lab01</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -154,12 +154,12 @@
 		<link>
 			<name>i2c.c</name>
 			<type>1</type>
-			<locationURI>PARENT-9-PROJECT_LOC/drivers/i2c/src/32b/f28x/f2802x/i2c.c</locationURI>
+			<locationURI>MW_INSTALL_DIR/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.c</locationURI>
 		</link>
 		<link>
 			<name>mb.c</name>
 			<type>1</type>
-			<locationURI>PARENT-9-PROJECT_LOC/drivers/drvic/modbus/mb.c</locationURI>
+			<locationURI>MW_INSTALL_DIR/sw/drivers/drvic/modbus/mb.c</locationURI>
 		</link>
 		<link>
 			<name>memCopy.c</name>
@@ -204,12 +204,12 @@
 		<link>
 			<name>sci.c</name>
 			<type>1</type>
-			<locationURI>PARENT-9-PROJECT_LOC/drivers/sci/src/32b/f28x/f2802x/sci.c</locationURI>
+			<locationURI>MW_INSTALL_DIR/sw/drivers/sci/src/32b/f28x/f2802x/sci.c</locationURI>
 		</link>
 		<link>
 			<name>spi.c</name>
 			<type>1</type>
-			<locationURI>PARENT-9-PROJECT_LOC/drivers/spi/src/32b/f28x/f2802x/spi.c</locationURI>
+			<locationURI>MW_INSTALL_DIR/sw/drivers/spi/src/32b/f28x/f2802x/spi.c</locationURI>
 		</link>
 		<link>
 			<name>timer.c</name>
