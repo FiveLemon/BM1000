@@ -101,6 +101,7 @@
 	MB_Motor_Reg_motor_Ls_d         = 0x0013,
 	MB_Motor_Reg_motor_Ls_q         = 0x0014,
 	MB_Motor_Reg_maxCurrent         = 0x0015,
+	MB_Motor_Reg_MagnCurrent        = 0x0016,
 
     // System state Parameters
     MB_Motor_Reg_Speed_krpm         = 0x0020,
@@ -156,43 +157,43 @@
 	MB_Motor_Cmd_Shutdowm           = 0x2004,
 
 	// System flag command
-	MB_Motor_Cmd_SetSysEnable,
-	MB_Motor_Cmd_clrSysEnable,
+	MB_Motor_Cmd_SetSysEnable       = 0x2010,
+	MB_Motor_Cmd_clrSysEnable       = 0x2020,
 
-	MB_Motor_Cmd_SetRunIdentify,
-	MB_Motor_Cmd_ClrRunIdentify,
+	MB_Motor_Cmd_SetRunIdentify     = 0x2011,
+	MB_Motor_Cmd_ClrRunIdentify     = 0x2021,
 
-	MB_Motor_Cmd_SetMotorEst,
-	MB_Motor_Cmd_ClrMotorEst,
+	MB_Motor_Cmd_SetMotorEst        = 0x2012,
+	MB_Motor_Cmd_ClrMotorEst        = 0x2022,
 
-	MB_Motor_Cmd_SetMotorIdentified,
-	MB_Motor_Cmd_ClrMotorIdentified,
+	MB_Motor_Cmd_SetMotorIdentified = 0x2013,
+	MB_Motor_Cmd_ClrMotorIdentified = 0x2023,
 
-	MB_Motor_Cmd_enableForceAngle,
-	MB_Motor_Cmd_disableForceAngle,
+	MB_Motor_Cmd_enableForceAngle   = 0x2014,
+	MB_Motor_Cmd_disableForceAngle  = 0x2024,
 
-	MB_Motor_Cmd_ZeroPiont_Identify,
+	MB_Motor_Cmd_ZeroPiont_Identify = 0x2015,
 
-	MB_Motor_Cmd_enableRsRecalc,
-	MB_Motor_Cmd_disableRsRecalc,
+	MB_Motor_Cmd_enableRsRecalc     = 0x2016,
+	MB_Motor_Cmd_disableRsRecalc    = 0x2026,
 
-	MB_Motor_Cmd_enableUserParams,
-	MB_Motor_Cmd_disableUserParams,
+	MB_Motor_Cmd_enableUserParams   = 0x2017,
+	MB_Motor_Cmd_disableUserParams  = 0x2027,
 
-	MB_Motor_Cmd_enableOffsetcalc,
-	MB_Motor_Cmd_disableOffsetcalc,
+	MB_Motor_Cmd_enableOffsetcalc   = 0x2018,
+	MB_Motor_Cmd_disableOffsetcalc  = 0x2028,
 
-	MB_Motor_Cmd_enablePowerWarp,
-	MB_Motor_Cmd_disablePowerWarp,
+	MB_Motor_Cmd_enablePowerWarp    = 0x2019,
+	MB_Motor_Cmd_disablePowerWarp   = 0x2029,
 
-	MB_Motor_Cmd_enableSpeedCtrl,
-	MB_Motor_Cmd_disableSpeedCtrl,
+	MB_Motor_Cmd_enableSpeedCtrl    = 0x201a,
+	MB_Motor_Cmd_disableSpeedCtrl   = 0x202a,
 
-	MB_Motor_Cmd_enableRun,
-	MB_Motor_Cmd_disableRun,
+	MB_Motor_Cmd_enableRun          = 0x201b,
+	MB_Motor_Cmd_disableRun         = 0x202b,
 
-	MB_Motor_Cmd_enableFlyingStart,
-	MB_Motor_Cmd_disableFlyingStart,
+	MB_Motor_Cmd_enableFlyingStart  = 0x201c,
+	MB_Motor_Cmd_disableFlyingStart = 0x202c
 
 
   } MB_RegAddr_e;

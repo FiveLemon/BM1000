@@ -4,16 +4,16 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccsv6/tools/compiler/c2000_6.2.5
+CG_TOOL_ROOT := C:/ti/ccsv6/tools/compiler/c2000_15.12.3.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"D:/BM1000_v1.1/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_FastSpinROMSymbols.lib" \
-"D:/BM1000_v1.1/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_IQmath_BootROMSymbols.lib" \
-"D:/BM1000_v1.1/sw/modules/spintac/lib/32b/SpinTAC.lib" \
-"D:/BM1000_v1.1/sw/modules/iqmath/lib/f28x/32b/IQmath.lib" \
+"C:/Users/wmj/Desktop/BM1000_v1.1/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_FastSpinROMSymbols.lib" \
+"C:/Users/wmj/Desktop/BM1000_v1.1/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_IQmath_BootROMSymbols.lib" \
+"C:/Users/wmj/Desktop/BM1000_v1.1/sw/modules/spintac/lib/32b/SpinTAC.lib" \
+"C:/Users/wmj/Desktop/BM1000_v1.1/sw/modules/iqmath/lib/f28x/32b/IQmath.lib" \
 "./CodeStartBranch.obj" \
 "./adc.obj" \
 "./brake.obj" \
@@ -53,7 +53,7 @@ ORDERED_OBJS += \
 "./usDelay.obj" \
 "./user.obj" \
 "./wdog.obj" \
-"D:/BM1000_v1.1/sw/ide/ccs/cmd/f2806x/F28069M.cmd" \
+"C:/Users/wmj/Desktop/BM1000_v1.1/sw/ide/ccs/cmd/f2806x/F28069M.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
 
@@ -181,13 +181,13 @@ all: proj_lab13c.out
 proj_lab13c.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=softlib --vcu_support=vcu0 -O2 -g --define=SOFT_FIX_ERROR --define=FAST_ROM_V1p6 --define=TMS320F28069 --define=USE_SpinTAC --define=FLASH --define=QEP --diag_warning=225 --display_error_number -z -m"proj_lab13c.map" --stack_size=0x3B0 --warn_sections -i"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/lib" -i"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include" --reread_libs --priority --disable_auto_rts --diag_suppress=16002 --xml_link_info="proj_lab13c_linkInfo.xml" --rom_model -o "proj_lab13c.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv6/tools/compiler/c2000_15.12.3.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --float_support=softlib --vcu_support=vcu0 -O2 -g --define=SOFT_FIX_ERROR --define=FAST_ROM_V1p6 --define=TMS320F28069 --define=USE_SpinTAC --define=FLASH --define=QEP --diag_warning=225 --display_error_number -z -m"proj_lab13c.map" --stack_size=0x3B0 --warn_sections -i"C:/ti/ccsv6/tools/compiler/c2000_15.12.3.LTS/lib" -i"C:/ti/ccsv6/tools/compiler/c2000_15.12.3.LTS/include" --reread_libs --priority --disable_auto_rts --diag_suppress=16002 --xml_link_info="proj_lab13c_linkInfo.xml" --rom_model -o "proj_lab13c.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 proj_lab13c.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/bin/hex2000"  -o "proj_lab13c.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccsv6/tools/compiler/c2000_15.12.3.LTS/bin/hex2000"  -o "proj_lab13c.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
