@@ -38,6 +38,8 @@
 //! (C) Copyright 2012, Texas Instruments, Inc.
 
 
+
+
 // drivers
 #include "sw/drivers/adc/src/32b/f28x/f2806x/adc.h"
 #include "sw/drivers/clk/src/32b/f28x/f2806x/clk.h"
@@ -53,15 +55,22 @@
 #include "sw/drivers/timer/src/32b/f28x/f2806x/timer.h"
 #include "sw/drivers/wdog/src/32b/f28x/f2806x/wdog.h"
 #include "sw/drivers/sci/src/32b/f28x/f2806x/sci.h"
+#include "sw/drivers/spi/src/32b/f28x/f2806x/spi.h"
+#include "sw/drivers/i2c/src/32b/f28x/f2806x/i2c.h"
+
 
 #ifdef QEP
 #include "sw/drivers/qep/src/32b/f28x/f2806x/qep.h"
 #endif
 
+
+
 // modules
 #include "sw/modules/offset/src/32b/offset.h"
 #include "sw/modules/types/src/types.h"
 #include "sw/modules/usDelay/src/32b/usDelay.h"
+
+#include "sw/drivers/drvic/pca9555.h"
 
 
 // platforms
@@ -90,6 +99,11 @@ typedef struct _HAL_AdcData_t_
   MATH_vec3 V;          //!< the voltage values
 
   _iq       dcBus;      //!< the dcBus value
+
+  _iq       analogSensor1;
+  _iq       analogSensor2;
+  _iq       igbtNTC;
+  _iq       boardAddr;
 
 } HAL_AdcData_t;
 
@@ -120,6 +134,21 @@ typedef struct _HAL_PwmData_t_
 
 } HAL_PwmData_t;
 
+
+typedef enum
+{
+	HAL_BoardAddr_Motor1 = 0,
+	HAL_BoardAddr_Motor2,
+	HAL_BoardAddr_Motor3,
+	HAL_BoardAddr_Motor4,
+	HAL_BoardAddr_Motor5,
+	HAL_BoardAddr_Motor6,
+	HAL_BoardAddr_Motor7,
+	HAL_BoardAddr_Heater,
+	HAL_BoardAddr_OpenLoop,
+	HAL_BoardAddr_Short
+
+} HAL_BdAddr_e;
 
 //! \brief      Defines the hardware abstraction layer (HAL) data
 //! \details    The HAL object contains all handles to peripherals.  When accessing a
@@ -160,7 +189,11 @@ typedef struct _HAL_Obj_
 
   WDOG_Handle   wdogHandle;       //!< the watchdog handle
 
-  //SCI_Handle    sciHandle;
+  //I2C_Handle    i2cHandle;
+
+  SPI_Handle    spiAHandle;       //!< the SPIA handle
+
+  SCI_Handle    sciHandle;
 
   HAL_AdcData_t adcBias;          //!< the ADC bias
 
@@ -174,6 +207,8 @@ typedef struct _HAL_Obj_
 #ifdef QEP
   QEP_Handle    qepHandle[1];      //!< the QEP handle
 #endif
+
+  HAL_BdAddr_e  boardAddress;
 
 } HAL_Obj;
 

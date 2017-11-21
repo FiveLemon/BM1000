@@ -333,6 +333,12 @@ void CTRL_setParams(CTRL_Handle handle,USER_Params *pUserParams)
   CTRL_setIdq_in_pu(handle,&Idq_out_pu);
   CTRL_setIdq_ref_pu(handle,&Idq_ref_pu);
 
+  CTRL_setBrake(handle);
+  BRAKE_setId_ref_pu(obj->brakeHandle, _IQ(pUserParams->IdRated/(pUserParams->iqFullScaleCurrent_A)));
+  BRAKE_setIq_ref_pu(obj->brakeHandle, _IQ(0.0));
+  BRAKE_setBrakeEnable(obj->brakeHandle, false);
+  CTRL_setSpd_outMaxRatio_pu(handle, _IQ(1.0));
+
   CTRL_setIdRated_pu(handle,_IQ(pUserParams->IdRated/pUserParams->iqFullScaleCurrent_A));
 
   CTRL_setVab_in_pu(handle,&Vab_in_pu);
@@ -365,6 +371,8 @@ void CTRL_setParams(CTRL_Handle handle,USER_Params *pUserParams)
   CTRL_setFlag_enableSpeedCtrl(handle,true);
   CTRL_setFlag_enableUserMotorParams(handle,false);
   CTRL_setFlag_enableDcBusComp(handle,true);
+
+  CTRL_setFlag_enableEncAngle(handle, false);
 
   // set flag to enable current controller
   CTRL_setFlag_enableCurrentCtrl(handle,true);
@@ -568,7 +576,7 @@ void CTRL_setupClarke_V(CTRL_Handle handle,uint_least8_t numVoltageSensors)
   return;
 } // end of CTRL_setupClarke_V() function
 
-
+/*
 void CTRL_setup_user(CTRL_Handle handle,
                      const _iq angle_pu,
                      const _iq speed_ref_pu,
@@ -614,7 +622,7 @@ void CTRL_setup_user(CTRL_Handle handle,
   CTRL_setAngle_pu(handle,angle_pu);
   CTRL_setSpeed_ref_pu(handle,speed_ref_pu);
   CTRL_setSpeed_fb_pu(handle,speed_fb_pu);
-  CTRL_setSpeed_outMax_pu(handle,speed_outMax_pu);
+  CTRL_setSpd_outMaxRatio_pu(handle,speed_outMax_pu);
 
   CTRL_setIdq_offset_pu(handle,pIdq_offset_pu);
   CTRL_setVdq_offset_pu(handle,pVdq_offset_pu);
@@ -625,7 +633,7 @@ void CTRL_setup_user(CTRL_Handle handle,
 
   return;
 } // end of CTRL_setup_user() function
-
+*/
 
 void CTRL_setWaitTimes(CTRL_Handle handle,const uint_least32_t *pWaitTimes)
 {
@@ -640,6 +648,14 @@ void CTRL_setWaitTimes(CTRL_Handle handle,const uint_least32_t *pWaitTimes)
   return;
 } // end of CTRL_setWaitTimes() function
 
+void CTRL_setBrake(CTRL_Handle handle)
+{
+  CTRL_Obj *obj = (CTRL_Obj *)handle;
+
+  obj->brakeHandle = Brake_init(&(obj->brake),sizeof(BRAKE_Obj));
+
+  return;
+}
 
 bool CTRL_updateState(CTRL_Handle handle)
 {

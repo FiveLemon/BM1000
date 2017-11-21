@@ -206,7 +206,8 @@ extern "C" {
 typedef enum
 {
   SPI_BaudRate_LSPCLK_Over_Four=0,
-  SPI_BaudRate_1_MBaud=(14 << 0)   //!< Denotes 1 MBaud
+  SPI_BaudRate_1_MBaud=(14 << 0),   //!< Denotes 1 MBaud
+  SPI_BaudRate_6_MBaud=(4 << 0)   //lspclk= 30MHz
 } SPI_BaudRate_e;
 
 

@@ -1,22 +1,22 @@
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    1
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE    1
 
        1              ;***************************************************************
        2              ;* TMS320C2000 C/C++ Codegen                         PC v6.2.5 *
-       3              ;* Date/Time created: Wed Jun 21 15:00:45 2017                 *
+       3              ;* Date/Time created: Fri Sep 29 15:55:15 2017                 *
        4              ;***************************************************************
        5                      .compiler_opts --float_support=softlib --hll_source=on --mem_model:code=flat --mem_model:data=large -
        6        0002  FP      .set    XAR2
        7              
        8              $C$DW$CU        .dwtag  DW_TAG_compile_unit
-       9                      .dwattr $C$DW$CU, DW_AT_name("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802
+       9                      .dwattr $C$DW$CU, DW_AT_name("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
       10                      .dwattr $C$DW$CU, DW_AT_producer("TMS320C2000 C/C++ Codegen PC v6.2.5 Copyright (c) 1996-2014 Texas I
       11                      .dwattr $C$DW$CU, DW_AT_TI_version(0x01)
-      12                      .dwattr $C$DW$CU, DW_AT_comp_dir("C:\ti\motorware\motorware_1_01_00_18\sw\solutions\instaspin_foc\boa
-      13              ;       c:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\017762 C
-      14              ;       c:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\0177616
+      12                      .dwattr $C$DW$CU, DW_AT_comp_dir("D:\BM1000\sw\solutions\instaspin_foc\boards\hvkit_rev1p1\f28x\f2802
+      13              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\048883 C
+      14              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\0488817
       15 00000000               .sect   ".text"
       16                      .clink
       17                      .global _WDOG_setPreScaler
@@ -26,11 +26,11 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    1
       21                      .dwattr $C$DW$1, DW_AT_high_pc(0x00)
       22                      .dwattr $C$DW$1, DW_AT_TI_symbol_name("_WDOG_setPreScaler")
       23                      .dwattr $C$DW$1, DW_AT_external
-      24                      .dwattr $C$DW$1, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f2
+      24                      .dwattr $C$DW$1, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
       25                      .dwattr $C$DW$1, DW_AT_TI_begin_line(0xdb)
       26                      .dwattr $C$DW$1, DW_AT_TI_begin_column(0x06)
       27                      .dwattr $C$DW$1, DW_AT_TI_max_frame_size(-2)
-      28                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 2
+      28                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 220,column 1,is_stmt,address
       29              
       30                      .dwfde $C$DW$CIE, _WDOG_setPreScaler
       31              $C$DW$2 .dwtag  DW_TAG_formal_parameter, DW_AT_name("wdogHandle")
@@ -58,10 +58,10 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    1
       53                      .dwattr $C$DW$4, DW_AT_type(*$C$DW$T$33)
       54                      .dwattr $C$DW$4, DW_AT_location[DW_OP_reg12]
       55              ;* AL    assigned to _preScaler
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    2
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE    2
 
       56              $C$DW$5 .dwtag  DW_TAG_variable, DW_AT_name("preScaler")
       57                      .dwattr $C$DW$5, DW_AT_TI_symbol_name("_preScaler")
@@ -75,14 +75,14 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    2
       65                      .dwcfi  cfa_offset, -2
       66                      .dwcfi  save_reg_to_mem, 26, 0
       67                      .dwcfi  save_reg_to_reg, 78, 26
-      68                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 2
+      68                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 222,column 23,is_stmt
       69 00000000 93FC          MOV       AH,*+XAR4[7]          ; [CPU_] |222| 
-      70                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 2
+      70                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 226,column 5,is_stmt
       71 00000001 18A8          AND       AH,#0xfff8            ; [CPU_] |226| 
          00000002 FFF8 
       72 00000003 CBA9          OR        AH,AL                 ; [CPU_] |226| 
       73 00000004 7622   EALLOW
-      74                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 2
+      74                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 234,column 5,is_stmt
       75 00000005 5128          ORB       AH,#0x28              ; [CPU_] |234| 
       76 00000006 97FC          MOV       *+XAR4[7],AH          ; [CPU_] |234| 
       77 00000007 761A   EDIS
@@ -92,7 +92,7 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    2
       81                      .dwattr $C$DW$7, DW_AT_TI_return
       82 00000009 0006          LRETR     ; [CPU_] 
       83                      ; return occurs ; [] 
-      84                      .dwattr $C$DW$1, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x
+      84                      .dwattr $C$DW$1, DW_AT_TI_end_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
       85                      .dwattr $C$DW$1, DW_AT_TI_end_line(0xef)
       86                      .dwattr $C$DW$1, DW_AT_TI_end_column(0x01)
       87                      .dwendentry
@@ -107,21 +107,21 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    2
       96                      .dwattr $C$DW$8, DW_AT_high_pc(0x00)
       97                      .dwattr $C$DW$8, DW_AT_TI_symbol_name("_WDOG_setCount")
       98                      .dwattr $C$DW$8, DW_AT_external
-      99                      .dwattr $C$DW$8, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f2
+      99                      .dwattr $C$DW$8, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      100                      .dwattr $C$DW$8, DW_AT_TI_begin_line(0xcf)
      101                      .dwattr $C$DW$8, DW_AT_TI_begin_column(0x06)
      102                      .dwattr $C$DW$8, DW_AT_TI_max_frame_size(-2)
-     103                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 2
+     103                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 208,column 1,is_stmt,address
      104              
      105                      .dwfde $C$DW$CIE, _WDOG_setCount
      106              $C$DW$9 .dwtag  DW_TAG_formal_parameter, DW_AT_name("wdogHandle")
      107                      .dwattr $C$DW$9, DW_AT_TI_symbol_name("_wdogHandle")
      108                      .dwattr $C$DW$9, DW_AT_type(*$C$DW$T$26)
      109                      .dwattr $C$DW$9, DW_AT_location[DW_OP_reg12]
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    3
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE    3
 
      110              $C$DW$10        .dwtag  DW_TAG_formal_parameter, DW_AT_name("count")
      111                      .dwattr $C$DW$10, DW_AT_TI_symbol_name("_count")
@@ -151,14 +151,14 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    3
      135                      .dwcfi  cfa_offset, -2
      136                      .dwcfi  save_reg_to_mem, 26, 0
      137                      .dwcfi  save_reg_to_reg, 78, 26
-     138                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 2
+     138                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 213,column 5,is_stmt
      139 0000000a 96CC          MOV       *+XAR4[1],AL          ; [CPU_] |213| 
      140              $C$DW$13        .dwtag  DW_TAG_TI_branch
      141                      .dwattr $C$DW$13, DW_AT_low_pc(0x00)
      142                      .dwattr $C$DW$13, DW_AT_TI_return
      143 0000000b 0006          LRETR     ; [CPU_] 
      144                      ; return occurs ; [] 
-     145                      .dwattr $C$DW$8, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x
+     145                      .dwattr $C$DW$8, DW_AT_TI_end_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      146                      .dwattr $C$DW$8, DW_AT_TI_end_line(0xd8)
      147                      .dwattr $C$DW$8, DW_AT_TI_end_column(0x01)
      148                      .dwendentry
@@ -174,16 +174,16 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    3
      158                      .dwattr $C$DW$14, DW_AT_TI_symbol_name("_WDOG_init")
      159                      .dwattr $C$DW$14, DW_AT_external
      160                      .dwattr $C$DW$14, DW_AT_type(*$C$DW$T$26)
-     161                      .dwattr $C$DW$14, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f
+     161                      .dwattr $C$DW$14, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      162                      .dwattr $C$DW$14, DW_AT_TI_begin_line(0xc0)
      163                      .dwattr $C$DW$14, DW_AT_TI_begin_column(0x0d)
      164                      .dwattr $C$DW$14, DW_AT_TI_max_frame_size(-2)
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    4
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE    4
 
-     165                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 1
+     165                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 193,column 1,is_stmt,address
      166              
      167                      .dwfde $C$DW$CIE, _WDOG_init
      168              $C$DW$15        .dwtag  DW_TAG_formal_parameter, DW_AT_name("pMemory")
@@ -219,7 +219,7 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    4
      198                      .dwcfi  save_reg_to_mem, 26, 0
      199                      .dwcfi  save_reg_to_reg, 78, 26
      200 0000000c 1EA6          MOVL      XAR6,ACC              ; [CPU_] |193| 
-     201                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 1
+     201                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 198,column 5,is_stmt
      202 0000000d 0208          MOVB      ACC,#8                ; [CPU_] |198| 
      203 0000000e 0FA6          CMPL      ACC,XAR6              ; [CPU_] |198| 
      204 0000000f 6902          B         $C$L1,LOS             ; [CPU_] |198| 
@@ -231,17 +231,17 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    4
      210                      .dwattr $C$DW$19, DW_AT_TI_return
      211 00000011 0006          LRETR     ; [CPU_] 
      212                      ; return occurs ; [] 
-     213                      .dwattr $C$DW$14, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28
+     213                      .dwattr $C$DW$14, DW_AT_TI_end_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      214                      .dwattr $C$DW$14, DW_AT_TI_end_line(0xcc)
      215                      .dwattr $C$DW$14, DW_AT_TI_end_column(0x01)
      216                      .dwendentry
      217                      .dwendtag $C$DW$14
      218              
      219 00000012               .sect   ".text"
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    5
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE    5
 
      220                      .clink
      221                      .global _WDOG_getIntStatus
@@ -252,11 +252,11 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    5
      226                      .dwattr $C$DW$20, DW_AT_TI_symbol_name("_WDOG_getIntStatus")
      227                      .dwattr $C$DW$20, DW_AT_external
      228                      .dwattr $C$DW$20, DW_AT_type(*$C$DW$T$24)
-     229                      .dwattr $C$DW$20, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f
+     229                      .dwattr $C$DW$20, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      230                      .dwattr $C$DW$20, DW_AT_TI_begin_line(0xb4)
      231                      .dwattr $C$DW$20, DW_AT_TI_begin_column(0x12)
      232                      .dwattr $C$DW$20, DW_AT_TI_max_frame_size(-2)
-     233                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 1
+     233                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 181,column 1,is_stmt,address
      234              
      235                      .dwfde $C$DW$CIE, _WDOG_getIntStatus
      236              $C$DW$21        .dwtag  DW_TAG_formal_parameter, DW_AT_name("wdogHandle")
@@ -287,7 +287,7 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    5
      261                      .dwcfi  cfa_offset, -2
      262                      .dwcfi  save_reg_to_mem, 26, 0
      263                      .dwcfi  save_reg_to_reg, 78, 26
-     264                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 1
+     264                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 185,column 29,is_stmt
      265 00000012 CCC4          AND       AL,*+XAR4[0],#0x0004  ; [CPU_] |185| 
          00000013 0004 
      266              $C$DW$24        .dwtag  DW_TAG_TI_branch
@@ -295,13 +295,13 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    5
      268                      .dwattr $C$DW$24, DW_AT_TI_return
      269 00000014 0006          LRETR     ; [CPU_] 
      270                      ; return occurs ; [] 
-     271                      .dwattr $C$DW$20, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28
+     271                      .dwattr $C$DW$20, DW_AT_TI_end_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      272                      .dwattr $C$DW$20, DW_AT_TI_end_line(0xbd)
      273                      .dwattr $C$DW$20, DW_AT_TI_end_column(0x01)
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    6
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE    6
 
      274                      .dwendentry
      275                      .dwendtag $C$DW$20
@@ -315,11 +315,11 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    6
      283                      .dwattr $C$DW$25, DW_AT_high_pc(0x00)
      284                      .dwattr $C$DW$25, DW_AT_TI_symbol_name("_WDOG_enableOverRide")
      285                      .dwattr $C$DW$25, DW_AT_external
-     286                      .dwattr $C$DW$25, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f
+     286                      .dwattr $C$DW$25, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      287                      .dwattr $C$DW$25, DW_AT_TI_begin_line(0xa4)
      288                      .dwattr $C$DW$25, DW_AT_TI_begin_column(0x06)
      289                      .dwattr $C$DW$25, DW_AT_TI_max_frame_size(-2)
-     290                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 1
+     290                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 165,column 1,is_stmt,address
      291              
      292                      .dwfde $C$DW$CIE, _WDOG_enableOverRide
      293              $C$DW$26        .dwtag  DW_TAG_formal_parameter, DW_AT_name("wdogHandle")
@@ -346,7 +346,7 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    6
      314                      .dwcfi  save_reg_to_mem, 26, 0
      315                      .dwcfi  save_reg_to_reg, 78, 26
      316 00000015 7622   EALLOW
-     317                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 1
+     317                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 172,column 5,is_stmt
      318 00000016 1AC4          OR        *+XAR4[0],#0x0001     ; [CPU_] |172| 
          00000017 0001 
      319 00000018 761A   EDIS
@@ -356,12 +356,12 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    6
      323                      .dwattr $C$DW$28, DW_AT_TI_return
      324 0000001a 0006          LRETR     ; [CPU_] 
      325                      ; return occurs ; [] 
-     326                      .dwattr $C$DW$25, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28
+     326                      .dwattr $C$DW$25, DW_AT_TI_end_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      327                      .dwattr $C$DW$25, DW_AT_TI_end_line(0xb1)
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    7
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE    7
 
      328                      .dwattr $C$DW$25, DW_AT_TI_end_column(0x01)
      329                      .dwendentry
@@ -376,11 +376,11 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    7
      338                      .dwattr $C$DW$29, DW_AT_high_pc(0x00)
      339                      .dwattr $C$DW$29, DW_AT_TI_symbol_name("_WDOG_enableInt")
      340                      .dwattr $C$DW$29, DW_AT_external
-     341                      .dwattr $C$DW$29, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f
+     341                      .dwattr $C$DW$29, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      342                      .dwattr $C$DW$29, DW_AT_TI_begin_line(0x94)
      343                      .dwattr $C$DW$29, DW_AT_TI_begin_column(0x06)
      344                      .dwattr $C$DW$29, DW_AT_TI_max_frame_size(-2)
-     345                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 1
+     345                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 149,column 1,is_stmt,address
      346              
      347                      .dwfde $C$DW$CIE, _WDOG_enableInt
      348              $C$DW$30        .dwtag  DW_TAG_formal_parameter, DW_AT_name("wdogHandle")
@@ -407,7 +407,7 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    7
      369                      .dwcfi  save_reg_to_mem, 26, 0
      370                      .dwcfi  save_reg_to_reg, 78, 26
      371 0000001b 7622   EALLOW
-     372                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 1
+     372                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 156,column 5,is_stmt
      373 0000001c 1AC4          OR        *+XAR4[0],#0x0002     ; [CPU_] |156| 
          0000001d 0002 
      374 0000001e 761A   EDIS
@@ -417,11 +417,11 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    7
      378                      .dwattr $C$DW$32, DW_AT_TI_return
      379 00000020 0006          LRETR     ; [CPU_] 
      380                      ; return occurs ; [] 
-     381                      .dwattr $C$DW$29, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+     381                      .dwattr $C$DW$29, DW_AT_TI_end_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    8
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE    8
 
      382                      .dwattr $C$DW$29, DW_AT_TI_end_line(0xa1)
      383                      .dwattr $C$DW$29, DW_AT_TI_end_column(0x01)
@@ -437,11 +437,11 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    8
      393                      .dwattr $C$DW$33, DW_AT_high_pc(0x00)
      394                      .dwattr $C$DW$33, DW_AT_TI_symbol_name("_WDOG_enable")
      395                      .dwattr $C$DW$33, DW_AT_external
-     396                      .dwattr $C$DW$33, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f
+     396                      .dwattr $C$DW$33, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      397                      .dwattr $C$DW$33, DW_AT_TI_begin_line(0x80)
      398                      .dwattr $C$DW$33, DW_AT_TI_begin_column(0x06)
      399                      .dwattr $C$DW$33, DW_AT_TI_max_frame_size(-2)
-     400                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 1
+     400                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 129,column 1,is_stmt,address
      401              
      402                      .dwfde $C$DW$CIE, _WDOG_enable
      403              $C$DW$34        .dwtag  DW_TAG_formal_parameter, DW_AT_name("wdogHandle")
@@ -472,16 +472,16 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    8
      428                      .dwcfi  cfa_offset, -2
      429                      .dwcfi  save_reg_to_mem, 26, 0
      430                      .dwcfi  save_reg_to_reg, 78, 26
-     431                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 1
+     431                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 131,column 23,is_stmt
      432 00000021 92FC          MOV       AL,*+XAR4[7]          ; [CPU_] |131| 
      433 00000022 7622   EALLOW
-     434                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 1
+     434                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 140,column 5,is_stmt
      435 00000023 18A9          AND       AL,#0xffbf            ; [CPU_] |140| 
          00000024 FFBF 
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    9
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE    9
 
      436 00000025 5028          ORB       AL,#0x28              ; [CPU_] |140| 
      437 00000026 96FC          MOV       *+XAR4[7],AL          ; [CPU_] |140| 
@@ -492,7 +492,7 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    9
      442                      .dwattr $C$DW$37, DW_AT_TI_return
      443 00000029 0006          LRETR     ; [CPU_] 
      444                      ; return occurs ; [] 
-     445                      .dwattr $C$DW$33, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28
+     445                      .dwattr $C$DW$33, DW_AT_TI_end_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      446                      .dwattr $C$DW$33, DW_AT_TI_end_line(0x91)
      447                      .dwattr $C$DW$33, DW_AT_TI_end_column(0x01)
      448                      .dwendentry
@@ -507,11 +507,11 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    9
      457                      .dwattr $C$DW$38, DW_AT_high_pc(0x00)
      458                      .dwattr $C$DW$38, DW_AT_TI_symbol_name("_WDOG_disableOverRide")
      459                      .dwattr $C$DW$38, DW_AT_external
-     460                      .dwattr $C$DW$38, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f
+     460                      .dwattr $C$DW$38, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      461                      .dwattr $C$DW$38, DW_AT_TI_begin_line(0x70)
      462                      .dwattr $C$DW$38, DW_AT_TI_begin_column(0x06)
      463                      .dwattr $C$DW$38, DW_AT_TI_max_frame_size(-2)
-     464                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 1
+     464                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 113,column 1,is_stmt,address
      465              
      466                      .dwfde $C$DW$CIE, _WDOG_disableOverRide
      467              $C$DW$39        .dwtag  DW_TAG_formal_parameter, DW_AT_name("wdogHandle")
@@ -538,12 +538,12 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE    9
      488                      .dwcfi  save_reg_to_mem, 26, 0
      489                      .dwcfi  save_reg_to_reg, 78, 26
      490 0000002a 7622   EALLOW
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   10
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE   10
 
-     491                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 1
+     491                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 120,column 5,is_stmt
      492 0000002b 18C4          AND       *+XAR4[0],#0xfffe     ; [CPU_] |120| 
          0000002c FFFE 
      493 0000002d 761A   EDIS
@@ -553,7 +553,7 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   10
      497                      .dwattr $C$DW$41, DW_AT_TI_return
      498 0000002f 0006          LRETR     ; [CPU_] 
      499                      ; return occurs ; [] 
-     500                      .dwattr $C$DW$38, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28
+     500                      .dwattr $C$DW$38, DW_AT_TI_end_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      501                      .dwattr $C$DW$38, DW_AT_TI_end_line(0x7d)
      502                      .dwattr $C$DW$38, DW_AT_TI_end_column(0x01)
      503                      .dwendentry
@@ -568,11 +568,11 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   10
      512                      .dwattr $C$DW$42, DW_AT_high_pc(0x00)
      513                      .dwattr $C$DW$42, DW_AT_TI_symbol_name("_WDOG_disableInt")
      514                      .dwattr $C$DW$42, DW_AT_external
-     515                      .dwattr $C$DW$42, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f
+     515                      .dwattr $C$DW$42, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      516                      .dwattr $C$DW$42, DW_AT_TI_begin_line(0x60)
      517                      .dwattr $C$DW$42, DW_AT_TI_begin_column(0x06)
      518                      .dwattr $C$DW$42, DW_AT_TI_max_frame_size(-2)
-     519                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 9
+     519                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 97,column 1,is_stmt,address 
      520              
      521                      .dwfde $C$DW$CIE, _WDOG_disableInt
      522              $C$DW$43        .dwtag  DW_TAG_formal_parameter, DW_AT_name("wdogHandle")
@@ -598,13 +598,13 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   10
      542                      .dwcfi  cfa_offset, -2
      543                      .dwcfi  save_reg_to_mem, 26, 0
      544                      .dwcfi  save_reg_to_reg, 78, 26
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   11
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE   11
 
      545 00000030 7622   EALLOW
-     546                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 1
+     546                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 104,column 5,is_stmt
      547 00000031 18C4          AND       *+XAR4[0],#0xfffd     ; [CPU_] |104| 
          00000032 FFFD 
      548 00000033 761A   EDIS
@@ -614,7 +614,7 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   11
      552                      .dwattr $C$DW$45, DW_AT_TI_return
      553 00000035 0006          LRETR     ; [CPU_] 
      554                      ; return occurs ; [] 
-     555                      .dwattr $C$DW$42, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28
+     555                      .dwattr $C$DW$42, DW_AT_TI_end_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      556                      .dwattr $C$DW$42, DW_AT_TI_end_line(0x6d)
      557                      .dwattr $C$DW$42, DW_AT_TI_end_column(0x01)
      558                      .dwendentry
@@ -629,11 +629,11 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   11
      567                      .dwattr $C$DW$46, DW_AT_high_pc(0x00)
      568                      .dwattr $C$DW$46, DW_AT_TI_symbol_name("_WDOG_disable")
      569                      .dwattr $C$DW$46, DW_AT_external
-     570                      .dwattr $C$DW$46, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f
+     570                      .dwattr $C$DW$46, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      571                      .dwattr $C$DW$46, DW_AT_TI_begin_line(0x4c)
      572                      .dwattr $C$DW$46, DW_AT_TI_begin_column(0x06)
      573                      .dwattr $C$DW$46, DW_AT_TI_max_frame_size(-2)
-     574                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 7
+     574                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 77,column 1,is_stmt,address 
      575              
      576                      .dwfde $C$DW$CIE, _WDOG_disable
      577              $C$DW$47        .dwtag  DW_TAG_formal_parameter, DW_AT_name("wdogHandle")
@@ -658,10 +658,10 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   11
      596                      .dwattr $C$DW$48, DW_AT_location[DW_OP_reg12]
      597              ;* AL    assigned to _regValue
      598              $C$DW$49        .dwtag  DW_TAG_variable, DW_AT_name("regValue")
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   12
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE   12
 
      599                      .dwattr $C$DW$49, DW_AT_TI_symbol_name("_regValue")
      600                      .dwattr $C$DW$49, DW_AT_type(*$C$DW$T$19)
@@ -669,10 +669,10 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   12
      602                      .dwcfi  cfa_offset, -2
      603                      .dwcfi  save_reg_to_mem, 26, 0
      604                      .dwcfi  save_reg_to_reg, 78, 26
-     605                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 7
+     605                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 79,column 23,is_stmt
      606 00000036 92FC          MOV       AL,*+XAR4[7]          ; [CPU_] |79| 
      607 00000037 7622   EALLOW
-     608                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 8
+     608                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 88,column 5,is_stmt
      609 00000038 5040          ORB       AL,#0x40              ; [CPU_] |88| 
      610 00000039 5028          ORB       AL,#0x28              ; [CPU_] |88| 
      611 0000003a 96FC          MOV       *+XAR4[7],AL          ; [CPU_] |88| 
@@ -683,7 +683,7 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   12
      616                      .dwattr $C$DW$50, DW_AT_TI_return
      617 0000003d 0006          LRETR     ; [CPU_] 
      618                      ; return occurs ; [] 
-     619                      .dwattr $C$DW$46, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28
+     619                      .dwattr $C$DW$46, DW_AT_TI_end_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      620                      .dwattr $C$DW$46, DW_AT_TI_end_line(0x5d)
      621                      .dwattr $C$DW$46, DW_AT_TI_end_column(0x01)
      622                      .dwendentry
@@ -698,11 +698,11 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   12
      631                      .dwattr $C$DW$51, DW_AT_high_pc(0x00)
      632                      .dwattr $C$DW$51, DW_AT_TI_symbol_name("_WDOG_clearCounter")
      633                      .dwattr $C$DW$51, DW_AT_external
-     634                      .dwattr $C$DW$51, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f
+     634                      .dwattr $C$DW$51, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      635                      .dwattr $C$DW$51, DW_AT_TI_begin_line(0x39)
      636                      .dwattr $C$DW$51, DW_AT_TI_begin_column(0x06)
      637                      .dwattr $C$DW$51, DW_AT_TI_max_frame_size(-2)
-     638                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 5
+     638                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 58,column 1,is_stmt,address 
      639              
      640                      .dwfde $C$DW$CIE, _WDOG_clearCounter
      641              $C$DW$52        .dwtag  DW_TAG_formal_parameter, DW_AT_name("wdogHandle")
@@ -718,10 +718,10 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   12
      651              ;* FUNCTION PROPERTIES                                         *
      652              ;*                            0 Parameter,  0 Auto,  0 SOE     *
      653              ;***************************************************************
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   13
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE   13
 
      654              
      655              _WDOG_clearCounter:
@@ -734,10 +734,10 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   13
      662                      .dwcfi  save_reg_to_mem, 26, 0
      663                      .dwcfi  save_reg_to_reg, 78, 26
      664 0000003e 7622   EALLOW
-     665                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 6
+     665                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 65,column 5,is_stmt
      666 0000003f 56BF          MOVB      *+XAR4[3],#85,UNC     ; [CPU_] |65| 
          00000040 55DC 
-     667                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 6
+     667                      .dwpsn  file "D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c",line 68,column 5,is_stmt
      668 00000041 56BF          MOVB      *+XAR4[3],#170,UNC    ; [CPU_] |68| 
          00000042 AADC 
      669 00000043 761A   EDIS
@@ -747,7 +747,7 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   13
      673                      .dwattr $C$DW$54, DW_AT_TI_return
      674 00000045 0006          LRETR     ; [CPU_] 
      675                      ; return occurs ; [] 
-     676                      .dwattr $C$DW$51, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/wdog/src/32b/f28
+     676                      .dwattr $C$DW$51, DW_AT_TI_end_file("D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c")
      677                      .dwattr $C$DW$51, DW_AT_TI_end_line(0x49)
      678                      .dwattr $C$DW$51, DW_AT_TI_end_column(0x01)
      679                      .dwendentry
@@ -778,10 +778,10 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   13
      704              $C$DW$62        .dwtag  DW_TAG_enumerator, DW_AT_name("WDOG_PreScaler_OscClk_by_512_by_32"), DW_AT_const_valu
      705              $C$DW$63        .dwtag  DW_TAG_enumerator, DW_AT_name("WDOG_PreScaler_OscClk_by_512_by_64"), DW_AT_const_valu
      706                      .dwendtag $C$DW$T$29
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   14
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE   14
 
      707              
      708              $C$DW$T$30      .dwtag  DW_TAG_typedef, DW_AT_name("WDOG_PreScaler_e")
@@ -838,10 +838,10 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   14
      759                      .dwattr $C$DW$T$32, DW_AT_language(DW_LANG_C)
      760              $C$DW$T$25      .dwtag  DW_TAG_pointer_type
      761                      .dwattr $C$DW$T$25, DW_AT_type(*$C$DW$T$22)
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   15
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE   15
 
      762                      .dwattr $C$DW$T$25, DW_AT_address_class(0x16)
      763              $C$DW$T$26      .dwtag  DW_TAG_typedef, DW_AT_name("WDOG_Handle")
@@ -898,10 +898,10 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   15
      814                      .dwendtag $C$DW$T$21
      815              
      816              $C$DW$T$41      .dwtag  DW_TAG_typedef, DW_AT_name("uint_least8_t")
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   16
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE   16
 
      817                      .dwattr $C$DW$T$41, DW_AT_type(*$C$DW$T$19)
      818                      .dwattr $C$DW$T$41, DW_AT_language(DW_LANG_C)
@@ -958,10 +958,10 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   16
      869              ;* DWARF CIE ENTRIES                                           *
      870              ;***************************************************************
      871              
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   17
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE   17
 
      872              $C$DW$CIE       .dwcie 78
      873                      .dwcfi  cfa_register, 20
@@ -1018,10 +1018,10 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   17
      924                      .dwattr $C$DW$77, DW_AT_location[DW_OP_reg0]
      925              $C$DW$78        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AH")
      926                      .dwattr $C$DW$78, DW_AT_location[DW_OP_reg1]
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   18
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE   18
 
      927              $C$DW$79        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("PL")
      928                      .dwattr $C$DW$79, DW_AT_location[DW_OP_reg2]
@@ -1078,10 +1078,10 @@ C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   18
      979              $C$DW$105       .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR4")
      980                      .dwattr $C$DW$105, DW_AT_location[DW_OP_reg12]
      981              $C$DW$106       .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR5")
-TMS320C2000 Assembler PC v6.2.5 Wed Jun 21 15:00:45 2017
+TMS320C2000 Assembler PC v6.2.5 Fri Sep 29 15:55:15 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0177610                              PAGE   19
+C:\Users\wmj\AppData\Local\Temp\0488811                              PAGE   19
 
      982                      .dwattr $C$DW$106, DW_AT_location[DW_OP_reg14]
      983              $C$DW$107       .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR6")

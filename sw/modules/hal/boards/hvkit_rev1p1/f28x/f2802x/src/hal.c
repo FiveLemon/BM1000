@@ -686,8 +686,11 @@ HAL_Handle HAL_init(void *pMemory,const size_t numBytes)
   obj->timerHandle[1] = TIMER_init((void *)TIMER1_BASE_ADDR,sizeof(TIMER_Obj));
   obj->timerHandle[2] = TIMER_init((void *)TIMER2_BASE_ADDR,sizeof(TIMER_Obj));
 
-  obj->i2cHandle = I2C_init((void *)I2CA_BASE_ADDR,sizeof(I2C_Obj));
+  //obj->i2cHandle = I2C_init((void *)I2CA_BASE_ADDR,sizeof(I2C_Obj));
   obj->sciHandle = SCI_init((void *)SCIA_BASE_ADDR,sizeof(SCI_Obj));
+
+  //obj->pca955xHandle = PCA955x_Init(&(obj->pca9555),sizeof(obj->pca9555));
+  //PCA955x_setI2cHandle(obj->pca955xHandle, obj->i2cHandle);
 
   return(handle);
 } // end of HAL_init() function
@@ -747,7 +750,6 @@ void HAL_setParams(HAL_Handle handle,const USER_Params *pUserParams)
   HAL_setNumCurrentSensors(handle,pUserParams->numCurrentSensors);
   HAL_setNumVoltageSensors(handle,pUserParams->numVoltageSensors);
 
-
   for(cnt=0;cnt<HAL_getNumCurrentSensors(handle);cnt++)
     {
       HAL_setOffsetBeta_lp_pu(handle,HAL_SensorType_Current,cnt,beta_lp_pu);
@@ -770,16 +772,23 @@ void HAL_setParams(HAL_Handle handle,const USER_Params *pUserParams)
                 USER_NUM_PWM_TICKS_PER_ISR_TICK);
 
   // setup the spiA
-  HAL_setupSpiA(handle);
+  //HAL_setupSpiA(handle);
 
   // setup the timers
-  HAL_setupTimers(handle,
-                  (float_t)pUserParams->systemFreq_MHz);
+  HAL_setupTimers(handle, (float_t)pUserParams->systemFreq_MHz);
 
   // set the default i2c settings
-   HAL_setupI2cs(handle);
+  // HAL_setupI2cs(handle);
 
    HAL_setupScia(handle);
+
+
+
+ return;
+} // end of HAL_setParams() function
+
+void HAL_setupAdcParams(HAL_Handle handle,const USER_Params *pUserParams)
+{
 
   // set the default current bias
  {
@@ -787,9 +796,9 @@ void HAL_setParams(HAL_Handle handle,const USER_Params *pUserParams)
    _iq bias = _IQ12mpy(ADC_dataBias,_IQ(pUserParams->current_sf));
    
    for(cnt=0;cnt<HAL_getNumCurrentSensors(handle);cnt++)
-     {
-       HAL_setBias(handle,HAL_SensorType_Current,cnt,bias);
-     }
+	 {
+	   HAL_setBias(handle,HAL_SensorType_Current,cnt,bias);
+	 }
  }
 
 
@@ -807,9 +816,9 @@ void HAL_setParams(HAL_Handle handle,const USER_Params *pUserParams)
    _iq bias = _IQ(0.0);
    
    for(cnt=0;cnt<HAL_getNumVoltageSensors(handle);cnt++)
-     {
-       HAL_setBias(handle,HAL_SensorType_Voltage,cnt,bias);
-     }
+	 {
+	   HAL_setBias(handle,HAL_SensorType_Voltage,cnt,bias);
+	 }
  }
 
 
@@ -820,8 +829,9 @@ void HAL_setParams(HAL_Handle handle,const USER_Params *pUserParams)
   HAL_setVoltageScaleFactor(handle,voltage_sf);
  }
 
- return;
-} // end of HAL_setParams() function
+
+  return;
+}
 
 
 void HAL_setupAdcs(HAL_Handle handle)
@@ -869,11 +879,11 @@ void HAL_setupAdcs(HAL_Handle handle)
 
   //configure the SOCs for hvkit_rev1p1
   // sample the first sample twice due to errata sprz342f
-  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_0,ADC_SocChanNumber_A1);
+  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_0,ADC_SocChanNumber_A3);
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_0,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_0,ADC_SocSampleDelay_7_cycles);
 
-  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_1,ADC_SocChanNumber_A1);
+  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_1,ADC_SocChanNumber_A3);
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_1,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_1,ADC_SocSampleDelay_7_cycles);
 
@@ -881,11 +891,11 @@ void HAL_setupAdcs(HAL_Handle handle)
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_2,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_2,ADC_SocSampleDelay_7_cycles);
 
-  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_3,ADC_SocChanNumber_A3);
+  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_3,ADC_SocChanNumber_A1);
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_3,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_3,ADC_SocSampleDelay_7_cycles);
 
-  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_4,ADC_SocChanNumber_B7);
+  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_4,ADC_SocChanNumber_B4);
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_4,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_4,ADC_SocSampleDelay_7_cycles);
 
@@ -893,7 +903,7 @@ void HAL_setupAdcs(HAL_Handle handle)
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_5,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_5,ADC_SocSampleDelay_7_cycles);
 
-  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_6,ADC_SocChanNumber_B4);
+  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_6,ADC_SocChanNumber_B7);
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_6,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_6,ADC_SocSampleDelay_7_cycles);
 
@@ -995,28 +1005,38 @@ void HAL_setupGpios(HAL_Handle handle)
   // PWM6
   GPIO_setMode(obj->gpioHandle,GPIO_Number_5,GPIO_5_Mode_EPWM3B);
 
-  // PWM1-PFC
+  // PWM1-PFC --> SENSOR 1 (input)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_6,GPIO_6_Mode_GeneralPurpose);
+  GPIO_setQualificationPeriod(obj->gpioHandle,GPIO_Number_6, 10);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_6,GPIO_Direction_Input);
 
-  // PWM2-PFC
+  // PWM2-PFC --> SENSOR 2 (input)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_7,GPIO_7_Mode_GeneralPurpose);
+  GPIO_setQualificationPeriod(obj->gpioHandle,GPIO_Number_7, 10);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_7,GPIO_Direction_Input);
 
-  // TZ-1 -->RS485_RE#
+  // RS485_RE#
   GPIO_setMode(obj->gpioHandle,GPIO_Number_12,GPIO_12_Mode_GeneralPurpose);
-  GPIO_setHigh(obj->gpioHandle,GPIO_Number_12);
+  GPIO_setLow(obj->gpioHandle,GPIO_Number_12);
   GPIO_setDirection(obj->gpioHandle,GPIO_Number_12,GPIO_Direction_Output);
 
-  // SPI-SIMO or HALL-2
-  GPIO_setMode(obj->gpioHandle,GPIO_Number_16,GPIO_16_Mode_SPISIMOA);
+  // SPI-SIMO --> CPLD OC OUT (input signal)
+  GPIO_setMode(obj->gpioHandle,GPIO_Number_16,GPIO_16_Mode_GeneralPurpose);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_16,GPIO_Direction_Input);
 
-  // SPI-SOMI or HALL-3
-  GPIO_setMode(obj->gpioHandle,GPIO_Number_17,GPIO_17_Mode_SPISOMIA);
+  // SPI-SOMI --> STOP FLAG IN (input signal)
+  GPIO_setMode(obj->gpioHandle,GPIO_Number_17,GPIO_17_Mode_GeneralPurpose);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_17,GPIO_Direction_Input);
 
-  // SPI-CLK or SPI-SIMO
-  GPIO_setMode(obj->gpioHandle,GPIO_Number_18,GPIO_18_Mode_SPICLKA);
+  // SPI-CLK or SPI-SIMO --> DSP CLR OC OUT low effect
+  GPIO_setMode(obj->gpioHandle,GPIO_Number_18,GPIO_18_Mode_GeneralPurpose);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_18,GPIO_Direction_Output);
+  GPIO_setHigh(obj->gpioHandle,GPIO_Number_18);
 
-  // SPI-STE or CAP-1/HALL-1
-  GPIO_setMode(obj->gpioHandle,GPIO_Number_19,GPIO_19_Mode_SPISTEA_NOT);
+  // SPI-STE --> RELAY OPEN OUT
+  GPIO_setMode(obj->gpioHandle,GPIO_Number_19,GPIO_19_Mode_GeneralPurpose);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_19,GPIO_Direction_Output);
+  GPIO_setLow(obj->gpioHandle,GPIO_Number_19);
 
   // RX-SLAVE RS485
   GPIO_setMode(obj->gpioHandle,GPIO_Number_28,GPIO_28_Mode_SCIRXDA);
@@ -1024,15 +1044,17 @@ void HAL_setupGpios(HAL_Handle handle)
   // TX-SLAVE RS485
   GPIO_setMode(obj->gpioHandle,GPIO_Number_29,GPIO_29_Mode_SCITXDA);
 
-  // I2C-SDA
-  GPIO_setMode(obj->gpioHandle,GPIO_Number_32,GPIO_32_Mode_SDAA);
+  // I2C-SDA -> Shut Down
+  GPIO_setMode(obj->gpioHandle,GPIO_Number_32,GPIO_32_Mode_GeneralPurpose);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_32,GPIO_Direction_Output);
 
-  // I2C-SCL
-  GPIO_setMode(obj->gpioHandle,GPIO_Number_33,GPIO_33_Mode_SCLA);
+  // I2C-SCL --> RELAY on flag in
+  GPIO_setMode(obj->gpioHandle,GPIO_Number_33,GPIO_33_Mode_GeneralPurpose);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_33,GPIO_Direction_Input);
 
-  // ControlCARD LED3 --> RS485_DE
+  // RS485_DE
   GPIO_setMode(obj->gpioHandle,GPIO_Number_34,GPIO_34_Mode_GeneralPurpose);
-  GPIO_setHigh(obj->gpioHandle,GPIO_Number_34);
+  GPIO_setLow(obj->gpioHandle,GPIO_Number_34);
   GPIO_setDirection(obj->gpioHandle,GPIO_Number_34,GPIO_Direction_Output);
 
   // JTAG
@@ -1086,11 +1108,11 @@ void HAL_setupPeripheralClks(HAL_Handle handle)
 
   CLK_disableHrPwmClock(obj->clkHandle);
 
-  CLK_enableI2cClock(obj->clkHandle);
+  CLK_disableI2cClock(obj->clkHandle);
 
   CLK_enableSciaClock(obj->clkHandle);
 
-  CLK_enableSpiaClock(obj->clkHandle);
+  CLK_disableSpiaClock(obj->clkHandle);
   
   CLK_enableTbClockSync(obj->clkHandle);
 
@@ -1213,6 +1235,11 @@ void HAL_setupPwms(HAL_Handle handle,
       PWM_disableTripZones(obj->pwmHandle[cnt]);
     }
 
+#ifdef SOFT_FIX_ERROR
+  // fix board error
+  PWM_setActionQual_CntUp_CmpA_PwmA(obj->pwmHandle[1], PWM_ActionQual_Clear);
+  PWM_setActionQual_CntDown_CmpA_PwmA(obj->pwmHandle[1], PWM_ActionQual_Set);
+#endif
 
   // setup the Event Trigger Selection Register (ETSEL)
   PWM_disableInt(obj->pwmHandle[PWM_Number_1]);
@@ -1260,7 +1287,7 @@ void HAL_setupTimers(HAL_Handle handle,const float_t systemFreq_MHz)
 {
   HAL_Obj  *obj = (HAL_Obj *)handle;
   uint32_t  timerPeriod_0p5ms = (uint32_t)(systemFreq_MHz * (float_t)500.0) - 1;
-  uint32_t  timerPeriod_10ms = (uint32_t)(systemFreq_MHz * (float_t)10000.0) - 1;
+  uint32_t  timerPeriod_1750us = (uint32_t)(systemFreq_MHz * (float_t)1750.0) - 1;
 
   // use timer 0 for frequency diagnostics
   TIMER_setDecimationFactor(obj->timerHandle[0],0);
@@ -1271,7 +1298,7 @@ void HAL_setupTimers(HAL_Handle handle,const float_t systemFreq_MHz)
   // use timer 1 for CPU usage diagnostics
   TIMER_setDecimationFactor(obj->timerHandle[1],0);
   TIMER_setEmulationMode(obj->timerHandle[1],TIMER_EmulationMode_RunFree);
-  TIMER_setPeriod(obj->timerHandle[1],timerPeriod_10ms);
+  TIMER_setPeriod(obj->timerHandle[1],timerPeriod_1750us);
   TIMER_setPreScaler(obj->timerHandle[1],0);
 
   // use timer 2 for CPU time diagnostics
@@ -1302,6 +1329,7 @@ void HAL_setDacParameters(HAL_Handle handle, HAL_DacData_t *pDacData)
 	return;
 }	//end of HAL_setDacParameters() function
 
+/*
 void HAL_setupI2cs(HAL_Handle handle)
 {
    HAL_Obj *obj = (HAL_Obj *)handle;
@@ -1338,6 +1366,8 @@ void HAL_setupSpiA(HAL_Handle handle)
   return;
 }  // end of HAL_setupSpiA() function
 
+*/
+
 void HAL_setupScia(HAL_Handle handle)
 {
 	HAL_Obj *obj = (HAL_Obj *)handle;
@@ -1353,7 +1383,7 @@ void HAL_setupScia(HAL_Handle handle)
 	SCI_enableParity(obj->sciHandle);
 	SCI_setParity(obj->sciHandle, SCI_Parity_Odd);
 	SCI_setMode(obj->sciHandle, SCI_Mode_IdleLine);
-	SCI_setBaudRate(obj->sciHandle,SCI_BaudRate_115_2_kBaud);
+	SCI_setBaudRate(obj->sciHandle,SCI_BaudRate_19_2_kBaud);
 
 	SCI_enableTx(obj->sciHandle);
 	SCI_enableRx(obj->sciHandle);
@@ -1412,21 +1442,21 @@ void HAL_GetBoardNum(HAL_Handle handle)
 
 	  if(AdcConvMean > BOARD_OPEN_LEVEL)
 		obj->boardAddress = HAL_BoardAddr_OpenLoop;
-	  else if(AdcConvMean > BOARD_MOTOR7_LEVEL_L && AdcConvMean < BOARD_MOTOR7_LEVEL_H)
+	  else if(AdcConvMean < (uint16_t)(BOARD_MOTOR7_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_MOTOR7_LEVEL * LOW_deviance))
 	    obj->boardAddress = HAL_BoardAddr_Motor7;
-      else if(AdcConvMean > BOARD_MOTOR6_LEVEL_L && AdcConvMean < BOARD_MOTOR6_LEVEL_H)
+      else if(AdcConvMean < (uint16_t)(BOARD_MOTOR6_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_MOTOR6_LEVEL * LOW_deviance))
   	    obj->boardAddress = HAL_BoardAddr_Motor6;
-      else if(AdcConvMean > BOARD_MOTOR5_LEVEL_L && AdcConvMean < BOARD_MOTOR5_LEVEL_H)
+      else if(AdcConvMean < (uint16_t)(BOARD_MOTOR5_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_MOTOR5_LEVEL * LOW_deviance))
   	    obj->boardAddress = HAL_BoardAddr_Motor5;
-      else if(AdcConvMean > BOARD_MOTOR4_LEVEL_L && AdcConvMean < BOARD_MOTOR4_LEVEL_H)
+      else if(AdcConvMean < (uint16_t)(BOARD_MOTOR4_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_MOTOR4_LEVEL * LOW_deviance))
         obj->boardAddress = HAL_BoardAddr_Motor4;
-      else if(AdcConvMean > BOARD_MOTOR3_LEVEL_L && AdcConvMean < BOARD_MOTOR3_LEVEL_H)
+      else if(AdcConvMean < (uint16_t)(BOARD_MOTOR3_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_MOTOR3_LEVEL * LOW_deviance))
         obj->boardAddress = HAL_BoardAddr_Motor3;
-      else if(AdcConvMean > BOARD_MOTOR2_LEVEL_L && AdcConvMean < BOARD_MOTOR2_LEVEL_H)
+      else if(AdcConvMean < (uint16_t)(BOARD_MOTOR2_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_MOTOR2_LEVEL * LOW_deviance))
         obj->boardAddress = HAL_BoardAddr_Motor2;
-      else if(AdcConvMean > BOARD_MOTOR1_LEVEL_L && AdcConvMean < BOARD_MOTOR1_LEVEL_H)
+      else if(AdcConvMean < (uint16_t)(BOARD_MOTOR1_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_MOTOR1_LEVEL * LOW_deviance))
     	obj->boardAddress = HAL_BoardAddr_Motor1;
-      else if(AdcConvMean > BOARD_HEATER_LEVEL_L && AdcConvMean < BOARD_HEATER_LEVEL_H)
+      else if(AdcConvMean < (uint16_t)(BOARD_HEATER_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_HEATER_LEVEL * LOW_deviance))
     	obj->boardAddress = HAL_BoardAddr_Heater;
       else
         obj->boardAddress = HAL_BoardAddr_Short;

@@ -19,6 +19,7 @@ D:/BM1000/sw/modules/usDelay/src/32b/f28x/usDelay.asm
 
 C_SRCS += \
 D:/BM1000/sw/drivers/adc/src/32b/f28x/f2802x/adc.c \
+D:/BM1000/sw/drivers/drvic/brake.c \
 D:/BM1000/sw/modules/clarke/src/32b/clarke.c \
 D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c \
 D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c \
@@ -56,6 +57,7 @@ D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.c
 OBJS += \
 ./CodeStartBranch.obj \
 ./adc.obj \
+./brake.obj \
 ./clarke.obj \
 ./clk.obj \
 ./cpu.obj \
@@ -97,6 +99,7 @@ ASM_DEPS += \
 
 C_DEPS += \
 ./adc.d \
+./brake.d \
 ./clarke.d \
 ./clk.d \
 ./cpu.d \
@@ -133,6 +136,7 @@ C_DEPS += \
 
 C_DEPS__QUOTED += \
 "adc.d" \
+"brake.d" \
 "clarke.d" \
 "clk.d" \
 "cpu.d" \
@@ -170,6 +174,7 @@ C_DEPS__QUOTED += \
 OBJS__QUOTED += \
 "CodeStartBranch.obj" \
 "adc.obj" \
+"brake.obj" \
 "clarke.obj" \
 "clk.obj" \
 "cpu.obj" \
@@ -215,6 +220,7 @@ ASM_SRCS__QUOTED += \
 
 C_SRCS__QUOTED += \
 "D:/BM1000/sw/drivers/adc/src/32b/f28x/f2802x/adc.c" \
+"D:/BM1000/sw/drivers/drvic/brake.c" \
 "D:/BM1000/sw/modules/clarke/src/32b/clarke.c" \
 "D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.c" \
 "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c" \

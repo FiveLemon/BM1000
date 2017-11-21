@@ -10,10 +10,10 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"C:/ti/motorware/motorware_1_01_00_18/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_FastSpinROMSymbols.lib" \
-"C:/ti/motorware/motorware_1_01_00_18/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_IQmath_BootROMSymbols.lib" \
-"C:/ti/motorware/motorware_1_01_00_18/sw/modules/spintac/lib/32b/SpinTAC.lib" \
-"C:/ti/motorware/motorware_1_01_00_18/sw/modules/iqmath/lib/f28x/32b/IQmath.lib" \
+"D:/FOC_69/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_FastSpinROMSymbols.lib" \
+"D:/FOC_69/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_IQmath_BootROMSymbols.lib" \
+"D:/FOC_69/sw/modules/spintac/lib/32b/SpinTAC.lib" \
+"D:/FOC_69/sw/modules/iqmath/lib/f28x/32b/IQmath.lib" \
 "./CodeStartBranch.obj" \
 "./adc.obj" \
 "./clarke.obj" \
@@ -26,6 +26,7 @@ ORDERED_OBJS += \
 "./gpio.obj" \
 "./hal.obj" \
 "./ipark.obj" \
+"./mb.obj" \
 "./offset.obj" \
 "./osc.obj" \
 "./park.obj" \
@@ -36,6 +37,7 @@ ORDERED_OBJS += \
 "./pwm.obj" \
 "./pwr.obj" \
 "./qep.obj" \
+"./sci.obj" \
 "./slip.obj" \
 "./spi.obj" \
 "./svgen.obj" \
@@ -44,7 +46,7 @@ ORDERED_OBJS += \
 "./usDelay.obj" \
 "./user.obj" \
 "./wdog.obj" \
-"C:/ti/motorware/motorware_1_01_00_18/sw/ide/ccs/cmd/f2806x/f28069M_ram_lnk.cmd" \
+"D:/FOC_69/sw/ide/ccs/cmd/f2806x/f28069M_ram_lnk.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
 
@@ -185,8 +187,8 @@ proj_lab13b.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "adc.d" "clarke.d" "clk.d" "cpu.d" "ctrlQEP.d" "enc.d" "filter_fo.d" "flash.d" "gpio.d" "hal.d" "ipark.d" "offset.d" "osc.d" "park.d" "pid.d" "pie.d" "pll.d" "proj_lab13b.d" "pwm.d" "pwr.d" "qep.d" "slip.d" "spi.d" "svgen.d" "timer.d" "traj.d" "user.d" "wdog.d" 
-	-$(RM) "CodeStartBranch.obj" "adc.obj" "clarke.obj" "clk.obj" "cpu.obj" "ctrlQEP.obj" "enc.obj" "filter_fo.obj" "flash.obj" "gpio.obj" "hal.obj" "ipark.obj" "offset.obj" "osc.obj" "park.obj" "pid.obj" "pie.obj" "pll.obj" "proj_lab13b.obj" "pwm.obj" "pwr.obj" "qep.obj" "slip.obj" "spi.obj" "svgen.obj" "timer.obj" "traj.obj" "usDelay.obj" "user.obj" "wdog.obj" 
+	-$(RM) "adc.d" "clarke.d" "clk.d" "cpu.d" "ctrlQEP.d" "enc.d" "filter_fo.d" "flash.d" "gpio.d" "hal.d" "ipark.d" "mb.d" "offset.d" "osc.d" "park.d" "pid.d" "pie.d" "pll.d" "proj_lab13b.d" "pwm.d" "pwr.d" "qep.d" "sci.d" "slip.d" "spi.d" "svgen.d" "timer.d" "traj.d" "user.d" "wdog.d" 
+	-$(RM) "CodeStartBranch.obj" "adc.obj" "clarke.obj" "clk.obj" "cpu.obj" "ctrlQEP.obj" "enc.obj" "filter_fo.obj" "flash.obj" "gpio.obj" "hal.obj" "ipark.obj" "mb.obj" "offset.obj" "osc.obj" "park.obj" "pid.obj" "pie.obj" "pll.obj" "proj_lab13b.obj" "pwm.obj" "pwr.obj" "qep.obj" "sci.obj" "slip.obj" "spi.obj" "svgen.obj" "timer.obj" "traj.obj" "usDelay.obj" "user.obj" "wdog.obj" 
 	-$(RM) "CodeStartBranch.d" "usDelay.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

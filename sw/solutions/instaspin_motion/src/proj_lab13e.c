@@ -273,6 +273,9 @@ void main(void)
   gTorque_Ls_Id_Iq_pu_to_Nm_sf = USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf();
   gTorque_Flux_Iq_pu_to_Nm_sf = USER_computeTorque_Flux_Iq_pu_to_Nm_sf();
 
+  GPIO_setLow(halHandle->gpioHandle,GPIO_Number_8);
+  HAL_turnLedOn(halHandle,(GPIO_Number_e)HAL_Gpio_LED2);
+  gMotorVars.Flag_enablePowerWarp = true;
 
   for(;;)
   {
@@ -498,7 +501,7 @@ interrupt void mainISR(void)
   // toggle status LED
   if(++gLEDcnt >= (uint_least32_t)(USER_ISR_FREQ_Hz / LED_BLINK_FREQ_Hz))
   {
-    HAL_toggleLed(halHandle,(GPIO_Number_e)HAL_Gpio_LED2);
+   // HAL_toggleLed(halHandle,(GPIO_Number_e)HAL_Gpio_LED2);
     gLEDcnt = 0;
   }
 
@@ -513,6 +516,15 @@ interrupt void mainISR(void)
 
   // convert the ADC data
   HAL_readAdcData(halHandle,&gAdcData);
+
+  if(gAdcData.Analog_sensor0 >= 900)
+  {
+	  gMotorVars.MaxVel_krpm = _IQ(0.0);
+  }
+  else
+  {
+	  gMotorVars.MaxVel_krpm = _IQ(-0.1);
+  }
 
 
   // Run the SpinTAC Components

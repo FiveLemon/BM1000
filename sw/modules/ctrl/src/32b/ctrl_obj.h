@@ -54,9 +54,11 @@
 #include "sw/modules/est/src/32b/est.h"
 #include "sw/modules/svgen/src/32b/svgen.h"
 #include "sw/modules/traj/src/32b/traj.h"
+#include "sw/drivers/drvic/brake.h"
 
 #include "sw/modules/vs_freq/src/32b/vs_freq.h"
 #include "sw/modules/angle_gen/src/32b/angle_gen.h"
+//#include "sw/modules/vib_comp/src/32b/vib_comp.h"
 
 #include "sw/modules/datalog/src/32b/datalog.h"
 
@@ -269,15 +271,35 @@ typedef struct _CTRL_Obj_
   bool             flag_enableOffset;              //!< a flag to enable offset estimation after idle state
   bool             flag_enableSpeedCtrl;           //!< a flag to enable the speed controller
   bool             flag_enableUserMotorParams;     //!< a flag to use known motor parameters from user.h file
+  bool             flag_enableCurrentCtrl;         //!< a flag to enable the current controllers
 
   // NOTE:  APPENDING ONLY WORKS BECAUSE WE HAVE ALLOCATED TWO CONTROLLERS IN PROTECTED RAM AND WE ARE ONLY USING THE FIRST ONE
-  MATH_vec2          Idq_offset_pu;                //!< the Idq offset values, pu
-  MATH_vec2          Vdq_offset_pu;                //!< the Vdq offset values, pu
-  _iq                angle_pu;                     //!< the angle value, pu
-  _iq                speed_ref_pu;                 //!< the speed reference, pu
-  _iq                speed_fb_pu;                  //!< the feedback speed value, pu
-  _iq                speed_outMax_pu;              //!< the maximum output of the speed PI control, pu
-  bool               flag_enableCurrentCtrl;       //!< a flag to enable the current controllers
+  //MATH_vec2          Idq_offset_pu;                //!< the Idq offset values, pu
+  //MATH_vec2          Vdq_offset_pu;                //!< the Vdq offset values, pu
+  //_iq                speed_ref_pu;                 //!< the speed reference, pu
+  //_iq                speed_fb_pu;                  //!< the feedback speed value, pu
+
+  _iq                spd_outMaxRatio_pu;           //!< the maximum output of the speed PI control, pu (0.0 to 1.0)
+
+  //_iq                Angle_mech_poles;             //<! variable used for mechanical angle from _IQ(0.0) to _IQ(USER_MOTOR_NUM_POLE_PAIRS)
+  //_iq                Angle_z1_pu;                  //<! variable used for electrical angle in previous sample
+  //_iq                AbsAngle_mech_pu;             //<! variable used for mechanical angle from _IQ(0.0) to _IQ(1.0)
+  //_iq                AbsAngle_elec_pu;             //<! variable used for electrical angle from _IQ(0.0) to _IQ(1.0)
+  //int16_t            Cycle_mech_cnt;
+
+  _iq                enc_Angle;
+  bool               flag_enableEncAngle;
+
+  BRAKE_Handle       brakeHandle;
+  BRAKE_Obj          brake;
+
+ // bool               flag_enableVibComp;
+
+ // VIB_COMP_Handle    vib_compHandle;
+
+ // _iq                AbsAngle_mech_pu;
+
+
 } CTRL_Obj;
 
 

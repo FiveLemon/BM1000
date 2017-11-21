@@ -17,6 +17,7 @@ ORDERED_OBJS += \
 "D:/BM1000/sw/modules/iqmath/lib/f28x/32b/IQmath.lib" \
 "./CodeStartBranch.obj" \
 "./adc.obj" \
+"./brake.obj" \
 "./clarke.obj" \
 "./clk.obj" \
 "./cpu.obj" \
@@ -192,8 +193,8 @@ proj_lab05b.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "adc.d" "clarke.d" "clk.d" "cpu.d" "ctrl.d" "decoder.d" "filter_fo.d" "flash.d" "gpio.d" "hal.d" "i2c.d" "ipark.d" "ldc1612.d" "mb.d" "memCopy.d" "offset.d" "oled.d" "osc.d" "park.d" "pca9555.d" "pid.d" "pie.d" "pll.d" "process_ctrl.d" "proj_lab05b.d" "pwm.d" "pwr.d" "sci.d" "spi.d" "svgen.d" "timer.d" "traj.d" "user.d" "wdog.d" 
-	-$(RM) "CodeStartBranch.obj" "adc.obj" "clarke.obj" "clk.obj" "cpu.obj" "ctrl.obj" "decoder.obj" "filter_fo.obj" "flash.obj" "gpio.obj" "hal.obj" "i2c.obj" "ipark.obj" "ldc1612.obj" "mb.obj" "memCopy.obj" "offset.obj" "oled.obj" "osc.obj" "park.obj" "pca9555.obj" "pid.obj" "pie.obj" "pll.obj" "process_ctrl.obj" "proj_lab05b.obj" "pwm.obj" "pwr.obj" "sci.obj" "spi.obj" "svgen.obj" "timer.obj" "traj.obj" "usDelay.obj" "user.obj" "wdog.obj" 
+	-$(RM) "adc.d" "brake.d" "clarke.d" "clk.d" "cpu.d" "ctrl.d" "decoder.d" "filter_fo.d" "flash.d" "gpio.d" "hal.d" "i2c.d" "ipark.d" "ldc1612.d" "mb.d" "memCopy.d" "offset.d" "oled.d" "osc.d" "park.d" "pca9555.d" "pid.d" "pie.d" "pll.d" "process_ctrl.d" "proj_lab05b.d" "pwm.d" "pwr.d" "sci.d" "spi.d" "svgen.d" "timer.d" "traj.d" "user.d" "wdog.d" 
+	-$(RM) "CodeStartBranch.obj" "adc.obj" "brake.obj" "clarke.obj" "clk.obj" "cpu.obj" "ctrl.obj" "decoder.obj" "filter_fo.obj" "flash.obj" "gpio.obj" "hal.obj" "i2c.obj" "ipark.obj" "ldc1612.obj" "mb.obj" "memCopy.obj" "offset.obj" "oled.obj" "osc.obj" "park.obj" "pca9555.obj" "pid.obj" "pie.obj" "pll.obj" "process_ctrl.obj" "proj_lab05b.obj" "pwm.obj" "pwr.obj" "sci.obj" "spi.obj" "svgen.obj" "timer.obj" "traj.obj" "usDelay.obj" "user.obj" "wdog.obj" 
 	-$(RM) "CodeStartBranch.d" "usDelay.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

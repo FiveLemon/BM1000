@@ -113,6 +113,36 @@ extern "C" {
 //!
 #define HAL_PWM_DBRED_CNT        (uint16_t)(2.0 * (float_t)USER_SYSTEM_FREQ_MHz)            // 2 usec
 
+#define BOARD_HEATER_LEVEL_L         248 // 0.2v
+#define BOARD_HEATER_LEVEL_H         496 // 0.4v
+#define BOARD_MOTOR1_LEVEL_L         745 // 0.6v
+#define BOARD_MOTOR1_LEVEL_H         992 // 0.8v
+#define BOARD_MOTOR2_LEVEL_L         1241 //1.0v
+#define BOARD_MOTOR2_LEVEL_H         1489 //1.2v
+#define BOARD_MOTOR3_LEVEL_L         1738 //1.4v
+#define BOARD_MOTOR3_LEVEL_H         1986 //1.6v
+#define BOARD_MOTOR4_LEVEL_L         2234 //1.8v
+#define BOARD_MOTOR4_LEVEL_H         2482 //2.0v
+#define BOARD_MOTOR5_LEVEL_L         2730 //2.2v
+#define BOARD_MOTOR5_LEVEL_H         2979 //2.4v
+#define BOARD_MOTOR6_LEVEL_L         3227 //2.6v
+#define BOARD_MOTOR6_LEVEL_H         3475 //2.8v
+#define BOARD_MOTOR7_LEVEL_L         3723 //3.0v
+#define BOARD_MOTOR7_LEVEL_H         3971 //3.2v
+
+#define BOARD_SHORT_LEVEL            124   //0.1v
+#define BOARD_HEATER_LEVEL           248   //0.2v
+#define BOARD_MOTOR1_LEVEL           745   //0.6v
+#define BOARD_MOTOR2_LEVEL           1239  //1.0v
+#define BOARD_MOTOR3_LEVEL           1733  //1.4v
+#define BOARD_MOTOR4_LEVEL           2228  //1.8v
+#define BOARD_MOTOR5_LEVEL           2695  //2.2v
+#define BOARD_MOTOR6_LEVEL           3248  //2.6v
+#define BOARD_MOTOR7_LEVEL           3723  //3.0v
+#define BOARD_OPEN_LEVEL             3972  //3.2v
+
+#define HIGH_deviance (1.1)
+#define LOW_deviance  (0.9)
 
 //! \brief Defines the function to turn LEDs off
 //!
@@ -126,6 +156,7 @@ extern "C" {
 //! \brief Defines the function to turn LEDs on
 //!
 #define HAL_toggleLed             HAL_toggleGpio
+
 
 // **************************************************************************
 // the typedefs
@@ -144,8 +175,22 @@ typedef enum
 //!
 typedef enum
 {
-  HAL_Gpio_LED2=GPIO_Number_6,  //!< GPIO pin number for ControlCARD LED 2
-  HAL_Gpio_LED3=GPIO_Number_7   //!< GPIO pin number for ControlCARD LED 3
+
+  HAL_Gpio_KeySensor1 = GPIO_Number_22,
+  HAL_Gpio_KeySensor2 = GPIO_Number_10,
+  HAL_Gpio_CpldOcOut = GPIO_Number_12,
+  HAL_Gpio_RelayOnFlag_b = GPIO_Number_8,
+  HAL_Gpio_ShutDown = GPIO_Number_11,
+  HAL_Gpio_DspClrOcOut_b = GPIO_Number_9,
+  HAL_Gpio_TS5A3159_sw = GPIO_Number_31,
+  HAL_Gpio_Stop_flag_in = GPIO_Number_17,
+  HAL_Gpio_RelayOpenOut = GPIO_Number_33,
+  HAL_Gpio_Rs485_DE = GPIO_Number_30,
+  HAL_Gpio_Rs485_RE_b = GPIO_Number_18
+
+ // HAL_Gpio_EmrgencyStopflag = GPIO_Number_17,
+  //HAL_Gpio_IKCM_UnderVoltage_b = GPIO_Number_17,
+
 } HAL_LedNumber_e;
   
 // select whether to use the hall input on connector QEP or CAP of the EVM
@@ -186,6 +231,8 @@ typedef enum
 // the globals
 
 extern interrupt void mainISR(void);
+extern interrupt void UART_RxISR(void);
+extern interrupt void UART_TxReadyISR(void);
 
 // **************************************************************************
 // the function prototypes
@@ -205,7 +252,7 @@ static inline void HAL_acqAdcInt(HAL_Handle handle,const ADC_IntNumber_e intNumb
 
 
   // Acknowledge interrupt from PIE group 10 
-  PIE_clearInt(obj->pieHandle,PIE_GroupNumber_10);
+  PIE_clearInt(obj->pieHandle,PIE_GroupNumber_1);
 
   return;
 } // end of HAL_acqAdcInt() function
@@ -490,10 +537,10 @@ static inline void HAL_initIntVectorTable(HAL_Handle handle)
 
   ENABLE_PROTECTED_REGISTER_WRITE_MODE;
 
-  //pie->ADCINT1_HP = &mainISR;
-  pie->ADCINT1 = &mainISR;
-  //pie->SCIRXINTA = &RsISR;
-  //pie->SCITXINTA = &sciaTxFifoIsr;
+
+  pie->ADCINT1_HP = &mainISR;
+  pie->SCIRXINTA = &UART_RxISR;
+  pie->SCITXINTA = &UART_TxReadyISR;
 
   DISABLE_PROTECTED_REGISTER_WRITE_MODE;
 
@@ -553,6 +600,20 @@ static inline void HAL_readAdcData(HAL_Handle handle,HAL_AdcData_t *pAdcData)
   value = _IQ12mpy(value,voltage_sf);
   pAdcData->dcBus = value;
 
+  // read the analogSensor1 voltage value
+   value = (_iq)ADC_readResult(obj->adcHandle,ADC_ResultNumber_8);
+   pAdcData->analogSensor1 = value;
+
+   //  read the analogSensor2 voltage value
+   value = (_iq)ADC_readResult(obj->adcHandle,ADC_ResultNumber_9);
+   pAdcData->analogSensor2 = value;
+
+   value = (_iq)ADC_readResult(obj->adcHandle,ADC_ResultNumber_9);
+   pAdcData->boardAddr= value;
+
+   value = (_iq)ADC_readResult(obj->adcHandle,ADC_ResultNumber_10);
+   pAdcData->igbtNTC= value;
+
   return;
 } // end of HAL_readAdcData() function
 
@@ -608,6 +669,20 @@ static inline void HAL_readAdcDataWithOffsets(HAL_Handle handle,HAL_AdcData_t *p
   value = (_iq)ADC_readResult(obj->adcHandle,ADC_ResultNumber_7);
   value = _IQ12mpy(value,voltage_sf);
   pAdcData->dcBus = value;
+
+  // read the analogSensor1 voltage value
+  value = (_iq)ADC_readResult(obj->adcHandle,ADC_ResultNumber_8);
+  pAdcData->analogSensor1 = value;
+
+  //  read the analogSensor2 voltage value
+  value = (_iq)ADC_readResult(obj->adcHandle,ADC_ResultNumber_9);
+  pAdcData->analogSensor2 = value;
+
+  value = (_iq)ADC_readResult(obj->adcHandle,ADC_ResultNumber_9);
+  pAdcData->boardAddr= value;
+
+  value = (_iq)ADC_readResult(obj->adcHandle,ADC_ResultNumber_10);
+  pAdcData->igbtNTC= value;
 
   return;
 } // end of HAL_readAdcDataWithOffsets() function
@@ -782,6 +857,14 @@ static inline void HAL_toggleGpio(HAL_Handle handle,const GPIO_Number_e gpioNumb
 
   return;
 } // end of HAL_setGpioHigh() function
+
+
+static inline bool HAL_getGpio(HAL_Handle handle,const GPIO_Number_e gpioNumber)
+{
+    HAL_Obj *obj = (HAL_Obj *)handle;
+
+	return (GPIO_getData(obj->gpioHandle, gpioNumber));
+}
 
 
 //! \brief      Sets the GPIO pin low
@@ -1319,6 +1402,34 @@ void HAL_osc2Comp(HAL_Handle handle, const int16_t sensorSample);
 //! \param[in] pDacData  The pointer to the DAC data
 void HAL_setDacParameters(HAL_Handle handle, HAL_DacData_t *pDacData);
 
+
+void HAL_setupAdcParams(HAL_Handle handle,const USER_Params *pUserParams);
+
+inline uint16_t HAL_getBoardAddr(HAL_Handle handle)
+{
+  HAL_Obj *obj = (HAL_Obj *)handle;
+  uint16_t boardAddr;
+
+  boardAddr = obj->boardAddress;
+
+  return (boardAddr);
+}
+
+inline void  HAL_setBoardAddr(HAL_Handle handle, const HAL_BdAddr_e boardAddr)
+{
+  HAL_Obj *obj = (HAL_Obj *)handle;
+
+  obj->boardAddress = boardAddr;
+
+  return;
+}
+
+void HAL_setupI2cs(HAL_Handle handle);
+void HAL_setupSpiA(HAL_Handle handle);
+void HAL_setupScia(HAL_Handle handle);
+void HAL_GetBoardNum(HAL_Handle handle);
+void HAL_enableSciaInt(HAL_Handle handle);
+void HAL_enableTimer1Int(HAL_Handle handle, const PIE_IntVec_t vector);
 
 //void HAL_setupScia(HAL_Handle handle);
 //void HAL_enableSciInt(HAL_Handle handle);

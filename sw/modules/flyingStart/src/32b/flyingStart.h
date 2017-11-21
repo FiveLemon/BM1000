@@ -65,12 +65,12 @@ extern "C" {
 
 //! \brief Defines the Flying Start (FS) minimum switch speed
 //!
-#define FS_SPEED_MIN                   _IQ(0.030)
+#define FS_SPEED_MIN                   _IQ(0.005)
 
 
 //! \brief Defines the Flying Start (FS) minimum switch speed
 //!
-#define FS_MAX_CHECK_TIME              (6000)
+#define FS_MAX_CHECK_TIME              (100)
 
 // **************************************************************************
 // the typedefs

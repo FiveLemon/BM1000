@@ -52,7 +52,7 @@
 
 
 // drivers
-
+#include "sw/drivers/drvic/modbus/mb.h"
 
 // platforms
 #include "sw/modules/ctrl/src/32b/ctrlQEP.h"
@@ -96,7 +96,7 @@
                          false, \
                          0, \
                          _IQ(0.0), \
-                         _IQ(2.0), \
+                         _IQ(1.0), \
                          _IQ(0.2), \
                          _IQ(0.2), \
                          _IQ20(5.0), \
@@ -212,7 +212,9 @@ typedef struct _MOTOR_Vars_t_
 //! \brief The main interrupt service (ISR) routine
 //!
 interrupt void mainISR(void);
-
+interrupt void UART_RxISR(void);
+interrupt void UART_TxReadyISR(void);
+interrupt void Timer1ISR(void);
 
 //! \brief     Updates the global motor variables 
 //! 

@@ -10,32 +10,40 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"C:/ti/motorware/motorware_1_01_00_18/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_FastSpinROMSymbols.lib" \
-"C:/ti/motorware/motorware_1_01_00_18/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_IQmath_BootROMSymbols.lib" \
-"C:/ti/motorware/motorware_1_01_00_18/sw/modules/spintac/lib/32b/SpinTAC.lib" \
-"C:/ti/motorware/motorware_1_01_00_18/sw/modules/iqmath/lib/f28x/32b/IQmath.lib" \
+"D:/BM1000_v1.1/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_FastSpinROMSymbols.lib" \
+"D:/BM1000_v1.1/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_IQmath_BootROMSymbols.lib" \
+-lrts2800_ml.lib \
+"D:/BM1000_v1.1/sw/modules/spintac/lib/32b/SpinTAC.lib" \
+"D:/BM1000_v1.1/sw/modules/iqmath/lib/f28x/32b/IQmath.lib" \
 "./CodeStartBranch.obj" \
 "./adc.obj" \
+"./brake.obj" \
 "./clarke.obj" \
 "./clk.obj" \
 "./cpu.obj" \
-"./ctrlQEP.obj" \
+"./ctrl.obj" \
 "./enc.obj" \
 "./filter_fo.obj" \
 "./flash.obj" \
+"./flyingStart.obj" \
+"./fsm.obj" \
 "./gpio.obj" \
 "./hal.obj" \
 "./ipark.obj" \
+"./mb.obj" \
+"./motor.obj" \
 "./offset.obj" \
 "./osc.obj" \
 "./park.obj" \
 "./pid.obj" \
 "./pie.obj" \
 "./pll.obj" \
-"./proj_lab13c.obj" \
+"./process_ctrl.obj" \
+"./proj_bm1000.obj" \
 "./pwm.obj" \
 "./pwr.obj" \
 "./qep.obj" \
+"./sci.obj" \
 "./slip.obj" \
 "./spi.obj" \
 "./svgen.obj" \
@@ -44,9 +52,8 @@ ORDERED_OBJS += \
 "./usDelay.obj" \
 "./user.obj" \
 "./wdog.obj" \
-"C:/ti/motorware/motorware_1_01_00_18/sw/ide/ccs/cmd/f2806x/f28069M_ram_lnk.cmd" \
+"D:/BM1000_v1.1/sw/ide/ccs/cmd/f2806x/f28069M_ram_lnk.cmd" \
 $(GEN_CMDS__FLAG) \
--llibc.a \
 
 -include ../makefile.init
 
@@ -172,7 +179,7 @@ all: proj_lab13c.out
 proj_lab13c.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --vcu_support=vcu0 -O2 -g --define=FAST_ROM_V1p6 --define=QEP --diag_warning=225 --display_error_number -z -m"proj_lab13c.map" --stack_size=0x3B0 --warn_sections -i"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/lib" -i"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include" --reread_libs --priority --disable_auto_rts --diag_suppress=16002 --xml_link_info="proj_lab13c_linkInfo.xml" --rom_model -o "proj_lab13c.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/bin/cl2000" -v28 -ml -mt --cla_support=cla0 --vcu_support=vcu0 -O2 -g --define=USE_SpinTAC --define=SOFT_FIX_ERROR --define=TMS320F28069 --define=QEP --define=FAST_ROM_V1p6 --diag_warning=225 --display_error_number -z -m"proj_lab13c.map" --stack_size=0x3B0 --warn_sections -i"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/lib" -i"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include" --reread_libs --priority --disable_auto_rts --diag_suppress=16002 --xml_link_info="proj_lab13c_linkInfo.xml" --rom_model -o "proj_lab13c.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -185,8 +192,8 @@ proj_lab13c.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "adc.d" "clarke.d" "clk.d" "cpu.d" "ctrlQEP.d" "enc.d" "filter_fo.d" "flash.d" "gpio.d" "hal.d" "ipark.d" "offset.d" "osc.d" "park.d" "pid.d" "pie.d" "pll.d" "proj_lab13c.d" "pwm.d" "pwr.d" "qep.d" "slip.d" "spi.d" "svgen.d" "timer.d" "traj.d" "user.d" "wdog.d" 
-	-$(RM) "CodeStartBranch.obj" "adc.obj" "clarke.obj" "clk.obj" "cpu.obj" "ctrlQEP.obj" "enc.obj" "filter_fo.obj" "flash.obj" "gpio.obj" "hal.obj" "ipark.obj" "offset.obj" "osc.obj" "park.obj" "pid.obj" "pie.obj" "pll.obj" "proj_lab13c.obj" "pwm.obj" "pwr.obj" "qep.obj" "slip.obj" "spi.obj" "svgen.obj" "timer.obj" "traj.obj" "usDelay.obj" "user.obj" "wdog.obj" 
+	-$(RM) "adc.d" "brake.d" "clarke.d" "clk.d" "cpu.d" "ctrl.d" "enc.d" "filter_fo.d" "flash.d" "flyingStart.d" "fsm.d" "gpio.d" "hal.d" "ipark.d" "mb.d" "motor.d" "offset.d" "osc.d" "park.d" "pid.d" "pie.d" "pll.d" "process_ctrl.d" "proj_bm1000.d" "pwm.d" "pwr.d" "qep.d" "sci.d" "slip.d" "spi.d" "svgen.d" "timer.d" "traj.d" "user.d" "wdog.d" 
+	-$(RM) "CodeStartBranch.obj" "adc.obj" "brake.obj" "clarke.obj" "clk.obj" "cpu.obj" "ctrl.obj" "enc.obj" "filter_fo.obj" "flash.obj" "flyingStart.obj" "fsm.obj" "gpio.obj" "hal.obj" "ipark.obj" "mb.obj" "motor.obj" "offset.obj" "osc.obj" "park.obj" "pid.obj" "pie.obj" "pll.obj" "process_ctrl.obj" "proj_bm1000.obj" "pwm.obj" "pwr.obj" "qep.obj" "sci.obj" "slip.obj" "spi.obj" "svgen.obj" "timer.obj" "traj.obj" "usDelay.obj" "user.obj" "wdog.obj" 
 	-$(RM) "CodeStartBranch.d" "usDelay.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

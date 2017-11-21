@@ -1,230 +1,436 @@
-/* --COPYRIGHT--,BSD
- * Copyright (c) 2015, Texas Instruments Incorporated
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- * *  Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
- * *  Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- *
- * *  Neither the name of Texas Instruments Incorporated nor the names of
- *    its contributors may be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
- * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
- * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
- * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * --/COPYRIGHT--*/
-//! \defgroup I2C I2C
-//@{
+#ifndef __I2C_H__
+#define __I2C_H__
 
-
-#ifndef _I2C_H_
-#define _I2C_H_
-
-//! \file   drivers/i2c/src/32b/f28x/f2806x/i2c.h
+//#############################################################################
+//
+//! \file   f2802x_common/include/i2c.h
 //!
 //! \brief  Contains public interface to various functions related to the 
-//!         I2C object
-//!
-//! (C) Copyright 2015, Texas Instruments, Inc.
+//!         inter-integrated circuit (I2C) object
+//
+//  Group:          C2000
+//  Target Device:  TMS320F2802x
+//
+//#############################################################################
+// $TI Release: F2802x Support Library v230 $
+// $Release Date: Fri May  8 07:43:05 CDT 2015 $
+// $Copyright: Copyright (C) 2008-2015 Texas Instruments Incorporated -
+//             http://www.ti.com/ ALL RIGHTS RESERVED $
+//#############################################################################
 
-
-// **************************************************************************
-// the includes
+//*****************************************************************************
+// If building with a C++ compiler, make all of the definitions in this header
+// have a C binding.
+//*****************************************************************************
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 #include "sw/modules/types/src/types.h"
 
-
-#ifdef __cplusplus
-extern "C" {
+#ifdef FAST_ROM_V1p6
+#include "sw/drivers/cpu/src/32b/f28x/f2806x/cpu.h"
+#else
+#include "sw/drivers/cpu/src/32b/f28x/f2802x/cpu.h"
 #endif
+//!
+//! \defgroup I2C
 
-//----------------------------------------------------
-// I2C interrupt vector register bit definitions */
-struct I2CISRC_BITS {         // bits   description
-   uint16_t INTCODE:3;          // 2:0    Interrupt code
-   uint16_t rsvd1:13;           // 15:3   reserved
-};
-
-union I2CISRC_REG {
-   uint16_t                 all;
-   struct I2CISRC_BITS    bit;
-};
-
-//----------------------------------------------------
-// I2C interrupt mask register bit definitions */
-struct I2CIER_BITS {          // bits   description
-   uint16_t ARBL:1;               // 0      Arbitration lost interrupt
-   uint16_t NACK:1;             // 1      No ack interrupt
-   uint16_t ARDY:1;             // 2      Register access ready interrupt
-   uint16_t RRDY:1;             // 3      Recieve data ready interrupt
-   uint16_t XRDY:1;             // 4      Transmit data ready interrupt
-   uint16_t SCD:1;              // 5      Stop condition detection
-   uint16_t AAS:1;              // 6      Address as slave
-   uint16_t rsvd:9;             // 15:7   reserved
-};
-
-union I2CIER_REG {
-   uint16_t                 all;
-   struct I2CIER_BITS     bit;
-};
-
-//----------------------------------------------------
-// I2C status register bit definitions */
-struct I2CSTR_BITS {          // bits   description
-   uint16_t ARBL:1;               // 0      Arbitration lost interrupt
-   uint16_t NACK:1;             // 1      No ack interrupt
-   uint16_t ARDY:1;             // 2      Register access ready interrupt
-   uint16_t RRDY:1;             // 3      Recieve data ready interrupt
-   uint16_t XRDY:1;             // 4      Transmit data ready interrupt
-   uint16_t SCD:1;              // 5      Stop condition detection
-   uint16_t rsvd1:2;            // 7:6    reserved
-   uint16_t AD0:1;              // 8      Address Zero
-   uint16_t AAS:1;              // 9      Address as slave
-   uint16_t XSMT:1;             // 10     XMIT shift empty
-   uint16_t RSFULL:1;           // 11     Recieve shift full
-   uint16_t BB:1;               // 12     Bus busy
-   uint16_t NACKSNT:1;          // 13     A no ack sent
-   uint16_t SDIR:1;             // 14     Slave direction
-   uint16_t rsvd2:1;            // 15     reserved
-};
-
-union I2CSTR_REG {
-   uint16_t                 all;
-   struct I2CSTR_BITS     bit;
-};
-
-//----------------------------------------------------
-// I2C mode control register bit definitions */
-struct I2CMDR_BITS {          // bits   description
-   uint16_t BC:3;               // 2:0    Bit count
-   uint16_t FDF:1;              // 3      Free data format
-   uint16_t STB:1;              // 4      Start byte
-   uint16_t IRS:1;              // 5      I2C Reset not
-   uint16_t DLB:1;              // 6      Digital loopback
-   uint16_t RM:1;               // 7      Repeat mode
-   uint16_t XA:1;               // 8      Expand address
-   uint16_t TRX:1;              // 9      Transmitter/reciever
-   uint16_t MST:1;              // 10     Master/slave
-   uint16_t STP:1;              // 11     Stop condition
-   uint16_t rsvd1:1;            // 12     reserved
-   uint16_t STT:1;              // 13     Start condition
-   uint16_t FREE:1;             // 14     Emulation mode
-   uint16_t NACKMOD:1;          // 15     No Ack mode
-};
-
-union I2CMDR_REG {
-   uint16_t                 all;
-   struct I2CMDR_BITS     bit;
-};
-
-//----------------------------------------------------
-// I2C extended mode control register bit definitions */
-struct I2CEMDR_BITS {          // bits   description
-   uint16_t BCM:1;               // 0      Bit count
-   uint16_t rsvd1:15;            // 15:1   reserved
-};
-
-union I2CEMDR_REG {
-   uint16_t                 all;
-   struct I2CEMDR_BITS    bit;
-};
-
-//----------------------------------------------------
-// I2C pre-scaler register bit definitions */
-struct I2CPSC_BITS {         // bits   description
-   uint16_t IPSC:8;            // 7:0    pre-scaler
-   uint16_t rsvd1:8;           // 15:8   reserved
-};
-
-union I2CPSC_REG {
-   uint16_t                 all;
-   struct I2CPSC_BITS     bit;
-};
-
-//----------------------------------------------------
-// TX FIFO control register bit definitions */
-struct I2CFFTX_BITS {         // bits   description
-   uint16_t TXFFIL:5;           // 4:0    FIFO interrupt level
-   uint16_t TXFFIENA:1;         // 5      FIFO interrupt enable/disable
-   uint16_t TXFFINTCLR:1;       // 6      FIFO clear
-   uint16_t TXFFINT:1;          // 7      FIFO interrupt flag
-   uint16_t TXFFST:5;           // 12:8   FIFO level status
-   uint16_t TXFFRST:1;          // 13     FIFO reset
-   uint16_t I2CFFEN:1;          // 14     enable/disable TX & RX FIFOs
-   uint16_t rsvd1:1;            // 15     reserved
-
-};
-
-union I2CFFTX_REG {
-   uint16_t                 all;
-   struct I2CFFTX_BITS    bit;
-};
-
-//----------------------------------------------------
-// RX FIFO control register bit definitions */
-struct I2CFFRX_BITS {         // bits   description
-   uint16_t RXFFIL:5;           // 4:0    FIFO interrupt level
-   uint16_t RXFFIENA:1;         // 5      FIFO interrupt enable/disable
-   uint16_t RXFFINTCLR:1;       // 6      FIFO clear
-   uint16_t RXFFINT:1;          // 7      FIFO interrupt flag
-   uint16_t RXFFST:5;           // 12:8   FIFO level
-   uint16_t RXFFRST:1;          // 13     FIFO reset
-   uint16_t rsvd1:2;            // 15:14  reserved
-};
-
-union I2CFFRX_REG {
-   uint16_t                 all;
-   struct I2CFFRX_BITS    bit;
-};
-
-//----------------------------------------------------
-
-struct I2C_REGS {
-   uint16_t              I2COAR;    // Own address register
-   union  I2CIER_REG   I2CIER;    // Interrupt enable
-   union  I2CSTR_REG   I2CSTR;    // Interrupt status
-   uint16_t              I2CCLKL;   // Clock divider low
-   uint16_t              I2CCLKH;   // Clock divider high
-   uint16_t              I2CCNT;    // Data count
-   uint16_t              I2CDRR;    // Data recieve
-   uint16_t              I2CSAR;    // Slave address
-   uint16_t              I2CDXR;    // Data transmit
-   union  I2CMDR_REG   I2CMDR;    // Mode
-   union  I2CISRC_REG  I2CISRC;   // Interrupt source
-   union  I2CEMDR_REG  I2CEMDR;   // Extended mode
-   union  I2CPSC_REG   I2CPSC;    // Pre-scaler
-   uint16_t              rsvd2[19]; // reserved
-   union  I2CFFTX_REG  I2CFFTX;   // Transmit FIFO
-   union  I2CFFRX_REG  I2CFFRX;   // Recieve FIFO
-};
+//!
+//! \ingroup I2C
+//@{
 
 
+//*****************************************************************************
+// Defines for the API.
+//*****************************************************************************
 
-//---------------------------------------------------------------------------
-// External References & Function Declarations:
-//
-extern volatile struct I2C_REGS I2caRegs;
+//! \brief Defines the base address of the Inter-Integrated Circuit (I2C) A registers
+//!
 
+#define I2CA_BASE_ADDR              (0x00007900)
+
+
+//! \brief Defines the location of the NACKMOD bit in the I2CMDR register
+//!
+#define I2C_I2CMDR_NAKMOD_BIT       (1 << 15)
+
+//! \brief Defines the location of the FREE bit in the I2CMDR register
+//!
+#define I2C_I2CMDR_FREE_BIT         (1 << 14)
+
+//! \brief Defines the location of the STT bit in the I2CMDR register
+//!
+#define I2C_I2CMDR_STT_BIT          (1 << 13)
+
+//! \brief Defines the location of the STP bit in the I2CMDR register
+//!
+#define I2C_I2CMDR_STP_BIT          (1 << 11)
+
+//! \brief Defines the location of the MST bit in the I2CMDR register
+//!
+#define I2C_I2CMDR_MST_BIT          (1 << 10)
+
+//! \brief Defines the location of the TRX bit in the I2CMDR register
+//!
+#define I2C_I2CMDR_TRX_BIT          (1 << 9)
+
+//! \brief Defines the location of the XA bit in the I2CMDR register
+//!
+#define I2C_I2CMDR_XA_BIT           (1 << 8)
+
+//! \brief Defines the location of the RM bit in the I2CMDR register
+//!
+#define I2C_I2CMDR_RM_BIT           (1 << 7)
+
+//! \brief Defines the location of the DLB bit in the I2CMDR register
+//!
+#define I2C_I2CMDR_DLB_BIT          (1 << 6)
+
+//! \brief Defines the location of the IRS bit in the I2CMDR register
+//!
+#define I2C_I2CMDR_IRS_BIT          (1 << 5)
+
+//! \brief Defines the location of the STB bit in the I2CMDR register
+//!
+#define I2C_I2CMDR_STB_BIT          (1 << 4)
+
+//! \brief Defines the location of the IRS bit in the I2CMDR register
+//!
+#define I2C_I2CMDR_FDF_BIT          (1 << 3)
+
+//! \brief Defines the location of the BC bits in the I2CMDR register
+//!
+#define I2C_I2CMDR_BC_BITS          (7 << 0)
+
+
+//! \brief Defines the location of the AAS bit in the I2CIER register
+//!
+#define I2C_I2CIER_AAS_BITS          (1 << 6)
+
+//! \brief Defines the location of the SCD bit in the I2CIER register
+//!
+#define I2C_I2CIER_SCD_BITS          (1 << 5)
+
+//! \brief Defines the location of the XRDY bit in the I2CIER register
+//!
+#define I2C_I2CIER_XRDY_BITS         (1 << 4)
+
+//! \brief Defines the location of the RRDY bit in the I2CIER register
+//!
+#define I2C_I2CIER_RRDY_BITS         (1 << 3)
+
+//! \brief Defines the location of the ARDY bit in the I2CIER register
+//!
+#define I2C_I2CIER_ARDY_BITS         (1 << 2)
+
+//! \brief Defines the location of the NACK bit in the I2CIER register
+//!
+#define I2C_I2CIER_NACK_BITS         (1 << 1)
+
+//! \brief Defines the location of the AL bit in the I2CIER register
+//!
+#define I2C_I2CIER_AL_BITS           (1 << 0)
+
+
+//! \brief Defines the location of the SDIR bit in the I2CSTR register
+//!
+#define I2C_I2CSTR_SDIR_BITS         (1 << 14)
+
+//! \brief Defines the location of the NACKSNT bit in the I2CSTR register
+//!
+#define I2C_I2CSTR_NACKSNT_BITS      (1 << 13)
+
+//! \brief Defines the location of the BB bit in the I2CSTR register
+//!
+#define I2C_I2CSTR_BB_BITS           (1 << 12)
+
+//! \brief Defines the location of the RSFULL bit in the I2CSTR register
+//!
+#define I2C_I2CSTR_RSFULL_BITS       (1 << 11)
+
+//! \brief Defines the location of the XSMT bit in the I2CSTR register
+//!
+#define I2C_I2CSTR_XSMT_BITS         (1 << 10)
+
+//! \brief Defines the location of the AAS bit in the I2CSTR register
+//!
+#define I2C_I2CSTR_AAS_BITS          (1 << 9)
+
+//! \brief Defines the location of the AD0 bit in the I2CSTR register
+//!
+#define I2C_I2CSTR_AD0_BITS          (1 << 8)
+
+//! \brief Defines the location of the SCD bit in the I2CSTR register
+//!
+#define I2C_I2CSTR_SCD_BITS          (1 << 5)
+
+//! \brief Defines the location of the XRDY bit in the I2CSTR register
+//!
+#define I2C_I2CSTR_XRDY_BITS         (1 << 4)
+
+//! \brief Defines the location of the RRDY bit in the I2CSTR register
+//!
+#define I2C_I2CSTR_RRDY_BITS         (1 << 3)
+
+//! \brief Defines the location of the ARDY bit in the I2CSTR register
+//!
+#define I2C_I2CSTR_ARDY_BITS         (1 << 2)
+
+//! \brief Defines the location of the NACK bit in the I2CSTR register
+//!
+#define I2C_I2CSTR_NACK_BITS         (1 << 1)
+
+//! \brief Defines the location of the AL bit in the I2CSTR register
+//!
+#define I2C_I2CSTR_AL_BITS           (1 << 0)
+
+
+//! \brief Defines the location of the IPSC bits in the I2CPSC register
+//!
+#define I2C_I2CPSC_IPSC_BITS         (255 << 0)
+
+
+//! \brief Defines the location of the SAR bits in the I2CSAR register
+//!
+#define I2C_I2CSAR_SAR_BITS          (1023 << 0)
+
+
+//! \brief Defines the location of the OAR bits in the I2COAR register
+//!
+#define I2C_I2COAR_OAR_BITS          (1023 << 0)
+
+
+//! \brief Defines the location of the DATA bits in the I2CDRR register
+//!
+#define I2C_I2CDRR_DATA_BITS         (255 << 0)
+
+
+//! \brief Defines the location of the DATA bits in the I2CDXR register
+//!
+#define I2C_I2CDXR_DATA_BITS         (255 << 0)
+
+
+//! \brief Defines the location of the FFEN bit in the I2CFFTX register
+//!
+#define I2C_I2CFFTX_FFEN_BIT         (1 << 14)
+
+//! \brief Defines the location of the TXFFRST bit in the I2CFFTX register
+//!
+#define I2C_I2CFFTX_TXFFRST_BIT      (1 << 13)
+
+//! \brief Defines the location of the TXFFINT bit in the I2CFFTX register
+//!
+#define I2C_I2CFFTX_TXFFINT_BIT      (1 << 7)
+
+//! \brief Defines the location of the TXFFINTCLR bit in the I2CFFTX register
+//!
+#define I2C_I2CFFTX_TXFFINTCLR_BIT    (1 << 6)
+
+//! \brief Defines the location of the TXFFIENA bit in the I2CFFTX register
+//!
+#define I2C_I2CFFTX_TXFFIENA_BIT      (1 << 5)
+
+
+//! \brief Defines the location of the RXFFRST bit in the I2CFFRX register
+//!
+#define I2C_I2CFFRX_RXFFRST_BIT      (1 << 13)
+
+//! \brief Defines the location of the RXFFINT bit in the I2CFFRX register
+//!
+#define I2C_I2CFFRX_RXFFINT_BIT      (1 << 7)
+
+//! \brief Defines the location of the RXFFINTCLR bit in the I2CFFRX register
+//!
+#define I2C_I2CFFRX_RXFFINTCLR_BIT    (1 << 6)
+
+//! \brief Defines the location of the RXFFIENA bit in the I2CFFRX register
+//!
+#define I2C_I2CFFRX_RXFFIENA_BIT      (1 << 5)
+
+
+// **************************************************************************
+// the typedefs
+//*****************************************************************************
+
+//! \brief Enumeration to define the I2C bit counts
+//!
+typedef enum
+{
+    I2C_BitCount_1_Bit = (1 << 0),        //!< Next transaction is 1 bit
+    I2C_BitCount_2_Bits = (2 << 0),       //!< Next transaction is 2 bits
+    I2C_BitCount_3_Bits = (3 << 0),       //!< Next transaction is 3 bits
+    I2C_BitCount_4_Bits = (4 << 0),       //!< Next transaction is 4 bits
+    I2C_BitCount_5_Bits = (5 << 0),       //!< Next transaction is 5 bits
+    I2C_BitCount_6_Bits = (6 << 0),       //!< Next transaction is 6 bits
+    I2C_BitCount_7_Bits = (7 << 0),       //!< Next transaction is 7 bits
+    I2C_BitCount_8_Bits = (0 << 0)        //!< Next transaction is 8 bits
+} I2C_BitCount_e;
+
+//! \brief Enumeration to define the I2C network mode control
+//!
+typedef enum
+{
+    I2C_Mode_Slave = (0 << 10),      //!< Denotes slave mode
+    I2C_Mode_Master = (1 << 10)      //!< Denotes master mode
+} I2C_Mode_e;
+
+//! \brief Enumeration to define the I2C network mode control
+//!
+typedef enum
+{
+    I2C_Control_Stop           = I2C_I2CMDR_MST_BIT | I2C_I2CMDR_STP_BIT, //!< Assert Stop Condition
+    I2C_Control_Single_TX      = I2C_I2CMDR_MST_BIT | I2C_I2CMDR_TRX_BIT 
+                             | I2C_I2CMDR_STT_BIT | I2C_I2CMDR_STP_BIT, //!< Single TX Transaction
+    I2C_Control_Single_RX      = I2C_I2CMDR_MST_BIT | I2C_I2CMDR_STT_BIT 
+                             | I2C_I2CMDR_STP_BIT,                      //!< Single RX Transaction
+    I2C_Control_Burst_TX_Start = I2C_I2CMDR_MST_BIT | I2C_I2CMDR_STT_BIT 
+                             | I2C_I2CMDR_TRX_BIT,                      //!< Start Burst TX Transaction
+    I2C_Control_Burst_TX_Stop  = I2C_I2CMDR_MST_BIT | I2C_I2CMDR_STP_BIT 
+                             | I2C_I2CMDR_TRX_BIT,                      //!< End Burst TX Transaction
+    I2C_Control_Burst_RX_Start = I2C_I2CMDR_MST_BIT | I2C_I2CMDR_STT_BIT, //!< Start Burst RX Transaction
+    I2C_Control_Burst_RX_Stop  = I2C_I2CMDR_MST_BIT | I2C_I2CMDR_STP_BIT  //!< End Burst RX Transaction
+} I2C_Control_e;
+            
+
+//! \brief Enumeration to define the I2C Interrupt Enables
+//!
+typedef enum
+{
+    I2C_IntEn_Arb_Lost = (1 << 0),       //!< Arbitration Lost
+    I2C_IntEn_NACK = (1 << 1),           //!< No-Acknowledge Detected
+    I2C_IntEn_Reg_Rdy = (1 << 2),        //!< Register Ready for Access
+    I2C_IntEn_Rx_Rdy = (1 << 3),         //!< Recieve Data Ready
+    I2C_IntEn_Tx_Rdy = (1 << 4),         //!< Transmit Data Ready
+    I2C_IntEn_Stop = (1 << 5),           //!< Stop Condition Detected
+    I2C_IntEn_Slave_Addr = (1 << 6)      //!< Addressed as Slave
+} I2C_IntEnable_e;
+
+//! \brief Enumeration to define the I2C Interrupt Sources
+//!
+typedef enum
+{
+    I2C_IntSrc_None = (0 << 0),           //!< No Interrupt
+    I2C_IntSrc_Arb_Lost = (1 << 0),       //!< Arbitration Lost
+    I2C_IntSrc_NACK = (2 << 0),           //!< No-Acknowledge Detected
+    I2C_IntSrc_Reg_Rdy = (3 << 0),        //!< Register Ready for Access
+    I2C_IntSrc_Rx_Rdy = (4 << 0),         //!< Recieve Data Ready
+    I2C_IntSrc_Tx_Rdy = (5 << 0),         //!< Transmit Data Ready
+    I2C_IntSrc_Stop = (6 << 0),           //!< Stop Condition Detected
+    I2C_IntSrc_Slave_Addr = (7 << 0)      //!< Addressed as Slave
+} I2C_IntSource_e;
+
+//! \brief Enumeration to define the I2C Status
+//!
+typedef enum
+{
+    I2C_Status_None = (0 << 0),           //!< No Interrupt
+    I2C_Status_Arb_Lost = (1 << 0),       //!< Arbitration Lost
+    I2C_Status_NACK = (1 << 1),           //!< No-Acknowledge Detected
+    I2C_Status_Reg_Rdy = (1 << 2),        //!< Register Ready for Access
+    I2C_Status_Rx_Rdy = (1 << 3),         //!< Recieve Data Ready
+    I2C_Status_Tx_Rdy = (1 << 4),         //!< Transmit Data Ready
+    I2C_Status_Stop = (1 << 5),           //!< Stop Condition Detected
+    I2C_Status_AD0 = (1 << 8),            //!< Address 0 Detected
+    I2C_Status_Slave_Addr = (1 << 9),      //!< Addressed as Slave
+    I2C_Status_Tx_Empty = (1 << 10),      //!< Transmit Empty
+    I2C_Status_Rx_Full = (1 << 11),       //!< Recieve Full
+    I2C_Status_Busy = (1 << 12),          //!< Bus Busy
+    I2C_Status_NACK_Sent = (1 << 13),     //!< No Acknowlege Sent
+    I2C_Status_Slave_Dir = (1 << 14)      //!< Slave Direction
+} I2C_Status_e;
+
+//! \brief Enumeration to define the I2C FIFO level
+//!
+typedef enum
+{
+    I2C_FifoLevel_Empty = (0 << 0),      //!< Denotes the fifo is empty
+    I2C_FifoLevel_1_Word = (1 << 0),     //!< Denotes the fifo contains 1 word
+    I2C_FifoLevel_2_Words = (2 << 0),    //!< Denotes the fifo contains 2 words
+    I2C_FifoLevel_3_Words = (3 << 0),    //!< Denotes the fifo contains 3 words
+    I2C_FifoLevel_4_Words = (4 << 0)     //!< Denotes the fifo contains 4 words
+} I2C_FifoLevel_e;
+
+
+//! \brief Enumeration to define the I2C FIFO status
+//!
+typedef enum
+{
+    I2C_FifoStatus_Empty = (0 << 8),      //!< Denotes the fifo is empty
+    I2C_FifoStatus_1_Word = (1 << 8),     //!< Denotes the fifo contains 1 word
+    I2C_FifoStatus_2_Words = (2 << 8),    //!< Denotes the fifo contains 2 words
+    I2C_FifoStatus_3_Words = (3 << 8),    //!< Denotes the fifo contains 3 words
+    I2C_FifoStatus_4_Words = (4 << 8)     //!< Denotes the fifo contains 4 words
+}  I2C_FifoStatus_e;
+
+
+typedef struct _I2C_Obj_
+{
+    volatile uint16_t      I2COAR;        //!< I2C Own Address Register
+    volatile uint16_t      I2CIER;        //!< I2C Interrupt Enable Register
+    volatile uint16_t      I2CSTR;        //!< I2C Status Register
+    volatile uint16_t      I2CCLKL;       //!< I2C Clock Low-Time Divider Register
+    volatile uint16_t      I2CCLKH;       //!< I2C Clock High-Time Divider Register
+    volatile uint16_t      I2CCNT;        //!< I2C Data Count Register
+    volatile uint16_t      I2CDRR;        //!< I2C Data Receive Register
+    volatile uint16_t      I2CSAR;        //!< I2C Slave Address Register
+    volatile uint16_t      I2CDXR;        //!< I2C Data Transmit Register
+    volatile uint16_t      I2CMDR;        //!< I2C Mode Register
+    volatile uint16_t      I2CISRC;       //!< I2C Interrupt Source Register
+    volatile uint16_t      I2CEMDR;       //!< I2C Extended Mode Register
+    volatile uint16_t      I2CPSC;        //!< I2C Pre-Scalar Register
+    volatile uint16_t      rsvd_1[19];    //!< I2C reserved registers
+    volatile uint16_t      I2CFFTX;       //!< I2C FIFO Transmit Register
+    volatile uint16_t      I2CFFRX;       //!< I2C FIFO Receive Register
+} I2C_Obj;
+
+
+//! \brief Defines the serial peripheral interface (SPI) handle
+//!
+typedef struct I2C_Obj  *I2C_Handle;
+
+
+//! \brief     Sets up the clocking for the I2C peripheral
+//! \param[in] i2cHandle  The I2C object handle
+//! \param[in] preScalar  The clock pre-scalar
+//! \param[in] bitTimeLow   Clock low time divider
+//! \param[in] bitTimeHigh  Clock high time divider
+void I2C_setupClock(I2C_Handle i2cHandle, const uint16_t preScalar,
+        const  uint16_t bitTimeLow, const uint16_t bitTimeHigh);
+
+void I2C_setMaster(I2C_Handle i2cHandle);
+void I2C_setSlave(I2C_Handle i2cHandle);
+void I2C_MasterControl(I2C_Handle i2cHandle, I2C_Control_e action, I2C_BitCount_e bitCount, uint16_t bytes);
+void I2C_disable(I2C_Handle i2cHandle);
+void I2C_enable(I2C_Handle i2cHandle);
+I2C_Handle I2C_init(void *pMemory,const size_t numBytes);
+_Bool I2C_isMasterBusy(I2C_Handle i2cHandle);
+void I2C_putData(I2C_Handle i2cHandle, uint16_t data);
+uint16_t I2C_getData(I2C_Handle i2cHandle);
+void I2C_setMasterSlaveAddr(I2C_Handle i2cHandle, const uint16_t slaveAddress);
+void I2C_setSlaveAddress(I2C_Handle i2cHandle, const uint16_t slaveAddress);
+I2C_Status_e I2C_getStatus(I2C_Handle i2cHandle);
+I2C_IntSource_e I2C_getIntSource(I2C_Handle i2cHandle);
+void I2C_disableInt(I2C_Handle i2cHandle, const I2C_IntEnable_e interrupts);
+void I2C_enableInt(I2C_Handle i2cHandle, const I2C_IntEnable_e interrupts);
+void I2C_enableFifo(I2C_Handle i2cHandle);
+void I2C_clearTxFifoInt(I2C_Handle i2cHandle);
+void I2C_clearRxFifoInt(I2C_Handle i2cHandle);
+void I2C_disableFifo(I2C_Handle i2cHandle);
+void I2C_resetTxFifo(I2C_Handle i2cHandle);
+void I2C_resetRxFifo(I2C_Handle i2cHandle);
+void I2C_SendData(I2C_Handle i2cHandle, uint16_t cmd, uint16_t data);
+void I2C_WrData(I2C_Handle i2cHandle, uint16_t SlaveAddr, uint16_t *data, uint16_t num);
+void I2C_RdData(I2C_Handle i2cHandle, uint16_t SlaveAddr, uint16_t cmd, uint16_t *data, uint16_t num);
+
+//*****************************************************************************
+// Mark the end of the C bindings section for C++ compilers.
+//*****************************************************************************
 #ifdef __cplusplus
 }
-#endif /* extern "C" */
+#endif
 
-#endif  // end of _I2C_H_ definition
+#endif // __I2C_H__
 
-//@}
+

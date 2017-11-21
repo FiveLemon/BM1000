@@ -17,6 +17,13 @@ adc.obj: D:/BM1000/sw/drivers/adc/src/32b/f28x/f2802x/adc.c $(GEN_OPTS) | $(GEN_
 	@echo 'Finished building: $<'
 	@echo ' '
 
+brake.obj: D:/BM1000/sw/drivers/drvic/brake.c $(GEN_OPTS) | $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"C:/ti/ccsv6/tools/compiler/c2000_6.2.5/bin/cl2000" -v28 -ml -mt -O2 --include_path="D:/BM1000/sw/modules/hal/boards/hvkit_rev1p1/f28x/f2802x/src/" --include_path="C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include" --include_path="D:/BM1000/sw/solutions/instaspin_foc/boards/hvkit_rev1p1/f28x/f2802xF/src" --include_path="D:/BM1000" -g --define=FLASH --define=FAST_ROM_V1p7 --define=F2802xF --diag_warning=225 --display_error_number --asm_listing --preproc_with_compile --preproc_dependency="brake.d" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
 clarke.obj: D:/BM1000/sw/modules/clarke/src/32b/clarke.c $(GEN_OPTS) | $(GEN_HDRS)
 	@echo 'Building file: $<'
 	@echo 'Invoking: C2000 Compiler'

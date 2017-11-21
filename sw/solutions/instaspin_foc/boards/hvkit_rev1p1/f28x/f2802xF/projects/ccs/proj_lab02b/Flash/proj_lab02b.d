@@ -34,8 +34,10 @@ proj_lab02b.obj: D:/BM1000/sw/modules/filter/src/32b/filter_fo.h
 proj_lab02b.obj: D:/BM1000/sw/modules/pid/src/32b/pid.h
 proj_lab02b.obj: D:/BM1000/sw/modules/svgen/src/32b/svgen.h
 proj_lab02b.obj: D:/BM1000/sw/modules/traj/src/32b/traj.h
+proj_lab02b.obj: D:/BM1000/sw/modules/vib_comp/src/32b/vib_comp.h
 proj_lab02b.obj: D:/BM1000/sw/modules/ctrl/src/32b/ctrl_obj.h
 proj_lab02b.obj: D:/BM1000/sw/modules/ctrl/src/ctrl_states.h
+proj_lab02b.obj: D:/BM1000/sw/drivers/drvic/brake.h
 proj_lab02b.obj: D:/BM1000/sw/modules/vs_freq/src/32b/vs_freq.h
 proj_lab02b.obj: D:/BM1000/sw/modules/angle_gen/src/32b/angle_gen.h
 proj_lab02b.obj: D:/BM1000/sw/modules/datalog/src/32b/datalog.h
@@ -55,25 +57,20 @@ proj_lab02b.obj: D:/BM1000/sw/drivers/timer/src/32b/f28x/f2802x/timer.h
 proj_lab02b.obj: D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.h
 proj_lab02b.obj: D:/BM1000/sw/drivers/spi/src/32b/f28x/f2802x/spi.h
 proj_lab02b.obj: D:/BM1000/sw/drivers/sci/src/32b/f28x/f2802x/sci.h
+proj_lab02b.obj: D:/BM1000/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h
 proj_lab02b.obj: D:/BM1000/sw/modules/usDelay/src/32b/usDelay.h
 proj_lab02b.obj: D:/BM1000/sw/solutions/instaspin_foc/boards/hvkit_rev1p1/f28x/f2802xF/src/user.h
 proj_lab02b.obj: D:/BM1000/sw/modules/est/src/est_Flux_states.h
 proj_lab02b.obj: D:/BM1000/sw/modules/est/src/est_Ls_states.h
 proj_lab02b.obj: D:/BM1000/sw/modules/est/src/est_Rs_states.h
-proj_lab02b.obj: D:/BM1000/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h
 proj_lab02b.obj: D:/BM1000/sw/modules/fast/src/32b/userParams.h
 proj_lab02b.obj: D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.h
 proj_lab02b.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/math.h
 proj_lab02b.obj: D:/BM1000/sw/modules/hallbldc/src/32b/hallbldc.h
-proj_lab02b.obj: D:/BM1000/sw/drivers/drvic/ldc1612.h
-proj_lab02b.obj: D:/BM1000/sw/drivers/drvic/oled/oled.h
 proj_lab02b.obj: D:/BM1000/sw/drivers/drvic/pca9555.h
 proj_lab02b.obj: D:/BM1000/sw/drivers/drvic/process_ctrl.h
-proj_lab02b.obj: D:/BM1000/sw/drivers/drvic/decoder.h
-proj_lab02b.obj: D:/BM1000/sw/drivers/spi/src/32b/f28x/f2806x/spi.h
-proj_lab02b.obj: D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2806x/gpio.h
+proj_lab02b.obj: D:/BM1000/sw/drivers/drvic/fsm.h
 proj_lab02b.obj: D:/BM1000/sw/modules/hal/boards/hvkit_rev1p1/f28x/f2802x/src/hal.h
-proj_lab02b.obj: D:/BM1000/sw/drivers/drvic/S_curve.h
 proj_lab02b.obj: D:/BM1000/sw/drivers/drvic/modbus/mb.h
 proj_lab02b.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/assert.h
 proj_lab02b.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/inttypes.h
@@ -113,8 +110,10 @@ D:/BM1000/sw/modules/filter/src/32b/filter_fo.h:
 D:/BM1000/sw/modules/pid/src/32b/pid.h: 
 D:/BM1000/sw/modules/svgen/src/32b/svgen.h: 
 D:/BM1000/sw/modules/traj/src/32b/traj.h: 
+D:/BM1000/sw/modules/vib_comp/src/32b/vib_comp.h: 
 D:/BM1000/sw/modules/ctrl/src/32b/ctrl_obj.h: 
 D:/BM1000/sw/modules/ctrl/src/ctrl_states.h: 
+D:/BM1000/sw/drivers/drvic/brake.h: 
 D:/BM1000/sw/modules/vs_freq/src/32b/vs_freq.h: 
 D:/BM1000/sw/modules/angle_gen/src/32b/angle_gen.h: 
 D:/BM1000/sw/modules/datalog/src/32b/datalog.h: 
@@ -134,25 +133,20 @@ D:/BM1000/sw/drivers/timer/src/32b/f28x/f2802x/timer.h:
 D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.h: 
 D:/BM1000/sw/drivers/spi/src/32b/f28x/f2802x/spi.h: 
 D:/BM1000/sw/drivers/sci/src/32b/f28x/f2802x/sci.h: 
+D:/BM1000/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h: 
 D:/BM1000/sw/modules/usDelay/src/32b/usDelay.h: 
 D:/BM1000/sw/solutions/instaspin_foc/boards/hvkit_rev1p1/f28x/f2802xF/src/user.h: 
 D:/BM1000/sw/modules/est/src/est_Flux_states.h: 
 D:/BM1000/sw/modules/est/src/est_Ls_states.h: 
 D:/BM1000/sw/modules/est/src/est_Rs_states.h: 
-D:/BM1000/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h: 
 D:/BM1000/sw/modules/fast/src/32b/userParams.h: 
 D:/BM1000/sw/modules/cpu_time/src/32b/cpu_time.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/math.h: 
 D:/BM1000/sw/modules/hallbldc/src/32b/hallbldc.h: 
-D:/BM1000/sw/drivers/drvic/ldc1612.h: 
-D:/BM1000/sw/drivers/drvic/oled/oled.h: 
 D:/BM1000/sw/drivers/drvic/pca9555.h: 
 D:/BM1000/sw/drivers/drvic/process_ctrl.h: 
-D:/BM1000/sw/drivers/drvic/decoder.h: 
-D:/BM1000/sw/drivers/spi/src/32b/f28x/f2806x/spi.h: 
-D:/BM1000/sw/drivers/gpio/src/32b/f28x/f2806x/gpio.h: 
+D:/BM1000/sw/drivers/drvic/fsm.h: 
 D:/BM1000/sw/modules/hal/boards/hvkit_rev1p1/f28x/f2802x/src/hal.h: 
-D:/BM1000/sw/drivers/drvic/S_curve.h: 
 D:/BM1000/sw/drivers/drvic/modbus/mb.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/assert.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/inttypes.h: 

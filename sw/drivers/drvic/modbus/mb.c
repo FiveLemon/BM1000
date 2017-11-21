@@ -114,6 +114,24 @@ void MB_setGpioHandle(MB_Handle handle, GPIO_Handle gpioHandle)
    return;
 } // end of MB_setGpioHandle() function
 
+void MB_setMotorHandle(MB_Handle handle, MOTOR_Handle motorHandle)
+{
+  MB_Obj *obj = (MB_Obj *)handle;
+
+  obj->motorHandle = motorHandle;
+
+  return;
+} //end of MB_setMotorHandle() function
+
+void MB_setFsmHandle(MB_Handle handle, FSM_Handle fsmHandle)
+{
+  MB_Obj *obj = (MB_Obj *)handle;
+
+  obj->fsmHandle = fsmHandle;
+
+  return;
+}
+
 
 void MB_PortTimersEnable(MB_Handle handle)
 {
@@ -142,25 +160,24 @@ void MB_PortSerialEnable(MB_Handle handle, bool xRxEnable, bool xTxEnable)
 
   if(xRxEnable)
   {
-
 	 SCI_enableRx(obj->sciHandle);
-     //GPIO_setLow(obj->gpioHandle, MB_GPIO_RE);
+     GPIO_setLow(obj->gpioHandle, (GPIO_Number_e)HAL_Gpio_Rs485_RE_b);
   }
   else
   {
 	 SCI_disableRx(obj->sciHandle);
-     //GPIO_setHigh(obj->gpioHandle, MB_GPIO_RE);
+     GPIO_setHigh(obj->gpioHandle, (GPIO_Number_e)HAL_Gpio_Rs485_RE_b);
   }
 
   if(xTxEnable)
   {
 	SCI_enableTx(obj->sciHandle);
-	//GPIO_setHigh(obj->gpioHandle, MB_GPIO_DE);
+	GPIO_setHigh(obj->gpioHandle, (GPIO_Number_e)HAL_Gpio_Rs485_DE);
   }
   else
   {
 	SCI_disableTx(obj->sciHandle);
-    //GPIO_setLow(obj->gpioHandle, MB_GPIO_DE);
+    GPIO_setLow(obj->gpioHandle, (GPIO_Number_e)HAL_Gpio_Rs485_DE);
   }
   return;
 }
@@ -169,19 +186,21 @@ void MB_PortSerialEnable(MB_Handle handle, bool xRxEnable, bool xTxEnable)
 bool MB_PortSerialPutByte(MB_Handle handle, CHAR putByte)
 {
     MB_Obj *obj = (MB_Obj *)handle;
+    uint16_t putData_state;
 
-    SCI_putDataBlocking(obj->sciHandle, putByte);
+    putData_state = SCI_putDataNonBlocking(obj->sciHandle, putByte);
 
-    return true;
+    return (bool)putData_state;
 }
 
 bool MB_PortSerialGetByte(MB_Handle handle, CHAR * getByte)
 {
     MB_Obj *obj = (MB_Obj *)handle;
+    uint16_t getData_state;
 
-    *getByte = SCI_getDataBlocking(obj->sciHandle);
+    *getByte = SCI_getDataNonBlocking(obj->sciHandle, &getData_state);
 
-    return true;
+    return (bool)getData_state;
 }
 
 void MB_PortEventInit(MB_Handle handle)
@@ -245,7 +264,7 @@ void MB_RTUTransmitFSM(MB_Handle handle)
     {
     case STATE_TX_IDLE:
     	   // enable receiver  disable transmitter.
-    	   MB_PortSerialEnable(handle, true, false ); break;
+    	   MB_PortSerialEnable(handle, true, false); break;
 
     case STATE_TX_XMIT:
     	 // check if we are finished.
@@ -257,9 +276,11 @@ void MB_RTUTransmitFSM(MB_Handle handle)
          }
         else
         {
-          MB_PortEventPost(handle, EV_FRAME_SENT );
+          MB_PortEventPost(handle, EV_FRAME_SENT);
+
           // enable receiver  disable transmitter.
-          MB_PortSerialEnable(handle, true, false );
+          MB_PortSerialEnable(handle, true, false);
+
           obj->eSndState = STATE_TX_IDLE;
         }
         break;
@@ -272,7 +293,7 @@ void MB_RTUReceiveFSM(MB_Handle handle)
 {
     MB_Obj *obj = (MB_Obj *)handle;
 
-    UCHAR           ucByte;
+    UCHAR  ucByte;
 
     // Always read the character.
     ( void )MB_PortSerialGetByte(handle, ( CHAR * ) & ucByte );
@@ -310,7 +331,7 @@ eMBErrorCode MB_RTUReceive(MB_Handle handle)
 {
     MB_Obj *obj = (MB_Obj *)handle;
 
-    eMBErrorCode    eStatus = MB_ENOERR;
+    eMBErrorCode   eStatus = MB_ENOERR;
 
     // Length and CRC check
     if( (obj->RcvBufferPos == MB_SER_PDU_SIZE )
@@ -335,13 +356,16 @@ eMBErrorCode MB_RTUSend(MB_Handle handle)
 
     if(obj->eRcvState == STATE_RX_IDLE )
     {
-      //  First byte before the Modbus-PDU is the slave address.
+
     	obj->SndBufferCur = ( UCHAR *) (obj->RTUBuf);
+
+        //  First byte before the Modbus-PDU is the slave address.
+    	obj->SndBufferCur[MB_SER_PDU_ADDR_OFF] = obj->SlaveAddress;
     	obj->SndBufferCount = 1;
 
        //  Now copy the Modbus-PDU into the Modbus-Serial-Line-PDU.
-    	obj->SndBufferCur[MB_SER_PDU_ADDR_OFF] = obj->SlaveAddress;
-    	obj->SndBufferCount += (MB_SER_PDU_SIZE-3);
+    	obj->SndBufferCount += 1;  //FunctionCode
+    	obj->SndBufferCount += MB_SER_PDU_SIZE_DATA; //size of DATA field
 
        //  Calculate CRC16 checksum for Modbus-Serial-Line-PDU.
         usCRC16 = MB_CRC16( ( UCHAR * )(obj->SndBufferCur), obj->SndBufferCount );
@@ -350,9 +374,9 @@ eMBErrorCode MB_RTUSend(MB_Handle handle)
 
         //  Activate the transmitter.
         obj->eSndState = STATE_TX_XMIT;
-        MB_PortSerialEnable(handle,  false, true);
-        obj->SndBufferCount --;
-        SCI_putDataBlocking(obj->sciHandle, (obj->RTUBuf[0]));
+        MB_PortSerialEnable(handle, false, true);
+        MB_PortSerialPutByte(handle, (obj->RTUBuf[0]));
+
     }
     else
     {
@@ -365,11 +389,11 @@ eMBErrorCode MB_Poll(MB_Handle handle)
 {
   MB_Obj *obj = (MB_Obj *)handle;
 
-  static UCHAR   *ucMBFrame;
+  //static UCHAR   *ucMBFrame;
  // static UCHAR    ucRcvAddress;
-  static UCHAR    ucFunctionCode;
-  static USHORT   usLength;
-  static eMBException eException;
+   UCHAR    ucFunctionCode;
+  //static USHORT   usLength;
+  //static eMBException eException;
 
   // Check if there is a event available. If not return control to caller.
    // Otherwise we will handle the event.
@@ -379,7 +403,7 @@ eMBErrorCode MB_Poll(MB_Handle handle)
     {
     case EV_READY:   break;
     case EV_FRAME_RECEIVED:
-    	//&ucRcvAddress, &ucMBFrame, &usLength
+
     	obj->eStatus = MB_RTUReceive(handle);
     	if(obj->eStatus == MB_ENOERR)
     	{
@@ -408,6 +432,7 @@ eMBErrorCode MB_Poll(MB_Handle handle)
 			case 0x04: // read Input Register
 				break;
 			case 0x05: // Write Single Coils Register
+                       MB_FuncWriteCoilsRegister(handle);
 				break;
 			case 0x06: // Write Single Holding Register
 					   MB_FuncWriteHoldingRegister(handle);
@@ -421,6 +446,7 @@ eMBErrorCode MB_Poll(MB_Handle handle)
         // If the request was not sent to the broadcast address we return a reply.
         if( obj->RTU_Frame->PDU_Address != MB_ADDRESS_BROADCAST )
         {
+        	/*
             if( eException != MB_EX_NONE )
             {
                 // An exception occured. Build an error frame.
@@ -428,6 +454,8 @@ eMBErrorCode MB_Poll(MB_Handle handle)
                 ucMBFrame[usLength++] = ( UCHAR )( ucFunctionCode | MB_FUNC_ERROR );
                 ucMBFrame[usLength++] = eException;
             }
+            */
+        	GPIO_setLow(obj->gpioHandle, (GPIO_Number_e)HAL_Gpio_RelayOpenOut);
             //ucMBAddress, ucMBFrame, usLength)
             obj->eStatus = MB_RTUSend(handle);
         }
@@ -441,6 +469,75 @@ eMBErrorCode MB_Poll(MB_Handle handle)
   return MB_ENOERR;
 }
 
+//====================================================================================
+
+
+inline int16_t MB_IQtoModubus(_iq Data)
+{
+  int16_t Data_t;
+
+  Data_t = (int16_t)_IQtoIQ7(Data);
+
+  return (Data_t);
+}
+
+inline int16_t MB_IQ20toModubus(_iq20 Data)
+{
+  int16_t Data_t;
+
+  Data_t = (int16_t)(Data >> 13) ;
+
+  return (Data_t);
+}
+
+inline int16_t MB_IQtoModubus_X128(_iq Data)
+{
+  int16_t Data_t;
+
+  Data_t = (int16_t)_IQtoIQ14(Data);
+
+  return (Data_t);
+}
+
+inline int16_t MB_IQtoModubus_L16bit(_iq Data)
+{
+  int16_t Data_t;
+
+  Data_t = (int16_t)(Data);
+
+  return (Data_t);
+}
+
+inline _iq MB_ModubusToIQ(int16_t Data)
+{
+ _iq Data_t;
+
+ Data_t = _IQ7toIQ((long)Data);
+
+  return (Data_t);
+}
+
+inline _iq20 MB_ModubusToIQ20(int16_t Data)
+{
+ _iq Data_t;
+
+ Data_t = _IQ7toIQ((long)Data);
+
+ return (_IQtoIQ20(Data_t));
+}
+
+int16_t MB_FloatTransToInt(float Data)
+{
+   int16_t Data_t;
+
+   Data_t = (int16_t)(_IQ(Data) >> 16);
+
+   return (Data_t);
+}
+
+
+
+
 void MB_FuncReadHoldingRegister(MB_Handle handle)
 {
   MB_Obj *obj = (MB_Obj *)handle;
@@ -448,6 +545,7 @@ void MB_FuncReadHoldingRegister(MB_Handle handle)
   uint16_t RegAddress;
   uint16_t RegData;
 
+  // little edian translate to big edian
   RegAddress = obj->RTU_Frame->PDU_RegAddress[0];
   RegAddress <<= 8;
   RegAddress |= obj->RTU_Frame->PDU_RegAddress[1];
@@ -455,14 +553,79 @@ void MB_FuncReadHoldingRegister(MB_Handle handle)
   switch(RegAddress)
   {
 
-  case 0x0002:RegData = 0x5512;break;
+  // System information
+  case MB_Motor_Reg_CodeVersion: RegData = (uint16_t)((CODE_VERSION_MAJOR<<8) | CODE_VERSION_MINOR); break;
+  case MB_Motor_Reg_CtrlVer_TargetProc: RegData = MOTOR_getCtrlVer_TargetProc(obj->motorHandle); break;
+  case MB_Motor_Reg_CtrlVer_major: RegData = MOTOR_getCtrlVer_major(obj->motorHandle); break;
+  case MB_Motor_Reg_CtrlVer_minor: RegData = MOTOR_getCtrlVer_minor(obj->motorHandle); break;
+  case MB_Motor_Reg_SysFlag: RegData = MOTOR_getMotorFlag(obj->motorHandle); break;
+  case MB_Motor_Reg_CtrlState: RegData = (uint16_t)MOTOR_getCtrlState(obj->motorHandle); break;
+  case MB_Motor_Reg_EstState: RegData = (uint16_t)MOTOR_getEstState(obj->motorHandle); break;
+  case MB_Motor_Reg_ErrorCode: RegData = MOTOR_getMotorErrorCode(obj->motorHandle); break;
 
-  default:RegData = 0xffff;break;
+  //  Motor Parameters
+  case MB_Motor_Reg_motor_ID: RegData = MOTOR_getMotorID(obj->motorHandle); break;
+  case MB_Motor_Reg_motor_Rr: RegData = MB_FloatTransToInt(MOTOR_getMotorRr_Ohm(obj->motorHandle)); break;
+  case MB_Motor_Reg_motor_Rs: RegData = MB_FloatTransToInt(MOTOR_getMotorRs_Ohm(obj->motorHandle)); break;
+  case MB_Motor_Reg_motor_Ls_d: RegData = MB_FloatTransToInt(MOTOR_getMotorLsd_H(obj->motorHandle)); break;
+  case MB_Motor_Reg_motor_Ls_q: RegData = MB_FloatTransToInt(MOTOR_getMotorLsq_H(obj->motorHandle)); break;
+  case MB_Motor_Reg_maxCurrent: RegData = MB_FloatTransToInt(MOTOR_getMotorMaxCurr_A(obj->motorHandle)); break;
+
+  // System state Parameters
+  case MB_Motor_Reg_Speed_krpm: RegData = MB_IQtoModubus(MOTOR_getMotorSpeed(obj->motorHandle)); break;
+  case MB_Motor_Reg_Torque_Nm:  RegData = MB_IQtoModubus(MOTOR_getMotorTorque_Nm(obj->motorHandle)); break;
+  case MB_Motor_Reg_VdcBus_kV:  RegData = MB_IQtoModubus_X128(MOTOR_getDcBus_Voltage(obj->motorHandle)); break;
+  case MB_Motor_Reg_ChipTemp: RegData = MB_IQ20toModubus(MOTOR_getChipTemp(obj->motorHandle)); break;
+  case MB_Motor_Reg_AnaSensor1: RegData = MB_IQtoModubus_L16bit(MOTOR_getAnalogSensor1(obj->motorHandle)); break;
+  case MB_Motor_Reg_AnaSensor2: RegData = MB_IQtoModubus_L16bit(MOTOR_getAnalogSensor2(obj->motorHandle)); break;
+  case MB_Motor_Reg_SwitchSensor:  break;
+
+  // System setting Parameters
+  case MB_Motor_Reg_RefSpeed_krpm: RegData = MB_IQtoModubus(MOTOR_getMotorRefSpeed(obj->motorHandle)); break;
+  case MB_Motor_Reg_MaxAccel_krpmps: RegData = MB_IQtoModubus(MOTOR_getMotorMaxAccel(obj->motorHandle)); break;
+  case MB_Motor_Reg_MaxDecel_krpmps: RegData = MB_IQtoModubus(MOTOR_getMotorMaxDecel(obj->motorHandle)); break;
+  case MB_Motor_Reg_MaxJrk_krpmps2: RegData = MB_IQ20toModubus(MOTOR_getMotorMaxJrk(obj->motorHandle)); break;
+  case MB_Motor_Reg_CurrentRatio: RegData = MB_IQtoModubus(MOTOR_getMaxCurrentRatio(obj->motorHandle)); break;
+  case MB_Motor_Reg_IbrakeRatio: RegData = MB_IQtoModubus_X128(MOTOR_getIbrake_Ratio(obj->motorHandle)); break;
+
+  // Motor PID Parameter
+  case MB_Motor_Reg_Idq_Kp: RegData = MB_IQtoModubus(MOTOR_getCurrent_Kp(obj->motorHandle)); break;
+  case MB_Motor_Reg_Idq_Ki: RegData = MB_IQtoModubus(MOTOR_getCurrent_Ki(obj->motorHandle)); break;
+  case MB_Motor_Reg_Spd_Kp: RegData = MB_IQtoModubus(MOTOR_getSpeed_Kp(obj->motorHandle)); break;
+  case MB_Motor_Reg_Spd_Ki: RegData = MB_IQtoModubus(MOTOR_getSpeed_Ki(obj->motorHandle)); break;
+  #ifdef USE_SpinTAC
+  case MB_Motor_Reg_BwRadps: RegData = MB_IQ20toModubus(MOTOR_getCtlBw_radps(obj->motorHandle)); break;
+  #else
+  case MB_Motor_Reg_BwRadps: break;
+  #endif
+
+  //  FSM Edit Parameter
+  case MB_Motor_Reg_FsmCurState: RegData = (uint16_t)FSM_getCurState(obj->fsmHandle); break;
+  case MB_Motor_Reg_FsmErrFlag:  RegData = FSM_getFlag_fsm(obj->fsmHandle); break;
+  case MB_Motor_Reg_FsmEditState: RegData = (uint16_t)FSM_get485EditState(obj->fsmHandle); break;
+  case MB_Motor_Reg_FsmEditOpt: RegData = (uint16_t)FSM_get485EditOptions(obj->fsmHandle); break;
+  case MB_Motor_Reg_FsmStParams: RegData = FSM_485Read_State_Box(obj->fsmHandle); break;
+  case MB_Motor_Reg_FsmEditRefSpd: RegData = MB_IQtoModubus(FSM_get485RefSpeed(obj->fsmHandle)); break;
+  case MB_Motor_Reg_FsmEditCondValue: break;
+  case MB_Motor_Reg_FsmEditCondition: break;
+  case MB_Motor_Reg_FsmEditRunAction: break;
+  case MB_Motor_Reg_FsmEditNextState: break;
+
+  // Position Parameter
+  case MB_Motor_Reg_FsmObjPosInt: RegData = FSM_getObjPosInt(obj->fsmHandle); break;
+  case MB_Motor_Reg_FsmObjPosFrac: RegData = FSM_getObjPosFrac(obj->fsmHandle); break;
+  case MB_Motor_Reg_FsmObjPosRough: RegData = FSM_getObjPosRough(obj->fsmHandle); break;
+  case MB_Motor_Reg_FsmCurPosInt: RegData = FSM_getCurPosInt(obj->fsmHandle); break;
+  case MB_Motor_Reg_FsmCurPosFrac: RegData = FSM_getCurPosFrac(obj->fsmHandle); break;
+  case MB_Motor_Reg_FsmCurPosRough: RegData = FSM_getCurPosRough(obj->fsmHandle); break;
+
+  default: break;
 
   }
 
-  obj->RTU_Frame->PDU_Data[0] = (CHAR)(RegData & 0xff);
-  obj->RTU_Frame->PDU_Data[1] = (CHAR)(RegData >> 8);
+  // big edian translate to little edian
+  obj->RTU_Frame->PDU_Data[1] = (CHAR)(RegData & 0xff);
+  obj->RTU_Frame->PDU_Data[0] = (CHAR)(RegData >> 8);
 
   return;
 }
@@ -474,10 +637,12 @@ void MB_FuncWriteHoldingRegister(MB_Handle handle)
   uint16_t RegAddress;
   uint16_t RegData;
 
+  // little endian translate to big endian
   RegAddress = obj->RTU_Frame->PDU_RegAddress[0];
   RegAddress <<= 8;
   RegAddress |= obj->RTU_Frame->PDU_RegAddress[1];
 
+  // little endian translate to big endian
   RegData = obj->RTU_Frame->PDU_Data[0];
   RegData <<= 8;
   RegData |= obj->RTU_Frame->PDU_Data[1];
@@ -485,12 +650,146 @@ void MB_FuncWriteHoldingRegister(MB_Handle handle)
   switch(RegAddress)
   {
 
-  case 0x0001:break;
+  // System information
+  case MB_Motor_Reg_SysFlag: MOTOR_setMotorFlag(obj->motorHandle, RegData); break;
 
-  default:RegData = 0xffff;break;
+  // Motor Parameters
+
+  // System state Parameters
+  case MB_Motor_Reg_Speed_krpm: break;
+
+
+  // System setting Parameters
+  case MB_Motor_Reg_RefSpeed_krpm: MOTOR_setMotorRefSpeed(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
+  case MB_Motor_Reg_MaxAccel_krpmps: MOTOR_setMotorMaxAccel(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
+  case MB_Motor_Reg_MaxDecel_krpmps: MOTOR_setMotorMaxDecel(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
+  case MB_Motor_Reg_MaxJrk_krpmps2: MOTOR_setMotorMaxJrk(obj->motorHandle, MB_ModubusToIQ20(RegData)); break;
+  case MB_Motor_Reg_CurrentRatio: MOTOR_setMaxCurrentRatio(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
+  case MB_Motor_Reg_IbrakeRatio: MOTOR_setIbrake_Ratio(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
+
+  // Motor PID Parameter
+  case MB_Motor_Reg_Idq_Kp:  MOTOR_setCurrent_Kp(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
+  case MB_Motor_Reg_Idq_Ki:  MOTOR_setCurrent_Ki(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
+  case MB_Motor_Reg_Spd_Kp:  MOTOR_setMotorSpd_Kp(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
+  case MB_Motor_Reg_Spd_Ki:  MOTOR_setMotorSpd_Ki(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
+  #ifdef USE_SpinTAC
+  case MB_Motor_Reg_BwRadps: MOTOR_setCtlBw_radps(obj->motorHandle, MB_ModubusToIQ20(RegData)); break;
+  #else
+  case MB_Motor_Reg_BwRadps: break;
+  #endif
+
+  // FSM Edit Parameter
+  case MB_Motor_Reg_FsmCurState: break;
+  case MB_Motor_Reg_FsmErrFlag: break;
+  case MB_Motor_Reg_FsmEditState: FSM_set485EditState(obj->fsmHandle, (FSM_State_e)RegData); break;
+  case MB_Motor_Reg_FsmEditOpt: FSM_set485EditOptions(obj->fsmHandle, (FSM_EditOpt_e)RegData); break;
+  case MB_Motor_Reg_FsmStParams: FSM_485Edit_State_Box(obj->fsmHandle, RegData);  break;
+
+  case MB_Motor_Reg_FsmEditRefSpd: FSM_set485RefSpeed(obj->fsmHandle, RegData); break;
+  case MB_Motor_Reg_FsmEditCondValue: break;
+  case MB_Motor_Reg_FsmEditCondition: break;
+  case MB_Motor_Reg_FsmEditRunAction: break;
+  case MB_Motor_Reg_FsmEditNextState: break;
+
+  // Position Parameter
+  case MB_Motor_Reg_FsmObjPosInt:  FSM_setObjPosInt(obj->fsmHandle, RegData); break;
+  case MB_Motor_Reg_FsmObjPosFrac: FSM_setObjPosFrac(obj->fsmHandle, MB_ModubusToIQ(RegData)); break;
+  case MB_Motor_Reg_FsmObjPosRough: FSM_setObjPosRough(obj->fsmHandle, RegData); break;
+  case MB_Motor_Reg_FsmCurPosInt: break;
+  case MB_Motor_Reg_FsmCurPosFrac: break;
+  case MB_Motor_Reg_FsmCurPosRough: break;
+
+  default: break;
 
   }
 
 
   return;
 }
+
+
+void MB_FuncWriteCoilsRegister(MB_Handle handle)
+{
+  MB_Obj *obj = (MB_Obj *)handle;
+
+  uint16_t CmdWord;
+  //uint16_t RegData;
+
+  // little_edian translate to big_edian
+  CmdWord = obj->RTU_Frame->PDU_RegAddress[0];
+  CmdWord <<= 8;
+  CmdWord |= obj->RTU_Frame->PDU_RegAddress[1];
+
+  // little_edian translate to big_edian
+  //RegData = obj->RTU_Frame->PDU_Data[0];
+  //RegData <<= 8;
+  //RegData |= obj->RTU_Frame->PDU_Data[1];
+
+  switch(CmdWord)
+  {
+
+  // Motor Control Command
+  case  MB_Motor_Cmd_StartMotor: FSM_setFlag_485Start(obj->fsmHandle); break;
+  case  MB_Motor_Cmd_StopMotor: FSM_setFlag_485Stop(obj->fsmHandle); break;
+  case  MB_Motor_Cmd_ClrFsmFlag: FSM_clrFlag_fsm(obj->fsmHandle); break;
+  case  MB_Motor_Cmd_clrOverCurrent: FSM_clrOverCurrentReg(obj->fsmHandle); break;
+  case  MB_Motor_Cmd_Shutdowm: FSM_ShutDowm(obj->fsmHandle); break;
+
+  // System flag command
+  case 	MB_Motor_Cmd_SetSysEnable: MOTOR_setSysEnable(obj->motorHandle); break;
+  case 	MB_Motor_Cmd_clrSysEnable: MOTOR_clrSysEnable(obj->motorHandle); break;
+
+  case  MB_Motor_Cmd_SetRunIdentify: MOTOR_setRunIdentify(obj->motorHandle); break;
+  case  MB_Motor_Cmd_ClrRunIdentify: MOTOR_clrRunIdentify(obj->motorHandle); break;
+
+  case 	MB_Motor_Cmd_SetMotorEst: if(MOTOR_getSysEnable(obj->motorHandle) == false)
+                                     {
+	                                   MOTOR_setFlag_MotorParamsEst(obj->motorHandle);
+                                     } break;
+  case  MB_Motor_Cmd_ClrMotorEst: if(MOTOR_getSysEnable(obj->motorHandle) == false)
+                                     {
+	                                   MOTOR_clrFlag_MotorParamsEst(obj->motorHandle);
+                                     } break;
+
+  case 	MB_Motor_Cmd_SetMotorIdentified: break;
+  case  MB_Motor_Cmd_ClrMotorIdentified: break;
+
+  case 	MB_Motor_Cmd_enableForceAngle: break;
+  case  MB_Motor_Cmd_disableForceAngle: break;
+
+  case 	MB_Motor_Cmd_ZeroPiont_Identify: break;
+
+  case 	MB_Motor_Cmd_enableRsRecalc: break;
+  case  MB_Motor_Cmd_disableRsRecalc: break;
+
+  case 	MB_Motor_Cmd_enableUserParams: break;
+  case  MB_Motor_Cmd_disableUserParams: break;
+
+  case 	MB_Motor_Cmd_enableOffsetcalc: break;
+  case  MB_Motor_Cmd_disableOffsetcalc: break;
+
+  case 	MB_Motor_Cmd_enablePowerWarp: MOTOR_enablePowerWarp(obj->motorHandle); break;
+  case  MB_Motor_Cmd_disablePowerWarp: MOTOR_disablePowerWarp(obj->motorHandle); break;
+
+  case 	MB_Motor_Cmd_enableSpeedCtrl: break;
+  case 	MB_Motor_Cmd_disableSpeedCtrl: break;
+
+  case 	MB_Motor_Cmd_enableRun: break;
+  case  MB_Motor_Cmd_disableRun: break;
+
+  case 	MB_Motor_Cmd_enableFlyingStart: MOTOR_setFalg_FlyingStart(obj->motorHandle); break;
+  case  MB_Motor_Cmd_disableFlyingStart: MOTOR_clrFalg_FlyingStart(obj->motorHandle); break;
+
+  default: break;
+
+  }
+
+  return;
+}
+
+
+
+
+
+
+

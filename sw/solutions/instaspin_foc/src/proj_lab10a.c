@@ -67,7 +67,7 @@
 
 uint_least16_t gCounter_updateGlobals = 0;
 
-bool Flag_Latch_softwareUpdate = true;
+
 
 CTRL_Handle ctrlHandle;
 

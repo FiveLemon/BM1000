@@ -1,22 +1,22 @@
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:34 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:04 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    1
+C:\Users\wmj\AppData\Local\Temp\0852412                              PAGE    1
 
        1              ;***************************************************************
        2              ;* TMS320C2000 C/C++ Codegen                         PC v6.2.5 *
-       3              ;* Date/Time created: Mon Jun 19 18:10:34 2017                 *
+       3              ;* Date/Time created: Sun Oct 08 22:38:04 2017                 *
        4              ;***************************************************************
        5                      .compiler_opts --float_support=softlib --hll_source=on --mem_model:code=flat --mem_model:data=large -
        6        0002  FP      .set    XAR2
        7              
        8              $C$DW$CU        .dwtag  DW_TAG_compile_unit
-       9                      .dwattr $C$DW$CU, DW_AT_name("C:/ti/motorware/motorware_1_01_00_18/sw/modules/pid/src/32b/pid.c")
+       9                      .dwattr $C$DW$CU, DW_AT_name("D:/BM1000/sw/modules/pid/src/32b/pid.c")
       10                      .dwattr $C$DW$CU, DW_AT_producer("TMS320C2000 C/C++ Codegen PC v6.2.5 Copyright (c) 1996-2014 Texas I
       11                      .dwattr $C$DW$CU, DW_AT_TI_version(0x01)
-      12                      .dwattr $C$DW$CU, DW_AT_comp_dir("C:\ti\motorware\motorware_1_01_00_18\sw\solutions\instaspin_foc\boa
-      13              ;       c:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\070562 C
-      14              ;       c:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\0705616
+      12                      .dwattr $C$DW$CU, DW_AT_comp_dir("D:\BM1000\sw\solutions\instaspin_foc\boards\hvkit_rev1p1\f28x\f2802
+      13              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\085244 C
+      14              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\0852418
       15 00000000               .sect   ".text"
       16                      .clink
       17                      .global _PID_init
@@ -27,11 +27,11 @@ C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    1
       22                      .dwattr $C$DW$1, DW_AT_TI_symbol_name("_PID_init")
       23                      .dwattr $C$DW$1, DW_AT_external
       24                      .dwattr $C$DW$1, DW_AT_type(*$C$DW$T$23)
-      25                      .dwattr $C$DW$1, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/modules/pid/src/32b/pid
+      25                      .dwattr $C$DW$1, DW_AT_TI_begin_file("D:/BM1000/sw/modules/pid/src/32b/pid.c")
       26                      .dwattr $C$DW$1, DW_AT_TI_begin_line(0x38)
       27                      .dwattr $C$DW$1, DW_AT_TI_begin_column(0x0c)
       28                      .dwattr $C$DW$1, DW_AT_TI_max_frame_size(-2)
-      29                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/modules/pid/src/32b/pid.c",line 57,column 1,is_
+      29                      .dwpsn  file "D:/BM1000/sw/modules/pid/src/32b/pid.c",line 57,column 1,is_stmt,address _PID_init
       30              
       31                      .dwfde $C$DW$CIE, _PID_init
       32              $C$DW$2 .dwtag  DW_TAG_formal_parameter, DW_AT_name("pMemory")
@@ -58,10 +58,10 @@ C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    1
       53                      .dwattr $C$DW$4, DW_AT_TI_symbol_name("_numBytes")
       54                      .dwattr $C$DW$4, DW_AT_type(*$C$DW$T$25)
       55                      .dwattr $C$DW$4, DW_AT_location[DW_OP_reg16]
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:34 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:04 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    2
+C:\Users\wmj\AppData\Local\Temp\0852412                              PAGE    2
 
       56              ;* AR4   assigned to _pMemory
       57              $C$DW$5 .dwtag  DW_TAG_variable, DW_AT_name("pMemory")
@@ -72,12 +72,12 @@ C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    2
       62                      .dwcfi  save_reg_to_mem, 26, 0
       63                      .dwcfi  save_reg_to_reg, 78, 26
       64 00000000 1EA6          MOVL      XAR6,ACC              ; [CPU_] |57| 
-      65                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/modules/pid/src/32b/pid.c",line 61,column 3,is_
+      65                      .dwpsn  file "D:/BM1000/sw/modules/pid/src/32b/pid.c",line 61,column 3,is_stmt
       66 00000001 0210          MOVB      ACC,#16               ; [CPU_] |61| 
       67 00000002 0FA6          CMPL      ACC,XAR6              ; [CPU_] |61| 
       68 00000003 6903          B         $C$L1,LOS             ; [CPU_] |61| 
       69                      ; branchcc occurs ; [] |61| 
-      70                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/modules/pid/src/32b/pid.c",line 62,column 5,is_
+      70                      .dwpsn  file "D:/BM1000/sw/modules/pid/src/32b/pid.c",line 62,column 5,is_stmt
       71 00000004 D400          MOVB      XAR4,#0               ; [CPU_] |62| 
       72              $C$DW$6 .dwtag  DW_TAG_TI_branch
       73                      .dwattr $C$DW$6, DW_AT_low_pc(0x00)
@@ -85,15 +85,15 @@ C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    2
       75 00000005 0006          LRETR     ; [CPU_] 
       76                      ; return occurs ; [] 
       77 00000006       $C$L1:    
-      78                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/modules/pid/src/32b/pid.h",line 413,column 3,is
+      78                      .dwpsn  file "D:/BM1000/sw/modules/pid/src/32b/pid.h",line 413,column 3,is_stmt
       79 00000006 0200          MOVB      ACC,#0                ; [CPU_] |413| 
-      80                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/modules/pid/src/32b/pid.h",line 400,column 3,is
+      80                      .dwpsn  file "D:/BM1000/sw/modules/pid/src/32b/pid.h",line 400,column 3,is_stmt
       81 00000007 D008          MOVB      XAR0,#8               ; [CPU_] |400| 
-      82                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/modules/pid/src/32b/pid.h",line 413,column 3,is
+      82                      .dwpsn  file "D:/BM1000/sw/modules/pid/src/32b/pid.h",line 413,column 3,is_stmt
       83 00000008 1EF4          MOVL      *+XAR4[6],ACC         ; [CPU_] |413| 
-      84                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/modules/pid/src/32b/pid.h",line 400,column 3,is
+      84                      .dwpsn  file "D:/BM1000/sw/modules/pid/src/32b/pid.h",line 400,column 3,is_stmt
       85 00000009 1E94          MOVL      *+XAR4[AR0],ACC       ; [CPU_] |400| 
-      86                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/modules/pid/src/32b/pid.h",line 290,column 3,is
+      86                      .dwpsn  file "D:/BM1000/sw/modules/pid/src/32b/pid.h",line 290,column 3,is_stmt
       87 0000000a D00A          MOVB      XAR0,#10              ; [CPU_] |290| 
       88 0000000b 1E94          MOVL      *+XAR4[AR0],ACC       ; [CPU_] |290| 
       89              $C$DW$7 .dwtag  DW_TAG_TI_branch
@@ -101,7 +101,7 @@ C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    2
       91                      .dwattr $C$DW$7, DW_AT_TI_return
       92 0000000c 0006          LRETR     ; [CPU_] 
       93                      ; return occurs ; [] 
-      94                      .dwattr $C$DW$1, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/modules/pid/src/32b/pid.c
+      94                      .dwattr $C$DW$1, DW_AT_TI_end_file("D:/BM1000/sw/modules/pid/src/32b/pid.c")
       95                      .dwattr $C$DW$1, DW_AT_TI_end_line(0x49)
       96                      .dwattr $C$DW$1, DW_AT_TI_end_column(0x01)
       97                      .dwendentry
@@ -118,10 +118,10 @@ C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    2
      108              $C$DW$8 .dwtag  DW_TAG_member
      109                      .dwattr $C$DW$8, DW_AT_type(*$C$DW$T$19)
      110                      .dwattr $C$DW$8, DW_AT_name("Kp")
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:34 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:04 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    3
+C:\Users\wmj\AppData\Local\Temp\0852412                              PAGE    3
 
      111                      .dwattr $C$DW$8, DW_AT_TI_symbol_name("_Kp")
      112                      .dwattr $C$DW$8, DW_AT_data_member_location[DW_OP_plus_uconst 0x0]
@@ -178,10 +178,10 @@ C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    3
      163                      .dwattr $C$DW$T$22, DW_AT_address_class(0x16)
      164              $C$DW$T$23      .dwtag  DW_TAG_typedef, DW_AT_name("PID_Handle")
      165                      .dwattr $C$DW$T$23, DW_AT_type(*$C$DW$T$22)
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:34 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:04 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    4
+C:\Users\wmj\AppData\Local\Temp\0852412                              PAGE    4
 
      166                      .dwattr $C$DW$T$23, DW_AT_language(DW_LANG_C)
      167              $C$DW$T$3       .dwtag  DW_TAG_pointer_type
@@ -238,10 +238,10 @@ C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    4
      218                      .dwattr $C$DW$T$24, DW_AT_language(DW_LANG_C)
      219              $C$DW$17        .dwtag  DW_TAG_TI_far_type
      220                      .dwattr $C$DW$17, DW_AT_type(*$C$DW$T$24)
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:34 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:04 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    5
+C:\Users\wmj\AppData\Local\Temp\0852412                              PAGE    5
 
      221              $C$DW$T$25      .dwtag  DW_TAG_const_type
      222                      .dwattr $C$DW$T$25, DW_AT_type(*$C$DW$17)
@@ -298,10 +298,10 @@ C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    5
      273                      .dwcfi  undefined, 38
      274                      .dwcfi  undefined, 75
      275                      .dwcfi  undefined, 76
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:34 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:04 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    6
+C:\Users\wmj\AppData\Local\Temp\0852412                              PAGE    6
 
      276                      .dwcfi  undefined, 77
      277                      .dwcfi  undefined, 4
@@ -358,10 +358,10 @@ C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    6
      328              $C$DW$32        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("PM")
      329                      .dwattr $C$DW$32, DW_AT_location[DW_OP_reg31]
      330              $C$DW$33        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("OVM")
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:34 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:04 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\0705610                              PAGE    7
+C:\Users\wmj\AppData\Local\Temp\0852412                              PAGE    7
 
      331                      .dwattr $C$DW$33, DW_AT_location[DW_OP_regx 0x20]
      332              $C$DW$34        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("PAGE0")

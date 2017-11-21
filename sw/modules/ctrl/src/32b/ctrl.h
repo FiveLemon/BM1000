@@ -53,7 +53,12 @@
 #include "sw/modules/est/src/32b/est.h"
 #include "sw/modules/svgen/src/32b/svgen.h"
 #include "sw/modules/traj/src/32b/traj.h"
+
 #include "sw/modules/ctrl/src/32b/ctrl_obj.h"
+
+#ifdef FAST_ROM_V1p6
+#include "sw/modules/enc/src/32b/enc.h"
+#endif
 
 #include "sw/modules/types/src/types.h"
 
@@ -75,7 +80,7 @@ extern "C" {
 // **************************************************************************
 // the function prototypes
 
-
+/*
 //! \brief     Adds the Vdq offset to the Vdq values
 //! \param[in] handle        The controller (CTRL) handle
 inline void CTRL_addVdq_offset(CTRL_Handle handle)
@@ -87,6 +92,38 @@ inline void CTRL_addVdq_offset(CTRL_Handle handle)
 
   return;
 } // return CTRL_addVdq_offset() function
+*/
+static inline _iq CTRL_getEncAngle_pu(CTRL_Handle handle)
+{
+  CTRL_Obj *obj = (CTRL_Obj *)handle;
+
+  return(obj->enc_Angle);
+} // end of CTRL_getEncAngle_pu() function
+
+inline void CTRL_setEncAngle_pu(CTRL_Handle handle, const _iq angle)
+{
+  CTRL_Obj *obj = (CTRL_Obj *)handle;
+
+  obj->enc_Angle = angle;
+
+  return;
+}
+
+inline bool CTRL_getFlag_enableEncAngle(CTRL_Handle handle)
+{
+  CTRL_Obj *obj = (CTRL_Obj *)handle;
+
+  return (obj->flag_enableEncAngle);
+}
+
+inline void CTRL_setFlag_enableEncAngle(CTRL_Handle handle, const bool state)
+{
+  CTRL_Obj *obj = (CTRL_Obj *)handle;
+
+  obj->flag_enableEncAngle = state;
+
+  return;
+}
 
 
 //! \brief      Gets the current loop count
@@ -187,7 +224,7 @@ inline EST_Handle CTRL_getEstHandle(CTRL_Handle handle)
   return(obj->estHandle);
 } // end of CTRL_getEstHandle() function
 
-
+/*
 //! \brief      Gets the feedback value for the speed controller
 //! \param[in]  handle  The controller (CTRL) handle
 static inline _iq CTRL_getFbackValue_spd_pu(CTRL_Handle handle)
@@ -196,7 +233,7 @@ static inline _iq CTRL_getFbackValue_spd_pu(CTRL_Handle handle)
 
   return(obj->speed_fb_pu);
 } // end of CTRL_getFbackValue_spd_pu() function
-
+*/
 
 //! \brief     Gets the enable controller flag value from the estimator
 //! \param[in] handle  The controller (CTRL) handle
@@ -363,7 +400,7 @@ void CTRL_getIdq_in_pu(CTRL_Handle handle,MATH_vec2 *pIdq_in_pu);
 //! \param[out] pIdq_ref_pu  The vector for the direct/quadrature current reference vector values, pu
 void CTRL_getIdq_ref_pu(CTRL_Handle handle,MATH_vec2 *pIdq_ref_pu);
 
-
+/*
 //! \brief     Gets the direct current (Id) offset value from the controller
 //! \param[in] handle  The controller (CTRL) handle
 //! \return    The direct current offset value, pu
@@ -373,7 +410,7 @@ static inline _iq CTRL_getId_offset_pu(CTRL_Handle handle)
 
   return(obj->Idq_offset_pu.value[0]);
 } // end of CTRL_getId_offset_pu() function
-
+*/
 
 //! \brief     Gets the Id rated current value from the controller
 //! \param[in] handle  The controller (CTRL) handle
@@ -396,7 +433,7 @@ inline _iq CTRL_getIq_in_pu(CTRL_Handle handle)
   return(obj->Idq_in.value[1]);
 } // end of CTRL_getIq_in_pu() function
 
-
+/*
 //! \brief     Gets the quadrature current (Iq) offset value from the controller
 //! \param[in] handle  The controller (CTRL) handle
 //! \return    The quadrature current offset value, pu
@@ -406,7 +443,7 @@ static inline _iq CTRL_getIq_offset_pu(CTRL_Handle handle)
 
   return(obj->Idq_offset_pu.value[1]);
 } // end of CTRL_getIq_offset_pu() function
-
+*/
 
 //! \brief     Gets the quadrature current (Iq) reference value from the controller
 //! \param[in] handle  The controller (CTRL) handle
@@ -418,7 +455,7 @@ inline _iq CTRL_getIq_ref_pu(CTRL_Handle handle)
   return(obj->Idq_ref.value[1]);
 } // end of CTRL_getIq_ref_pu() function
 
-
+/*
 //! \brief      Gets the reference value for the Iq current controller
 //! \param[in]  handle  The controller (CTRL) handle
 static inline  _iq CTRL_getRefValue_Iq_pu(CTRL_Handle handle)
@@ -427,7 +464,7 @@ static inline  _iq CTRL_getRefValue_Iq_pu(CTRL_Handle handle)
 
   return(refValue_pu);
 } // end of CTRL_getRefValue_Iq_pu() function
-
+*/
 
 //! \brief     Gets the quadrature current (Iq) reference memory address from the controller
 //! \param[in] handle  The controller (CTRL) handle
@@ -643,7 +680,7 @@ inline _iq CTRL_getRefValue_pu(CTRL_Handle handle,const CTRL_Type_e ctrlType)
   return(ref);
 } // end of CTRL_getRefValue_pu() function
 
-
+/*
 //! \brief      Gets the reference value for the Id current controller
 //! \param[in]  handle  The controller (CTRL) handle
 static inline  _iq CTRL_getRefValue_Id_pu(CTRL_Handle handle)
@@ -661,8 +698,8 @@ static inline  _iq CTRL_getRefValue_Id_pu(CTRL_Handle handle)
 
   return(refValue_pu);
 } // end of CTRL_getRefValue_Id_pu() function
-
-
+*/
+/*
 //! \brief      Gets the reference value for the speed controller
 //! \param[in]  handle  The controller (CTRL) handle
 static inline  _iq CTRL_getRefValue_spd_pu(CTRL_Handle handle)
@@ -671,7 +708,7 @@ static inline  _iq CTRL_getRefValue_spd_pu(CTRL_Handle handle)
 
   return(obj->speed_ref_pu);
 } // end of CTRL_getRefValue_spd_pu() function
-
+*/
 
 //! \brief     Gets the high frequency resistance (Rhf) value from the controller
 //! \param[in] handle  The controller (CTRL) handle
@@ -753,11 +790,11 @@ inline _iq CTRL_getSpd_int_ref_pu(CTRL_Handle handle)
 //! \brief     Gets the maximum output value for the speed controller
 //! \param[in] handle  The controller (CTRL) handle
 //! \return    The maximum output value, pu
-static inline _iq CTRL_getSpeed_outMax_pu(CTRL_Handle handle)
+static inline _iq CTRL_getSpd_outMaxRatio_pu(CTRL_Handle handle)
 {
   CTRL_Obj *obj = (CTRL_Obj *)handle;
 
-  return(obj->speed_outMax_pu);
+  return(obj->spd_outMaxRatio_pu);
 } // end of CTRL_getSpeed_outMax_pu() function
 
 
@@ -1143,7 +1180,7 @@ void CTRL_run(CTRL_Handle handle,HAL_Handle halHandle,
 //! \param[in] handle   The controller (CTRL) handle
 void CTRL_runTraj(CTRL_Handle handle);
 
-
+/*
 //! \brief      Sets the angle value, pu
 //! \param[in]  handle    The controller (CTRL) handle
 //! \param[in]  angle_pu  The angle value, pu
@@ -1151,11 +1188,11 @@ static inline void CTRL_setAngle_pu(CTRL_Handle handle,const _iq angle_pu)
 {
   CTRL_Obj *obj = (CTRL_Obj *)handle;
 
-  obj->angle_pu = angle_pu;
+  obj->brake.angle_pu = angle_pu;
 
   return;
 } // end of CTRL_setAngle_pu() function
-
+*/
 
 //! \brief      Sets the controller frequency
 //! \param[in]  handle       The controller (CTRL) handle
@@ -1363,7 +1400,7 @@ inline void CTRL_setIdq_in_pu(CTRL_Handle handle,const MATH_vec2 *pIdq_in_pu)
   return;
 } // end of CTRL_setIdq_in_pu() function
 
-
+/*
 //! \brief     Sets the direct/quadrature current (Idq) offset vector values in the controller
 //! \param[in] handle          The controller (CTRL) handle
 //! \param[in] pIdq_offset_pu  The vector of the direct/quadrature current offset vector values, pu
@@ -1376,7 +1413,7 @@ static inline void CTRL_setIdq_offset_pu(CTRL_Handle handle,const MATH_vec2 *pId
 
   return;
 } // end of CTRL_setIdq_offset_pu() function
-
+*/
 
 //! \brief      Sets the direct/quadrature current (Idq) reference vector values in the controller
 //! \param[in]  handle       The controller (CTRL) handle
@@ -1548,6 +1585,33 @@ inline void CTRL_setMaxVsMag_pu(CTRL_Handle handle,const _iq maxVsMag)
   return;
 } // end of CTRL_setmaxVsMag_pu() function
 
+/*
+inline void CTRL_resetCycleMech_cnt(CTRL_Handle handle)
+{
+  CTRL_Obj *obj = (CTRL_Obj *)handle;
+
+  obj->Cycle_mech_cnt = 0;
+
+  return;
+}
+
+inline void CTRL_setCycleMech_cnt(CTRL_Handle handle, const int16_t Cycle_count)
+{
+  CTRL_Obj *obj = (CTRL_Obj *)handle;
+
+  obj->Cycle_mech_cnt = Cycle_count;
+
+  return;
+}
+
+
+inline int16_t CTRL_getCycleMech_cnt(CTRL_Handle handle)
+{
+  CTRL_Obj *obj = (CTRL_Obj *)handle;
+
+  return (obj->Cycle_mech_cnt);
+}
+*/
 
 //! \brief      Sets the maximum acceleration of the speed controller
 //! \details    Sets the maximum acceleration rate of the speed reference.
@@ -1690,7 +1754,7 @@ inline void CTRL_setRoverL(CTRL_Handle handle,const float_t RoverL)
   return;
 } // end of CTRL_setRoverL() function
 
-
+/*
 //! \brief     Sets the feedback speed value in the controller
 //! \param[in] handle       The controller (CTRL) handle
 //! \param[in] speed_fb_pu  The feedback speed value, pu
@@ -1702,7 +1766,7 @@ static inline void CTRL_setSpeed_fb_pu(CTRL_Handle handle,const _iq speed_fb_pu)
 
   return;
 } // end of CTRL_setSpeed_fb_pu() function
-
+*/
 
 //! \brief     Sets the maximum speed value in the controller
 //! \param[in] handle     The controller (CTRL) handle
@@ -1730,19 +1794,19 @@ inline void CTRL_setSpd_out_pu(CTRL_Handle handle,const _iq spd_out_pu)
 } // end of CTRL_setSpd_out_pu() function
 
 
-//! \brief      Sets the maximum output value for the speed controller
+//! \brief      Sets the maximum output ratio value for the speed controller
 //! \param[in]  handle           The controller (CTRL) handle
-//! \param[in]  speed_outMax_pu  The maximum output value for the speed controller
-static inline void CTRL_setSpeed_outMax_pu(CTRL_Handle handle,const _iq speed_outMax_pu)
+//! \param[in]  spd_outMaxRatio_pu  The maximum output ratio value for the speed controller
+static inline void CTRL_setSpd_outMaxRatio_pu(CTRL_Handle handle,const _iq spd_outMaxRatio_pu)
 {
   CTRL_Obj *obj = (CTRL_Obj *)handle;
 
-  obj->speed_outMax_pu = speed_outMax_pu;
+  obj->spd_outMaxRatio_pu = spd_outMaxRatio_pu;
 
   return;
 } // end of CTRL_setSpeed_outMax_pu() function
 
-
+/*
 //! \brief     Sets the output speed reference value in the controller
 //! \param[in] handle        The controller (CTRL) handle
 //! \param[in] speed_ref_pu  The output speed reference value, pu
@@ -1754,7 +1818,7 @@ static inline void CTRL_setSpeed_ref_pu(CTRL_Handle handle,const _iq speed_ref_p
 
   return;
 } // end of CTRL_setSpeed_ref_pu() function
-
+*/
 
 //! \brief     Sets the output speed reference value in the controller
 //! \param[in] handle      The controller (CTRL) handle
@@ -1876,6 +1940,8 @@ void CTRL_setup_user(CTRL_Handle handle,
 void CTRL_setUserMotorParams(CTRL_Handle handle);
 
 
+void CTRL_setBrake(CTRL_Handle handle);
+
 //! \brief     Sets the alpha/beta voltage input vector values in the controller
 //! \param[in] handle      The controller (CTRL) handle
 //! \param[in] pVab_in_pu  The vector of alpha/beta voltage input vector values, pu
@@ -1903,7 +1969,7 @@ inline void CTRL_setVab_out_pu(CTRL_Handle handle,const MATH_vec2 *pVab_out_pu)
   return;
 } // end of CTRL_setVab_out_pu() function
 
-
+/*
 //! \brief     Sets the direct/quadrature voltage (Vdq) offset vector values in the controller
 //! \param[in] handle          The controller (CTRL) handle
 //! \param[in] pVdq_offset_pu  The vector of the direct/quadrature voltage offset vector values, pu
@@ -1916,7 +1982,7 @@ static inline void CTRL_setVdq_offset_pu(CTRL_Handle handle,const MATH_vec2 *pVd
 
   return;
 } // end of CTRL_setVdq_offset_pu() function
-
+*/
 
 //! \brief     Sets the direct/quadrature voltage output vector values in the controller
 //! \param[in] handle       The controller (CTRL) handle
@@ -2150,6 +2216,92 @@ inline _iq CTRL_angleDelayComp(CTRL_Handle handle, const _iq angle_pu)
   return(angleComp_pu);
 }
 
+/*
+//! \brief      Calculates the absolute electrical angle
+//! \param[in]  angle_pu  The electrical angle from _IQ(0.0) to _IQ(1.0) when running CW and from _IQ(-1.0) to _IQ(0.0) when running CCW
+//! \return     The electrical angle from _IQ(0.0) to _IQ(1.0) regardless of direction of rotation (CW or CCW)
+inline _iq CTRL_getAbsElecAngle(const _iq angle_pu)
+{
+  _iq angle_abs_pu;
+
+  // make angle possitive only
+  if(angle_pu < _IQ(0.0))
+    {
+	  angle_abs_pu = angle_pu + _IQ(1.0);
+    }
+  else
+    {
+	  angle_abs_pu = angle_pu;
+    }
+
+  return(angle_abs_pu);
+} // end of getAbsElecAngle() function
+
+
+//! \brief      Calculates mechanical angle from electrical angle
+//! \param[in]  pAngle_mech_poles  The mechanical angle from _IQ(-USER_MOTOR_NUM_POLE_PAIRS) to _IQ(USER_MOTOR_NUM_POLE_PAIRS)
+//! \param[in]  angle_pu           The electrical angle from _IQ(0.0) to _IQ(1.0)
+//! \return     The mechanical angle from _IQ(0.0) to _IQ(1.0)
+inline _iq CTRL_getAbsMechAngle(CTRL_Handle handle, const _iq angle_pu)
+{
+  CTRL_Obj *obj = (CTRL_Obj *)handle;
+  _iq angle_elec_delta_pu = _IQ(0.0);     // electrical angle delta, angle*z^0 - angle*z^-1
+  _iq tmp_mech_pu = _IQ(0.0);             // temporary value for intermediate calculations
+  _iq angle_mech_out = _IQ(0.0);          // temporary mechanical angle used to store the value to be returned by the function
+
+  // calculate angle delta
+  angle_elec_delta_pu = angle_pu - obj->Angle_z1_pu;
+
+  // calculate new mechanical angle
+  tmp_mech_pu = obj->Angle_mech_poles + angle_elec_delta_pu;
+
+  // take care of delta calculations when electrical angle wraps around from _IQ(1.0) to _IQ(0.0) or from _IQ(0.0) to _IQ(1.0)
+  if(angle_elec_delta_pu < _IQ(-0.5))
+    {
+      tmp_mech_pu = tmp_mech_pu + _IQ(1.0);
+    }
+  else if(angle_elec_delta_pu > _IQ(0.5))
+    {
+      tmp_mech_pu = tmp_mech_pu - _IQ(1.0);
+    }
+
+  // take care of wrap around of the mechanical angle, so that angle_mech_poles stays within _IQ(-USER_MOTOR_NUM_POLE_PAIRS) to _IQ(USER_MOTOR_NUM_POLE_PAIRS)
+  if(tmp_mech_pu >= _IQ(USER_MOTOR_NUM_POLE_PAIRS))
+    {
+	  obj->Cycle_mech_cnt++;
+      tmp_mech_pu = tmp_mech_pu - _IQ(USER_MOTOR_NUM_POLE_PAIRS);
+    }
+  else if(tmp_mech_pu <= _IQ(-USER_MOTOR_NUM_POLE_PAIRS))
+    {
+	  obj->Cycle_mech_cnt--;
+      tmp_mech_pu = tmp_mech_pu + _IQ(USER_MOTOR_NUM_POLE_PAIRS);
+    }
+
+  // store value in angle_mech_poles
+  obj->Angle_mech_poles = tmp_mech_pu;
+
+  // scale the mechanical angle so that final output is from _IQ(-1.0) to _IQ(1.0)
+  tmp_mech_pu = _IQmpy(tmp_mech_pu, _IQ(1.0/USER_MOTOR_NUM_POLE_PAIRS));
+
+  // make the final mechanical angle a positive only values from _IQ(0.0) to _IQ(1.0)
+  if(tmp_mech_pu < _IQ(0.0))
+    {
+	  angle_mech_out = tmp_mech_pu + _IQ(1.0);
+    }
+  else
+    {
+	  angle_mech_out = tmp_mech_pu;
+    }
+
+  // store the angle so next time this function is called we have the angle from the previous sample
+  obj->Angle_z1_pu = angle_pu;
+
+  // returned the calculated mechanical angle from _IQ(0.0) to _IQ(1.0)
+  return(angle_mech_out);
+} // end of getAbsMechAngle() function
+
+*/
+
 
 //! \brief      Runs the online controller
 //! \param[in]  handle    The controller (CTRL) handle
@@ -2363,8 +2515,26 @@ inline void CTRL_runOnLine_User(CTRL_Handle handle,
          pAdcData->dcBus,TRAJ_getIntValue(obj->trajHandle_spd));
 
 
- // generate the motor electrical angle
- angle_pu = EST_getAngle_pu(obj->estHandle);
+ if(CTRL_getFlag_enableEncAngle(handle))
+ {
+   angle_pu = CTRL_getEncAngle_pu(handle);
+ }
+ else
+ {
+   // generate the motor electrical angle
+   angle_pu = EST_getAngle_pu(obj->estHandle);
+ }
+
+
+ if(BRAKE_getBrakeState(obj->brakeHandle))
+   {
+     angle_pu = BRAKE_getAngle_pu(obj->brakeHandle);
+   }
+ else
+   {
+    // keep angle data for brake state
+    BRAKE_setAngle_pu(obj->brakeHandle, angle_pu);
+   }
 
 
  // compute the sin/cos phasor
@@ -2384,7 +2554,7 @@ inline void CTRL_runOnLine_User(CTRL_Handle handle,
    {
      _iq refValue = TRAJ_getIntValue(obj->trajHandle_spd);
      _iq fbackValue = EST_getFm_pu(obj->estHandle);
-     _iq outMax = TRAJ_getIntValue(obj->trajHandle_spdMax);
+     _iq outMax = _IQmpy(CTRL_getSpd_outMaxRatio_pu(handle),TRAJ_getIntValue(obj->trajHandle_spdMax));
      _iq outMin = -outMax;
 
      // reset the speed count
@@ -2425,7 +2595,14 @@ inline void CTRL_runOnLine_User(CTRL_Handle handle,
      PID_setKp(obj->pidHandle_Id,Kp_Id);
 
      // compute the reference value
-     refValue = TRAJ_getIntValue(obj->trajHandle_Id) + CTRL_getId_ref_pu(handle);
+     if(BRAKE_getBrakeState(obj->brakeHandle))
+     {
+       refValue = BRAKE_getId_ref_pu(obj->brakeHandle);
+     }
+     else
+     {
+       refValue = TRAJ_getIntValue(obj->trajHandle_Id) + CTRL_getId_ref_pu(handle);
+     }
 
      // update the Id reference value
      EST_updateId_ref_pu(obj->estHandle,&refValue);
@@ -2456,15 +2633,23 @@ inline void CTRL_runOnLine_User(CTRL_Handle handle,
      PID_setKp(obj->pidHandle_Iq,Kp_Iq);
 
      // get the reference value
-     if(CTRL_getFlag_enableSpeedCtrl(handle))
-       {
-         refValue = CTRL_getSpd_out_pu(handle);
-       }
+     if(BRAKE_getBrakeState(obj->brakeHandle))
+     {
+    	 refValue = BRAKE_getIq_ref_pu(obj->brakeHandle);
+     }
+     else if(CTRL_getFlag_enableSpeedCtrl(handle))
+     {
+       refValue = CTRL_getSpd_out_pu(handle);
+       BRAKE_setIq_ref_pu(obj->brakeHandle, CTRL_getSpd_out_pu(handle));
+
+     }
      else
-       {
+     {
          // get the Iq reference value
          refValue = CTRL_getIq_ref_pu(handle);
-       }
+     }
+
+
 
      // get the feedback value
      fbackValue = CTRL_getIq_in_pu(handle);
@@ -2507,7 +2692,7 @@ inline void CTRL_runOnLine_User(CTRL_Handle handle,
  return;
 } // end of CTRL_runOnLine_User() function
 
-
+/*
 //! \brief      Runs the online controller
 //! \param[in]  handle    The controller (CTRL) handle
 inline void CTRL_runPiOnly(CTRL_Handle handle) //,const HAL_AdcData_t *pAdcData,HAL_PwmData_t *pPwmData)
@@ -2522,7 +2707,7 @@ inline void CTRL_runPiOnly(CTRL_Handle handle) //,const HAL_AdcData_t *pAdcData,
     {
       _iq refValue = CTRL_getRefValue_spd_pu(handle);
       _iq fbackValue = CTRL_getFbackValue_spd_pu(handle);
-      _iq outMax = CTRL_getSpeed_outMax_pu(handle);
+      _iq outMax = CTRL_getSpd_outMaxRatio_pu(handle);
       _iq outMin = -outMax;
 
       // reset the speed count
@@ -2629,6 +2814,7 @@ inline void CTRL_runPiOnly(CTRL_Handle handle) //,const HAL_AdcData_t *pAdcData,
 
 } // end of CTRL_runPiOnly() function
 
+*/
 
 #ifdef __cplusplus
 }

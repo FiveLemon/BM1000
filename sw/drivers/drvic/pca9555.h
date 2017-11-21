@@ -8,8 +8,11 @@
 #ifndef _PCA9555_H
 #define _PCA9555_H
 
+#ifdef FAST_ROM_V1p6
+#include "sw/drivers/i2c/src/32b/f28x/f2806x/i2c.h"
+#else
 #include "sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h"
-
+#endif
 
 #ifdef __cplusplus 
 extern "C" { 
@@ -63,21 +66,24 @@ typedef enum
 
 typedef struct _PORT_DATA_t_
 {
-  bool  PORT0_SD;              //shut down
-  bool  PORT0_RELAY_OPEN;      // relay open
-  bool  PORT0_CLR_OC;          // clear over current
-  bool  PORT0_CPLD_RST;        // cpld reset
-  bool  PORT0_LEDR;            // red led (error or energcy stop)
-  bool  PORT0_LEDY;            //orange led or yellow led (send data to master board)
-  bool  PORT0_LEDG;            // green led (off : energcy stop)
-  bool  PORT0_LEDB;            // blue led (motor have pwm signal)
 
-  bool  PORT1_IGBT_OC;         // IGBT over current flag
-  bool  PORT1_IKCM_UV;         // IGBT under voltage (15v)
-  bool  PORT1_RELAY_ON;        // relay on flag (power on normal)
-  bool  PORT1_EMERG_STP;       // energcy stop flag
-  bool  PORT1_SENSOR0;         // ldc0851 or photoelectric switch senser
-  bool  PORT1_SENSOR1;         // ldc0851 or photoelectric switch senser
+  uint16_t  PORT1_IGBT_OC:1;         // IGBT over current flag
+  uint16_t  PORT1_IKCM_UV:1;         // IGBT under voltage (15v)
+  uint16_t  PORT1_RELAY_ON:1;        // relay on flag (power on normal)
+  uint16_t  PORT1_Resv:2;
+  uint16_t  PORT1_EMERG_STP:1;       // energcy stop flag
+  uint16_t  PORT1_SENSOR0:1;         // ldc0851 or photoelectric switch senser
+  uint16_t  PORT1_SENSOR1:1;         // ldc0851 or photoelectric switch senser
+
+  uint16_t  PORT0_SD:1;              //shut down
+  uint16_t  PORT0_RELAY_OPEN:1;      // relay open
+  uint16_t  PORT0_CLR_OC:1;          // clear over current
+  uint16_t  PORT0_CPLD_RST:1;        // cpld reset
+  uint16_t  PORT0_LEDR:1;            // red led (error or energcy stop)
+  uint16_t  PORT0_LEDY:1;            //orange led or yellow led (send data to master board)
+  uint16_t  PORT0_LEDG:1;            // green led (off : energcy stop)
+  uint16_t  PORT0_LEDB:1;            // blue led (motor have pwm signal)
+
 
 } PORT_DATA_t;
 
@@ -115,7 +121,7 @@ uint16_t PCA955x_RdData(PCA955x_Handle handle, PCA955x_RegName_e RegName);
 void PCA955x_Configure(PCA955x_Handle handle, PCA955x_PortNum_e PortNum, uint16_t Config);
 void PCA955x_WriteCommand(PCA955x_Handle handle, PCA955x_PortNum_e PortNum, uint16_t Command);
 uint16_t PCA955x_ReadStatus(PCA955x_Handle handle, PCA955x_PortNum_e PortNum);
-
+void PCA955x_GetStatus(PCA955x_Handle handle, PCA955x_PortNum_e PortNum);
 
 inline void PCA955x_resetRxTimeOut(PCA955x_Handle handle)
 {

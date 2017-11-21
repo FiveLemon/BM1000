@@ -331,11 +331,11 @@ extern "C" {
 
 // **************************************************************************
 // end the defines
-
+#define USER_MOTOR_NUM_POLE_PAIRS       (2)
 
 //! \brief USER MOTOR & ID SETTINGS
 // **************************************************************************
-
+/*
 //! \brief Define each motor with a unique name and ID number
 // BLDC & SMPM motors
 #define Estun_EMJ_04APB22           101
@@ -817,10 +817,16 @@ extern "C" {
 #error The flux estimation frequency is not defined in user.h
 #endif
 
-
+*/
 // **************************************************************************
 // the functions
 
+extern void USER_setSysParams(USER_Params *pUserParams);
+extern void USER_setWaitTimeParams(USER_Params *pUserParams);
+extern void USER_setMotorParams(USER_Params *pUserParams);
+extern void USER_setBoardParams(USER_Params *pUserParams);
+extern void USER_setMotorIDs(USER_Params *pUserParams, const uint_least8_t motor_ID);
+extern void USER_checkDefErrors(USER_Params *pUserParams);
 
 //! \brief      Sets the user parameter values
 //! \param[in]  pUserParams  The pointer to the user param structure
@@ -846,33 +852,32 @@ extern void USER_setErrorCode(USER_Params *pUserParams,const USER_ErrorCode_e er
 
 //! \brief      Recalculates Inductances with the correct Q Format
 //! \param[in]  handle       The controller (CTRL) handle
-extern void USER_softwareUpdate1p6(CTRL_Handle handle);
+extern void USER_softwareUpdate1p6(CTRL_Handle handle, USER_Params *pUserParams);
 
 
 //! \brief      Updates Id and Iq PI gains
 //! \param[in]  handle       The controller (CTRL) handle
-extern void USER_calcPIgains(CTRL_Handle handle);
+extern void USER_calcPIgains(CTRL_Handle handle, USER_Params *pUserParams);
 
 
 //! \brief      Computes the scale factor needed to convert from torque created by Ld, Lq, Id and Iq, from per unit to Nm
 //! \return     The scale factor to convert torque from (Ld - Lq) * Id * Iq from per unit to Nm, in IQ24 format
-extern _iq USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf(void);
+extern _iq USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf(USER_Params *pUserParams);
 
 
 //! \brief      Computes the scale factor needed to convert from torque created by flux and Iq, from per unit to Nm
 //! \return     The scale factor to convert torque from Flux * Iq from per unit to Nm, in IQ24 format
-extern _iq USER_computeTorque_Flux_Iq_pu_to_Nm_sf(void);
+extern _iq USER_computeTorque_Flux_Iq_pu_to_Nm_sf(USER_Params *pUserParams);
 
 
 //! \brief      Computes the scale factor needed to convert from per unit to Wb
 //! \return     The scale factor to convert from flux per unit to flux in Wb, in IQ24 format
-extern _iq USER_computeFlux_pu_to_Wb_sf(void);
+extern _iq USER_computeFlux_pu_to_Wb_sf(USER_Params *pUserParams);
 
 
 //! \brief      Computes the scale factor needed to convert from per unit to V/Hz
 //! \return     The scale factor to convert from flux per unit to flux in V/Hz, in IQ24 format
-extern _iq USER_computeFlux_pu_to_VpHz_sf(void);
-
+extern _iq USER_computeFlux_pu_to_VpHz_sf(USER_Params *pUserParams);
 
 //! \brief      Computes Flux in Wb or V/Hz depending on the scale factor sent as parameter
 //! \param[in]  handle       The controller (CTRL) handle

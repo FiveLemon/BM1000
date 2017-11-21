@@ -89,12 +89,12 @@ extern "C" {
 //! \brief WARNING: if you know the value of your Bemf constant, and you know you are operating at a multiple speed due to field weakening, be sure to set this value higher than the expected Bemf voltage
 //! \brief It is recommended to start with a value ~3x greater than the USER_ADC_FULL_SCALE_VOLTAGE_V and increase to 4-5x if scenarios where a Bemf calculation may exceed these limits
 //! \brief This value is also used to calculate the minimum flux value: USER_IQ_FULL_SCALE_VOLTAGE_V/USER_EST_FREQ_Hz/0.7
-#define USER_IQ_FULL_SCALE_VOLTAGE_V      (450.0)   // 450.0 Example for hvkit_rev1p1 typical usage
+#define USER_IQ_FULL_SCALE_VOLTAGE_V      (500.0)   // 450.0 Example for hvkit_rev1p1 typical usage
 
 //! \brief Defines the maximum voltage at the input to the AD converter
 //! \brief The value that will be represented by the maximum ADC input (3.3V) and conversion (0FFFh)
 //! \brief Hardware dependent, this should be based on the voltage sensing and scaling to the ADC input
-#define USER_ADC_FULL_SCALE_VOLTAGE_V       (409.6)      // 409.6 hvkit_rev1p1 voltage scaling
+#define USER_ADC_FULL_SCALE_VOLTAGE_V       (454.0)      // 409.6 hvkit_rev1p1 voltage scaling
 
 //! \brief Defines the voltage scale factor for the system
 //! \brief Compile time calculation for scale factor (ratio) used throughout the system
@@ -162,11 +162,11 @@ extern "C" {
 
 //! \brief Defines the address of controller handle
 //!
-#define USER_CTRL_HANDLE_ADDRESS   (0x13C40)
+//#define USER_CTRL_HANDLE_ADDRESS   (0x13C40)
 
 //! \brief Defines the address of estimator handle
 //!
-#define USER_EST_HANDLE_ADDRESS    (0x13840)
+//#define USER_EST_HANDLE_ADDRESS    (0x13840)
 
 //! \brief Defines the direct voltage (Vd) scale factor
 //!
@@ -335,8 +335,24 @@ extern "C" {
 
 // **************************************************************************
 // end the defines
+#define USER_SYSTEM_BANDWIDTH           (20.0)
+#define USER_MOTOR_NUM_POLE_PAIRS       (2)
+#define USER_MOTOR_ENCODER_LINES        (2000.0)
+#define USER_MOTOR_MAX_SPEED_KRPM       (2.500)        //1krpm         2.5krpm
+#define USER_SYSTEM_INERTIA             (0.1985886693) //0.1985886693  0.286924243
+#define USER_SYSTEM_FRICTION            (0.9070984721) //0.9070984721  0.7486233711
 
-
+//#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
+//#define USER_MOTOR_Rr                   (5.19637251)                 //3.2
+//#define USER_MOTOR_Rs                   (6.56156301)                 //6.348376
+//#define USER_MOTOR_Ls_d                 (0.0120)                      //0.1175 0.0386144966
+//#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d
+//#define USER_MOTOR_RATED_FLUX           (0.8165*230.0/60.0)
+//#define USER_MOTOR_MAGNETIZING_CURRENT  (1.35474086)                //1.382381
+//#define USER_MOTOR_RES_EST_CURRENT      (0.6)
+//#define USER_MOTOR_IND_EST_CURRENT      (NULL)
+//#define USER_MOTOR_MAX_CURRENT          (4.2)
+//#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
 //! \brief USER MOTOR & ID SETTINGS
 // **************************************************************************
 
@@ -344,8 +360,8 @@ extern "C" {
 //! \brief This value should be determined by putting SpinTAC Control through a tuning process
 //! \brief If a Bandwidth Scale value has been previously identified
 //! \brief multiply it by 20 to convert into Bandwidth
-#define USER_SYSTEM_BANDWIDTH      (80.0)
 
+/*
 //! \brief Define each motor with a unique name and ID number
 // BLDC & SMPM motors
 #define Estun_EMJ_04APB22           101
@@ -360,8 +376,8 @@ extern "C" {
 
 // ACIM motors
 #define Marathon_5K33GN2A           301
-#define My_Motor_90W                310
-#define My_Motor_400W               311
+//#define My_Motor_90W                310
+//#define My_Motor_400W               311
 
 //! \brief Uncomment the motor which should be included at compile
 //! \brief These motor ID settings and motor parameters are then available to be used by the control system
@@ -369,7 +385,7 @@ extern "C" {
 //#define USER_MOTOR Estun_EMJ_04APB22
 //#define USER_MOTOR My_PMSM_Motor
 //#define USER_MOTOR My_Motor_90W
-#define USER_MOTOR My_Motor_400W
+//#define USER_MOTOR My_Motor_400W
 //#define USER_MOTOR Anaheim_BLY172S
 //#define USER_MOTOR MY_MOTOR
 //#define USER_MOTOR Belt_Drive_Washer_IPM
@@ -571,20 +587,25 @@ extern "C" {
 #error The flux estimation frequency is not defined in user.h
 #endif
 
-
+*/
 // **************************************************************************
 // the functions
 
 
 //! \brief      Sets the user parameter values
 //! \param[in]  pUserParams  The pointer to the user param structure
+extern void USER_setSysParams(USER_Params *pUserParams);
 extern void USER_setParams(USER_Params *pUserParams);
-
+extern void USER_setWaitTimeParams(USER_Params *pUserParams);
+extern void USER_setMotorParams(USER_Params *pUserParams);
+extern void USER_setBoardParams(USER_Params *pUserParams);
+extern void USER_setMotorIDs(USER_Params *pUserParams, const uint_least8_t motor_ID);
 
 //! \brief      Checks for errors in the user parameter values
 //! \param[in]  pUserParams  The pointer to the user param structure
 extern void USER_checkForErrors(USER_Params *pUserParams);
 
+extern void USER_checkDefErrors(USER_Params *pUserParams);
 
 //! \brief      Gets the error code in the user parameters
 //! \param[in]  pUserParams  The pointer to the user param structure
@@ -600,32 +621,32 @@ extern void USER_setErrorCode(USER_Params *pUserParams,const USER_ErrorCode_e er
 
 //! \brief      Recalculates Inductances with the correct Q Format
 //! \param[in]  handle       The controller (CTRL) handle
-extern void USER_softwareUpdate1p6(CTRL_Handle handle);
+extern void USER_softwareUpdate1p6(CTRL_Handle handle, USER_Params *pUserParams);
 
 
 //! \brief      Updates Id and Iq PI gains
 //! \param[in]  handle       The controller (CTRL) handle
-extern void USER_calcPIgains(CTRL_Handle handle);
+extern void USER_calcPIgains(CTRL_Handle handle, USER_Params *pUserParams);
 
 
 //! \brief      Computes the scale factor needed to convert from torque created by Ld, Lq, Id and Iq, from per unit to Nm
 //! \return     The scale factor to convert torque from (Ld - Lq) * Id * Iq from per unit to Nm, in IQ24 format
-extern _iq USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf(void);
+extern _iq USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf(USER_Params *pUserParams);
 
 
 //! \brief      Computes the scale factor needed to convert from torque created by flux and Iq, from per unit to Nm
 //! \return     The scale factor to convert torque from Flux * Iq from per unit to Nm, in IQ24 format
-extern _iq USER_computeTorque_Flux_Iq_pu_to_Nm_sf(void);
+extern _iq USER_computeTorque_Flux_Iq_pu_to_Nm_sf(USER_Params *pUserParams);
 
 
 //! \brief      Computes the scale factor needed to convert from per unit to Wb
 //! \return     The scale factor to convert from flux per unit to flux in Wb, in IQ24 format
-extern _iq USER_computeFlux_pu_to_Wb_sf(void);
+extern _iq USER_computeFlux_pu_to_Wb_sf(USER_Params *pUserParams);
 
 
 //! \brief      Computes the scale factor needed to convert from per unit to V/Hz
 //! \return     The scale factor to convert from flux per unit to flux in V/Hz, in IQ24 format
-extern _iq USER_computeFlux_pu_to_VpHz_sf(void);
+extern _iq USER_computeFlux_pu_to_VpHz_sf(USER_Params *pUserParams);
 
 
 //! \brief      Computes Flux in Wb or V/Hz depending on the scale factor sent as parameter
@@ -633,7 +654,6 @@ extern _iq USER_computeFlux_pu_to_VpHz_sf(void);
 //! \param[in]  sf           The scale factor to convert flux from per unit to Wb or V/Hz
 //! \return     The flux in Wb or V/Hz depending on the scale factor sent as parameter, in IQ24 format
 extern _iq USER_computeFlux(CTRL_Handle handle, const _iq sf);
-
 
 //! \brief      Computes Torque in Nm
 //! \param[in]  handle          The controller (CTRL) handle
@@ -649,6 +669,7 @@ extern _iq USER_computeTorque_Nm(CTRL_Handle handle, const _iq torque_Flux_sf, c
 //! \param[in]  torque_Ls_sf    The scale factor to convert torque from Flux * Iq from per unit to lbin
 //! \return     The torque in lbin, in IQ24 format
 extern _iq USER_computeTorque_lbin(CTRL_Handle handle, const _iq torque_Flux_sf, const _iq torque_Ls_sf);
+
 
 
 #ifdef __cplusplus

@@ -48,22 +48,21 @@
 #include "sw/modules/fw/src/32b/fw.h"
 #include "sw/modules/slip/src/32b/slip.h"
 
+#include "sw/modules/iqmath/src/32b/IQLog.h"
 
 // drivers
-
+#include "sw/drivers/drvic/pca9555.h"
+#include "sw/drivers/drvic/process_ctrl.h"
 
 // platforms
-#ifndef QEP
 #include "sw/modules/ctrl/src/32b/ctrl.h"
-#else
-#include "sw/modules/ctrl/src/32b/ctrlQEP.h"
-#endif
+
 #include "hal.h"
 #include "user.h"
 
 
 // SpinTAC
-#include "spintac_velocity.h"
+//#include "spintac_velocity.h"
 
 
 // **************************************************************************
@@ -80,124 +79,7 @@
 
 //! \brief Initialization values of global variables
 //!
-#define MOTOR_Vars_INIT {false, \
-                         false, \
-                         false, \
-                         true, \
-                         false, \
-                         true, \
-                         true, \
-                         true, \
-                         false, \
-                         CTRL_State_Idle, \
-                         EST_State_Idle, \
-                         USER_ErrorCode_NoError, \
-                         {0,CTRL_TargetProc_Unknown,0,0}, \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.1), \
-                         _IQ(0.1), \
-						 _IQ(0.0), \
-                         _IQ(0.2), \
-                         _IQ20(5.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(USER_MAX_VS_MAG_PU), \
-                         _IQ(0.1 * USER_MOTOR_MAX_CURRENT), \
-                         400, \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         0.0, \
-                         0.0, \
-                         0.0, \
-                         0.0, \
-                         0.0, \
-                         0.0, \
-                         0.0, \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.8 * USER_MAX_VS_MAG_PU), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         {0,0,0}, \
-                         {0,0,0}, \
-						 ST_VARS_DEFAULTS}
 
-
-// **************************************************************************
-// the typedefs
-
-typedef struct _MOTOR_Vars_t_
-{
-  bool Flag_enableSys;
-  bool Flag_Run_Identify;
-  bool Flag_MotorIdentified;
-  bool Flag_enableForceAngle;
-  bool Flag_enableFieldWeakening;
-  bool Flag_enableRsRecalc;
-  bool Flag_enableUserParams;
-  bool Flag_enableOffsetcalc;
-  bool Flag_enablePowerWarp;
-
-  CTRL_State_e CtrlState;
-  EST_State_e EstState;
-
-  USER_ErrorCode_e UserErrorCode;
-
-  CTRL_Version CtrlVersion;
-
-  _iq IdRef_A;
-  _iq IqRef_A;
-  _iq StopSpeedRef_krpm;
-  _iq SpeedRef_krpm;
-  _iq SpeedTraj_krpm;
-  _iq MaxAccel_krpmps;
-  _iq20 MaxJrk_krpmps2;
-  _iq Speed_krpm;
-  _iq SpeedQEP_krpm;
-  _iq OverModulation;
-  _iq RsOnLineCurrent_A;
-  _iq SvgenMaxModulation_ticks;
-  _iq Flux_Wb;
-  _iq Torque_Nm;
-
-  float_t MagnCurr_A;
-  float_t Rr_Ohm;
-  float_t Rs_Ohm;
-  float_t RsOnLine_Ohm;
-  float_t Lsd_H;
-  float_t Lsq_H;
-  float_t Flux_VpHz;
-
-  _iq Kp_spd;
-  _iq Ki_spd;
-
-  _iq Kp_Idq;
-  _iq Ki_Idq;
-
-  _iq Vd;
-  _iq Vq;
-  _iq Vs;
-  _iq VsRef;
-  _iq VdcBus_kV;
-
-  _iq Id_A;
-  _iq Iq_A;
-  _iq Is_A;
-
-  MATH_vec3 I_bias;
-  MATH_vec3 V_bias;
-  
-  ST_Vars_t SpinTAC;
-
-}MOTOR_Vars_t;
 
 
 // **************************************************************************
@@ -210,7 +92,9 @@ typedef struct _MOTOR_Vars_t_
 //! \brief The main interrupt service (ISR) routine
 //!
 interrupt void mainISR(void);
-
+interrupt void UART_RxISR(void);
+interrupt void UART_TxReadyISR(void);
+interrupt void Timer1ISR(void);
 
 //! \brief     Updates the global motor variables 
 //! 
@@ -230,7 +114,7 @@ void recalcKpKiPmsm(CTRL_Handle handle);
 
 //! \brief     Recalculate Kp and Ki gains to fix the R/L limitation of 2000.0 and Kp limitation of 0.11
 //!
-void recalcKpKi(CTRL_Handle handle);
+void recalcKpKi(CTRL_Handle handle, USER_Params *pUserParams);
 
 
 //! \brief     Calculates the maximum qFmt value for Ls identification, to get a more accurate Ls per unit

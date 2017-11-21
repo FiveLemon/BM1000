@@ -44,6 +44,7 @@ hal.obj: D:/BM1000/sw/modules/ipark/src/32b/ipark.h
 hal.obj: D:/BM1000/sw/modules/pid/src/32b/pid.h
 hal.obj: D:/BM1000/sw/modules/svgen/src/32b/svgen.h
 hal.obj: D:/BM1000/sw/modules/traj/src/32b/traj.h
+hal.obj: D:/BM1000/sw/drivers/drvic/brake.h
 hal.obj: D:/BM1000/sw/modules/vs_freq/src/32b/vs_freq.h
 hal.obj: D:/BM1000/sw/modules/angle_gen/src/32b/angle_gen.h
 hal.obj: D:/BM1000/sw/modules/datalog/src/32b/datalog.h
@@ -95,6 +96,7 @@ D:/BM1000/sw/modules/ipark/src/32b/ipark.h:
 D:/BM1000/sw/modules/pid/src/32b/pid.h: 
 D:/BM1000/sw/modules/svgen/src/32b/svgen.h: 
 D:/BM1000/sw/modules/traj/src/32b/traj.h: 
+D:/BM1000/sw/drivers/drvic/brake.h: 
 D:/BM1000/sw/modules/vs_freq/src/32b/vs_freq.h: 
 D:/BM1000/sw/modules/angle_gen/src/32b/angle_gen.h: 
 D:/BM1000/sw/modules/datalog/src/32b/datalog.h: 

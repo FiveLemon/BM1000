@@ -177,6 +177,11 @@
 			<locationURI>MW_INSTALL_DIR/sw/modules/ipark/src/32b/ipark.c</locationURI>
 		</link>
 		<link>
+			<name>mb.c</name>
+			<type>1</type>
+			<locationURI>PARENT-9-PROJECT_LOC/drivers/drvic/modbus/mb.c</locationURI>
+		</link>
+		<link>
 			<name>memCopy.c</name>
 			<type>1</type>
 			<locationURI>MW_INSTALL_DIR/sw/modules/memCopy/src/memCopy.c</locationURI>
@@ -235,6 +240,11 @@
 			<name>qep.c</name>
 			<type>1</type>
 			<locationURI>MW_INSTALL_DIR/sw/drivers/qep/src/32b/f28x/f2806x/qep.c</locationURI>
+		</link>
+		<link>
+			<name>sci.c</name>
+			<type>1</type>
+			<locationURI>PARENT-9-PROJECT_LOC/drivers/sci/src/32b/f28x/f2806x/sci.c</locationURI>
 		</link>
 		<link>
 			<name>slip.c</name>

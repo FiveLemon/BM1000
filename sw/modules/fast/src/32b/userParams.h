@@ -260,7 +260,43 @@ typedef struct _USER_Params_
   float_t       maxNegativeIdCurrent_a;       //!< Defines the maximum negative current that the Id PID is allowed to go to, A
 
   USER_ErrorCode_e  errorCode;
+  uint_least8_t     motor_ID;
+
 } USER_Params;
+
+typedef struct _USER_Params_ *pUSER_Params;
+
+typedef struct _UserMotor_Params_
+{
+
+  MOTOR_Type_e    motor_type;                   //!< Defines the motor type
+  uint_least16_t  motor_numPolePairs;           //!< Defines the number of pole pairs for the motor
+  float_t         motor_Rr;                     //!< Defines the rotor resistance, ohm
+  float_t         motor_Rs;                     //!< Defines the stator resistance, ohm
+
+
+  float_t         motor_Ls_d;                   //!< Defines the direct stator inductance, H
+  float_t         motor_Ls_q;                   //!< Defines the quadrature stator inductance, H
+  float_t         motor_ratedFlux;              //!< Defines the rated flux of the motor, V/Hz
+  float_t         IdRated;                      //!< Defines the Id rated current value, A
+
+
+  float_t       maxCurrent_resEst;            //!< Defines the maximum current value for resistance estimation, A
+  float_t       maxCurrent_indEst;            //!< Defines the maximum current value for inductance estimation, A
+  float_t       maxCurrent;                   //!< Defines the maximum current value, A
+  float_t       fluxEstFreq_Hz;               //!< Defines the flux estimation frequency, Hz
+
+} UserMotor_Params;
+
+typedef struct _UserBoard_Params_
+{
+
+  float_t       iqFullScaleCurrent_A;         //!< Defines the full scale current for the IQ variables, A
+  float_t       iqFullScaleVoltage_V;         //!< Defines the full scale voltage for the IQ variable, V
+  float_t       adcFullScaleCurrent_A;        //!< Defines the full scale current for the ADC variables, A
+  float_t       adcFullScaleVoltage_V;        //!< Defines the full scale voltage for the ADC variable, V
+
+} UserBoard_Params;
 
 
 // **************************************************************************

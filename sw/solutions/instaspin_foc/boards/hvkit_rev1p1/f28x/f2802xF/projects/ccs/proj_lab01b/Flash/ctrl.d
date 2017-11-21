@@ -26,6 +26,7 @@ ctrl.obj: D:/BM1000/sw/modules/svgen/src/32b/svgen.h
 ctrl.obj: D:/BM1000/sw/modules/traj/src/32b/traj.h
 ctrl.obj: D:/BM1000/sw/modules/ctrl/src/32b/ctrl_obj.h
 ctrl.obj: D:/BM1000/sw/modules/ctrl/src/ctrl_states.h
+ctrl.obj: D:/BM1000/sw/drivers/drvic/brake.h
 ctrl.obj: D:/BM1000/sw/modules/vs_freq/src/32b/vs_freq.h
 ctrl.obj: D:/BM1000/sw/modules/angle_gen/src/32b/angle_gen.h
 ctrl.obj: D:/BM1000/sw/modules/datalog/src/32b/datalog.h
@@ -81,6 +82,7 @@ D:/BM1000/sw/modules/svgen/src/32b/svgen.h:
 D:/BM1000/sw/modules/traj/src/32b/traj.h: 
 D:/BM1000/sw/modules/ctrl/src/32b/ctrl_obj.h: 
 D:/BM1000/sw/modules/ctrl/src/ctrl_states.h: 
+D:/BM1000/sw/drivers/drvic/brake.h: 
 D:/BM1000/sw/modules/vs_freq/src/32b/vs_freq.h: 
 D:/BM1000/sw/modules/angle_gen/src/32b/angle_gen.h: 
 D:/BM1000/sw/modules/datalog/src/32b/datalog.h: 

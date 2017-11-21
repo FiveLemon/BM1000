@@ -37,6 +37,28 @@
 //!
 //! (C) Copyright 2012, Texas Instruments, Inc.
 
+#ifdef FAST_ROM_V1p6
+// drivers
+#include "sw/drivers/adc/src/32b/f28x/f2806x/adc.h"
+#include "sw/drivers/clk/src/32b/f28x/f2806x/clk.h"
+#include "sw/drivers/cpu/src/32b/f28x/f2806x/cpu.h"
+#include "sw/drivers/flash/src/32b/f28x/f2806x/flash.h"
+#include "sw/drivers/gpio/src/32b/f28x/f2806x/gpio.h"
+#include "sw/drivers/osc/src/32b/f28x/f2806x/osc.h"
+#include "sw/drivers/pie/src/32b/f28x/f2806x/pie.h"
+#include "sw/drivers/pll/src/32b/f28x/f2806x/pll.h"
+#include "sw/drivers/pwm/src/32b/f28x/f2806x/pwm.h"
+#include "sw/drivers/pwmdac/src/32b/f28x/f2806x/pwmdac.h"
+#include "sw/drivers/pwr/src/32b/f28x/f2806x/pwr.h"
+#include "sw/drivers/timer/src/32b/f28x/f2806x/timer.h"
+#include "sw/drivers/wdog/src/32b/f28x/f2806x/wdog.h"
+#include "sw/drivers/sci/src/32b/f28x/f2806x/sci.h"
+
+#ifdef QEP
+#include "sw/drivers/qep/src/32b/f28x/f2806x/qep.h"
+#endif
+
+#else
 
 // drivers
 #include "sw/drivers/adc/src/32b/f28x/f2802x/adc.h"
@@ -54,12 +76,17 @@
 #include "sw/drivers/wdog/src/32b/f28x/f2802x/wdog.h"
 #include "sw/drivers/spi/src/32b/f28x/f2802x/spi.h"
 #include "sw/drivers/sci/src/32b/f28x/f2802x/sci.h"
+#include "sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h"
+
+#endif
+
 
 // modules
 #include "sw/modules/offset/src/32b/offset.h"
 #include "sw/modules/types/src/types.h"
 #include "sw/modules/usDelay/src/32b/usDelay.h"
 
+#include "sw/drivers/drvic/pca9555.h"
 
 // platforms
 #include "user.h"
@@ -123,6 +150,21 @@ typedef struct _HAL_PwmData_t_
 } HAL_PwmData_t;
 
 
+typedef enum
+{
+	HAL_BoardAddr_Motor1 = 0,
+	HAL_BoardAddr_Motor2,
+	HAL_BoardAddr_Motor3,
+	HAL_BoardAddr_Motor4,
+	HAL_BoardAddr_Motor5,
+	HAL_BoardAddr_Motor6,
+	HAL_BoardAddr_Motor7,
+	HAL_BoardAddr_Heater,
+	HAL_BoardAddr_OpenLoop,
+	HAL_BoardAddr_Short
+
+} HAL_BdAddr_e;
+
 //! \brief      Defines the hardware abstraction layer (HAL) data
 //! \details    The HAL object contains all handles to peripherals.  When accessing a
 //!             peripheral on a processor, use a HAL function along with the HAL handle
@@ -160,7 +202,7 @@ typedef struct _HAL_Obj_
 
   TIMER_Handle  timerHandle[3];   //<! the timer handles
 
-  I2C_Handle    i2cHandle;
+  //I2C_Handle    i2cHandle;
 
   SPI_Handle    spiAHandle;       //!< the SPIA handle
 
@@ -176,6 +218,9 @@ typedef struct _HAL_Obj_
 
   uint_least8_t numCurrentSensors; //!< the number of current sensors
   uint_least8_t numVoltageSensors; //!< the number of voltage sensors
+
+  HAL_BdAddr_e  boardAddress;
+
 } HAL_Obj;
 
 

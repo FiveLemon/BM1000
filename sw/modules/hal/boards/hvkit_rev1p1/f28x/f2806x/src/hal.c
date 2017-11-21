@@ -88,6 +88,7 @@ void HAL_cal(HAL_Handle handle)
   // run offsets calibration in user's memory
   HAL_AdcOffsetSelfCal(handle);
 
+  HAL_GetBoardNum(handle);
   // run oscillator compensation
   HAL_OscTempComp(handle);
 
@@ -325,9 +326,9 @@ uint16_t HAL_AdcCalConversion(HAL_Handle handle)
   ADC_SocSampleDelay_e ACQPS_Value;
 
   index       = 0;     //initialize index to 0
-  SampleSize  = 256;   //set sample size to 256 (**NOTE: Sample size must be multiples of 2^x where is an integer >= 4)
+  SampleSize  = 512;   //set sample size to 256 (**NOTE: Sample size must be multiples of 2^x where is an integer >= 4)
   Sum         = 0;     //set sum to 0
-  Mean        = 999;   //initialize mean to known value
+  Mean        = 999;     //initialize mean to known value
 
   //Set the ADC sample window to the desired value (Sample window = ACQPS + 1)
   ACQPS_Value = ADC_SocSampleDelay_7_cycles;
@@ -482,7 +483,7 @@ void HAL_enableAdcInts(HAL_Handle handle)
 
 
   // enable the PIE interrupts associated with the ADC interrupts
-  PIE_enableAdcInt(obj->pieHandle,ADC_IntNumber_1);
+  PIE_enableAdcInt(obj->pieHandle,ADC_IntNumber_1HP);
 
 
   // enable the ADC interrupts
@@ -490,7 +491,7 @@ void HAL_enableAdcInts(HAL_Handle handle)
 
 
   // enable the cpu interrupt for ADC interrupts
-  CPU_enableInt(obj->cpuHandle,CPU_IntNumber_10);
+  CPU_enableInt(obj->cpuHandle,CPU_IntNumber_1);
 
   return;
 } // end of HAL_enableAdcInts() function
@@ -536,24 +537,36 @@ void HAL_enablePwmInt(HAL_Handle handle)
   return;
 } // end of HAL_enablePwmInt() function
 
-/*
-void HAL_enableSciInt(HAL_Handle handle)
+void HAL_enableSciaInt(HAL_Handle handle)
 {
   HAL_Obj *obj = (HAL_Obj *)handle;
 
   PIE_enableInt(obj->pieHandle, PIE_GroupNumber_9, PIE_InterruptSource_SCIARX);
   PIE_enableInt(obj->pieHandle, PIE_GroupNumber_9, PIE_InterruptSource_SCIATX);
 
-  SCI_enableRxInt(obj->sciHandle);  //enable receive interrupt
-  SCI_enableRxFifoInt(obj->sciHandle);
-  //SCI_enableRxErrorInt(obj->sciHandle);
-  //SCI_enableTxInt(obj->sciHandle);  //enable transmit interrupt
-  // enable the cpu interrupt for Sci receive interrupt
+
+  SCI_enableRxInt(obj->sciHandle);
+  SCI_enableTxInt(obj->sciHandle);
+
+  //SCI_enableRxFifoInt(obj->sciHandle);
+  //SCI_enableTxFifoInt(obj->sciHandle);
+
   CPU_enableInt(obj->cpuHandle,CPU_IntNumber_9);
 
   return;
-} // end of HAL_enableSciInt() function
-*/
+} //end of HAL_enableSciaInt() function
+
+void HAL_enableTimer1Int(HAL_Handle handle, const PIE_IntVec_t vector)
+{
+   HAL_Obj *obj = (HAL_Obj *)handle;
+
+   PIE_registerSystemIntHandler(obj->pieHandle, PIE_SystemInterrupts_TINT1, vector);
+
+   TIMER_enableInt(obj->timerHandle[1]);
+
+   CPU_enableInt(obj->cpuHandle, CPU_IntNumber_13);
+
+}
 
 
 void HAL_setupFaults(HAL_Handle handle)
@@ -690,8 +703,14 @@ HAL_Handle HAL_init(void *pMemory,const size_t numBytes)
   obj->qepHandle[0] = QEP_init((void*)QEP1_BASE_ADDR,sizeof(QEP_Obj));
 #endif
 
-  //obj->sciHandle = SCI_init((void *)SCIA_BASE_ADDR,sizeof(SCI_Obj));
+  //obj->i2cHandle = I2C_init((void *)I2CA_BASE_ADDR,sizeof(I2C_Obj));
+  obj->sciHandle = SCI_init((void *)SCIA_BASE_ADDR,sizeof(SCI_Obj));
 
+#ifndef FAST_ROM_V1p6
+  obj->pca955xHandle = PCA955x_Init(&(obj->pca9555),sizeof(obj->pca9555));
+  PCA955x_setI2cHandle(obj->pca955xHandle, obj->i2cHandle);
+  //obj->sciHandle = SCI_init((void *)SCIA_BASE_ADDR,sizeof(SCI_Obj));
+#endif
 
 
   return(handle);
@@ -783,12 +802,24 @@ void HAL_setParams(HAL_Handle handle,const USER_Params *pUserParams)
   // setup the PWM DACs
   HAL_setupPwmDacs(handle);
 
-  //HAL_setupScia(handle);
+  //HAL_setupSpiA(handle);
 
   // setup the timers
   HAL_setupTimers(handle,
                   (float_t)pUserParams->systemFreq_MHz);
 
+
+  // set the default i2c settings
+   //HAL_setupI2cs(handle);
+
+   HAL_setupScia(handle);
+
+ return;
+} // end of HAL_setParams() function
+
+
+void HAL_setupAdcParams(HAL_Handle handle,const USER_Params *pUserParams)
+{
 
   // set the default current bias
  {
@@ -796,9 +827,9 @@ void HAL_setParams(HAL_Handle handle,const USER_Params *pUserParams)
    _iq bias = _IQ12mpy(ADC_dataBias,_IQ(pUserParams->current_sf));
    
    for(cnt=0;cnt<HAL_getNumCurrentSensors(handle);cnt++)
-     {
-       HAL_setBias(handle,HAL_SensorType_Current,cnt,bias);
-     }
+	 {
+	   HAL_setBias(handle,HAL_SensorType_Current,cnt,bias);
+	 }
  }
 
 
@@ -816,9 +847,9 @@ void HAL_setParams(HAL_Handle handle,const USER_Params *pUserParams)
    _iq bias = _IQ(0.0);
    
    for(cnt=0;cnt<HAL_getNumVoltageSensors(handle);cnt++)
-     {
-       HAL_setBias(handle,HAL_SensorType_Voltage,cnt,bias);
-     }
+	 {
+	   HAL_setBias(handle,HAL_SensorType_Voltage,cnt,bias);
+	 }
  }
 
 
@@ -829,9 +860,9 @@ void HAL_setParams(HAL_Handle handle,const USER_Params *pUserParams)
   HAL_setVoltageScaleFactor(handle,voltage_sf);
  }
 
- return;
-} // end of HAL_setParams() function
 
+  return;
+}
 
 void HAL_setupAdcs(HAL_Handle handle)
 {
@@ -877,50 +908,70 @@ void HAL_setupAdcs(HAL_Handle handle)
   // configure the interrupt sources
   ADC_disableInt(obj->adcHandle,ADC_IntNumber_1);
   ADC_setIntMode(obj->adcHandle,ADC_IntNumber_1,ADC_IntMode_ClearFlag);
-  ADC_setIntSrc(obj->adcHandle,ADC_IntNumber_1,ADC_IntSrc_EOC7);
+  ADC_setIntSrc(obj->adcHandle,ADC_IntNumber_1,ADC_IntSrc_EOC11);
 
 
   //configure the SOCs for hvkit_rev1p1
   // EXT IA-FB
-  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_0,ADC_SocChanNumber_B1);
+  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_0,ADC_SocChanNumber_B4);
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_0,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_0,ADC_SocSampleDelay_9_cycles);
 
-  // EXT IA-FB U A1-> B1
+  // EXT IA-FB U
   // Duplicate conversion due to ADC Initial Conversion bug (SPRZ342)
-  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_1,ADC_SocChanNumber_B1);
+  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_1,ADC_SocChanNumber_B4);
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_1,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_1,ADC_SocSampleDelay_9_cycles);
 
-  // EXT IB-FB V B1-> B2
+  // EXT IB-FB V
   ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_2,ADC_SocChanNumber_B2);
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_2,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_2,ADC_SocSampleDelay_9_cycles);
 
-  // EXT IC-FB W A3-> B4
-  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_3,ADC_SocChanNumber_B4);
+  // EXT IC-FB W
+  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_3,ADC_SocChanNumber_B1);
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_3,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_3,ADC_SocSampleDelay_9_cycles);
 
-  // ADC-Vhb1 U B7->A1
-  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_4,ADC_SocChanNumber_A1);
+  // ADC-Vhb1 U
+  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_4,ADC_SocChanNumber_A4);
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_4,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_4,ADC_SocSampleDelay_9_cycles);
 
-  // ADC-Vhb2 V B6->A2
+  // ADC-Vhb2 V
   ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_5,ADC_SocChanNumber_A2);
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_5,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_5,ADC_SocSampleDelay_9_cycles);
 
-  // ADC-Vhb3 W B4->A4
-  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_6,ADC_SocChanNumber_A4);
+  // ADC-Vhb3 W
+  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_6,ADC_SocChanNumber_A1);
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_6,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_6,ADC_SocSampleDelay_9_cycles);
 
-  // VDCBUS A7->A5
+  // VDCBUS A5
   ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_7,ADC_SocChanNumber_A5);
   ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_7,ADC_SocTrigSrc_EPWM1_ADCSOCA);
   ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_7,ADC_SocSampleDelay_9_cycles);
+
+  // ADC analog sensor 0
+  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_8,ADC_SocChanNumber_A6);
+  ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_8,ADC_SocTrigSrc_EPWM1_ADCSOCA);
+  ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_8,ADC_SocSampleDelay_9_cycles);
+
+  // ADC analog sensor 1
+  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_9,ADC_SocChanNumber_B0);
+  ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_9,ADC_SocTrigSrc_EPWM1_ADCSOCA);
+  ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_9,ADC_SocSampleDelay_9_cycles);
+
+  // address data (default) & IGBT NTC temperature (through analog switch)
+  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_10,ADC_SocChanNumber_B6);
+  ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_10,ADC_SocTrigSrc_EPWM1_ADCSOCA);
+  ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_10,ADC_SocSampleDelay_9_cycles);
+
+  // sum current
+  ADC_setSocChanNumber(obj->adcHandle,ADC_SocNumber_11,ADC_SocChanNumber_B5);
+  ADC_setSocTrigSrc(obj->adcHandle,ADC_SocNumber_11,ADC_SocTrigSrc_EPWM1_ADCSOCA);
+  ADC_setSocSampleDelay(obj->adcHandle,ADC_SocNumber_11,ADC_SocSampleDelay_9_cycles);
 
   return;
 } // end of HAL_setupAdcs() function
@@ -929,7 +980,6 @@ void HAL_setupAdcs(HAL_Handle handle)
 void HAL_setupClks(HAL_Handle handle)
 {
   HAL_Obj *obj = (HAL_Obj *)handle;
-
 
   // enable internal oscillator 1
   CLK_enableOsc1(obj->clkHandle);
@@ -1000,66 +1050,67 @@ void HAL_setupGpios(HAL_Handle handle)
   // PWM6
   GPIO_setMode(obj->gpioHandle,GPIO_Number_5,GPIO_5_Mode_EPWM3B);
 
-  // PWM-DAC4
+  // reserve
   GPIO_setMode(obj->gpioHandle,GPIO_Number_6,GPIO_6_Mode_GeneralPurpose);
-  GPIO_setLow(obj->gpioHandle,GPIO_Number_6);
-  GPIO_setDirection(obj->gpioHandle,GPIO_Number_6,GPIO_Direction_Output);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_6,GPIO_Direction_Input);
 
-  // Input
+  // reserve
   GPIO_setMode(obj->gpioHandle,GPIO_Number_7,GPIO_7_Mode_GeneralPurpose);
-  GPIO_setLow(obj->gpioHandle,GPIO_Number_7);
-  GPIO_setDirection(obj->gpioHandle,GPIO_Number_7,GPIO_Direction_Output);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_7,GPIO_Direction_Input);
 
-  // PWM-DAC3 -> SHUTDOWN  1 shut
-  //GPIO_setMode(obj->gpioHandle,GPIO_Number_8,GPIO_8_Mode_EPWM5A);
+  // Relay on flag input (low effect)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_8,GPIO_8_Mode_GeneralPurpose);
-  GPIO_setHigh(obj->gpioHandle,GPIO_Number_8);
-  GPIO_setDirection(obj->gpioHandle,GPIO_Number_8,GPIO_Direction_Output);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_8,GPIO_Direction_Input);
 
-  // CLR-FAULT  -> RELAY OPEN OUT
+  // DSP CLR OC FAULT (output low effect)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_9,GPIO_9_Mode_GeneralPurpose);
-  //GPIO_setHigh(obj->gpioHandle,GPIO_Number_9);
-  GPIO_setLow(obj->gpioHandle,GPIO_Number_9);
+  GPIO_setHigh(obj->gpioHandle,GPIO_Number_9);
   GPIO_setDirection(obj->gpioHandle,GPIO_Number_9,GPIO_Direction_Output);
 
-  // PWM-DAC1 -> SENSOR_2_OUT (input)
-  //GPIO_setMode(obj->gpioHandle,GPIO_Number_10,GPIO_10_Mode_EPWM6A);
+  //  SENSOR_2_OUT (input low effect)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_10,GPIO_10_Mode_GeneralPurpose);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_10,GPIO_Direction_Input);
 
-  // PWM-DAC2  -> C-E
-  //GPIO_setMode(obj->gpioHandle,GPIO_Number_11,GPIO_11_Mode_EPWM6B);
+  // Shut down (output high effect)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_11,GPIO_11_Mode_GeneralPurpose);
+  GPIO_setHigh(obj->gpioHandle,GPIO_Number_11);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_11,GPIO_Direction_Output);
+
 
   // Set Qualification Period for GPIO12-25, 1*2*(1/90MHz) = 0.022us
   GPIO_setQualificationPeriod(obj->gpioHandle,GPIO_Number_12,1);
-  // TZ-1 -> SPI-F-MOSI
-  GPIO_setMode(obj->gpioHandle,GPIO_Number_12,GPIO_12_Mode_SPISIMOB);
+  // CPLD OC OUT (input high effect)
+  GPIO_setMode(obj->gpioHandle,GPIO_Number_12,GPIO_12_Mode_GeneralPurpose);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_12,GPIO_Direction_Input);
 
-  // HALL-2 ->SPI-F-MISO
+  // SPI-F-MISO
   GPIO_setMode(obj->gpioHandle,GPIO_Number_13,GPIO_13_Mode_SPISOMIB);
 
-  // HALL-3 ->SPI-F-CLK
+  // SPI-F-CLK
   GPIO_setMode(obj->gpioHandle,GPIO_Number_14,GPIO_14_Mode_SPICLKB);
 
-  // LED2  -> SPI-F-Wn/R
+  // SPI-F-Wn/R
   GPIO_setMode(obj->gpioHandle,GPIO_Number_15,GPIO_15_Mode_SPISTEB_NOT);
 
   // Set Qualification Period for GPIO16-23, 5*2*(1/90MHz) = 0.11us
   //GPIO_setQualificationPeriod(obj->gpioHandle,GPIO_Number_16,5);
 
-  // SPI-SIMO -> CPLD OC OUT
+  // reserve
   GPIO_setMode(obj->gpioHandle,GPIO_Number_16,GPIO_16_Mode_GeneralPurpose);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_16,GPIO_Direction_Input);
 
-  // SPI-SOMI -> IKCM_UV
+  // STOP Flag in (input high effect)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_17,GPIO_17_Mode_GeneralPurpose);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_17,GPIO_Direction_Input);
 
-  // SPI-CLK -> CPLD_CLK
-  GPIO_setMode(obj->gpioHandle,GPIO_Number_18,GPIO_18_Mode_XCLKOUT);
+  // RS485_RE#
+  GPIO_setMode(obj->gpioHandle,GPIO_Number_18,GPIO_18_Mode_GeneralPurpose);
+  GPIO_setLow(obj->gpioHandle,GPIO_Number_18);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_18,GPIO_Direction_Output);
 
-  // SPI-STE -> RS485_RE
+  // reserve
   GPIO_setMode(obj->gpioHandle,GPIO_Number_19,GPIO_19_Mode_GeneralPurpose);
-  GPIO_setLow(obj->gpioHandle,GPIO_Number_19);
-  GPIO_setDirection(obj->gpioHandle,GPIO_Number_19,GPIO_Direction_Output);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_19,GPIO_Direction_Input);
 
 #ifdef QEP
   // EQEPA
@@ -1070,8 +1121,9 @@ void HAL_setupGpios(HAL_Handle handle)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_21,GPIO_21_Mode_EQEP1B);
   GPIO_setQualification(obj->gpioHandle,GPIO_Number_21,GPIO_Qual_Sample_3);
 
-  // STATUS -> SENSOR_1_OUT
+  // SENSOR_1_OUT (input low effect)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_22,GPIO_22_Mode_GeneralPurpose);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_22,GPIO_Direction_Input);
 
   // EQEP1I
   GPIO_setMode(obj->gpioHandle,GPIO_Number_23,GPIO_23_Mode_EQEP1I);
@@ -1085,7 +1137,7 @@ void HAL_setupGpios(HAL_Handle handle)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_21,GPIO_21_Mode_GeneralPurpose);
   GPIO_setDirection(obj->gpioHandle,GPIO_Number_21,GPIO_Direction_Input);
 
-  // STATUS -> SENSOR_1_OUT
+  // SENSOR_1_OUT (input low effect)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_22,GPIO_22_Mode_GeneralPurpose);
   GPIO_setDirection(obj->gpioHandle,GPIO_Number_22,GPIO_Direction_Input);
 
@@ -1094,44 +1146,47 @@ void HAL_setupGpios(HAL_Handle handle)
 //  GPIO_setDirection(obj->gpioHandle,GPIO_Number_23,GPIO_Direction_Input);
 #endif
 
-  // SPI SIMO B -> CPLD_OUT U
-  GPIO_setMode(obj->gpioHandle,GPIO_Number_24,GPIO_24_Mode_GeneralPurpose);
+  // SPI-F-MOSI
+  GPIO_setMode(obj->gpioHandle,GPIO_Number_24,GPIO_24_Mode_SPISIMOB);
 
-  // SPI SOMI B -> CPLD_OUT V
+  //  reserve
   GPIO_setMode(obj->gpioHandle,GPIO_Number_25,GPIO_25_Mode_GeneralPurpose);
 
-  // SPI CLK B -> CPLD_OUT W
+  //  reserve
   GPIO_setMode(obj->gpioHandle,GPIO_Number_26,GPIO_26_Mode_GeneralPurpose);
 
-  // SPI CSn B  -> DSP CLR OC OUT
+  //  reserve
   GPIO_setMode(obj->gpioHandle,GPIO_Number_27,GPIO_27_Mode_GeneralPurpose);
-  GPIO_setHigh(obj->gpioHandle,GPIO_Number_27);
-  GPIO_setDirection(obj->gpioHandle,GPIO_Number_27,GPIO_Direction_Output);
 
-  // No Connection -> RS485 RX & TTL232 RX
+  //  RS485 RX & TTL232 RX
   GPIO_setMode(obj->gpioHandle,GPIO_Number_28,GPIO_28_Mode_SCIRXDA);
 
-  // No Connection -> RS485 TX & TTL232 TX
+  //  RS485 TX & TTL232 TX
   GPIO_setMode(obj->gpioHandle,GPIO_Number_29,GPIO_29_Mode_SCITXDA);
 
-  // No Connection -> STOP FLAG IN
+  // RS485_DE (output high effect)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_30,GPIO_30_Mode_GeneralPurpose);
+  GPIO_setLow(obj->gpioHandle,GPIO_Number_30);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_30,GPIO_Direction_Output);
 
-  // ControlCARD LED2 -> RELAY ON FLAG IN
+  // TS5A3159 (adc input switch (high-> NTC temperature))
   GPIO_setMode(obj->gpioHandle,GPIO_Number_31,GPIO_31_Mode_GeneralPurpose);
-  //GPIO_setLow(obj->gpioHandle,GPIO_Number_31);
-  //GPIO_setDirection(obj->gpioHandle,GPIO_Number_31,GPIO_Direction_Output);
+  GPIO_setLow(obj->gpioHandle,GPIO_Number_31);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_31,GPIO_Direction_Output);
 
-  // No Connection -> I2C SDA
+  // LED OUT1 -> indicate position loop in locked (high effect)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_32,GPIO_32_Mode_GeneralPurpose);
+  GPIO_setLow(obj->gpioHandle,GPIO_Number_32);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_32,GPIO_Direction_Output);
 
-  // No Connection -> I2C SCL
+  // RELAY OPEN OUT (485 interrupt to master, high effect)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_33,GPIO_33_Mode_GeneralPurpose);
+  GPIO_setLow(obj->gpioHandle,GPIO_Number_33);
+  GPIO_setDirection(obj->gpioHandle,GPIO_Number_33,GPIO_Direction_Output);
 
-  // ControlCARD LED3 -> TS5A3159 SW
+  //  reserve
   GPIO_setMode(obj->gpioHandle,GPIO_Number_34,GPIO_34_Mode_GeneralPurpose);
-  //GPIO_setLow(obj->gpioHandle,GPIO_Number_34);
-  //GPIO_setDirection(obj->gpioHandle,GPIO_Number_34,GPIO_Direction_Output);
+
 
   // JTAG
   GPIO_setMode(obj->gpioHandle,GPIO_Number_35,GPIO_35_Mode_JTAG_TDI);
@@ -1139,10 +1194,9 @@ void HAL_setupGpios(HAL_Handle handle)
   GPIO_setMode(obj->gpioHandle,GPIO_Number_37,GPIO_37_Mode_JTAG_TDO);
   GPIO_setMode(obj->gpioHandle,GPIO_Number_38,GPIO_38_Mode_JTAG_TCK);
 
-  // No Connection -> RS485 DE
+  // reserve
   GPIO_setMode(obj->gpioHandle,GPIO_Number_39,GPIO_39_Mode_GeneralPurpose);
-  GPIO_setHigh(obj->gpioHandle,GPIO_Number_39);
-  GPIO_setDirection(obj->gpioHandle,GPIO_Number_39,GPIO_Direction_Output);
+
 
   // CAP1
   GPIO_setMode(obj->gpioHandle,GPIO_Number_40,GPIO_40_Mode_GeneralPurpose);
@@ -1373,6 +1427,11 @@ void HAL_setupPwms(HAL_Handle handle,
       PWM_disableTripZones(obj->pwmHandle[cnt]);
     }
 
+#ifdef SOFT_FIX_ERROR
+  // fix board error
+  PWM_setActionQual_CntUp_CmpA_PwmA(obj->pwmHandle[1], PWM_ActionQual_Clear);
+  PWM_setActionQual_CntDown_CmpA_PwmA(obj->pwmHandle[1], PWM_ActionQual_Set);
+#endif
 
   // setup the Event Trigger Selection Register (ETSEL)
   PWM_disableInt(obj->pwmHandle[PWM_Number_1]);
@@ -1552,7 +1611,7 @@ void HAL_setupTimers(HAL_Handle handle,const float_t systemFreq_MHz)
 {
   HAL_Obj  *obj = (HAL_Obj *)handle;
   uint32_t  timerPeriod_0p5ms = (uint32_t)(systemFreq_MHz * (float_t)500.0) - 1;
-  uint32_t  timerPeriod_10ms = (uint32_t)(systemFreq_MHz * (float_t)10000.0) - 1;
+  uint32_t  timerPeriod_1750us = (uint32_t)(systemFreq_MHz * (float_t)1750.0) - 1;
 
   // use timer 0 for frequency diagnostics
   TIMER_setDecimationFactor(obj->timerHandle[0],0);
@@ -1563,7 +1622,7 @@ void HAL_setupTimers(HAL_Handle handle,const float_t systemFreq_MHz)
   // use timer 1 for CPU usage diagnostics
   TIMER_setDecimationFactor(obj->timerHandle[1],0);
   TIMER_setEmulationMode(obj->timerHandle[1],TIMER_EmulationMode_RunFree);
-  TIMER_setPeriod(obj->timerHandle[1],timerPeriod_10ms);
+  TIMER_setPeriod(obj->timerHandle[1],timerPeriod_1750us);
   TIMER_setPreScaler(obj->timerHandle[1],0);
 
   // use timer 2 for CPU time diagnostics
@@ -1595,6 +1654,43 @@ void HAL_setDacParameters(HAL_Handle handle, HAL_DacData_t *pDacData)
 }	//end of HAL_setDacParameters() function
 
 /*
+void HAL_setupI2cs(HAL_Handle handle)
+{
+   HAL_Obj *obj = (HAL_Obj *)handle;
+   I2C_disable(obj->i2cHandle);
+   I2C_setSlaveAddress(obj->i2cHandle,0x3f);
+   I2C_setupClock(obj->i2cHandle, 0x07,0x19,0x19);
+   I2C_setMaster(obj->i2cHandle);
+
+   //I2C_enableFifo(obj->i2cHandle);
+   //I2C_resetRxFifo(obj->i2cHandle);
+   I2C_enable(obj->i2cHandle);
+
+
+   return;
+} //end of HAL_setupI2cs() function
+
+
+void HAL_setupSpiA(HAL_Handle handle)
+{
+  HAL_Obj   *obj = (HAL_Obj *)handle;
+
+  SPI_reset(obj->spiAHandle);
+  SPI_setMode(obj->spiAHandle,SPI_Mode_Master);
+  SPI_setClkPolarity(obj->spiAHandle,SPI_ClkPolarity_OutputFallingEdge_InputRisingEdge);
+  SPI_enableTx(obj->spiAHandle);
+  SPI_enableTxFifoEnh(obj->spiAHandle);
+  SPI_enableTxFifo(obj->spiAHandle);
+  SPI_setTxDelay(obj->spiAHandle,0x0010);
+  SPI_setBaudRate(obj->spiAHandle,SPI_BaudRate_6_MBaud);
+  SPI_setCharLength(obj->spiAHandle,SPI_CharLength_16_Bits);
+  SPI_setSuspend(obj->spiAHandle,SPI_TxSuspend_free);
+  SPI_enable(obj->spiAHandle);
+
+  return;
+}  // end of HAL_setupSpiA() function
+*/
+
 void HAL_setupScia(HAL_Handle handle)
 {
 	HAL_Obj *obj = (HAL_Obj *)handle;
@@ -1606,36 +1702,93 @@ void HAL_setupScia(HAL_Handle handle)
 
 	SCI_setCharLength(obj->sciHandle, SCI_CharLength_8_Bits);
 	SCI_setNumStopBits(obj->sciHandle, SCI_NumStopBits_One);
+	//SCI_setPriority(obj->sciHandle, SCI_Priority_FreeRun);
+	SCI_enableParity(obj->sciHandle);
+	SCI_setParity(obj->sciHandle, SCI_Parity_Odd);
 	SCI_setMode(obj->sciHandle, SCI_Mode_IdleLine);
+	SCI_setBaudRate(obj->sciHandle,SCI_BaudRate_19_2_kBaud);
 
 	SCI_enableTx(obj->sciHandle);
 	SCI_enableRx(obj->sciHandle);
 	SCI_disableSleep(obj->sciHandle);
 	SCI_disableTxWake(obj->sciHandle);
 
-	SCI_setBaudRate(obj->sciHandle,SCI_BaudRate_57_6_kBaud);
+
 	//SCI_disableLoopBack(obj->sciHandle);
+
+	/*SCI_enableTxFifoEnh(obj->sciHandle);
 
 	SCI_resetRxFifo(obj->sciHandle);
 	SCI_setRxFifoIntLevel(obj->sciHandle, SCI_FifoLevel_2_Words);
 	SCI_enableRxFifo(obj->sciHandle);
 
-
+	SCI_resetTxFifo(obj->sciHandle);
 	SCI_setTxFifoIntLevel(obj->sciHandle, SCI_FifoLevel_2_Words);
 	SCI_enableTxFifo(obj->sciHandle);
-	SCI_resetTxFifo(obj->sciHandle);
+*/
 
 	//SCI_enableLoopBack(obj->sciHandle);
+
 	SCI_enable(obj->sciHandle);
-
-
-
-	//
 
 
 
 }
 
-*/
+void HAL_GetBoardNum(HAL_Handle handle)
+{
+	HAL_Obj *obj = (HAL_Obj *)handle;
+	uint16_t AdcConvMean;
+
+	  // disable the ADCs
+	  ADC_disable(obj->adcHandle);
+
+	  // power up the bandgap circuit
+	  ADC_enableBandGap(obj->adcHandle);
+
+	  // set the ADC voltage reference source to internal
+	  ADC_setVoltRefSrc(obj->adcHandle,ADC_VoltageRefSrc_Int);
+
+	  // enable the ADC reference buffers
+	  ADC_enableRefBuffers(obj->adcHandle);
+
+	  // power up the ADCs
+	  ADC_powerUp(obj->adcHandle);
+
+	  // enable the ADCs
+	  ADC_enable(obj->adcHandle);
+
+	  HAL_AdcCalChanSelect(handle, ADC_SocChanNumber_B0);
+
+	  //Capture ADC conversion on VREFLO
+	  AdcConvMean = HAL_AdcCalConversion(handle);
+
+	  if(AdcConvMean > BOARD_OPEN_LEVEL)
+		obj->boardAddress = HAL_BoardAddr_OpenLoop;
+	  else if(AdcConvMean < (uint16_t)(BOARD_MOTOR7_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_MOTOR7_LEVEL * LOW_deviance))
+	    obj->boardAddress = HAL_BoardAddr_Motor7;
+      else if(AdcConvMean < (uint16_t)(BOARD_MOTOR6_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_MOTOR6_LEVEL * LOW_deviance))
+  	    obj->boardAddress = HAL_BoardAddr_Motor6;
+      else if(AdcConvMean < (uint16_t)(BOARD_MOTOR5_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_MOTOR5_LEVEL * LOW_deviance))
+  	    obj->boardAddress = HAL_BoardAddr_Motor5;
+      else if(AdcConvMean < (uint16_t)(BOARD_MOTOR4_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_MOTOR4_LEVEL * LOW_deviance))
+        obj->boardAddress = HAL_BoardAddr_Motor4;
+      else if(AdcConvMean < (uint16_t)(BOARD_MOTOR3_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_MOTOR3_LEVEL * LOW_deviance))
+        obj->boardAddress = HAL_BoardAddr_Motor3;
+      else if(AdcConvMean < (uint16_t)(BOARD_MOTOR2_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_MOTOR2_LEVEL * LOW_deviance))
+        obj->boardAddress = HAL_BoardAddr_Motor2;
+      else if(AdcConvMean < (uint16_t)(BOARD_MOTOR1_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_MOTOR1_LEVEL * LOW_deviance))
+    	obj->boardAddress = HAL_BoardAddr_Motor1;
+      else if(AdcConvMean < (uint16_t)(BOARD_HEATER_LEVEL * HIGH_deviance) && AdcConvMean > (uint16_t)(BOARD_HEATER_LEVEL * LOW_deviance))
+    	obj->boardAddress = HAL_BoardAddr_Heater;
+      else
+        obj->boardAddress = HAL_BoardAddr_Short;
+
+	  return;
+}
+
+
+
+
 
 // end of file

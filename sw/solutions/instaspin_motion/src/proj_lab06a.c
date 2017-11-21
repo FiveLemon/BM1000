@@ -76,6 +76,10 @@ CTRL_Handle ctrlHandle;
 
 HAL_Handle halHandle;
 
+
+MB_Handle MyMBhandle;
+MB_Obj  My_ModBus;
+
 USER_Params gUserParams;
 
 HAL_PwmData_t gPwmData = {_IQ(0.0), _IQ(0.0), _IQ(0.0)};
@@ -143,6 +147,13 @@ void main(void)
   // initialize the hardware abstraction layer
   halHandle = HAL_init(&hal,sizeof(hal));
 
+
+  MyMBhandle = MB_init(&My_ModBus, sizeof(My_ModBus));
+
+  MB_setSciHandle(MyMBhandle, halHandle->sciHandle);
+  MB_setTimHandle(MyMBhandle, halHandle->timerHandle[1]);
+  MB_setGpioHandle(MyMBhandle, halHandle->gpioHandle);
+  MB_setSlaveAddress(MyMBhandle, 0x01);
 
   // check for errors in user parameters
   USER_checkForErrors(&gUserParams);
@@ -280,6 +291,7 @@ void main(void)
         // enable/disable automatic calculation of bias values
         CTRL_setFlag_enableOffset(ctrlHandle,gMotorVars.Flag_enableOffsetcalc);
 
+        MB_Poll(MyMBhandle);
 
         if(CTRL_isError(ctrlHandle))
           {
@@ -657,6 +669,35 @@ void ST_runVelCtl(ST_Handle handle, CTRL_Handle ctrlHandle)
 	CTRL_setIq_ref_pu(ctrlHandle, iqReference);
 }
 
+
+interrupt void Timer1ISR(void)
+{
+
+    MB_RTUTimerFSM(MyMBhandle);
+	TIMER_clearFlag(halHandle->timerHandle[1]);
+    //TIMER_stop(halHandle->timerHandle[1]);
+
+}
+
+interrupt void UART_TxReadyISR(void)
+{
+
+    MB_RTUTransmitFSM(MyMBhandle);
+
+	SCI_clearTxFifoInt(halHandle->sciHandle);
+	PIE_clearInt(halHandle->pieHandle,PIE_GroupNumber_9);
+
+}
+
+interrupt void UART_RxISR(void)
+{
+    MB_RTUReceiveFSM(MyMBhandle);
+
+	SCI_clearRxFifoOvf(halHandle->sciHandle);
+	SCI_clearRxFifoInt(halHandle->sciHandle);
+	PIE_clearInt(halHandle->pieHandle,PIE_GroupNumber_9);
+
+}
 
 //@} //defgroup
 // end of file

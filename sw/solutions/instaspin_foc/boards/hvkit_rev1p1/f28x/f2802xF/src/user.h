@@ -50,7 +50,7 @@
 #include "sw/modules/est/src/est_Ls_states.h"
 #include "sw/modules/est/src/est_Rs_states.h"
 #include "sw/modules/ctrl/src/32b/ctrl_obj.h"
-#include "sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h"
+
 
 // platforms
 #include "sw/modules/fast/src/32b/userParams.h"
@@ -69,16 +69,11 @@ extern "C" {
 // **************************************************************************
 // the defines
 // the defines
-#define R20m_DE2      10100
-#define R20m_DE5      10101
-#define R100m_DE5     10102
 
-#define BOARD_I_SENSE_RESISTOR    R20m_DE5
 //#define BOARD_I_SENSE_RESISTOR  R20m_DE2
 //#define BOARD_I_SENSE_RESISTOR  R100m_DE5
 
-
-
+//
 //! \brief CURRENTS AND VOLTAGES
 // **************************************************************************
 //! \brief Defines the full scale frequency for IQ variable, Hz
@@ -94,52 +89,26 @@ extern "C" {
 //! \brief WARNING: if you know the value of your Bemf constant, and you know you are operating at a multiple speed due to field weakening, be sure to set this value higher than the expected Bemf voltage
 //! \brief It is recommended to start with a value ~3x greater than the USER_ADC_FULL_SCALE_VOLTAGE_V and increase to 4-5x if scenarios where a Bemf calculation may exceed these limits
 //! \brief This value is also used to calculate the minimum flux value: USER_IQ_FULL_SCALE_VOLTAGE_V/USER_EST_FREQ_Hz/0.7
-#define USER_IQ_FULL_SCALE_VOLTAGE_V      (450.0)   // 450.0 Example for hvkit_rev1p1 typical usage
+#define USER_IQ_FULL_SCALE_VOLTAGE_V      (500.0)   // 450.0 Example for hvkit_rev1p1 typical usage
 
 //! \brief Defines the maximum voltage at the input to the AD converter
 //! \brief The value that will be represented by the maximum ADC input (3.3V) and conversion (0FFFh)
 //! \brief Hardware dependent, this should be based on the voltage sensing and scaling to the ADC input
-#define USER_ADC_FULL_SCALE_VOLTAGE_V       (409.6)      // 409.6 hvkit_rev1p1 voltage scaling
+#define USER_ADC_FULL_SCALE_VOLTAGE_V       (454.0)      // 409.6 hvkit_rev1p1 voltage scaling
 
 //! \brief Defines the voltage scale factor for the system
 //! \brief Compile time calculation for scale factor (ratio) used throughout the system
 #define USER_VOLTAGE_SF               ((float_t)((USER_ADC_FULL_SCALE_VOLTAGE_V)/(USER_IQ_FULL_SCALE_VOLTAGE_V)))
 
-//! \brief Defines the full scale current for the IQ variables, A
-//! \brief All currents are converted into (pu) based on the ratio to this value
-//! \brief WARNING: this value MUST be larger than the maximum current readings that you are expecting from the motor or the reading will roll over to 0, creating a control issue 
-#if (BOARD_I_SENSE_RESISTOR == R20m_DE5)
-#define USER_IQ_FULL_SCALE_CURRENT_A          (10.0)   // 10.0 Example for hvkit_rev1p1 typical usage
-#elif(BOARD_I_SENSE_RESISTOR == R20m_DE2)
-#define USER_IQ_FULL_SCALE_CURRENT_A          (10.0)   // 10.0 Example for hvkit_rev1p1 typical usage
-#else
-#define USER_IQ_FULL_SCALE_CURRENT_A          (2.0)   // 10.0 Example for hvkit_rev1p1 typical usage
-#endif
 
-//! \brief Defines the maximum current at the AD converter
-//! \brief The value that will be represented by the maximum ADC input (3.3V) and conversion (0FFFh)
-//! \brief Hardware dependent, this should be based on the current sensing and scaling to the ADC input
-#if (BOARD_I_SENSE_RESISTOR == R20m_DE5)
-#define USER_ADC_FULL_SCALE_CURRENT_A        (19.89)     //11.31(35mR) 19.89(20mR) hvkit_rev1p1 current scaling
-#elif (BOARD_I_SENSE_RESISTOR == R20m_DE2)
-#define USER_ADC_FULL_SCALE_CURRENT_A        (19.89)     //11.31(35mR) 19.89(20mR) hvkit_rev1p1 current scaling
-#else
-#define USER_ADC_FULL_SCALE_CURRENT_A        (3.96)     //11.31(35mR) 19.89(20mR) hvkit_rev1p1 current scaling
-#endif
-//! \brief Defines the current scale factor for the system
-//! \brief Compile time calculation for scale factor (ratio) used throughout the system
-#define USER_CURRENT_SF               ((float_t)((USER_ADC_FULL_SCALE_CURRENT_A)/(USER_IQ_FULL_SCALE_CURRENT_A)))
-
-//! \brief Defines the number of current sensors used
-//! \brief Defined by the hardware capability present
-//! \brief May be (2) or (3)
 #define USER_NUM_CURRENT_SENSORS            (3)   // 3 Preferred setting for best performance across full speed range, allows for 100% duty cycle
 
 //! \brief Defines the number of voltage (phase) sensors
 //! \brief Must be (3)
 #define USER_NUM_VOLTAGE_SENSORS            (3) // 3 Required
 
-#if (BOARD_I_SENSE_RESISTOR == R20m_DE2)
+/*
+#if (BOARD_I_SENSE_RESISTOR == R20m_)
 //! \brief ADC current offsets for A, B, and C phases
 //! \brief One-time hardware dependent, though the calibration can be done at run-time as well
 //! \brief After initial board calibration these values should be updated for your specific hardware so they are available after compile in the binary to be loaded to the controller
@@ -154,20 +123,20 @@ extern "C" {
 #define   V_B_offset    (0.3420807123)  //0.3297803402      //0.3409576416          //0.3420807123
 #define   V_C_offset    (0.3409657478)  //0.329877913       //0.3423749804          //0.3409657478
 
-#elif (BOARD_I_SENSE_RESISTOR == R20m_DE5)
+#elif (BOARD_I_SENSE_RESISTOR == R20m_)
 //! \brief ADC current offsets for A, B, and C phases
 //! \brief One-time hardware dependent, though the calibration can be done at run-time as well
 //! \brief After initial board calibration these values should be updated for your specific hardware so they are available after compile in the binary to be loaded to the controller
-#define   I_A_offset    (0.9856581092) //0.9902871847(Ti) //0.9340526462 (35mR)  //(20mR) 0.9880340099
-#define   I_B_offset    (0.9845710397) //0.9889662266     //0.9273881316          //0.989710927
-#define   I_C_offset    (0.9823322296) //0.9897354245     //0.9356066585         //0.9853287935
+#define   I_A_offset    () //0.9902871847(Ti) //0.9340526462 (35mR)  //(20mR) 0.9880340099
+#define   I_B_offset    () //0.9889662266     //0.9273881316          //0.989710927
+#define   I_C_offset    () //0.9897354245     //0.9356066585         //0.9853287935
 
 //! \brief ADC voltage offsets for A, B, and C phases
 //! \brief One-time hardware dependent, though the calibration can be done at run-time as well
 //! \brief After initial board calibration these values should be updated for your specific hardware so they are available after compile in the binary to be loaded to the controller
-#define   V_A_offset    (0.3482521176)   //0.3298847079 (Ti) //0.342458427  (35mR)  //20mR 0.3432317376
-#define   V_B_offset    (0.3484361768)  //0.3297803402      //0.3409576416          //0.3420807123
-#define   V_C_offset    (0.3485003114)  //0.329877913       //0.3423749804          //0.3409657478
+#define   V_A_offset    ()   //0.3298847079 (Ti) //0.342458427  (35mR)  //20mR 0.3432317376
+#define   V_B_offset    ()  //0.3297803402      //0.3409576416          //0.3420807123
+#define   V_C_offset    ()  //0.329877913       //0.3423749804          //0.3409657478
 
 #elif (BOARD_I_SENSE_RESISTOR == R100m_DE5)
 //! \brief ADC current offsets for A, B, and C phases
@@ -187,6 +156,7 @@ extern "C" {
 
 
 #endif
+*/
 
 //! \brief CLOCKS & TIMERS
 // **************************************************************************
@@ -290,7 +260,7 @@ extern "C" {
 //! \brief Defines the maximum negative current to be applied in Id reference
 //! \brief Used in field weakening only, this is a safety setting (e.g. to protect against demagnetization)
 //! \brief User must also be aware that overall current magnitude [sqrt(Id^2 + Iq^2)] should be kept below any machine design specifications
-#define USER_MAX_NEGATIVE_ID_REF_CURRENT_A     (-0.5 * USER_MOTOR_MAX_CURRENT)   // -0.5 * USER_MOTOR_MAX_CURRENT Example, adjust to meet safety needs of your motor
+//#define USER_MAX_NEGATIVE_ID_REF_CURRENT_A     (-0.5 * (pUserParams->maxCurrent))   // -0.5 * USER_MOTOR_MAX_CURRENT Example, adjust to meet safety needs of your motor
 
 //! \brief Defines the low speed limit for the flux integrator, pu 
 //! \brief This is the speed range (CW/CCW) at which the ForceAngle object is active, but only if Enabled
@@ -304,7 +274,7 @@ extern "C" {
 
 //! \brief Defines the maximum current slope for Id trajectory during PowerWarp
 //! \brief For Induction motors only, controls how fast Id input can change under PowerWarp control
-#define USER_MAX_CURRENT_SLOPE_POWERWARP   (0.3*USER_MOTOR_RES_EST_CURRENT/USER_IQ_FULL_SCALE_CURRENT_A/USER_TRAJ_FREQ_Hz)  // 0.3*RES_EST_CURRENT / IQ_FULL_SCALE_CURRENT / TRAJ_FREQ Typical to produce 1-sec rampup/down
+//#define USER_MAX_CURRENT_SLOPE_POWERWARP   (0.3*(pUserParams->maxCurrent_resEst)/USER_IQ_FULL_SCALE_CURRENT_A/USER_TRAJ_FREQ_Hz)  // 0.3*RES_EST_CURRENT / IQ_FULL_SCALE_CURRENT / TRAJ_FREQ Typical to produce 1-sec rampup/down
 
 //! \brief Defines the starting maximum acceleration AND deceleration for the speed profiles, Hz/s
 //! \brief Updated in run-time through user functions
@@ -316,7 +286,7 @@ extern "C" {
 #define USER_MAX_ACCEL_EST_Hzps           (2.0)         // 2.0 Default, don't change
 
 //! \brief Defines the maximum current slope for Id trajectory during estimation
-#define USER_MAX_CURRENT_SLOPE           (USER_MOTOR_RES_EST_CURRENT/USER_IQ_FULL_SCALE_CURRENT_A/USER_TRAJ_FREQ_Hz)      // USER_MOTOR_RES_EST_CURRENT/USER_IQ_FULL_SCALE_CURRENT_A/USER_TRAJ_FREQ_Hz Default, don't change
+//#define USER_MAX_CURRENT_SLOPE           ((pUserParams->maxCurrent_resEst)/USER_IQ_FULL_SCALE_CURRENT_A/USER_TRAJ_FREQ_Hz)      // USER_MOTOR_RES_EST_CURRENT/USER_IQ_FULL_SCALE_CURRENT_A/USER_TRAJ_FREQ_Hz Default, don't change
 
 //! \brief Defines the fraction of IdRated to use during rated flux estimation
 //!
@@ -340,12 +310,12 @@ extern "C" {
 
 //! \brief Defines the PowerWarp gain for computing Id reference
 //! \brief Induction motors only
-#define USER_POWERWARP_GAIN                   (1.0)         // 1.0 Default, don't change
+#define USER_POWERWARP_GAIN          (1.0)         // 1.0 Default, don't change
 
 //! \brief Defines the R/L estimation frequency, Hz
 //! \brief User higher values for low inductance motors and lower values for higher inductance
 //! \brief motors.  The values can range from 100 to 300 Hz.
-#define USER_R_OVER_L_EST_FREQ_Hz (50)               // 100 Default
+#define USER_R_OVER_L_EST_FREQ_Hz (100)               // 100 Default
 
 
 //! \brief POLES
@@ -367,7 +337,7 @@ extern "C" {
 #define USER_FLUX_POLE_rps              (100.0)   // 100.0 Default, do not change
 
 //! \brief Defines the software pole location for the direction filter, rad/s
-#define USER_DIRECTION_POLE_rps             (6.0)   // 6.0 Default, do not change
+#define USER_DIRECTION_POLE_rps         (6.0)   // 6.0 Default, do not change
 
 //! \brief Defines the software pole location for the speed control filter, rad/s
 #define USER_SPEED_POLE_rps           (100.0)   // 100.0 Default, do not change
@@ -385,389 +355,7 @@ extern "C" {
 
 //! \brief USER MOTOR & ID SETTINGS
 // **************************************************************************
-
-//! \brief Define each motor with a unique name and ID number
-// BLDC & SMPM motors
-#define Estun_EMJ_04APB22           101
-#define Anaheim_BLY172S             102
-#define My_Motor                    104
-
-// IPM motors
-// If user provides separate Ls-d, Ls-q
-// else treat as SPM with user or identified average Ls
-#define Belt_Drive_Washer_IPM       201
-
-// ACIM motors
-#define Marathon_5K33GN2A           301
-#define Marathon_56H17T2011A        302
-#define Selni_AHV242N06             303
-#define Dayton_3N352C_230           304
-#define Dayton_3N352C_460           305
-#define Weg_00118ET3E143T_W22_230   306
-#define Weg_00118ET3E143T_W22_460   307
-#define Oriental_4IK25A_SH_230      308
-#define Dayton_2N865T               309
-#define My_Motor_6W                 310
-#define My_Motor_25W                311
-#define My_Motor_90W                312
-#define My_Motor_120W               313
-#define My_Motor_180W               314
-#define My_Motor_400W               315
-#define My_Motor_2000W              316
-
-//! \brief Uncomment the motor which should be included at compile
-//! \brief These motor ID settings and motor parameters are then available to be used by the control system
-//! \brief Once your ideal settings and parameters are identified update the motor section here so it is available in the binary code
-//#define USER_MOTOR Estun_EMJ_04APB22
-//#define USER_MOTOR Anaheim_BLY172S
-//#define USER_MOTOR My_Motor
-//#define USER_MOTOR Belt_Drive_Washer_IPM
-//#define USER_MOTOR Marathon_5K33GN2A
-//#define USER_MOTOR Marathon_56H17T2011A
-//#define USER_MOTOR Selni_AHV242N06
-//#define USER_MOTOR Dayton_3N352C_230
-//#define USER_MOTOR Dayton_3N352C_460
-//#define USER_MOTOR Weg_00118ET3E143T_W22_230
-//#define USER_MOTOR Weg_00118ET3E143T_W22_460
-//#define USER_MOTOR Oriental_4IK25A_SH_230
-//#define USER_MOTOR Dayton_2N865T
-#define USER_MOTOR My_Motor_90W
-//#define USER_MOTOR My_Motor_25W
-//#define USER_MOTOR My_Motor_120W
-//#define USER_MOTOR My_Motor_180W
-//#define USER_MOTOR My_Motor_400W
-//#define USER_MOTOR My_Motor_2000W
-
-
-#if (USER_MOTOR == Estun_EMJ_04APB22)                  // Name must match the motor #define
-#define USER_MOTOR_TYPE                 MOTOR_Type_Pm  // Motor_Type_Pm (All Synchronous: BLDC, PMSM, SMPM, IPM) or Motor_Type_Induction (Asynchronous ACI)
-#define USER_MOTOR_NUM_POLE_PAIRS       (4)            // PAIRS, not total poles. Used to calculate user RPM from rotor Hz only
-#define USER_MOTOR_Rr                   (NULL)         // Induction motors only, else NULL
-#define USER_MOTOR_Rs                   (2.200221)     // Identified phase to neutral resistance in a Y equivalent circuit (Ohms, float)
-#define USER_MOTOR_Ls_d                 (0.008721023)  // For PM, Identified average stator inductance  (Henry, float)
-#define USER_MOTOR_Ls_q                 (0.008721023)  // For PM, Identified average stator inductance  (Henry, float)
-#define USER_MOTOR_RATED_FLUX           (0.3846985)    // Identified TOTAL flux linkage between the rotor and the stator (V/Hz)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)         // Induction motors only, else NULL
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)          // During Motor ID, maximum current (Amperes, float) used for Rs estimation, 10-20% rated current
-#define USER_MOTOR_IND_EST_CURRENT      (-1.0)         // During Motor ID, maximum current (negative Amperes, float) used for Ls estimation, use just enough to enable rotation
-#define USER_MOTOR_MAX_CURRENT          (3.82)         // CRITICAL: Used during ID and run-time, sets a limit on the maximum current command output of the provided Speed PI Controller to the Iq controller
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (20.0)         // During Motor ID, maximum commanded speed (Hz, float), ~10% rated
-
-#define USER_MOTOR_FREQ_LOW				(10.0)			// Hz - suggested to set to 10% of rated motor frequency
-#define USER_MOTOR_FREQ_HIGH			(50.0)			// Hz - suggested to set to 100% of rated motor frequency
-#define USER_MOTOR_FREQ_MAX				(60.0)			// Hz - suggested to set to 120% of rated motor frequency
-#define USER_MOTOR_VOLT_MIN				(80.0)			// Volt - suggested to set to ~20% of rated motor voltage
-#define USER_MOTOR_VOLT_MAX				(240.0)			// Volt - suggested to set to 100% of rated motor voltage
-
-#elif (USER_MOTOR == Anaheim_BLY172S)
-#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
-#define USER_MOTOR_NUM_POLE_PAIRS       (4)
-#define USER_MOTOR_Rr                   (NULL)
-#define USER_MOTOR_Rs                   (0.4110007)
-#define USER_MOTOR_Ls_d                 (0.0007092811)
-#define USER_MOTOR_Ls_q                 (0.0007092811)
-#define USER_MOTOR_RATED_FLUX           (0.03279636)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)
-#define USER_MOTOR_IND_EST_CURRENT      (-1.0)
-#define USER_MOTOR_MAX_CURRENT          (5.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (20.0)
-
-#elif (USER_MOTOR == My_Motor)
-#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
-#define USER_MOTOR_NUM_POLE_PAIRS       (4)
-#define USER_MOTOR_Rr                   (NULL)   //85.4775 /750w/1.919767    /25w/112.8824   /25w/187.8749   /25w/101.2162   /6w/255.69      /90w/28.3753
-#define USER_MOTOR_Rs                   (8.645633) //100.1402      //3.349692       //103.0613     //98.50509     //104.1863      //306.0905        //18.00565
-#define USER_MOTOR_Ls_d                 (0.02216313) //0.6535537     //0.03490628    //0.433613     //0.03226636   //0.5173685      //0.4444863       //0.06181286
-#define USER_MOTOR_Ls_q                 (0.02216313) //0.6535537     //0.03490628    //0.433613     //0.03226636   //0.5173685      //0.4444863       //0.06181286
-#define USER_MOTOR_RATED_FLUX           (1.17867) // 0.8165*220/50       //
-#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL) //0.2855784     //2.101521      //0.2869699    //0.2788198    //0.281144       //0.1244159       //0.8829702
-#define USER_MOTOR_RES_EST_CURRENT      (0.2) //1.0
-#define USER_MOTOR_IND_EST_CURRENT      (-0.2)
-#define USER_MOTOR_MAX_CURRENT          (2.5) //1.5
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (20.0)
-
-
-#elif (USER_MOTOR == My_Motor_90W) //20mR board test is ok
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
-#define USER_MOTOR_NUM_POLE_PAIRS       (2)
-#define USER_MOTOR_Rr                   (25.47448)             //25.47448
-#define USER_MOTOR_Rs                   (17.84702)            //17.84702
-#define USER_MOTOR_Ls_d                 (0.07420402)          //0.07420402
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d       //0.07420402
-#define USER_MOTOR_RATED_FLUX           (0.8165*230.0/60.0)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (0.7426178)          //0.7426178
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)
-#define USER_MOTOR_MAX_CURRENT          (2.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
-
-#elif (USER_MOTOR == My_Motor_25W) //100mR board
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
-#define USER_MOTOR_NUM_POLE_PAIRS       (2)
-#define USER_MOTOR_Rr                   (101.2162)             //25.47448
-#define USER_MOTOR_Rs                   (94.0951004)            //17.84702
-#define USER_MOTOR_Ls_d                 (0.3180124748)          //0.07420402
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d       //0.07420402
-#define USER_MOTOR_RATED_FLUX           (0.8165*230.0/60.0)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (0.235005856)          //0.7426178
-#define USER_MOTOR_RES_EST_CURRENT      (0.1)
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)
-#define USER_MOTOR_MAX_CURRENT          (0.3)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
-
-#elif (USER_MOTOR == My_Motor_120W) // 20mR board
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
-#define USER_MOTOR_NUM_POLE_PAIRS       (2)
-#define USER_MOTOR_Rr                   (34.1684952)                //34.1684952
-#define USER_MOTOR_Rs                   (17.2417736)                //17.2417736
-#define USER_MOTOR_Ls_d                 (0.0492000505)                //0.0492000505
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d
-#define USER_MOTOR_RATED_FLUX           (0.8165*230.0/60.0)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (0.773149729)                //0.773149729
-#define USER_MOTOR_RES_EST_CURRENT      (0.2)
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)
-#define USER_MOTOR_MAX_CURRENT          (1.15)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
-
-#elif (USER_MOTOR == My_Motor_180W) // 20mR board
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
-#define USER_MOTOR_NUM_POLE_PAIRS       (2)
-#define USER_MOTOR_Rr                   (16.0559978)
-#define USER_MOTOR_Rs                   (8.17313385)
-#define USER_MOTOR_Ls_d                 (0.0257577542)
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d
-#define USER_MOTOR_RATED_FLUX           (0.8165*230.0/60.0)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (1.01525545)
-#define USER_MOTOR_RES_EST_CURRENT      (0.3)
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)
-#define USER_MOTOR_MAX_CURRENT          (1.2)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
-
-#elif (USER_MOTOR == My_Motor_400W) // 20mR board
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
-#define USER_MOTOR_NUM_POLE_PAIRS       (2)
-#define USER_MOTOR_Rr                   (3.2)                      //
-#define USER_MOTOR_Rs                   (6.348376)                 //
-#define USER_MOTOR_Ls_d                 (0.100)                   //
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d
-#define USER_MOTOR_RATED_FLUX           (0.8165*230.0/60.0)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (1.382381)               //
-#define USER_MOTOR_RES_EST_CURRENT      (0.7)
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)
-#define USER_MOTOR_MAX_CURRENT          (2.55)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
-
-#elif (USER_MOTOR == My_Motor_2000W) //20mR board
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
-#define USER_MOTOR_NUM_POLE_PAIRS       (1)
-#define USER_MOTOR_Rr                   (0.971859396)      //25.47448  9.89520504e-06
-#define USER_MOTOR_Rs                   (1.27026629)       //17.84702  0.00446519349
-#define USER_MOTOR_Ls_d                 (0.0116005935)             //0.07420402      0.00446519349 0.0366005935
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d       //0.07420402
-#define USER_MOTOR_RATED_FLUX           (0.8165*230.0/60.0)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (2.7904315)             //0.7426178
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)
-#define USER_MOTOR_MAX_CURRENT          (5.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
-
-#elif (USER_MOTOR == Belt_Drive_Washer_IPM)
-#define USER_MOTOR_TYPE                 MOTOR_Type_Pm
-#define USER_MOTOR_NUM_POLE_PAIRS       (4)
-#define USER_MOTOR_Rr                   (NULL)
-#define USER_MOTOR_Rs                   (2.711065)
-#define USER_MOTOR_Ls_d                 (0.0115)
-#define USER_MOTOR_Ls_q                 (0.0135)
-#define USER_MOTOR_RATED_FLUX           (0.5022156)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (NULL)
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)
-#define USER_MOTOR_IND_EST_CURRENT      (-1.0)
-#define USER_MOTOR_MAX_CURRENT          (4.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (20.0)
-
-#elif (USER_MOTOR == Marathon_5K33GN2A)                      // Name must match the motor #define
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction // Motor_Type_Pm (All Synchronous: BLDC, PMSM, SMPM, IPM) or Motor_Type_Induction (Asynchronous ACI)
-#define USER_MOTOR_NUM_POLE_PAIRS       (2)                  // PAIRS, not total poles. Used to calculate user RPM from rotor Hz only
-#define USER_MOTOR_Rr                   (5.574939)           // Identified phase to neutral in a Y equivalent circuit (Ohms, float)
-#define USER_MOTOR_Rs                   (10.71121)           // Identified phase to neutral in a Y equivalent circuit (Ohms, float)
-#define USER_MOTOR_Ls_d                 (0.04282236)         // For Induction, Identified average stator inductance  (Henry, float)
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d      // For Induction, Identified average stator inductance  (Henry, float)
-#define USER_MOTOR_RATED_FLUX           (0.8165*220.0/60.0)  // sqrt(2/3)* Rated V (line-line) / Rated Freq (Hz)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (1.514201)           // Identified magnetizing current for induction motors, else NULL
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)                // During Motor ID, maximum current (Amperes, float) used for Rs estimation, 10-20% rated current
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)               // not used for induction
-#define USER_MOTOR_MAX_CURRENT          (2.0)                // CRITICAL: Used during ID and run-time, sets a limit on the maximum current command output of the provided Speed PI Controller to the Iq controller
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)                // During Motor ID, maximum commanded speed (Hz, float). Should always use 5 Hz for Induction.
-
-#elif (USER_MOTOR == Marathon_56H17T2011A)
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
-#define USER_MOTOR_NUM_POLE_PAIRS       (2)
-#define USER_MOTOR_Rr                   (5.076565)
-#define USER_MOTOR_Rs                   (7.777135)
-#define USER_MOTOR_Ls_d                 (0.02756402)
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d
-#define USER_MOTOR_RATED_FLUX           (0.8165*230.0/60.0)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (1.130457)
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)
-#define USER_MOTOR_MAX_CURRENT          (5.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
-
-#elif (USER_MOTOR == Selni_AHV242N06)
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
-#define USER_MOTOR_NUM_POLE_PAIRS       (1)
-#define USER_MOTOR_Rr                   (0.6519378)
-#define USER_MOTOR_Rs                   (1.863846)
-#define USER_MOTOR_Ls_d                 (0.01710425)
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d
-#define USER_MOTOR_RATED_FLUX           (0.8165*190.0/200.0)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (1.246659)
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)
-#define USER_MOTOR_MAX_CURRENT          (5.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
-
-#elif (USER_MOTOR == Dayton_3N352C_230)
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
-#define USER_MOTOR_NUM_POLE_PAIRS       (2)
-#define USER_MOTOR_Rr                   (2.064656)
-#define USER_MOTOR_Rs                   (2.858907)
-#define USER_MOTOR_Ls_d                 (0.02556416)
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d
-#define USER_MOTOR_RATED_FLUX           (0.8165*230.0/60.0)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (2.938731)
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)
-#define USER_MOTOR_MAX_CURRENT          (5.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
-
-#elif (USER_MOTOR == Dayton_3N352C_460)
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
-#define USER_MOTOR_NUM_POLE_PAIRS       (2)
-#define USER_MOTOR_Rr                   (9.077622)
-#define USER_MOTOR_Rs                   (11.106)
-#define USER_MOTOR_Ls_d                 (0.0713708)
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d
-#define USER_MOTOR_RATED_FLUX           (0.8165*460.0/60.0)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (1.462848)
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)
-#define USER_MOTOR_MAX_CURRENT          (4.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
-
-#elif (USER_MOTOR == Weg_00118ET3E143T_W22_230)
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
-#define USER_MOTOR_NUM_POLE_PAIRS       (2)
-#define USER_MOTOR_Rr                   (1.067204)
-#define USER_MOTOR_Rs                   (2.406377)
-#define USER_MOTOR_Ls_d                 (0.05482391)
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d
-#define USER_MOTOR_RATED_FLUX           (0.8165*230.0/60.0)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (2.17855)
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)
-#define USER_MOTOR_MAX_CURRENT          (6.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
-
-#elif (USER_MOTOR == Weg_00118ET3E143T_W22_460)
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
-#define USER_MOTOR_NUM_POLE_PAIRS       (2)
-#define USER_MOTOR_Rr                   (2.934001)
-#define USER_MOTOR_Rs                   (9.537757)
-#define USER_MOTOR_Ls_d                 (0.2160697)
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d
-#define USER_MOTOR_RATED_FLUX           (0.8165*460.0/60.0)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (1.086798)
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)
-#define USER_MOTOR_MAX_CURRENT          (5.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
-
-#elif (USER_MOTOR == Oriental_4IK25A_SH_230)
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
-#define USER_MOTOR_NUM_POLE_PAIRS       (2)
-#define USER_MOTOR_Rr                   (64.00807)
-#define USER_MOTOR_Rs                   (128.2861)
-#define USER_MOTOR_Ls_d                 (0.6856454)
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d
-#define USER_MOTOR_RATED_FLUX           (0.8165*230.0/60.0)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (0.166837)
-#define USER_MOTOR_RES_EST_CURRENT      (0.1)
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)
-#define USER_MOTOR_MAX_CURRENT          (0.3)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
-
-#elif (USER_MOTOR == Dayton_2N865T)
-#define USER_MOTOR_TYPE                 MOTOR_Type_Induction
-#define USER_MOTOR_NUM_POLE_PAIRS       (2)
-#define USER_MOTOR_Rr                   (2.540533)
-#define USER_MOTOR_Rs                   (4.681129)
-#define USER_MOTOR_Ls_d                 (0.02621018)
-#define USER_MOTOR_Ls_q                 USER_MOTOR_Ls_d
-#define USER_MOTOR_RATED_FLUX           (0.8165*230.0/60.0)
-#define USER_MOTOR_MAGNETIZING_CURRENT  (1.838921)
-#define USER_MOTOR_RES_EST_CURRENT      (1.0)
-#define USER_MOTOR_IND_EST_CURRENT      (NULL)
-#define USER_MOTOR_MAX_CURRENT          (5.0)
-#define USER_MOTOR_FLUX_EST_FREQ_Hz     (5.0)
-
-
-#else
-#error No motor type specified
-#endif
-
-#ifndef USER_MOTOR
-#error Motor is not defined in user.h
-#endif
-
-#ifndef USER_MOTOR_TYPE
-#error The motor type is not defined in user.h
-#endif
-
-#ifndef USER_MOTOR_NUM_POLE_PAIRS
-#error Number of motor pole pairs is not defined in user.h
-#endif
-
-#ifndef USER_MOTOR_Rr
-#error The rotor resistance is not defined in user.h
-#endif
-
-#ifndef USER_MOTOR_Rs
-#error The stator resistance is not defined in user.h
-#endif
-
-#ifndef USER_MOTOR_Ls_d
-#error The direct stator inductance is not defined in user.h
-#endif
-
-#ifndef USER_MOTOR_Ls_q
-#error The quadrature stator inductance is not defined in user.h
-#endif
-
-#ifndef USER_MOTOR_RATED_FLUX
-#error The rated flux of motor is not defined in user.h
-#endif
-
-#ifndef USER_MOTOR_MAGNETIZING_CURRENT
-#error The magnetizing current is not defined in user.h
-#endif
-
-#ifndef USER_MOTOR_RES_EST_CURRENT
-#error The resistance estimation current is not defined in user.h
-#endif
-
-#ifndef USER_MOTOR_IND_EST_CURRENT
-#error The inductance estimation current is not defined in user.h
-#endif
-
-#ifndef USER_MOTOR_MAX_CURRENT
-#error The maximum current is not defined in user.h
-#endif
-
-#ifndef USER_MOTOR_FLUX_EST_FREQ_Hz
-#error The flux estimation frequency is not defined in user.h
-#endif
+#define USER_MOTOR_NUM_POLE_PAIRS (2)
 
 
 // **************************************************************************
@@ -776,13 +364,18 @@ extern "C" {
 
 //! \brief      Sets the user parameter values
 //! \param[in]  pUserParams  The pointer to the user param structure
+extern void USER_setSysParams(USER_Params *pUserParams);
 extern void USER_setParams(USER_Params *pUserParams);
-
+extern void USER_setWaitTimeParams(USER_Params *pUserParams);
+extern void USER_setMotorParams(USER_Params *pUserParams);
+extern void USER_setBoardParams(USER_Params *pUserParams);
+extern void USER_setMotorIDs(USER_Params *pUserParams, const uint_least8_t motor_ID);
 
 //! \brief      Checks for errors in the user parameter values
 //! \param[in]  pUserParams  The pointer to the user param structure
 extern void USER_checkForErrors(USER_Params *pUserParams);
 
+extern void USER_checkDefErrors(USER_Params *pUserParams);
 
 //! \brief      Gets the error code in the user parameters
 //! \param[in]  pUserParams  The pointer to the user param structure
@@ -798,32 +391,32 @@ extern void USER_setErrorCode(USER_Params *pUserParams,const USER_ErrorCode_e er
 
 //! \brief      Recalculates Inductances with the correct Q Format
 //! \param[in]  handle       The controller (CTRL) handle
-extern void USER_softwareUpdate1p6(CTRL_Handle handle);
+extern void USER_softwareUpdate1p6(CTRL_Handle handle, USER_Params *pUserParams);
 
 
 //! \brief      Updates Id and Iq PI gains
 //! \param[in]  handle       The controller (CTRL) handle
-extern void USER_calcPIgains(CTRL_Handle handle);
+extern void USER_calcPIgains(CTRL_Handle handle, USER_Params *pUserParams);
 
 
 //! \brief      Computes the scale factor needed to convert from torque created by Ld, Lq, Id and Iq, from per unit to Nm
 //! \return     The scale factor to convert torque from (Ld - Lq) * Id * Iq from per unit to Nm, in IQ24 format
-extern _iq USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf(void);
+extern _iq USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf(USER_Params *pUserParams);
 
 
 //! \brief      Computes the scale factor needed to convert from torque created by flux and Iq, from per unit to Nm
 //! \return     The scale factor to convert torque from Flux * Iq from per unit to Nm, in IQ24 format
-extern _iq USER_computeTorque_Flux_Iq_pu_to_Nm_sf(void);
+extern _iq USER_computeTorque_Flux_Iq_pu_to_Nm_sf(USER_Params *pUserParams);
 
 
 //! \brief      Computes the scale factor needed to convert from per unit to Wb
 //! \return     The scale factor to convert from flux per unit to flux in Wb, in IQ24 format
-extern _iq USER_computeFlux_pu_to_Wb_sf(void);
+extern _iq USER_computeFlux_pu_to_Wb_sf(USER_Params *pUserParams);
 
 
 //! \brief      Computes the scale factor needed to convert from per unit to V/Hz
 //! \return     The scale factor to convert from flux per unit to flux in V/Hz, in IQ24 format
-extern _iq USER_computeFlux_pu_to_VpHz_sf(void);
+extern _iq USER_computeFlux_pu_to_VpHz_sf(USER_Params *pUserParams);
 
 
 //! \brief      Computes Flux in Wb or V/Hz depending on the scale factor sent as parameter
@@ -831,7 +424,6 @@ extern _iq USER_computeFlux_pu_to_VpHz_sf(void);
 //! \param[in]  sf           The scale factor to convert flux from per unit to Wb or V/Hz
 //! \return     The flux in Wb or V/Hz depending on the scale factor sent as parameter, in IQ24 format
 extern _iq USER_computeFlux(CTRL_Handle handle, const _iq sf);
-
 
 //! \brief      Computes Torque in Nm
 //! \param[in]  handle          The controller (CTRL) handle

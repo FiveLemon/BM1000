@@ -127,6 +127,11 @@
 			<locationURI>MW_INSTALL_DIR/sw/drivers/adc/src/32b/f28x/f2806x/adc.c</locationURI>
 		</link>
 		<link>
+			<name>brake.c</name>
+			<type>1</type>
+			<locationURI>PARENT-9-PROJECT_LOC/drivers/drvic/brake.c</locationURI>
+		</link>
+		<link>
 			<name>clarke.c</name>
 			<type>1</type>
 			<locationURI>MW_INSTALL_DIR/sw/modules/clarke/src/32b/clarke.c</locationURI>
@@ -142,9 +147,9 @@
 			<locationURI>MW_INSTALL_DIR/sw/drivers/cpu/src/32b/f28x/f2806x/cpu.c</locationURI>
 		</link>
 		<link>
-			<name>ctrlQEP.c</name>
+			<name>ctrl.c</name>
 			<type>1</type>
-			<locationURI>MW_INSTALL_DIR/sw/modules/ctrl/src/32b/ctrlQEP.c</locationURI>
+			<locationURI>PARENT-9-PROJECT_LOC/modules/ctrl/src/32b/ctrl.c</locationURI>
 		</link>
 		<link>
 			<name>enc.c</name>
@@ -162,6 +167,16 @@
 			<locationURI>MW_INSTALL_DIR/sw/drivers/flash/src/32b/f28x/f2806x/flash.c</locationURI>
 		</link>
 		<link>
+			<name>flyingStart.c</name>
+			<type>1</type>
+			<locationURI>PARENT-9-PROJECT_LOC/modules/flyingStart/src/32b/flyingStart.c</locationURI>
+		</link>
+		<link>
+			<name>fsm.c</name>
+			<type>1</type>
+			<locationURI>PARENT-9-PROJECT_LOC/drivers/drvic/fsm.c</locationURI>
+		</link>
+		<link>
 			<name>gpio.c</name>
 			<type>1</type>
 			<locationURI>MW_INSTALL_DIR/sw/drivers/gpio/src/32b/f28x/f2806x/gpio.c</locationURI>
@@ -172,14 +187,29 @@
 			<locationURI>MW_INSTALL_DIR/sw/modules/hal/boards/hvkit_rev1p1/f28x/f2806x/src/hal.c</locationURI>
 		</link>
 		<link>
+			<name>i2c.c</name>
+			<type>1</type>
+			<locationURI>PARENT-9-PROJECT_LOC/drivers/i2c/src/32b/f28x/f2806x/i2c.c</locationURI>
+		</link>
+		<link>
 			<name>ipark.c</name>
 			<type>1</type>
 			<locationURI>MW_INSTALL_DIR/sw/modules/ipark/src/32b/ipark.c</locationURI>
 		</link>
 		<link>
+			<name>mb.c</name>
+			<type>1</type>
+			<locationURI>PARENT-9-PROJECT_LOC/drivers/drvic/modbus/mb.c</locationURI>
+		</link>
+		<link>
 			<name>memCopy.c</name>
 			<type>1</type>
 			<locationURI>MW_INSTALL_DIR/sw/modules/memCopy/src/memCopy.c</locationURI>
+		</link>
+		<link>
+			<name>motor.c</name>
+			<type>1</type>
+			<locationURI>PARENT-9-PROJECT_LOC/drivers/drvic/motor.c</locationURI>
 		</link>
 		<link>
 			<name>offset.c</name>
@@ -212,6 +242,16 @@
 			<locationURI>MW_INSTALL_DIR/sw/drivers/pll/src/32b/f28x/f2806x/pll.c</locationURI>
 		</link>
 		<link>
+			<name>process_ctrl.c</name>
+			<type>1</type>
+			<locationURI>PARENT-9-PROJECT_LOC/drivers/drvic/process_ctrl.c</locationURI>
+		</link>
+		<link>
+			<name>proj_bm1000.c</name>
+			<type>1</type>
+			<locationURI>PARENT-8-PROJECT_LOC/instaspin/src/proj_bm1000.c</locationURI>
+		</link>
+		<link>
 			<name>proj_lab13c.c</name>
 			<type>1</type>
 			<locationURI>MW_INSTALL_DIR/sw/solutions/instaspin_motion/src/proj_lab13c.c</locationURI>
@@ -235,6 +275,11 @@
 			<name>qep.c</name>
 			<type>1</type>
 			<locationURI>MW_INSTALL_DIR/sw/drivers/qep/src/32b/f28x/f2806x/qep.c</locationURI>
+		</link>
+		<link>
+			<name>sci.c</name>
+			<type>1</type>
+			<locationURI>PARENT-9-PROJECT_LOC/drivers/sci/src/32b/f28x/f2806x/sci.c</locationURI>
 		</link>
 		<link>
 			<name>slip.c</name>

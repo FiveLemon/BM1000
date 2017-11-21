@@ -5,11 +5,14 @@
 
 // **************************************************************************
 // the includes
-
+#ifdef FAST_ROM_V1p6
+#include "sw/drivers/i2c/src/32b/f28x/f2806x/i2c.h"
+#include "sw/drivers/gpio/src/32b/f28x/f2806x/gpio.h"
+#else
 // drivers
 #include "sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h"
 #include "sw/drivers/gpio/src/32b/f28x/f2802x/gpio.h"
-
+#endif
 
 
 

@@ -114,21 +114,51 @@ extern "C" {
 //!
 #define HAL_PWM_DBRED_CNT        (uint16_t)(2.0 * (float_t)USER_SYSTEM_FREQ_MHz)            // 2 usec
 
+#define BOARD_HEATER_LEVEL_L         248 // 0.2v
+#define BOARD_HEATER_LEVEL_H         496 // 0.4v
+#define BOARD_MOTOR1_LEVEL_L         745 // 0.6v
+#define BOARD_MOTOR1_LEVEL_H         992 // 0.8v
+#define BOARD_MOTOR2_LEVEL_L         1241 //1.0v
+#define BOARD_MOTOR2_LEVEL_H         1489 //1.2v
+#define BOARD_MOTOR3_LEVEL_L         1738 //1.4v
+#define BOARD_MOTOR3_LEVEL_H         1986 //1.6v
+#define BOARD_MOTOR4_LEVEL_L         2234 //1.8v
+#define BOARD_MOTOR4_LEVEL_H         2482 //2.0v
+#define BOARD_MOTOR5_LEVEL_L         2730 //2.2v
+#define BOARD_MOTOR5_LEVEL_H         2979 //2.4v
+#define BOARD_MOTOR6_LEVEL_L         3227 //2.6v
+#define BOARD_MOTOR6_LEVEL_H         3475 //2.8v
+#define BOARD_MOTOR7_LEVEL_L         3723 //3.0v
+#define BOARD_MOTOR7_LEVEL_H         3971 //3.2v
+
+#define BOARD_SHORT_LEVEL            124   //0.1v
+#define BOARD_HEATER_LEVEL           248   //0.2v
+#define BOARD_MOTOR1_LEVEL           745   //0.6v
+#define BOARD_MOTOR2_LEVEL           1239  //1.0v
+#define BOARD_MOTOR3_LEVEL           1733  //1.4v
+#define BOARD_MOTOR4_LEVEL           2228  //1.8v
+#define BOARD_MOTOR5_LEVEL           2695  //2.2v
+#define BOARD_MOTOR6_LEVEL           3248  //2.6v
+#define BOARD_MOTOR7_LEVEL           3723  //3.0v
+#define BOARD_OPEN_LEVEL             3972  //3.2v
+
+#define HIGH_deviance (1.1)
+#define LOW_deviance  (0.9)
 
 //! \brief Defines the function to turn LEDs off
 //!
-#define HAL_turnLedOff            HAL_setGpioHigh
+//#define HAL_turnLedOff            HAL_setGpioLow
 
 
 //! \brief Defines the function to turn LEDs on
 //!
-#define HAL_turnLedOn             HAL_setGpioLow
+//#define HAL_turnLedOn             HAL_setGpioHigh
 
 
 
 //! \brief Defines the function to turn LEDs on
 //!
-#define HAL_toggleLed             HAL_toggleGpio
+//#define HAL_toggleLed             HAL_toggleGpio
 
 // **************************************************************************
 // the typedefs
@@ -138,8 +168,22 @@ extern "C" {
 //!
 typedef enum
 {
-  HAL_Gpio_LED2=GPIO_Number_34,   //!< GPIO pin number for ControlCARD LED 3
-  HAL_Gpio_PWM=GPIO_Number_6
+
+  HAL_Gpio_KeySensor1 = GPIO_Number_6,
+  HAL_Gpio_KeySensor2 = GPIO_Number_7,
+
+  HAL_Gpio_RelayOnFlag_b = GPIO_Number_33,
+  HAL_Gpio_CpldOcOut = GPIO_Number_16,
+  HAL_Gpio_Rs485_DE = GPIO_Number_34,
+  HAL_Gpio_Rs485_RE_b = GPIO_Number_12,
+  HAL_Gpio_DspClrOcOut_b = GPIO_Number_18,
+  HAL_Gpio_RelayOpenOut = GPIO_Number_19, // as 485 interrupt signal
+  HAL_Gpio_ShutDown = GPIO_Number_32,
+  HAL_Gpio_Stop_flag_in = GPIO_Number_17
+
+  //HAL_Gpio_LED2=GPIO_Number_34,   //!< GPIO pin number for ControlCARD LED 3
+  //HAL_Gpio_PWM=GPIO_Number_6,
+
 } HAL_LedNumber_e;
   
 
@@ -1295,9 +1339,24 @@ void HAL_osc2Comp(HAL_Handle handle, const int16_t sensorSample);
 //! \param[in] pDacData  The pointer to the DAC data
 void HAL_setDacParameters(HAL_Handle handle, HAL_DacData_t *pDacData);
 
-void HAL_setupI2cs(HAL_Handle handle);
-void HAL_setupSpiA(HAL_Handle handle);
+
+void HAL_setupAdcParams(HAL_Handle handle,const USER_Params *pUserParams);
+
+inline uint16_t HAL_getBoardAddr(HAL_Handle handle)
+{
+  HAL_Obj *obj = (HAL_Obj *)handle;
+  uint16_t boardAddr;
+
+  boardAddr = obj->boardAddress;
+
+  return (boardAddr);
+}
+
+
+//void HAL_setupI2cs(HAL_Handle handle);
+//void HAL_setupSpiA(HAL_Handle handle);
 void HAL_setupScia(HAL_Handle handle);
+void HAL_GetBoardNum(HAL_Handle handle);
 void HAL_enableSciaInt(HAL_Handle handle);
 void HAL_enableTimer1Int(HAL_Handle handle, const PIE_IntVec_t vector);
 

@@ -26,6 +26,7 @@ hal.obj: D:/BM1000/sw/drivers/timer/src/32b/f28x/f2802x/timer.h
 hal.obj: D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.h
 hal.obj: D:/BM1000/sw/drivers/spi/src/32b/f28x/f2802x/spi.h
 hal.obj: D:/BM1000/sw/drivers/sci/src/32b/f28x/f2802x/sci.h
+hal.obj: D:/BM1000/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h
 hal.obj: D:/BM1000/sw/modules/offset/src/32b/offset.h
 hal.obj: D:/BM1000/sw/modules/iqmath/src/32b/IQmathLib.h
 hal.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/limits.h
@@ -47,10 +48,10 @@ hal.obj: D:/BM1000/sw/modules/ipark/src/32b/ipark.h
 hal.obj: D:/BM1000/sw/modules/pid/src/32b/pid.h
 hal.obj: D:/BM1000/sw/modules/svgen/src/32b/svgen.h
 hal.obj: D:/BM1000/sw/modules/traj/src/32b/traj.h
+hal.obj: D:/BM1000/sw/drivers/drvic/brake.h
 hal.obj: D:/BM1000/sw/modules/vs_freq/src/32b/vs_freq.h
 hal.obj: D:/BM1000/sw/modules/angle_gen/src/32b/angle_gen.h
 hal.obj: D:/BM1000/sw/modules/datalog/src/32b/datalog.h
-hal.obj: D:/BM1000/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h
 hal.obj: D:/BM1000/sw/modules/fast/src/32b/userParams.h
 hal.obj: D:/BM1000/sw/modules/svgen/src/32b/svgen_current.h
 
@@ -80,6 +81,7 @@ D:/BM1000/sw/drivers/timer/src/32b/f28x/f2802x/timer.h:
 D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.h: 
 D:/BM1000/sw/drivers/spi/src/32b/f28x/f2802x/spi.h: 
 D:/BM1000/sw/drivers/sci/src/32b/f28x/f2802x/sci.h: 
+D:/BM1000/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h: 
 D:/BM1000/sw/modules/offset/src/32b/offset.h: 
 D:/BM1000/sw/modules/iqmath/src/32b/IQmathLib.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/limits.h: 
@@ -101,9 +103,9 @@ D:/BM1000/sw/modules/ipark/src/32b/ipark.h:
 D:/BM1000/sw/modules/pid/src/32b/pid.h: 
 D:/BM1000/sw/modules/svgen/src/32b/svgen.h: 
 D:/BM1000/sw/modules/traj/src/32b/traj.h: 
+D:/BM1000/sw/drivers/drvic/brake.h: 
 D:/BM1000/sw/modules/vs_freq/src/32b/vs_freq.h: 
 D:/BM1000/sw/modules/angle_gen/src/32b/angle_gen.h: 
 D:/BM1000/sw/modules/datalog/src/32b/datalog.h: 
-D:/BM1000/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h: 
 D:/BM1000/sw/modules/fast/src/32b/userParams.h: 
 D:/BM1000/sw/modules/svgen/src/32b/svgen_current.h: 

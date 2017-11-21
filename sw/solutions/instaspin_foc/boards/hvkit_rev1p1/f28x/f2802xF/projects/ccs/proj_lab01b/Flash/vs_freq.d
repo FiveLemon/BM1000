@@ -27,6 +27,7 @@ vs_freq.obj: D:/BM1000/sw/modules/filter/src/32b/filter_fo.h
 vs_freq.obj: D:/BM1000/sw/modules/pid/src/32b/pid.h
 vs_freq.obj: D:/BM1000/sw/modules/svgen/src/32b/svgen.h
 vs_freq.obj: D:/BM1000/sw/modules/traj/src/32b/traj.h
+vs_freq.obj: D:/BM1000/sw/drivers/drvic/brake.h
 vs_freq.obj: D:/BM1000/sw/modules/angle_gen/src/32b/angle_gen.h
 vs_freq.obj: D:/BM1000/sw/modules/datalog/src/32b/datalog.h
 vs_freq.obj: D:/BM1000/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h
@@ -60,6 +61,7 @@ D:/BM1000/sw/modules/filter/src/32b/filter_fo.h:
 D:/BM1000/sw/modules/pid/src/32b/pid.h: 
 D:/BM1000/sw/modules/svgen/src/32b/svgen.h: 
 D:/BM1000/sw/modules/traj/src/32b/traj.h: 
+D:/BM1000/sw/drivers/drvic/brake.h: 
 D:/BM1000/sw/modules/angle_gen/src/32b/angle_gen.h: 
 D:/BM1000/sw/modules/datalog/src/32b/datalog.h: 
 D:/BM1000/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h: 

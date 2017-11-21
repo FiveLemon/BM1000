@@ -1,9 +1,9 @@
 # FIXED
 
-spi.obj: D:/BM1000/sw/drivers/spi/src/32b/f28x/f2802x/spi.c
-spi.obj: D:/BM1000/sw/drivers/spi/src/32b/f28x/f2802x/spi.h
-spi.obj: D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.h
-spi.obj: D:/BM1000/sw/modules/types/src/types.h
+spi.obj: D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2802x/spi.c
+spi.obj: D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2802x/spi.h
+spi.obj: D:/BM1000_v1.1/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.h
+spi.obj: D:/BM1000_v1.1/sw/modules/types/src/types.h
 spi.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdbool.h
 spi.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/yvals.h
 spi.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdarg.h
@@ -12,10 +12,10 @@ spi.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/_lock.h
 spi.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/string.h
 spi.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdint.h
 
-D:/BM1000/sw/drivers/spi/src/32b/f28x/f2802x/spi.c: 
-D:/BM1000/sw/drivers/spi/src/32b/f28x/f2802x/spi.h: 
-D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.h: 
-D:/BM1000/sw/modules/types/src/types.h: 
+D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2802x/spi.c: 
+D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2802x/spi.h: 
+D:/BM1000_v1.1/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.h: 
+D:/BM1000_v1.1/sw/modules/types/src/types.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdbool.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/yvals.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdarg.h: 

@@ -1,20 +1,20 @@
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    1
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE    1
 
        1              ;***************************************************************
        2              ;* TMS320C2000 C/C++ Codegen                         PC v6.2.5 *
-       3              ;* Date/Time created: Fri Jun 23 15:01:26 2017                 *
+       3              ;* Date/Time created: Thu Sep 21 10:37:51 2017                 *
        4              ;***************************************************************
        5                      .compiler_opts --float_support=softlib --hll_source=on --mem_model:code=flat --mem_model:data=large -
        6        0002  FP      .set    XAR2
        7              
        8              $C$DW$CU        .dwtag  DW_TAG_compile_unit
-       9                      .dwattr $C$DW$CU, DW_AT_name("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x
+       9                      .dwattr $C$DW$CU, DW_AT_name("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
       10                      .dwattr $C$DW$CU, DW_AT_producer("TMS320C2000 C/C++ Codegen PC v6.2.5 Copyright (c) 1996-2014 Texas I
       11                      .dwattr $C$DW$CU, DW_AT_TI_version(0x01)
-      12                      .dwattr $C$DW$CU, DW_AT_comp_dir("C:\ti\motorware\motorware_1_01_00_18\sw\solutions\instaspin_foc\boa
+      12                      .dwattr $C$DW$CU, DW_AT_comp_dir("D:\BM1000\sw\solutions\instaspin_foc\boards\hvkit_rev1p1\f28x\f2802
       13                      .global _cpu
       14 00000000       _cpu:   .usect  ".ebss",1,1,0
       15              $C$DW$1 .dwtag  DW_TAG_variable, DW_AT_name("cpu")
@@ -22,8 +22,8 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    1
       17                      .dwattr $C$DW$1, DW_AT_location[DW_OP_addr _cpu]
       18                      .dwattr $C$DW$1, DW_AT_type(*$C$DW$T$25)
       19                      .dwattr $C$DW$1, DW_AT_external
-      20              ;       c:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\120122 C
-      21              ;       c:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\1201216
+      20              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\137084 C
+      21              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\1370818
       22 00000000               .sect   ".text"
       23                      .clink
       24                      .global _CPU_init
@@ -34,11 +34,11 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    1
       29                      .dwattr $C$DW$2, DW_AT_TI_symbol_name("_CPU_init")
       30                      .dwattr $C$DW$2, DW_AT_external
       31                      .dwattr $C$DW$2, DW_AT_type(*$C$DW$T$27)
-      32                      .dwattr $C$DW$2, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28
+      32                      .dwattr $C$DW$2, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
       33                      .dwattr $C$DW$2, DW_AT_TI_begin_line(0x9e)
       34                      .dwattr $C$DW$2, DW_AT_TI_begin_column(0x0c)
       35                      .dwattr $C$DW$2, DW_AT_TI_max_frame_size(-2)
-      36                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 159
+      36                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 159,column 1,is_stmt,address _
       37              
       38                      .dwfde $C$DW$CIE, _CPU_init
       39              $C$DW$3 .dwtag  DW_TAG_formal_parameter, DW_AT_name("pMemory")
@@ -58,10 +58,10 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    1
       53              ;* FUNCTION PROPERTIES                                         *
       54              ;*                            0 Parameter,  0 Auto,  0 SOE     *
       55              ;***************************************************************
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    2
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE    2
 
       56              
       57              _CPU_init:
@@ -79,7 +79,7 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    2
       69                      .dwcfi  save_reg_to_mem, 26, 0
       70                      .dwcfi  save_reg_to_reg, 78, 26
       71 00000000 1EA6          MOVL      XAR6,ACC              ; [CPU_] |159| 
-      72                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 169
+      72                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 169,column 3,is_stmt
       73 00000001 0200          MOVB      ACC,#0                ; [CPU_] |169| 
       74 00000002 0FA6          CMPL      ACC,XAR6              ; [CPU_] |169| 
       75 00000003 ED02          BF        $C$L1,NEQ             ; [CPU_] |169| 
@@ -91,7 +91,7 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    2
       81                      .dwattr $C$DW$7, DW_AT_TI_return
       82 00000005 0006          LRETR     ; [CPU_] 
       83                      ; return occurs ; [] 
-      84                      .dwattr $C$DW$2, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/
+      84                      .dwattr $C$DW$2, DW_AT_TI_end_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
       85                      .dwattr $C$DW$2, DW_AT_TI_end_line(0xaa)
       86                      .dwattr $C$DW$2, DW_AT_TI_end_column(0x01)
       87                      .dwendentry
@@ -106,11 +106,11 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    2
       96                      .dwattr $C$DW$8, DW_AT_high_pc(0x00)
       97                      .dwattr $C$DW$8, DW_AT_TI_symbol_name("_CPU_enableProtectedRegisterWrite")
       98                      .dwattr $C$DW$8, DW_AT_external
-      99                      .dwattr $C$DW$8, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28
+      99                      .dwattr $C$DW$8, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      100                      .dwattr $C$DW$8, DW_AT_TI_begin_line(0x94)
      101                      .dwattr $C$DW$8, DW_AT_TI_begin_column(0x06)
      102                      .dwattr $C$DW$8, DW_AT_TI_max_frame_size(-2)
-     103                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 149
+     103                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 149,column 1,is_stmt,address _
      104              
      105                      .dwfde $C$DW$CIE, _CPU_enableProtectedRegisterWrite
      106              $C$DW$9 .dwtag  DW_TAG_formal_parameter, DW_AT_name("cpuHandle")
@@ -118,10 +118,10 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    2
      108                      .dwattr $C$DW$9, DW_AT_type(*$C$DW$T$27)
      109                      .dwattr $C$DW$9, DW_AT_location[DW_OP_reg12]
      110              
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    3
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE    3
 
      111              ;***************************************************************
      112              ;* FNAME: _CPU_enableProtectedRegisterWrite FR SIZE:   0           *
@@ -143,7 +143,7 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    3
      128                      .dwattr $C$DW$10, DW_AT_TI_return
      129 00000008 0006          LRETR     ; [CPU_] 
      130                      ; return occurs ; [] 
-     131                      .dwattr $C$DW$8, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/
+     131                      .dwattr $C$DW$8, DW_AT_TI_end_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      132                      .dwattr $C$DW$8, DW_AT_TI_end_line(0x9b)
      133                      .dwattr $C$DW$8, DW_AT_TI_end_column(0x01)
      134                      .dwendentry
@@ -158,11 +158,11 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    3
      143                      .dwattr $C$DW$11, DW_AT_high_pc(0x00)
      144                      .dwattr $C$DW$11, DW_AT_TI_symbol_name("_CPU_enableInt")
      145                      .dwattr $C$DW$11, DW_AT_external
-     146                      .dwattr $C$DW$11, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f2
+     146                      .dwattr $C$DW$11, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      147                      .dwattr $C$DW$11, DW_AT_TI_begin_line(0x8a)
      148                      .dwattr $C$DW$11, DW_AT_TI_begin_column(0x06)
      149                      .dwattr $C$DW$11, DW_AT_TI_max_frame_size(-2)
-     150                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 139
+     150                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 139,column 1,is_stmt,address _
      151              
      152                      .dwfde $C$DW$CIE, _CPU_enableInt
      153              $C$DW$12        .dwtag  DW_TAG_formal_parameter, DW_AT_name("cpuHandle")
@@ -178,10 +178,10 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    3
      163              ;* FNAME: _CPU_enableInt                FR SIZE:   0           *
      164              ;*                                                             *
      165              ;* FUNCTION ENVIRONMENT                                        *
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    4
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE    4
 
      166              ;*                                                             *
      167              ;* FUNCTION PROPERTIES                                         *
@@ -197,7 +197,7 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    4
      177                      .dwcfi  cfa_offset, -2
      178                      .dwcfi  save_reg_to_mem, 26, 0
      179                      .dwcfi  save_reg_to_reg, 78, 26
-     180                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 142
+     180                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 142,column 3,is_stmt
      181 00000009 20A8          MOV       AH,IER                ; [CPU_] |142| 
      182 0000000a CBA9          OR        AH,AL                 ; [CPU_] |142| 
      183 0000000b 23A8          MOV       IER,AH                ; [CPU_] |142| 
@@ -206,7 +206,7 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    4
      186                      .dwattr $C$DW$15, DW_AT_TI_return
      187 0000000c 0006          LRETR     ; [CPU_] 
      188                      ; return occurs ; [] 
-     189                      .dwattr $C$DW$11, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x
+     189                      .dwattr $C$DW$11, DW_AT_TI_end_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      190                      .dwattr $C$DW$11, DW_AT_TI_end_line(0x91)
      191                      .dwattr $C$DW$11, DW_AT_TI_end_column(0x01)
      192                      .dwendentry
@@ -221,11 +221,11 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    4
      201                      .dwattr $C$DW$16, DW_AT_high_pc(0x00)
      202                      .dwattr $C$DW$16, DW_AT_TI_symbol_name("_CPU_enableGlobalInts")
      203                      .dwattr $C$DW$16, DW_AT_external
-     204                      .dwattr $C$DW$16, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f2
+     204                      .dwattr $C$DW$16, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      205                      .dwattr $C$DW$16, DW_AT_TI_begin_line(0x80)
      206                      .dwattr $C$DW$16, DW_AT_TI_begin_column(0x06)
      207                      .dwattr $C$DW$16, DW_AT_TI_max_frame_size(-2)
-     208                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 129
+     208                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 129,column 1,is_stmt,address _
      209              
      210                      .dwfde $C$DW$CIE, _CPU_enableGlobalInts
      211              $C$DW$17        .dwtag  DW_TAG_formal_parameter, DW_AT_name("cpuHandle")
@@ -238,10 +238,10 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    4
      218              ;*                                                             *
      219              ;* FUNCTION ENVIRONMENT                                        *
      220              ;*                                                             *
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    5
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE    5
 
      221              ;* FUNCTION PROPERTIES                                         *
      222              ;*                            0 Parameter,  0 Auto,  0 SOE     *
@@ -258,7 +258,7 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    5
      233                      .dwattr $C$DW$18, DW_AT_TI_return
      234 0000000f 0006          LRETR     ; [CPU_] 
      235                      ; return occurs ; [] 
-     236                      .dwattr $C$DW$16, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x
+     236                      .dwattr $C$DW$16, DW_AT_TI_end_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      237                      .dwattr $C$DW$16, DW_AT_TI_end_line(0x87)
      238                      .dwattr $C$DW$16, DW_AT_TI_end_column(0x01)
      239                      .dwendentry
@@ -273,11 +273,11 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    5
      248                      .dwattr $C$DW$19, DW_AT_high_pc(0x00)
      249                      .dwattr $C$DW$19, DW_AT_TI_symbol_name("_CPU_enableDebugInt")
      250                      .dwattr $C$DW$19, DW_AT_external
-     251                      .dwattr $C$DW$19, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f2
+     251                      .dwattr $C$DW$19, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      252                      .dwattr $C$DW$19, DW_AT_TI_begin_line(0x76)
      253                      .dwattr $C$DW$19, DW_AT_TI_begin_column(0x06)
      254                      .dwattr $C$DW$19, DW_AT_TI_max_frame_size(-2)
-     255                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 119
+     255                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 119,column 1,is_stmt,address _
      256              
      257                      .dwfde $C$DW$CIE, _CPU_enableDebugInt
      258              $C$DW$20        .dwtag  DW_TAG_formal_parameter, DW_AT_name("cpuHandle")
@@ -298,10 +298,10 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    5
      273                      .dwcfi  cfa_offset, -2
      274                      .dwcfi  save_reg_to_mem, 26, 0
      275                      .dwcfi  save_reg_to_reg, 78, 26
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    6
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE    6
 
      276 00000010 2920   clrc DBGM
      277 00000011 FF69          SPM       #0                    ; [CPU_] 
@@ -310,7 +310,7 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    6
      280                      .dwattr $C$DW$21, DW_AT_TI_return
      281 00000012 0006          LRETR     ; [CPU_] 
      282                      ; return occurs ; [] 
-     283                      .dwattr $C$DW$19, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x
+     283                      .dwattr $C$DW$19, DW_AT_TI_end_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      284                      .dwattr $C$DW$19, DW_AT_TI_end_line(0x7d)
      285                      .dwattr $C$DW$19, DW_AT_TI_end_column(0x01)
      286                      .dwendentry
@@ -325,11 +325,11 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    6
      295                      .dwattr $C$DW$22, DW_AT_high_pc(0x00)
      296                      .dwattr $C$DW$22, DW_AT_TI_symbol_name("_CPU_disableProtectedRegisterWrite")
      297                      .dwattr $C$DW$22, DW_AT_external
-     298                      .dwattr $C$DW$22, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f2
+     298                      .dwattr $C$DW$22, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      299                      .dwattr $C$DW$22, DW_AT_TI_begin_line(0x6c)
      300                      .dwattr $C$DW$22, DW_AT_TI_begin_column(0x06)
      301                      .dwattr $C$DW$22, DW_AT_TI_max_frame_size(-2)
-     302                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 109
+     302                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 109,column 1,is_stmt,address _
      303              
      304                      .dwfde $C$DW$CIE, _CPU_disableProtectedRegisterWrite
      305              $C$DW$23        .dwtag  DW_TAG_formal_parameter, DW_AT_name("cpuHandle")
@@ -357,11 +357,11 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    6
      327                      .dwattr $C$DW$24, DW_AT_TI_return
      328 00000015 0006          LRETR     ; [CPU_] 
      329                      ; return occurs ; [] 
-     330                      .dwattr $C$DW$22, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+     330                      .dwattr $C$DW$22, DW_AT_TI_end_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    7
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE    7
 
      331                      .dwattr $C$DW$22, DW_AT_TI_end_line(0x73)
      332                      .dwattr $C$DW$22, DW_AT_TI_end_column(0x01)
@@ -377,11 +377,11 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    7
      342                      .dwattr $C$DW$25, DW_AT_high_pc(0x00)
      343                      .dwattr $C$DW$25, DW_AT_TI_symbol_name("_CPU_disableInts")
      344                      .dwattr $C$DW$25, DW_AT_external
-     345                      .dwattr $C$DW$25, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f2
+     345                      .dwattr $C$DW$25, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      346                      .dwattr $C$DW$25, DW_AT_TI_begin_line(0x62)
      347                      .dwattr $C$DW$25, DW_AT_TI_begin_column(0x06)
      348                      .dwattr $C$DW$25, DW_AT_TI_max_frame_size(-2)
-     349                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 99,
+     349                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 99,column 1,is_stmt,address _C
      350              
      351                      .dwfde $C$DW$CIE, _CPU_disableInts
      352              $C$DW$26        .dwtag  DW_TAG_formal_parameter, DW_AT_name("cpuHandle")
@@ -402,7 +402,7 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    7
      367                      .dwcfi  cfa_offset, -2
      368                      .dwcfi  save_reg_to_mem, 26, 0
      369                      .dwcfi  save_reg_to_reg, 78, 26
-     370                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 102
+     370                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 102,column 3,is_stmt
      371 00000016 7626          AND       IER,#0                ; [CPU_] |102| 
          00000017 0000 
      372              $C$DW$27        .dwtag  DW_TAG_TI_branch
@@ -410,7 +410,7 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    7
      374                      .dwattr $C$DW$27, DW_AT_TI_return
      375 00000018 0006          LRETR     ; [CPU_] 
      376                      ; return occurs ; [] 
-     377                      .dwattr $C$DW$25, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x
+     377                      .dwattr $C$DW$25, DW_AT_TI_end_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      378                      .dwattr $C$DW$25, DW_AT_TI_end_line(0x69)
      379                      .dwattr $C$DW$25, DW_AT_TI_end_column(0x01)
      380                      .dwendentry
@@ -418,10 +418,10 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    7
      382              
      383 00000019               .sect   ".text"
      384                      .clink
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    8
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE    8
 
      385                      .global _CPU_disableInt
      386              
@@ -430,11 +430,11 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    8
      389                      .dwattr $C$DW$28, DW_AT_high_pc(0x00)
      390                      .dwattr $C$DW$28, DW_AT_TI_symbol_name("_CPU_disableInt")
      391                      .dwattr $C$DW$28, DW_AT_external
-     392                      .dwattr $C$DW$28, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f2
+     392                      .dwattr $C$DW$28, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      393                      .dwattr $C$DW$28, DW_AT_TI_begin_line(0x58)
      394                      .dwattr $C$DW$28, DW_AT_TI_begin_column(0x06)
      395                      .dwattr $C$DW$28, DW_AT_TI_max_frame_size(-2)
-     396                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 89,
+     396                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 89,column 1,is_stmt,address _C
      397              
      398                      .dwfde $C$DW$CIE, _CPU_disableInt
      399              $C$DW$29        .dwtag  DW_TAG_formal_parameter, DW_AT_name("cpuHandle")
@@ -464,7 +464,7 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    8
      423                      .dwcfi  cfa_offset, -2
      424                      .dwcfi  save_reg_to_mem, 26, 0
      425                      .dwcfi  save_reg_to_reg, 78, 26
-     426                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 92,
+     426                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 92,column 3,is_stmt
      427 00000019 20A8          MOV       AH,IER                ; [CPU_] |92| 
      428 0000001a FF5E          NOT       AL                    ; [CPU_] |92| 
      429 0000001b CEA8          AND       AL,AH                 ; [CPU_] |92| 
@@ -474,14 +474,14 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    8
      433                      .dwattr $C$DW$32, DW_AT_TI_return
      434 0000001d 0006          LRETR     ; [CPU_] 
      435                      ; return occurs ; [] 
-     436                      .dwattr $C$DW$28, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x
+     436                      .dwattr $C$DW$28, DW_AT_TI_end_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      437                      .dwattr $C$DW$28, DW_AT_TI_end_line(0x5f)
      438                      .dwattr $C$DW$28, DW_AT_TI_end_column(0x01)
      439                      .dwendentry
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    9
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE    9
 
      440                      .dwendtag $C$DW$28
      441              
@@ -494,11 +494,11 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    9
      448                      .dwattr $C$DW$33, DW_AT_high_pc(0x00)
      449                      .dwattr $C$DW$33, DW_AT_TI_symbol_name("_CPU_disableGlobalInts")
      450                      .dwattr $C$DW$33, DW_AT_external
-     451                      .dwattr $C$DW$33, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f2
+     451                      .dwattr $C$DW$33, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      452                      .dwattr $C$DW$33, DW_AT_TI_begin_line(0x4e)
      453                      .dwattr $C$DW$33, DW_AT_TI_begin_column(0x06)
      454                      .dwattr $C$DW$33, DW_AT_TI_max_frame_size(-2)
-     455                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 79,
+     455                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 79,column 1,is_stmt,address _C
      456              
      457                      .dwfde $C$DW$CIE, _CPU_disableGlobalInts
      458              $C$DW$34        .dwtag  DW_TAG_formal_parameter, DW_AT_name("cpuHandle")
@@ -526,7 +526,7 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    9
      480                      .dwattr $C$DW$35, DW_AT_TI_return
      481 00000020 0006          LRETR     ; [CPU_] 
      482                      ; return occurs ; [] 
-     483                      .dwattr $C$DW$33, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x
+     483                      .dwattr $C$DW$33, DW_AT_TI_end_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      484                      .dwattr $C$DW$33, DW_AT_TI_end_line(0x55)
      485                      .dwattr $C$DW$33, DW_AT_TI_end_column(0x01)
      486                      .dwendentry
@@ -538,19 +538,19 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE    9
      492              
      493              $C$DW$36        .dwtag  DW_TAG_subprogram, DW_AT_name("CPU_disableDebugInt")
      494                      .dwattr $C$DW$36, DW_AT_low_pc(_CPU_disableDebugInt)
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   10
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE   10
 
      495                      .dwattr $C$DW$36, DW_AT_high_pc(0x00)
      496                      .dwattr $C$DW$36, DW_AT_TI_symbol_name("_CPU_disableDebugInt")
      497                      .dwattr $C$DW$36, DW_AT_external
-     498                      .dwattr $C$DW$36, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f2
+     498                      .dwattr $C$DW$36, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      499                      .dwattr $C$DW$36, DW_AT_TI_begin_line(0x44)
      500                      .dwattr $C$DW$36, DW_AT_TI_begin_column(0x06)
      501                      .dwattr $C$DW$36, DW_AT_TI_max_frame_size(-2)
-     502                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 69,
+     502                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 69,column 1,is_stmt,address _C
      503              
      504                      .dwfde $C$DW$CIE, _CPU_disableDebugInt
      505              $C$DW$37        .dwtag  DW_TAG_formal_parameter, DW_AT_name("cpuHandle")
@@ -578,7 +578,7 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   10
      527                      .dwattr $C$DW$38, DW_AT_TI_return
      528 00000023 0006          LRETR     ; [CPU_] 
      529                      ; return occurs ; [] 
-     530                      .dwattr $C$DW$36, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x
+     530                      .dwattr $C$DW$36, DW_AT_TI_end_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      531                      .dwattr $C$DW$36, DW_AT_TI_end_line(0x4b)
      532                      .dwattr $C$DW$36, DW_AT_TI_end_column(0x01)
      533                      .dwendentry
@@ -593,15 +593,15 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   10
      542                      .dwattr $C$DW$39, DW_AT_high_pc(0x00)
      543                      .dwattr $C$DW$39, DW_AT_TI_symbol_name("_CPU_clearIntFlags")
      544                      .dwattr $C$DW$39, DW_AT_external
-     545                      .dwattr $C$DW$39, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f2
+     545                      .dwattr $C$DW$39, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      546                      .dwattr $C$DW$39, DW_AT_TI_begin_line(0x3a)
      547                      .dwattr $C$DW$39, DW_AT_TI_begin_column(0x06)
      548                      .dwattr $C$DW$39, DW_AT_TI_max_frame_size(-2)
-     549                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 59,
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+     549                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 59,column 1,is_stmt,address _C
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   11
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE   11
 
      550              
      551                      .dwfde $C$DW$CIE, _CPU_clearIntFlags
@@ -623,7 +623,7 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   11
      567                      .dwcfi  cfa_offset, -2
      568                      .dwcfi  save_reg_to_mem, 26, 0
      569                      .dwcfi  save_reg_to_reg, 78, 26
-     570                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 62,
+     570                      .dwpsn  file "D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c",line 62,column 3,is_stmt
      571 00000024 762F          AND       IFR,#0                ; [CPU_] |62| 
          00000025 0000 
      572              $C$DW$41        .dwtag  DW_TAG_TI_branch
@@ -631,7 +631,7 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   11
      574                      .dwattr $C$DW$41, DW_AT_TI_return
      575 00000026 0006          LRETR     ; [CPU_] 
      576                      ; return occurs ; [] 
-     577                      .dwattr $C$DW$39, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/cpu/src/32b/f28x
+     577                      .dwattr $C$DW$39, DW_AT_TI_end_file("D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.c")
      578                      .dwattr $C$DW$39, DW_AT_TI_end_line(0x41)
      579                      .dwattr $C$DW$39, DW_AT_TI_end_column(0x01)
      580                      .dwendentry
@@ -658,10 +658,10 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   11
      601              $C$DW$53        .dwtag  DW_TAG_enumerator, DW_AT_name("CPU_IntNumber_12"), DW_AT_const_value(0x800)
      602              $C$DW$54        .dwtag  DW_TAG_enumerator, DW_AT_name("CPU_IntNumber_13"), DW_AT_const_value(0x1000)
      603              $C$DW$55        .dwtag  DW_TAG_enumerator, DW_AT_name("CPU_IntNumber_14"), DW_AT_const_value(0x2000)
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   12
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE   12
 
      604                      .dwendtag $C$DW$T$22
      605              
@@ -718,10 +718,10 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   12
      656              $C$DW$T$8       .dwtag  DW_TAG_base_type
      657                      .dwattr $C$DW$T$8, DW_AT_encoding(DW_ATE_signed)
      658                      .dwattr $C$DW$T$8, DW_AT_name("short")
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   13
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE   13
 
      659                      .dwattr $C$DW$T$8, DW_AT_byte_size(0x01)
      660              $C$DW$T$9       .dwtag  DW_TAG_base_type
@@ -778,10 +778,10 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   13
      711                      .dwattr $C$DW$T$18, DW_AT_name("long double")
      712                      .dwattr $C$DW$T$18, DW_AT_byte_size(0x04)
      713                      .dwattr $C$DW$CU, DW_AT_language(DW_LANG_C)
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   14
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE   14
 
      714              
      715              ;***************************************************************
@@ -838,10 +838,10 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   14
      766              ;***************************************************************
      767              ;* DWARF REGISTER MAP                                          *
      768              ;***************************************************************
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   15
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE   15
 
      769              
      770              $C$DW$60        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AL")
@@ -898,10 +898,10 @@ C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   15
      821                      .dwattr $C$DW$85, DW_AT_location[DW_OP_reg6]
      822              $C$DW$86        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR2")
      823                      .dwattr $C$DW$86, DW_AT_location[DW_OP_reg8]
-TMS320C2000 Assembler PC v6.2.5 Fri Jun 23 15:01:26 2017
+TMS320C2000 Assembler PC v6.2.5 Thu Sep 21 10:37:52 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\1201210                              PAGE   16
+C:\Users\wmj\AppData\Local\Temp\1370812                              PAGE   16
 
      824              $C$DW$87        .dwtag  DW_TAG_TI_assign_register, DW_AT_name("AR3")
      825                      .dwattr $C$DW$87, DW_AT_location[DW_OP_reg10]

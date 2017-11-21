@@ -79,8 +79,6 @@ HAL_Handle halHandle;
 PROCTRL_Obj  MyProcessCtrl;
 PROCTRL_Handle proctrlHandle;
 
-MB_Handle MyMBhandle;
-MB_Obj  My_ModBus;
 
 uint32_t DispData;
 
@@ -106,10 +104,8 @@ CTRL_Obj ctrl;				//v1p7 format
 
 uint16_t gLEDcnt = 0;
 
-uint16_t sdataA[2];    // Send data for SCI-A
-char rdataA[2];
 
-volatile MOTOR_Vars_t gMotorVars = MOTOR_Vars_INIT;
+//volatile MOTOR_Vars_t gMotorVars = MOTOR_Vars_INIT;
 
 #ifdef FLASH
 // Used for running BackGround in flash, and ISR in RAM
@@ -120,25 +116,6 @@ extern uint16_t *econst_start, *econst_end, *econst_ram_load;
 extern uint16_t *switch_start, *switch_end, *switch_ram_load;
 #endif
 #endif
-
-
-#ifdef DRV8301_SPI
-// Watch window interface to the 8301 SPI
-DRV_SPI_8301_Vars_t gDrvSpi8301Vars;
-#endif
-
-#ifdef DRV8305_SPI
-// Watch window interface to the 8305 SPI
-DRV_SPI_8305_Vars_t gDrvSpi8305Vars;
-#endif
-
-_iq gFlux_pu_to_Wb_sf;
-
-_iq gFlux_pu_to_VpHz_sf;
-
-_iq gTorque_Ls_Id_Iq_pu_to_Nm_sf;
-
-_iq gTorque_Flux_Iq_pu_to_Nm_sf;
 
 // **************************************************************************
 // the functions
@@ -178,50 +155,7 @@ void main(void)
   halHandle = HAL_init(&hal,sizeof(hal));
 
   proctrlHandle = PROCTRL_init(&MyProcessCtrl,sizeof(MyProcessCtrl));
-  PROCTRL_setHalHandle(proctrlHandle, halHandle);
-
-  MyMBhandle = MB_init(&My_ModBus, sizeof(My_ModBus));
-  MB_setSciHandle(MyMBhandle, halHandle->sciHandle);
-  MB_setTimHandle(MyMBhandle, halHandle->timerHandle[1]);
-  MB_setGpioHandle(MyMBhandle, halHandle->gpioHandle);
-
-  //MB_PortTimersEnable(MyMBhandle);
-
-  USER_checkDefErrors(&gUserParams);
-
-  // initialize the user parameters
-  USER_setParams(&gUserParams);
-
-  // set the hardware abstraction layer parameters
-  HAL_setParams(halHandle,&gUserParams);
-
-
-  USER_setMotorIDs(&gUserParams, HAL_getBoardAddr(halHandle));
-
-  USER_setMotorParams(&gUserParams);
-
-  USER_setWaitTimeParams(&gUserParams);
-
-  // check for errors in user parameters
-  USER_checkForErrors(&gUserParams);
-
-
-  // store user parameter error in global variable
-  gMotorVars.UserErrorCode = USER_getErrorCode(&gUserParams);
-
-
-  // do not allow code execution if there is a user parameter error
-  if(gMotorVars.UserErrorCode != USER_ErrorCode_NoError)
-    {
-      for(;;)
-        {
-          gMotorVars.Flag_enableSys = false;
-        }
-    }
-
-  // must be after  (hardware abstraction layer parameters setting)
-  PROCTRL_setParams(proctrlHandle);
-
+  MOTOR_CtrlVersion_Init(proctrlHandle->motorHandle);
 
   // initialize the controller
 #ifdef FAST_ROM_V1p6
@@ -237,9 +171,48 @@ void main(void)
 
     // get the version number
     CTRL_getVersion(ctrlHandle,&version);
-
-    gMotorVars.CtrlVersion = version;
+    MOTOR_setCtrlVersion(proctrlHandle->motorHandle, &version);
   }
+
+
+  PROCTRL_setCtrlHandle(proctrlHandle, ctrlHandle);
+  PROCTRL_setUserParams(proctrlHandle, &gUserParams);
+  PROCTRL_setHalHandle(proctrlHandle, halHandle);
+
+
+  PROCTRL_setupFlyingStart(proctrlHandle);
+  PROCTRL_setupModbus(proctrlHandle);
+  PROCTRL_setupMotors(proctrlHandle);
+  PROCTRL_setupFSM(proctrlHandle);
+
+
+  // initialize the user parameters
+  USER_setSysParams(&gUserParams);
+  // set the hardware abstraction layer parameters
+  HAL_setParams(halHandle,&gUserParams);
+
+  USER_setParams(&gUserParams);
+  USER_setWaitTimeParams(&gUserParams);
+  USER_checkDefErrors(&gUserParams);
+
+  // Setup Board Address
+  USER_setMotorIDs(&gUserParams, HAL_getBoardAddr(halHandle));
+  MB_setSlaveAddress(proctrlHandle->modbusHandle, (HAL_getBoardAddr(halHandle) + 0x11) );
+
+  // Initial Motor Parameter must be after Get Board Address
+  USER_setMotorParams(&gUserParams);
+
+  // choice board current shut resister value by Board Address
+  USER_setBoardParams(&gUserParams);
+
+  // must be after BoardParams function
+  HAL_setupAdcParams(halHandle,&gUserParams);
+
+  // check for errors in user parameters
+  USER_checkForErrors(&gUserParams);
+
+  // store user parameter error in global variable
+  MOTOR_setMotorErrorCode(proctrlHandle->motorHandle, USER_getErrorCode(&gUserParams));
 
 
   // setup faults
@@ -269,33 +242,8 @@ void main(void)
   HAL_disablePwm(halHandle);
 
 
-#ifdef DRV8301_SPI
-  // turn on the DRV8301 if present
-  HAL_enableDrv(halHandle);
-  // initialize the DRV8301 interface
-  HAL_setupDrvSpi(halHandle,&gDrvSpi8301Vars);
-#endif
-
-#ifdef DRV8305_SPI
-  // turn on the DRV8305 if present
-  HAL_enableDrv(halHandle);
-  // initialize the DRV8305 interface
-  HAL_setupDrvSpi(halHandle,&gDrvSpi8305Vars);
-#endif
-
-
-  // enable DC bus compensation
-  CTRL_setFlag_enableDcBusComp(ctrlHandle, true);
-
-
-  // compute scaling factors for flux and torque calculations
-  gFlux_pu_to_Wb_sf = USER_computeFlux_pu_to_Wb_sf(&gUserParams);
-  gFlux_pu_to_VpHz_sf = USER_computeFlux_pu_to_VpHz_sf(&gUserParams);
-  gTorque_Ls_Id_Iq_pu_to_Nm_sf = USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf(&gUserParams);
-  gTorque_Flux_Iq_pu_to_Nm_sf = USER_computeTorque_Flux_Iq_pu_to_Nm_sf(&gUserParams);
-
-//  GPIO_setLow(halHandle->gpioHandle,GPIO_Number_8);
-//  HAL_turnLedOn(halHandle,(GPIO_Number_e)HAL_Gpio_LED2);
+  GPIO_setLow(halHandle->gpioHandle,GPIO_Number_8);
+  HAL_turnLedOn(halHandle,(GPIO_Number_e)HAL_Gpio_LED2);
 
 
   // set the default controller parameters
@@ -304,38 +252,157 @@ void main(void)
   for(;;)
   {
     // Waiting for enable system flag to be set
-    while(!(gMotorVars.Flag_enableSys))
+    while(!(proctrlHandle->motorHandle->Flag_enableSys))
     	{
-          MB_Poll(MyMBhandle);
+          MB_Poll(proctrlHandle->modbusHandle);
+          // do not allow code execution if there is a user parameter error
+          PROCTRL_CheckMotorError(proctrlHandle);
     	};
+
+    // enable DC bus compensation
+    CTRL_setFlag_enableDcBusComp(ctrlHandle, true);
+
+    FSM_getPortStatus(proctrlHandle->fsmHandle);
+
+    FSM_ParamInit(proctrlHandle->fsmHandle);
+
+    PROCTRL_getScaleActors(proctrlHandle, &gUserParams);
+
+    // set the default controller parameters
+    CTRL_setParams(ctrlHandle,&gUserParams);
 
     // Enable the Library internal PI.  Iq is referenced by the speed PI now
     CTRL_setFlag_enableSpeedCtrl(ctrlHandle, true);
 
+    // enable/disable the use of motor parameters being loaded from user.h (Rs measure condition)
+    CTRL_setFlag_enableUserMotorParams(ctrlHandle, proctrlHandle->motorHandle->Flag_enableUserParams);
+
+    // enable/disable Rs recalibration during motor startup
+    EST_setFlag_enableRsRecalc(ctrlHandle->estHandle, proctrlHandle->motorHandle->Flag_enableRsRecalc);
+
+    // enable/disable automatic calculation of bias values
+    CTRL_setFlag_enableOffset(ctrlHandle, proctrlHandle->motorHandle->Flag_enableOffsetcalc);
+
     // loop while the enable system flag is true
-    while(gMotorVars.Flag_enableSys)
+    while(proctrlHandle->motorHandle->Flag_enableSys)
       {
-        CTRL_Obj *obj = (CTRL_Obj *)ctrlHandle;
-
-        //DECODER_readReg(proctrlHandle->QPdecHandle,&DispData);
-        //OLED_setPos(proctrlHandle->oledHandle,0,2);
-        //OLED_ShowNum(proctrlHandle->oledHandle, OLED_FontSize_16, DispData, 10);
-        MB_Poll(MyMBhandle);
-
-        // increment counters
-        gCounter_updateGlobals++;
-
-        // enable/disable the use of motor parameters being loaded from user.h
-        CTRL_setFlag_enableUserMotorParams(ctrlHandle,gMotorVars.Flag_enableUserParams);
-
-        // enable/disable Rs recalibration during motor startup
-        EST_setFlag_enableRsRecalc(obj->estHandle,gMotorVars.Flag_enableRsRecalc);
-
-        // enable/disable automatic calculation of bias values
-        CTRL_setFlag_enableOffset(ctrlHandle,gMotorVars.Flag_enableOffsetcalc);
+   	    MB_Poll(proctrlHandle->modbusHandle);
+   	    PROCTRL_MainLoop(proctrlHandle, &gUserParams);
+      } // end of while(gFlag_enableSys) loop
 
 
-        if(CTRL_isError(ctrlHandle))
+    // disable the PWM
+    HAL_disablePwm(halHandle);
+
+    // set the default controller parameters (Reset the control to re-identify the motor)
+    CTRL_setParams(ctrlHandle,&gUserParams);
+    proctrlHandle->motorHandle->Flag_Run_Identify = false;
+
+  } // end of for(;;) loop
+
+} // end of main() function
+
+
+interrupt void mainISR(void)
+{
+
+  // acknowledge the ADC interrupt
+  HAL_acqAdcInt(halHandle,ADC_IntNumber_1);
+
+
+  // convert the ADC data
+  HAL_readAdcData(halHandle,&gAdcData);
+
+  // run the flying start
+  FS_run(ctrlHandle, proctrlHandle->fsHandle);
+
+  // run the controller
+  CTRL_run(ctrlHandle,halHandle,&gAdcData,&gPwmData);
+
+  if(proctrlHandle->motorHandle->Flag_RunState == false)
+  {
+
+    if(BRAKE_getBrakeState(ctrlHandle->brakeHandle) == false)
+    {
+	  gPwmData.Tabc.value[0] = _IQ(0.0);
+	  gPwmData.Tabc.value[1] = _IQ(0.0);
+	  gPwmData.Tabc.value[2] = _IQ(0.0);
+	  // disable the PWM
+	  HAL_disablePwm(halHandle);
+	  // PID_setUi(ctrlHandle->pidHandle_spd, 0);
+    }
+  }
+
+  // write the PWM compare values
+  HAL_writePwmData(halHandle,&gPwmData);
+
+
+  // setup the controller
+  CTRL_setup(ctrlHandle);
+
+
+  // toggle status LED (100Hz @  ISR 10kHz)
+  if(++gLEDcnt >= 100)
+  {
+	static uint16_t MeasCnt = 0;
+	//HAL_toggleLed(halHandle,(GPIO_Number_e)HAL_Gpio_LED2);
+	gLEDcnt = 0;
+
+    if(FSM_RunTimeState(proctrlHandle->fsmHandle) == true)
+    {
+	  FSM_RunTimeCnt(proctrlHandle->fsmHandle);
+    }
+
+    if(++MeasCnt >= 10 )
+    {
+    MeasCnt = 0;
+	//HAL_toggleLed(halHandle,(GPIO_Number_e)HAL_Gpio_LED2);
+
+	PROCTRL_getChipTemperture(proctrlHandle, &gAdcData);
+	PROCTRL_getDCbusVoltage(proctrlHandle, &gAdcData);
+    }
+
+  }
+
+  PROCTRL_getSensorData(proctrlHandle, &gAdcData);
+
+  return;
+} // end of mainISR() function
+
+
+
+
+interrupt void Timer1ISR(void)
+{
+
+    MB_RTUTimerFSM(proctrlHandle->modbusHandle);
+	TIMER_clearFlag(halHandle->timerHandle[1]);
+    //TIMER_stop(halHandle->timerHandle[1]);
+
+}
+
+interrupt void UART_TxReadyISR(void)
+{
+
+    MB_RTUTransmitFSM(proctrlHandle->modbusHandle);
+
+	SCI_clearTxFifoInt(halHandle->sciHandle);
+	PIE_clearInt(halHandle->pieHandle,PIE_GroupNumber_9);
+
+}
+
+interrupt void UART_RxISR(void)
+{
+    MB_RTUReceiveFSM(proctrlHandle->modbusHandle);
+
+	SCI_clearRxFifoOvf(halHandle->sciHandle);
+	SCI_clearRxFifoInt(halHandle->sciHandle);
+	PIE_clearInt(halHandle->pieHandle,PIE_GroupNumber_9);
+
+}
+
+/*
+       if(CTRL_isError(ctrlHandle))
           {
             // set the enable controller flag to false
             CTRL_setFlag_enableCtrl(ctrlHandle,false);
@@ -408,11 +475,13 @@ void main(void)
                   (gMotorVars.CtrlVersion.minor == 6))
                   {
                     // call this function to fix 1p6
-                    USER_softwareUpdate1p6(ctrlHandle);
+                    USER_softwareUpdate1p6(ctrlHandle, );
                   }
 
               }
           }
+
+
 
 
         if(EST_isMotorIdentified(obj->estHandle))
@@ -430,7 +499,7 @@ void main(void)
             {
               Flag_Latch_softwareUpdate = false;
 
-              USER_calcPIgains(ctrlHandle);
+              USER_calcPIgains(ctrlHandle, &gUserParams);
 
               // initialize the watch window kp and ki current values with pre-calculated values
               gMotorVars.Kp_Idq = CTRL_getKp(ctrlHandle,CTRL_Type_PID_Id);
@@ -460,6 +529,17 @@ void main(void)
             updateGlobalVariables_motor(ctrlHandle);
           }
 
+        // recalculate Kp and Ki gains to fix the R/L limitation of 2000.0, and Kp limit to 0.11
+        recalcKpKi(ctrlHandle, &gUserParams);
+
+        if(CTRL_getMotorType(ctrlHandle) == MOTOR_Type_Induction)
+          {
+            // set electrical frequency limit to zero while identifying an induction motor
+            setFeLimitZero(ctrlHandle);
+
+            // calculate Dir_qFmt for acim motors
+            acim_Dir_qFmtCalc(ctrlHandle);
+          }
 
         // update Kp and Ki gains
         updateKpKiGains(ctrlHandle);
@@ -470,64 +550,9 @@ void main(void)
         // enable or disable power warp
         CTRL_setFlag_enablePowerWarp(ctrlHandle,gMotorVars.Flag_enablePowerWarp);
 
-#ifdef DRV8301_SPI
-        HAL_writeDrvData(halHandle,&gDrvSpi8301Vars);
-
-        HAL_readDrvData(halHandle,&gDrvSpi8301Vars);
-#endif
-#ifdef DRV8305_SPI
-        HAL_writeDrvData(halHandle,&gDrvSpi8305Vars);
-
-        HAL_readDrvData(halHandle,&gDrvSpi8305Vars);
-#endif
-      } // end of while(gFlag_enableSys) loop
 
 
 
-    // disable the PWM
-    HAL_disablePwm(halHandle);
-
-    // set the default controller parameters (Reset the control to re-identify the motor)
-    CTRL_setParams(ctrlHandle,&gUserParams);
-    gMotorVars.Flag_Run_Identify = false;
-
-  } // end of for(;;) loop
-
-} // end of main() function
-
-
-interrupt void mainISR(void)
-{
-  // toggle status LED
-  if(++gLEDcnt >= (uint_least32_t)(USER_ISR_FREQ_Hz / LED_BLINK_FREQ_Hz))
-  {
-    //HAL_toggleLed(halHandle,(GPIO_Number_e)HAL_Gpio_LED2);
-    gLEDcnt = 0;
-  }
-
-
-  // acknowledge the ADC interrupt
-  HAL_acqAdcInt(halHandle,ADC_IntNumber_1);
-
-
-  // convert the ADC data
-  HAL_readAdcData(halHandle,&gAdcData);
-
-
-  // run the controller
-  CTRL_run(ctrlHandle,halHandle,&gAdcData,&gPwmData);
-
-
-  // write the PWM compare values
-  HAL_writePwmData(halHandle,&gPwmData);
-
-
-  // setup the controller
-  CTRL_setup(ctrlHandle);
-
-
-  return;
-} // end of mainISR() function
 
 
 void updateGlobalVariables_motor(CTRL_Handle handle)
@@ -596,36 +621,8 @@ void updateKpKiGains(CTRL_Handle handle)
 } // end of updateKpKiGains() function
 
 
-interrupt void Timer1ISR(void)
-{
 
-    MB_RTUTimerFSM(MyMBhandle);
-	TIMER_clearFlag(halHandle->timerHandle[1]);
-    //TIMER_stop(halHandle->timerHandle[1]);
-
-}
-
-interrupt void UART_TxReadyISR(void)
-{
-
-    MB_RTUTransmitFSM(MyMBhandle);
-
-	SCI_clearTxFifoInt(halHandle->sciHandle);
-	PIE_clearInt(halHandle->pieHandle,PIE_GroupNumber_9);
-
-}
-
-interrupt void UART_RxISR(void)
-{
-    MB_RTUReceiveFSM(MyMBhandle);
-
-	SCI_clearRxFifoOvf(halHandle->sciHandle);
-	SCI_clearRxFifoInt(halHandle->sciHandle);
-	PIE_clearInt(halHandle->pieHandle,PIE_GroupNumber_9);
-
-}
-
-
+ */
 
 //@} //defgroup
 // end of file

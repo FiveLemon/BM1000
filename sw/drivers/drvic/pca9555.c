@@ -215,32 +215,16 @@ uint16_t PCA955x_ReadStatus(PCA955x_Handle handle, PCA955x_PortNum_e PortNum)
 void PCA955x_GetStatus(PCA955x_Handle handle, PCA955x_PortNum_e PortNum)
 {
 	PCA955x_Obj *obj = (PCA955x_Obj *)handle;
-	uint16_t Pca955x_Port_Data;
+	union {
+	  uint16_t     Port_Data_all;
+	  PORT_DATA_t  Port_Data_bit;
+	} Port = {0};
 
-	Pca955x_Port_Data = PCA955x_ReadStatus(handle,PortNum);
+	Port.Port_Data_all = PCA955x_ReadStatus(handle,PortNum);
+	Port.Port_Data_all = PCA955x_ReadStatus(handle,PortNum);
 
-	if(PortNum == PCA955x_PortNum_Port0)
-	{
-	  obj->PortData.PORT0_SD = (Pca955x_Port_Data & PCA955x_Port0_SD);
-	  obj->PortData.PORT0_RELAY_OPEN = (Pca955x_Port_Data & PCA955x_Port0_RELAY_OPEN);
-	  obj->PortData.PORT0_CPLD_RST = (Pca955x_Port_Data & PCA955x_Port0_CPLD_RST);
-	  obj->PortData.PORT0_CLR_OC = (Pca955x_Port_Data & PCA955x_Port0_CLR_OC);
-	  obj->PortData.PORT0_LEDB = (Pca955x_Port_Data & PCA955x_Port0_LEDB);
-	  obj->PortData.PORT0_LEDG = (Pca955x_Port_Data & PCA955x_Port0_LEDG);
-	  obj->PortData.PORT0_LEDR = (Pca955x_Port_Data & PCA955x_Port0_LEDR);
-	  obj->PortData.PORT0_LEDY = (Pca955x_Port_Data & PCA955x_Port0_LEDY);
+	obj->PortData  = Port.Port_Data_bit;
 
-	}
-	else
-	{
-	  obj->PortData.PORT1_EMERG_STP  = (Pca955x_Port_Data & PCA955x_StatusFlag_EMERG_STP);
-	  obj->PortData.PORT1_IGBT_OC = (Pca955x_Port_Data & PCA955x_StatusFlag_IGBT_OC);
-	  obj->PortData.PORT1_IKCM_UV  = (Pca955x_Port_Data & PCA955x_StatusFlag_IKCM_UV);
-	  obj->PortData.PORT1_RELAY_ON = (Pca955x_Port_Data & PCA955x_StatusFlag_RELAY_ON);
-	  obj->PortData.PORT1_SENSOR0 = (Pca955x_Port_Data & PCA955x_StatusFlag_SENSOR0);
-	  obj->PortData.PORT1_SENSOR1 = (Pca955x_Port_Data & PCA955x_StatusFlag_SENSOR1);
-
-	}
 
   return;
 

@@ -52,21 +52,29 @@
 #include "sw/modules/flyingStart/src/32b/flyingStart.h"
 #include "sw/modules/cpu_time/src/32b/cpu_time.h"
 #include "sw/modules/hallbldc/src/32b/hallbldc.h"
+#include "sw/modules/vib_comp/src/32b/vib_comp.h"
+
+
+
 
 // drivers
 //#include "sw/modules/brake/src/brake.h"
 #include "sw/modules/angle_gen/src/32b/angle_gen.h"
 
-#include "sw/drivers/drvic/ldc1612.h"
-#include "sw/drivers/drvic/oled/oled.h"
-//#include "sw/drivers/drvic/decoder.h"
 #include "sw/drivers/drvic/pca9555.h"
 #include "sw/drivers/drvic/process_ctrl.h"
-#include "sw/drivers/drvic/S_curve.h"
-#include "sw/drivers/drvic/modbus/mb.h"
+
 
 // platforms
+#ifdef QEP
+#include "sw/modules/iqmath/src/32b/IQLog.h"
+#include "sw/modules/slip/src/32b/slip.h"
+#include "sw/modules/ctrl/src/32b/ctrlQEP.h"
+#include "spintac_position.h"
+#else
 #include "sw/modules/ctrl/src/32b/ctrl.h"
+#endif
+
 #include "hal.h"
 #include "user.h"
 
@@ -75,177 +83,12 @@
 // the defines
 
 
-//! \brief Defines the number of main iterations before global variables are updated
-//!
-#define NUM_MAIN_TICKS_FOR_GLOBAL_VARIABLE_UPDATE  1
 
-//! \brief Defines the speed acceleration scale factor.
-//!
-#define MAX_ACCEL_KRPMPS_SF  _IQ(USER_MOTOR_NUM_POLE_PAIRS*1000.0/USER_TRAJ_FREQ_Hz/USER_IQ_FULL_SCALE_FREQ_Hz/60.0)
 
-//! \brief Initialization values of global variables
-//!
-#define MOTOR_Vars_INIT {false, \
-                         false, \
-                         false, \
-                         true, \
-                         false, \
-                         false, \
-                         true, \
-                         true, \
-                         false, \
-                         false, \
-						 \
-						 false, \
-						 false, \
-						 false, \
-						 \
-                         CTRL_State_Idle, \
-                         EST_State_Idle, \
-                         USER_ErrorCode_NoError, \
-                         {0,CTRL_TargetProc_Unknown,0,0}, \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.1), \
-                         _IQ(0.0), \
-                         _IQ(0.2), \
-                         _IQ(0.0), \
-                         _IQ(USER_MAX_VS_MAG_PU), \
-                         _IQ(0.1 * USER_MOTOR_MAX_CURRENT), \
-                         400, \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         0.0, \
-                         0.0, \
-                         0.0, \
-                         0.0, \
-                         0.0, \
-                         0.0, \
-                         0.0, \
-                         0.0, \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         0.0, \
-                         0.0, \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.8 * USER_MAX_VS_MAG_PU), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         _IQ(0.0), \
-                         {0,0,0}, \
-                         {0,0,0}, \
-						 \
-						 _IQ(0.6), \
-						 _IQ(0.0), \
-                         _IQ(0.0), \
-						 _IQ(0.0), \
-						 _IQ(0.0), \
-						 _IQ(0.0), \
-						 _IQ(0.0), \
-						 \
-						 _IQ(0.0), \
-						 _IQ(0.0), \
-						 _IQ(0.0), \
-						 _IQ(0.0)  \
-}
 
 // **************************************************************************
 // the typedefs
 
-typedef struct _MOTOR_Vars_t_
-{
-  bool Flag_enableSys;
-  bool Flag_Run_Identify;
-  bool Flag_MotorIdentified;
-  bool Flag_enableForceAngle;
-  bool Flag_enableFieldWeakening;
-  bool Flag_enableRsRecalc;
-  bool Flag_enableUserParams;
-  bool Flag_enableOffsetcalc;
-  bool Flag_enablePowerWarp;
-  bool Flag_enableSpeedCtrl;
-
-  bool Flag_enableRun;
-  bool Flag_RunState;
-  bool Flag_enableFlyingStart;
-
-  CTRL_State_e CtrlState;
-  EST_State_e EstState;
-
-  USER_ErrorCode_e UserErrorCode;
-
-  CTRL_Version CtrlVersion;
-
-  _iq IdRef_A;
-  _iq IqRef_A;
-  _iq SpeedRef_pu;
-  _iq SpeedRef_krpm;
-  _iq SpeedTraj_krpm;
-  _iq MaxAccel_krpmps;
-  _iq Speed_krpm;
-  _iq OverModulation;
-  _iq RsOnLineCurrent_A;
-  _iq SvgenMaxModulation_ticks;
-  _iq Flux_Wb;
-  _iq Torque_Nm;
-
-  float_t MagnCurr_A;
-  float_t Rr_Ohm;
-  float_t Rs_Ohm;
-  float_t RsOnLine_Ohm;
-  float_t Lsd_H;
-  float_t Lsq_H;
-  float_t Flux_VpHz;
-
-  float_t ipd_excFreq_Hz;
-  _iq     ipd_Kspd;
-  _iq     ipd_excMag_coarse_pu;
-  _iq     ipd_excMag_fine_pu;
-  float   ipd_waitTime_coarse_sec;
-  float   ipd_waitTime_fine_sec;
-
-  _iq Kp_spd;
-  _iq Ki_spd;
-
-  _iq Kp_Idq;
-  _iq Ki_Idq;
-
-  _iq Vd;
-  _iq Vq;
-  _iq Vs;
-  _iq VsRef;
-  _iq VdcBus_kV;
-
-  _iq Id_A;
-  _iq Iq_A;
-  _iq Is_A;
-
-  MATH_vec3 I_bias;
-  MATH_vec3 V_bias;
-
-  _iq SpeedSet_krpm;
-
-  _iq angle_sen_pu;
-  _iq angle_est_pu;
-  _iq speed_sen_pu;
-  _iq speed_est_pu;
-
-  _iq speedHigh_hall2fast_pu;
-  _iq speedLow_hall2fast_pu;
-  _iq IdSet_A;
-  _iq IqSet_A;
-  _iq IdRef_pu;
-  _iq IqRef_pu;
-}MOTOR_Vars_t;
 
 
 
@@ -263,21 +106,16 @@ interrupt void UART_RxISR(void);
 interrupt void UART_TxReadyISR(void);
 interrupt void Timer1ISR(void);
 
+
 void runCurrentReconstruction(void);
-
-
 void runFieldWeakening(void);
-
-
 void runOffsetsCalculation(void);
-
-
 void runSetTrigger(void);
 
 
 //! \brief     Updates the global motor variables 
 //! 
-void updateGlobalVariables_motor(CTRL_Handle handle);
+//void updateGlobalVariables_motor(CTRL_Handle handle);
 
 
 //! \brief     Updates the global variables 
@@ -303,7 +141,7 @@ void recalcKpKiPmsm(CTRL_Handle handle);
 
 //! \brief     Recalculate Kp and Ki gains to fix the R/L limitation of 2000.0 and Kp limitation of 0.11
 //!
-void recalcKpKi(CTRL_Handle handle);
+extern void recalcKpKi(CTRL_Handle handle, USER_Params *pUserParams);
 
 
 //! \brief     Calculates the maximum qFmt value for Ls identification, to get a more accurate Ls per unit
@@ -318,12 +156,12 @@ void updateIqRef(CTRL_Handle handle);
 
 //! \brief     Updates Kp and Ki gains in the controller object
 //!
-void updateKpKiGains(CTRL_Handle handle);
+//extern void updateKpKiGains(CTRL_Handle handle);
 
 
 //! \brief     Runs Rs online
 //!
-void runRsOnLine(CTRL_Handle handle);
+//void runRsOnLine(CTRL_Handle handle);
 
 
 //! \brief      Runs Rs Online for lab11a; function prototype changed to expect EST_Handle object
@@ -339,12 +177,12 @@ void updateCPUusage(void);
 
 //! \brief     Set electrical frequency limit to zero while identifying an induction motor
 //!
-void setFeLimitZero(CTRL_Handle handle);
+extern void setFeLimitZero(CTRL_Handle handle);
 
 
 //! \brief     Calculates Dir_qFmt for ACIM
 //!
-void acim_Dir_qFmtCalc(CTRL_Handle handle);
+extern void acim_Dir_qFmtCalc(CTRL_Handle handle);
 
 
 //! \brief     Sets up the Clarke transform for current
@@ -384,7 +222,7 @@ _iq getAbsMechAngle(_iq *pAngle_mech_poles, _iq *pAngle_z1_pu, const _iq angle_p
 
 //! \brief     motor run control for flying start
 //!
-void motor_RunCtrl(CTRL_Handle handle);
+extern void motor_RunCtrl(PROCTRL_Handle handle);
 
 //@} //defgroup
 #endif // end of _MAIN_H_ definition

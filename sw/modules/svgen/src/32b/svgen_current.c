@@ -67,5 +67,8 @@ SVGENCURRENT_Handle SVGENCURRENT_init(void *pMemory,const size_t numBytes)
   return(svgencurrentHandle);
 } // end of SVGENCURRENT_init() function
 
+//setup svgen current
+
+
 
 // end of file

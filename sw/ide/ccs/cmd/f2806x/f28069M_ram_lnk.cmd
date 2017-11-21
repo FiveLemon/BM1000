@@ -115,7 +115,7 @@ SECTIONS
    .switch          : > RAMM0,      PAGE = 0
    .reset           : > RESET,      PAGE = 0, TYPE = DSECT /* not used, */
 
-   .stack           : > RAMM1,      PAGE = 1
+   .stack           : > RAMM1,      PAGE = 1  //RAM1 ->USB_RAM
    .ebss            : > RAML0_L8,   PAGE = 0
    .econst          : > RAML0_L8,   PAGE = 0
    .esysmem         : > RAML0_L8,   PAGE = 0

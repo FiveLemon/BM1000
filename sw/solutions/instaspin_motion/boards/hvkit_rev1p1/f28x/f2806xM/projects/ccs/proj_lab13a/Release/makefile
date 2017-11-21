@@ -10,10 +10,10 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"C:/ti/motorware/motorware_1_01_00_18/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_FastSpinROMSymbols.lib" \
-"C:/ti/motorware/motorware_1_01_00_18/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_IQmath_BootROMSymbols.lib" \
-"C:/ti/motorware/motorware_1_01_00_18/sw/modules/spintac/lib/32b/SpinTAC.lib" \
-"C:/ti/motorware/motorware_1_01_00_18/sw/modules/iqmath/lib/f28x/32b/IQmath.lib" \
+"D:/FOC_69/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_FastSpinROMSymbols.lib" \
+"D:/FOC_69/sw/modules/fast/lib/32b/f28x/f2806x/2806xRevB_IQmath_BootROMSymbols.lib" \
+"D:/FOC_69/sw/modules/spintac/lib/32b/SpinTAC.lib" \
+"D:/FOC_69/sw/modules/iqmath/lib/f28x/32b/IQmath.lib" \
 "./CodeStartBranch.obj" \
 "./adc.obj" \
 "./clarke.obj" \
@@ -44,7 +44,7 @@ ORDERED_OBJS += \
 "./usDelay.obj" \
 "./user.obj" \
 "./wdog.obj" \
-"C:/ti/motorware/motorware_1_01_00_18/sw/ide/ccs/cmd/f2806x/f28069M_ram_lnk.cmd" \
+"D:/FOC_69/sw/ide/ccs/cmd/f2806x/f28069M_ram_lnk.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
 

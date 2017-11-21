@@ -122,6 +122,11 @@
 			<locationURI>MW_INSTALL_DIR/sw/drivers/adc/src/32b/f28x/f2802x/adc.c</locationURI>
 		</link>
 		<link>
+			<name>brake.c</name>
+			<type>1</type>
+			<locationURI>PARENT-9-PROJECT_LOC/drivers/drvic/brake.c</locationURI>
+		</link>
+		<link>
 			<name>clarke.c</name>
 			<type>1</type>
 			<locationURI>MW_INSTALL_DIR/sw/modules/clarke/src/32b/clarke.c</locationURI>
@@ -167,6 +172,11 @@
 			<locationURI>MW_INSTALL_DIR/sw/modules/flyingStart/src/32b/flyingStart.c</locationURI>
 		</link>
 		<link>
+			<name>fsm.c</name>
+			<type>1</type>
+			<locationURI>PARENT-9-PROJECT_LOC/drivers/drvic/fsm.c</locationURI>
+		</link>
+		<link>
 			<name>fw.c</name>
 			<type>1</type>
 			<locationURI>MW_INSTALL_DIR/sw/modules/fw/src/32b/fw.c</locationURI>
@@ -192,11 +202,6 @@
 			<locationURI>MW_INSTALL_DIR/sw/modules/ipark/src/32b/ipark.c</locationURI>
 		</link>
 		<link>
-			<name>ldc1612.c</name>
-			<type>1</type>
-			<locationURI>PARENT-9-PROJECT_LOC/drivers/drvic/ldc1612.c</locationURI>
-		</link>
-		<link>
 			<name>mb.c</name>
 			<type>1</type>
 			<locationURI>PARENT-9-PROJECT_LOC/drivers/drvic/modbus/mb.c</locationURI>
@@ -205,6 +210,11 @@
 			<name>memCopy.c</name>
 			<type>1</type>
 			<locationURI>MW_INSTALL_DIR/sw/modules/memCopy/src/memCopy.c</locationURI>
+		</link>
+		<link>
+			<name>motor.c</name>
+			<type>1</type>
+			<locationURI>PARENT-9-PROJECT_LOC/drivers/drvic/motor.c</locationURI>
 		</link>
 		<link>
 			<name>offset.c</name>
@@ -245,6 +255,11 @@
 			<name>process_ctrl.c</name>
 			<type>1</type>
 			<locationURI>PARENT-9-PROJECT_LOC/drivers/drvic/process_ctrl.c</locationURI>
+		</link>
+		<link>
+			<name>proj_bm1000.c</name>
+			<type>1</type>
+			<locationURI>PARENT-8-PROJECT_LOC/instaspin/src/proj_bm1000.c</locationURI>
 		</link>
 		<link>
 			<name>proj_lab10e.c</name>

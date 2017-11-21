@@ -1,7 +1,7 @@
-TMS320C2000 Assembler PC v6.2.5 Thu Jun 22 10:43:15 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:51 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:/ti/motorware/motorware_1_01_00_18/sw/modules/usDelay/src/32b/f28x/usDelay.asm PAGE    1
+D:/BM1000/sw/modules/usDelay/src/32b/f28x/usDelay.asm                PAGE    1
 
        1              ; --COPYRIGHT--,BSD
        2              ;  Copyright (c) 2012, Texas Instruments Incorporated
@@ -58,10 +58,10 @@ C:/ti/motorware/motorware_1_01_00_18/sw/modules/usDelay/src/32b/f28x/usDelay.asm
       53              ;//
       54              ;//        MOV   AL,#LowLoopCount
       55              ;//        MOV   AH,#HighLoopCount
-TMS320C2000 Assembler PC v6.2.5 Thu Jun 22 10:43:15 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:51 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:/ti/motorware/motorware_1_01_00_18/sw/modules/usDelay/src/32b/f28x/usDelay.asm PAGE    2
+D:/BM1000/sw/modules/usDelay/src/32b/f28x/usDelay.asm                PAGE    2
 
       56              ;//        LCR   _Delay
       57              ;//

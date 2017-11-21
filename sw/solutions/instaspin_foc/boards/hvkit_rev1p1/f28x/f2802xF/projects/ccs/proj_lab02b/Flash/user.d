@@ -30,15 +30,16 @@ user.obj: D:/BM1000/sw/modules/filter/src/32b/filter_fo.h
 user.obj: D:/BM1000/sw/modules/pid/src/32b/pid.h
 user.obj: D:/BM1000/sw/modules/svgen/src/32b/svgen.h
 user.obj: D:/BM1000/sw/modules/traj/src/32b/traj.h
+user.obj: D:/BM1000/sw/drivers/drvic/brake.h
 user.obj: D:/BM1000/sw/modules/vs_freq/src/32b/vs_freq.h
 user.obj: D:/BM1000/sw/modules/angle_gen/src/32b/angle_gen.h
 user.obj: D:/BM1000/sw/modules/datalog/src/32b/datalog.h
-user.obj: D:/BM1000/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h
-user.obj: D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.h
 user.obj: D:/BM1000/sw/modules/fast/src/32b/userParams.h
 user.obj: D:/BM1000/sw/modules/ctrl/src/32b/ctrl.h
+user.obj: D:/BM1000/sw/modules/vib_comp/src/32b/vib_comp.h
 user.obj: D:/BM1000/sw/modules/hal/boards/hvkit_rev1p1/f28x/f2802x/src/hal_obj.h
 user.obj: D:/BM1000/sw/drivers/adc/src/32b/f28x/f2802x/adc.h
+user.obj: D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.h
 user.obj: D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.h
 user.obj: D:/BM1000/sw/drivers/pwm/src/32b/f28x/f2802x/pwm.h
 user.obj: D:/BM1000/sw/drivers/flash/src/32b/f28x/f2802x/flash.h
@@ -52,6 +53,7 @@ user.obj: D:/BM1000/sw/drivers/timer/src/32b/f28x/f2802x/timer.h
 user.obj: D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.h
 user.obj: D:/BM1000/sw/drivers/spi/src/32b/f28x/f2802x/spi.h
 user.obj: D:/BM1000/sw/drivers/sci/src/32b/f28x/f2802x/sci.h
+user.obj: D:/BM1000/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h
 user.obj: D:/BM1000/sw/modules/usDelay/src/32b/usDelay.h
 
 D:/BM1000/sw/modules/user/src/32b/user.c: 
@@ -84,15 +86,16 @@ D:/BM1000/sw/modules/filter/src/32b/filter_fo.h:
 D:/BM1000/sw/modules/pid/src/32b/pid.h: 
 D:/BM1000/sw/modules/svgen/src/32b/svgen.h: 
 D:/BM1000/sw/modules/traj/src/32b/traj.h: 
+D:/BM1000/sw/drivers/drvic/brake.h: 
 D:/BM1000/sw/modules/vs_freq/src/32b/vs_freq.h: 
 D:/BM1000/sw/modules/angle_gen/src/32b/angle_gen.h: 
 D:/BM1000/sw/modules/datalog/src/32b/datalog.h: 
-D:/BM1000/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h: 
-D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.h: 
 D:/BM1000/sw/modules/fast/src/32b/userParams.h: 
 D:/BM1000/sw/modules/ctrl/src/32b/ctrl.h: 
+D:/BM1000/sw/modules/vib_comp/src/32b/vib_comp.h: 
 D:/BM1000/sw/modules/hal/boards/hvkit_rev1p1/f28x/f2802x/src/hal_obj.h: 
 D:/BM1000/sw/drivers/adc/src/32b/f28x/f2802x/adc.h: 
+D:/BM1000/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.h: 
 D:/BM1000/sw/drivers/clk/src/32b/f28x/f2802x/clk.h: 
 D:/BM1000/sw/drivers/pwm/src/32b/f28x/f2802x/pwm.h: 
 D:/BM1000/sw/drivers/flash/src/32b/f28x/f2802x/flash.h: 
@@ -106,4 +109,5 @@ D:/BM1000/sw/drivers/timer/src/32b/f28x/f2802x/timer.h:
 D:/BM1000/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.h: 
 D:/BM1000/sw/drivers/spi/src/32b/f28x/f2802x/spi.h: 
 D:/BM1000/sw/drivers/sci/src/32b/f28x/f2802x/sci.h: 
+D:/BM1000/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h: 
 D:/BM1000/sw/modules/usDelay/src/32b/usDelay.h: 

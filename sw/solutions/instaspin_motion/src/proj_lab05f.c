@@ -493,7 +493,7 @@ interrupt void mainISR(void)
   // toggle status LED
   if(++gLEDcnt >= (uint_least32_t)(USER_ISR_FREQ_Hz / LED_BLINK_FREQ_Hz))
   {
-    HAL_toggleLed(halHandle,(GPIO_Number_e)HAL_Gpio_LED2);
+    //HAL_toggleLed(halHandle,(GPIO_Number_e)HAL_Gpio_LED2);
     gLEDcnt = 0;
   }
 

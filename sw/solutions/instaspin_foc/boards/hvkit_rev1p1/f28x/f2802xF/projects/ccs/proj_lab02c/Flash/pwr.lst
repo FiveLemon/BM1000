@@ -1,22 +1,22 @@
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    1
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE    1
 
        1              ;***************************************************************
        2              ;* TMS320C2000 C/C++ Codegen                         PC v6.2.5 *
-       3              ;* Date/Time created: Mon Jun 19 18:10:36 2017                 *
+       3              ;* Date/Time created: Sun Oct 08 22:38:05 2017                 *
        4              ;***************************************************************
        5                      .compiler_opts --float_support=softlib --hll_source=on --mem_model:code=flat --mem_model:data=large -
        6        0002  FP      .set    XAR2
        7              
        8              $C$DW$CU        .dwtag  DW_TAG_compile_unit
-       9                      .dwattr $C$DW$CU, DW_AT_name("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x
+       9                      .dwattr $C$DW$CU, DW_AT_name("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
       10                      .dwattr $C$DW$CU, DW_AT_producer("TMS320C2000 C/C++ Codegen PC v6.2.5 Copyright (c) 1996-2014 Texas I
       11                      .dwattr $C$DW$CU, DW_AT_TI_version(0x01)
-      12                      .dwattr $C$DW$CU, DW_AT_comp_dir("C:\ti\motorware\motorware_1_01_00_18\sw\solutions\instaspin_foc\boa
-      13              ;       c:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\299642 C
-      14              ;       c:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\2996416
+      12                      .dwattr $C$DW$CU, DW_AT_comp_dir("D:\BM1000\sw\solutions\instaspin_foc\boards\hvkit_rev1p1\f28x\f2802
+      13              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\opt2000.exe C:\\Users\\wmj\\AppData\\Local\\Temp\\058043 C
+      14              ;       C:\ti\ccsv6\tools\compiler\c2000_6.2.5\bin\ac2000.exe -@C:\\Users\\wmj\\AppData\\Local\\Temp\\0580417
       15 00000000               .sect   ".text"
       16                      .clink
       17                      .global _PWR_setNumStandByClocks
@@ -26,11 +26,11 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    1
       21                      .dwattr $C$DW$1, DW_AT_high_pc(0x00)
       22                      .dwattr $C$DW$1, DW_AT_TI_symbol_name("_PWR_setNumStandByClocks")
       23                      .dwattr $C$DW$1, DW_AT_external
-      24                      .dwattr $C$DW$1, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28
+      24                      .dwattr $C$DW$1, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
       25                      .dwattr $C$DW$1, DW_AT_TI_begin_line(0x94)
       26                      .dwattr $C$DW$1, DW_AT_TI_begin_column(0x06)
       27                      .dwattr $C$DW$1, DW_AT_TI_max_frame_size(-2)
-      28                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 149
+      28                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 149,column 1,is_stmt,address _
       29              
       30                      .dwfde $C$DW$CIE, _PWR_setNumStandByClocks
       31              $C$DW$2 .dwtag  DW_TAG_formal_parameter, DW_AT_name("pwrHandle")
@@ -58,10 +58,10 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    1
       53                      .dwattr $C$DW$4, DW_AT_type(*$C$DW$T$32)
       54                      .dwattr $C$DW$4, DW_AT_location[DW_OP_reg0]
       55              ;* AR6   assigned to _numClkCycles
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    2
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE    2
 
       56              $C$DW$5 .dwtag  DW_TAG_variable, DW_AT_name("numClkCycles")
       57                      .dwattr $C$DW$5, DW_AT_TI_symbol_name("_numClkCycles")
@@ -73,14 +73,14 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    2
       63 00000000 88A9          MOVZ      AR6,AL                ; [CPU_] |149| 
       64 00000001 A8A9          MOVL      ACC,XAR4              ; [CPU_] |149| 
       65 00000002 7622   EALLOW
-      66                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 156
+      66                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 156,column 5,is_stmt
       67 00000003 8F00          MOVL      XAR4,#26265           ; [CPU_U] |156| 
          00000004 6699 
       68 00000005 5601          ADDL      XAR4,ACC              ; [CPU_] |156| 
          00000006 00A4 
       69 00000007 18C4          AND       *+XAR4[0],#0xff03     ; [CPU_] |156| 
          00000008 FF03 
-      70                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 159
+      70                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 159,column 5,is_stmt
       71 00000009 8F00          MOVL      XAR4,#26265           ; [CPU_U] |159| 
          0000000a 6699 
       72 0000000b 5601          ADDL      XAR4,ACC              ; [CPU_] |159| 
@@ -94,7 +94,7 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    2
       79                      .dwattr $C$DW$6, DW_AT_TI_return
       80 00000011 0006          LRETR     ; [CPU_] 
       81                      ; return occurs ; [] 
-      82                      .dwattr $C$DW$1, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/
+      82                      .dwattr $C$DW$1, DW_AT_TI_end_file("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
       83                      .dwattr $C$DW$1, DW_AT_TI_end_line(0xa4)
       84                      .dwattr $C$DW$1, DW_AT_TI_end_column(0x01)
       85                      .dwendentry
@@ -109,19 +109,19 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    2
       94                      .dwattr $C$DW$7, DW_AT_high_pc(0x00)
       95                      .dwattr $C$DW$7, DW_AT_TI_symbol_name("_PWR_setLowPowerMode")
       96                      .dwattr $C$DW$7, DW_AT_external
-      97                      .dwattr $C$DW$7, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28
+      97                      .dwattr $C$DW$7, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
       98                      .dwattr $C$DW$7, DW_AT_TI_begin_line(0x80)
       99                      .dwattr $C$DW$7, DW_AT_TI_begin_column(0x06)
      100                      .dwattr $C$DW$7, DW_AT_TI_max_frame_size(-2)
-     101                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 129
+     101                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 129,column 1,is_stmt,address _
      102              
      103                      .dwfde $C$DW$CIE, _PWR_setLowPowerMode
      104              $C$DW$8 .dwtag  DW_TAG_formal_parameter, DW_AT_name("pwrHandle")
      105                      .dwattr $C$DW$8, DW_AT_TI_symbol_name("_pwrHandle")
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    3
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE    3
 
      106                      .dwattr $C$DW$8, DW_AT_type(*$C$DW$T$31)
      107                      .dwattr $C$DW$8, DW_AT_location[DW_OP_reg12]
@@ -156,14 +156,14 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    3
      136 00000012 88A9          MOVZ      AR6,AL                ; [CPU_] |129| 
      137 00000013 A8A9          MOVL      ACC,XAR4              ; [CPU_] |129| 
      138 00000014 7622   EALLOW
-     139                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 137
+     139                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 137,column 5,is_stmt
      140 00000015 8F00          MOVL      XAR4,#26265           ; [CPU_U] |137| 
          00000016 6699 
      141 00000017 5601          ADDL      XAR4,ACC              ; [CPU_] |137| 
          00000018 00A4 
      142 00000019 18C4          AND       *+XAR4[0],#0xfffc     ; [CPU_] |137| 
          0000001a FFFC 
-     143                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 140
+     143                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 140,column 5,is_stmt
      144 0000001b 8F00          MOVL      XAR4,#26265           ; [CPU_U] |140| 
          0000001c 6699 
      145 0000001d 5601          ADDL      XAR4,ACC              ; [CPU_] |140| 
@@ -177,11 +177,11 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    3
      152                      .dwattr $C$DW$12, DW_AT_TI_return
      153 00000023 0006          LRETR     ; [CPU_] 
      154                      ; return occurs ; [] 
-     155                      .dwattr $C$DW$7, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+     155                      .dwattr $C$DW$7, DW_AT_TI_end_file("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    4
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE    4
 
      156                      .dwattr $C$DW$7, DW_AT_TI_end_line(0x91)
      157                      .dwattr $C$DW$7, DW_AT_TI_end_column(0x01)
@@ -198,11 +198,11 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    4
      168                      .dwattr $C$DW$13, DW_AT_TI_symbol_name("_PWR_init")
      169                      .dwattr $C$DW$13, DW_AT_external
      170                      .dwattr $C$DW$13, DW_AT_type(*$C$DW$T$31)
-     171                      .dwattr $C$DW$13, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f2
+     171                      .dwattr $C$DW$13, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
      172                      .dwattr $C$DW$13, DW_AT_TI_begin_line(0x71)
      173                      .dwattr $C$DW$13, DW_AT_TI_begin_column(0x0c)
      174                      .dwattr $C$DW$13, DW_AT_TI_max_frame_size(-2)
-     175                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 114
+     175                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 114,column 1,is_stmt,address _
      176              
      177                      .dwfde $C$DW$CIE, _PWR_init
      178              $C$DW$14        .dwtag  DW_TAG_formal_parameter, DW_AT_name("pMemory")
@@ -238,12 +238,12 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    4
      208                      .dwcfi  save_reg_to_mem, 26, 0
      209                      .dwcfi  save_reg_to_reg, 78, 26
      210 00000024 1EA6          MOVL      XAR6,ACC              ; [CPU_] |114| 
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    5
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE    5
 
-     211                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 119
+     211                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 119,column 5,is_stmt
      212 00000025 FF20          MOV       ACC,#26266            ; [CPU_] |119| 
          00000026 669A 
      213 00000027 0FA6          CMPL      ACC,XAR6              ; [CPU_] |119| 
@@ -256,7 +256,7 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    5
      220                      .dwattr $C$DW$18, DW_AT_TI_return
      221 0000002a 0006          LRETR     ; [CPU_] 
      222                      ; return occurs ; [] 
-     223                      .dwattr $C$DW$13, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x
+     223                      .dwattr $C$DW$13, DW_AT_TI_end_file("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
      224                      .dwattr $C$DW$13, DW_AT_TI_end_line(0x7d)
      225                      .dwattr $C$DW$13, DW_AT_TI_end_column(0x01)
      226                      .dwendentry
@@ -271,11 +271,11 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    5
      235                      .dwattr $C$DW$19, DW_AT_high_pc(0x00)
      236                      .dwattr $C$DW$19, DW_AT_TI_symbol_name("_PWR_enableWatchDogInt")
      237                      .dwattr $C$DW$19, DW_AT_external
-     238                      .dwattr $C$DW$19, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f2
+     238                      .dwattr $C$DW$19, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
      239                      .dwattr $C$DW$19, DW_AT_TI_begin_line(0x61)
      240                      .dwattr $C$DW$19, DW_AT_TI_begin_column(0x06)
      241                      .dwattr $C$DW$19, DW_AT_TI_max_frame_size(-2)
-     242                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 98,
+     242                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 98,column 1,is_stmt,address _P
      243              
      244                      .dwfde $C$DW$CIE, _PWR_enableWatchDogInt
      245              $C$DW$20        .dwtag  DW_TAG_formal_parameter, DW_AT_name("pwrHandle")
@@ -298,17 +298,17 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    5
      262                      .dwattr $C$DW$21, DW_AT_TI_symbol_name("_pwrHandle")
      263                      .dwattr $C$DW$21, DW_AT_type(*$C$DW$T$32)
      264                      .dwattr $C$DW$21, DW_AT_location[DW_OP_reg0]
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    6
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE    6
 
      265                      .dwcfi  cfa_offset, -2
      266                      .dwcfi  save_reg_to_mem, 26, 0
      267                      .dwcfi  save_reg_to_reg, 78, 26
      268 0000002b A8A9          MOVL      ACC,XAR4              ; [CPU_] |98| 
      269 0000002c 7622   EALLOW
-     270                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 105
+     270                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 105,column 5,is_stmt
      271 0000002d 8F00          MOVL      XAR4,#26265           ; [CPU_U] |105| 
          0000002e 6699 
      272 0000002f 5601          ADDL      XAR4,ACC              ; [CPU_] |105| 
@@ -322,7 +322,7 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    6
      278                      .dwattr $C$DW$22, DW_AT_TI_return
      279 00000035 0006          LRETR     ; [CPU_] 
      280                      ; return occurs ; [] 
-     281                      .dwattr $C$DW$19, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x
+     281                      .dwattr $C$DW$19, DW_AT_TI_end_file("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
      282                      .dwattr $C$DW$19, DW_AT_TI_end_line(0x6e)
      283                      .dwattr $C$DW$19, DW_AT_TI_end_column(0x01)
      284                      .dwendentry
@@ -337,11 +337,11 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    6
      293                      .dwattr $C$DW$23, DW_AT_high_pc(0x00)
      294                      .dwattr $C$DW$23, DW_AT_TI_symbol_name("_PWR_enableBrownOutReset")
      295                      .dwattr $C$DW$23, DW_AT_external
-     296                      .dwattr $C$DW$23, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f2
+     296                      .dwattr $C$DW$23, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
      297                      .dwattr $C$DW$23, DW_AT_TI_begin_line(0x55)
      298                      .dwattr $C$DW$23, DW_AT_TI_begin_column(0x06)
      299                      .dwattr $C$DW$23, DW_AT_TI_max_frame_size(-2)
-     300                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 86,
+     300                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 86,column 1,is_stmt,address _P
      301              
      302                      .dwfde $C$DW$CIE, _PWR_enableBrownOutReset
      303              $C$DW$24        .dwtag  DW_TAG_formal_parameter, DW_AT_name("pwrHandle")
@@ -358,10 +358,10 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    6
      314              ;*                            0 Parameter,  0 Auto,  0 SOE     *
      315              ;***************************************************************
      316              
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    7
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE    7
 
      317              _PWR_enableBrownOutReset:
      318              ;* AR4   assigned to _pwrHandle
@@ -372,7 +372,7 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    7
      323                      .dwcfi  cfa_offset, -2
      324                      .dwcfi  save_reg_to_mem, 26, 0
      325                      .dwcfi  save_reg_to_reg, 78, 26
-     326                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 91,
+     326                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 91,column 5,is_stmt
      327 00000036 18C4          AND       *+XAR4[0],#0xfffe     ; [CPU_] |91| 
          00000037 FFFE 
      328              $C$DW$26        .dwtag  DW_TAG_TI_branch
@@ -380,7 +380,7 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    7
      330                      .dwattr $C$DW$26, DW_AT_TI_return
      331 00000038 0006          LRETR     ; [CPU_] 
      332                      ; return occurs ; [] 
-     333                      .dwattr $C$DW$23, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x
+     333                      .dwattr $C$DW$23, DW_AT_TI_end_file("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
      334                      .dwattr $C$DW$23, DW_AT_TI_end_line(0x5e)
      335                      .dwattr $C$DW$23, DW_AT_TI_end_column(0x01)
      336                      .dwendentry
@@ -395,11 +395,11 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    7
      345                      .dwattr $C$DW$27, DW_AT_high_pc(0x00)
      346                      .dwattr $C$DW$27, DW_AT_TI_symbol_name("_PWR_disableWatchDogInt")
      347                      .dwattr $C$DW$27, DW_AT_external
-     348                      .dwattr $C$DW$27, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f2
+     348                      .dwattr $C$DW$27, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
      349                      .dwattr $C$DW$27, DW_AT_TI_begin_line(0x45)
      350                      .dwattr $C$DW$27, DW_AT_TI_begin_column(0x06)
      351                      .dwattr $C$DW$27, DW_AT_TI_max_frame_size(-2)
-     352                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 70,
+     352                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 70,column 1,is_stmt,address _P
      353              
      354                      .dwfde $C$DW$CIE, _PWR_disableWatchDogInt
      355              $C$DW$28        .dwtag  DW_TAG_formal_parameter, DW_AT_name("pwrHandle")
@@ -418,10 +418,10 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    7
      368              
      369              _PWR_disableWatchDogInt:
      370              ;* AL    assigned to _pwrHandle
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    8
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE    8
 
      371              $C$DW$29        .dwtag  DW_TAG_variable, DW_AT_name("pwrHandle")
      372                      .dwattr $C$DW$29, DW_AT_TI_symbol_name("_pwrHandle")
@@ -432,7 +432,7 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    8
      377                      .dwcfi  save_reg_to_reg, 78, 26
      378 00000039 A8A9          MOVL      ACC,XAR4              ; [CPU_] |70| 
      379 0000003a 7622   EALLOW
-     380                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 77,
+     380                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 77,column 5,is_stmt
      381 0000003b 8F00          MOVL      XAR4,#26265           ; [CPU_U] |77| 
          0000003c 6699 
      382 0000003d 5601          ADDL      XAR4,ACC              ; [CPU_] |77| 
@@ -446,7 +446,7 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    8
      388                      .dwattr $C$DW$30, DW_AT_TI_return
      389 00000043 0006          LRETR     ; [CPU_] 
      390                      ; return occurs ; [] 
-     391                      .dwattr $C$DW$27, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x
+     391                      .dwattr $C$DW$27, DW_AT_TI_end_file("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
      392                      .dwattr $C$DW$27, DW_AT_TI_end_line(0x52)
      393                      .dwattr $C$DW$27, DW_AT_TI_end_column(0x01)
      394                      .dwendentry
@@ -461,11 +461,11 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    8
      403                      .dwattr $C$DW$31, DW_AT_high_pc(0x00)
      404                      .dwattr $C$DW$31, DW_AT_TI_symbol_name("_PWR_disableBrownOutReset")
      405                      .dwattr $C$DW$31, DW_AT_external
-     406                      .dwattr $C$DW$31, DW_AT_TI_begin_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f2
+     406                      .dwattr $C$DW$31, DW_AT_TI_begin_file("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
      407                      .dwattr $C$DW$31, DW_AT_TI_begin_line(0x39)
      408                      .dwattr $C$DW$31, DW_AT_TI_begin_column(0x06)
      409                      .dwattr $C$DW$31, DW_AT_TI_max_frame_size(-2)
-     410                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 58,
+     410                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 58,column 1,is_stmt,address _P
      411              
      412                      .dwfde $C$DW$CIE, _PWR_disableBrownOutReset
      413              $C$DW$32        .dwtag  DW_TAG_formal_parameter, DW_AT_name("pwrHandle")
@@ -478,10 +478,10 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    8
      420              ;*                                                             *
      421              ;* FUNCTION ENVIRONMENT                                        *
      422              ;*                                                             *
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    9
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE    9
 
      423              ;* FUNCTION PROPERTIES                                         *
      424              ;*                            0 Parameter,  0 Auto,  0 SOE     *
@@ -496,7 +496,7 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    9
      433                      .dwcfi  cfa_offset, -2
      434                      .dwcfi  save_reg_to_mem, 26, 0
      435                      .dwcfi  save_reg_to_reg, 78, 26
-     436                      .dwpsn  file "C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 63,
+     436                      .dwpsn  file "D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c",line 63,column 5,is_stmt
      437 00000044 1AC4          OR        *+XAR4[0],#0x0001     ; [CPU_] |63| 
          00000045 0001 
      438              $C$DW$34        .dwtag  DW_TAG_TI_branch
@@ -504,7 +504,7 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    9
      440                      .dwattr $C$DW$34, DW_AT_TI_return
      441 00000046 0006          LRETR     ; [CPU_] 
      442                      ; return occurs ; [] 
-     443                      .dwattr $C$DW$31, DW_AT_TI_end_file("C:/ti/motorware/motorware_1_01_00_18/sw/drivers/pwr/src/32b/f28x
+     443                      .dwattr $C$DW$31, DW_AT_TI_end_file("D:/BM1000/sw/drivers/pwr/src/32b/f28x/f2802x/pwr.c")
      444                      .dwattr $C$DW$31, DW_AT_TI_end_line(0x42)
      445                      .dwattr $C$DW$31, DW_AT_TI_end_column(0x01)
      446                      .dwendentry
@@ -538,10 +538,10 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE    9
      474              $C$DW$42        .dwtag  DW_TAG_enumerator, DW_AT_name("PWR_NumStandByClocks_5"), DW_AT_const_value(0x0c)
      475              $C$DW$43        .dwtag  DW_TAG_enumerator, DW_AT_name("PWR_NumStandByClocks_6"), DW_AT_const_value(0x10)
      476              $C$DW$44        .dwtag  DW_TAG_enumerator, DW_AT_name("PWR_NumStandByClocks_7"), DW_AT_const_value(0x14)
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE   10
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE   10
 
      477              $C$DW$45        .dwtag  DW_TAG_enumerator, DW_AT_name("PWR_NumStandByClocks_8"), DW_AT_const_value(0x18)
      478              $C$DW$46        .dwtag  DW_TAG_enumerator, DW_AT_name("PWR_NumStandByClocks_9"), DW_AT_const_value(0x1c)
@@ -598,10 +598,10 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE   10
      529              $C$DW$97        .dwtag  DW_TAG_enumerator, DW_AT_name("PWR_NumStandByClocks_60"), DW_AT_const_value(0xe8)
      530              $C$DW$98        .dwtag  DW_TAG_enumerator, DW_AT_name("PWR_NumStandByClocks_61"), DW_AT_const_value(0xec)
      531              $C$DW$99        .dwtag  DW_TAG_enumerator, DW_AT_name("PWR_NumStandByClocks_62"), DW_AT_const_value(0xf0)
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE   11
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE   11
 
      532              $C$DW$100       .dwtag  DW_TAG_enumerator, DW_AT_name("PWR_NumStandByClocks_63"), DW_AT_const_value(0xf4)
      533              $C$DW$101       .dwtag  DW_TAG_enumerator, DW_AT_name("PWR_NumStandByClocks_64"), DW_AT_const_value(0xf8)
@@ -658,10 +658,10 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE   11
      584                      .dwattr $C$DW$108, DW_AT_type(*$C$DW$T$3)
      585              $C$DW$T$38      .dwtag  DW_TAG_const_type
      586                      .dwattr $C$DW$T$38, DW_AT_type(*$C$DW$108)
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE   12
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE   12
 
      587              $C$DW$T$4       .dwtag  DW_TAG_base_type
      588                      .dwattr $C$DW$T$4, DW_AT_encoding(DW_ATE_boolean)
@@ -718,10 +718,10 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE   12
      639              $C$DW$T$13      .dwtag  DW_TAG_base_type
      640                      .dwattr $C$DW$T$13, DW_AT_encoding(DW_ATE_unsigned)
      641                      .dwattr $C$DW$T$13, DW_AT_name("unsigned long")
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE   13
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE   13
 
      642                      .dwattr $C$DW$T$13, DW_AT_byte_size(0x02)
      643              $C$DW$T$33      .dwtag  DW_TAG_typedef, DW_AT_name("size_t")
@@ -778,10 +778,10 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE   13
      694                      .dwcfi  undefined, 32
      695                      .dwcfi  undefined, 33
      696                      .dwcfi  undefined, 34
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE   14
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE   14
 
      697                      .dwcfi  undefined, 35
      698                      .dwcfi  undefined, 36
@@ -838,10 +838,10 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE   14
      749              $C$DW$123       .dwtag  DW_TAG_TI_assign_register, DW_AT_name("FP")
      750                      .dwattr $C$DW$123, DW_AT_location[DW_OP_reg28]
      751              $C$DW$124       .dwtag  DW_TAG_TI_assign_register, DW_AT_name("DP")
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE   15
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE   15
 
      752                      .dwattr $C$DW$124, DW_AT_location[DW_OP_reg29]
      753              $C$DW$125       .dwtag  DW_TAG_TI_assign_register, DW_AT_name("SXM")
@@ -898,10 +898,10 @@ C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE   15
      804                      .dwattr $C$DW$150, DW_AT_location[DW_OP_reg13]
      805              $C$DW$151       .dwtag  DW_TAG_TI_assign_register, DW_AT_name("XAR5")
      806                      .dwattr $C$DW$151, DW_AT_location[DW_OP_reg15]
-TMS320C2000 Assembler PC v6.2.5 Mon Jun 19 18:10:36 2017
+TMS320C2000 Assembler PC v6.2.5 Sun Oct 08 22:38:05 2017
 
 Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
-C:\Users\wmj\AppData\Local\Temp\2996410                              PAGE   16
+C:\Users\wmj\AppData\Local\Temp\0580411                              PAGE   16
 
      807              $C$DW$152       .dwtag  DW_TAG_TI_assign_register, DW_AT_name("CIE_RETA")
      808                      .dwattr $C$DW$152, DW_AT_location[DW_OP_regx 0x4e]

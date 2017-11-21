@@ -122,6 +122,11 @@
 			<locationURI>MW_INSTALL_DIR/sw/drivers/adc/src/32b/f28x/f2802x/adc.c</locationURI>
 		</link>
 		<link>
+			<name>brake.c</name>
+			<type>1</type>
+			<locationURI>PARENT-9-PROJECT_LOC/drivers/drvic/brake.c</locationURI>
+		</link>
+		<link>
 			<name>clarke.c</name>
 			<type>1</type>
 			<locationURI>MW_INSTALL_DIR/sw/modules/clarke/src/32b/clarke.c</locationURI>
