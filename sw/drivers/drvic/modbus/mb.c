@@ -369,13 +369,13 @@ eMBErrorCode MB_RTUSend(MB_Handle handle)
 
        //  Calculate CRC16 checksum for Modbus-Serial-Line-PDU.
         usCRC16 = MB_CRC16( ( UCHAR * )(obj->SndBufferCur), obj->SndBufferCount );
-        obj->RTUBuf[obj->SndBufferCount++] = ( UCHAR )( usCRC16 & 0xFF );
-        obj->RTUBuf[obj->SndBufferCount++] = ( UCHAR )( usCRC16 >> 8 );
+        obj->SndBufferCur[obj->SndBufferCount++] = ( UCHAR )( usCRC16 & 0xFF );
+        obj->SndBufferCur[obj->SndBufferCount++] = ( UCHAR )( usCRC16 >> 8 );
 
         //  Activate the transmitter.
         obj->eSndState = STATE_TX_XMIT;
         MB_PortSerialEnable(handle, false, true);
-        MB_PortSerialPutByte(handle, (obj->RTUBuf[0]));
+        MB_PortSerialPutByte(handle, (obj->SndBufferCur[0]));
 
     }
     else
@@ -526,14 +526,34 @@ inline _iq20 MB_ModubusToIQ20(int16_t Data)
  return (_IQtoIQ20(Data_t));
 }
 
-int16_t MB_FloatTransToInt(float Data)
+int16_t MB_FloatTransToIQ7(float Data)
 {
    int16_t Data_t;
 
-   Data_t = (int16_t)(_IQ(Data) >> 16);
+   Data_t = (int16_t)(_IQ(Data)>> 17);
 
    return (Data_t);
 }
+
+int16_t MB_FloatTransToIQ8(float Data)
+{
+   int16_t Data_t;
+
+   Data_t = (int16_t)(_IQ(Data)>> 16);
+
+   return (Data_t);
+}
+
+
+int16_t MB_FloatTransToIQ7X1000(float Data)
+{
+   int16_t Data_t;
+
+   Data_t = (int16_t)(_IQ(Data)*125 >> 14);
+
+   return (Data_t);
+}
+
 
 
 
@@ -565,11 +585,12 @@ void MB_FuncReadHoldingRegister(MB_Handle handle)
 
   //  Motor Parameters
   case MB_Motor_Reg_motor_ID: RegData = MOTOR_getMotorID(obj->motorHandle); break;
-  case MB_Motor_Reg_motor_Rr: RegData = MB_FloatTransToInt(MOTOR_getMotorRr_Ohm(obj->motorHandle)); break;
-  case MB_Motor_Reg_motor_Rs: RegData = MB_FloatTransToInt(MOTOR_getMotorRs_Ohm(obj->motorHandle)); break;
-  case MB_Motor_Reg_motor_Ls_d: RegData = MB_FloatTransToInt(MOTOR_getMotorLsd_H(obj->motorHandle)); break;
-  case MB_Motor_Reg_motor_Ls_q: RegData = MB_FloatTransToInt(MOTOR_getMotorLsq_H(obj->motorHandle)); break;
-  case MB_Motor_Reg_maxCurrent: RegData = MB_FloatTransToInt(MOTOR_getMotorMaxCurr_A(obj->motorHandle)); break;
+  case MB_Motor_Reg_motor_Rr: RegData = MB_FloatTransToIQ7(MOTOR_getMotorRr_Ohm(obj->motorHandle)); break;
+  case MB_Motor_Reg_motor_Rs: RegData = MB_FloatTransToIQ7(MOTOR_getMotorRs_Ohm(obj->motorHandle)); break;
+  case MB_Motor_Reg_motor_Ls_d: RegData = MB_FloatTransToIQ7X1000(MOTOR_getMotorLsd_H(obj->motorHandle)); break;
+  case MB_Motor_Reg_motor_Ls_q: RegData = MB_FloatTransToIQ7X1000(MOTOR_getMotorLsq_H(obj->motorHandle)); break;
+  case MB_Motor_Reg_maxCurrent: RegData = MB_FloatTransToIQ8(MOTOR_getMotorMaxCurr_A(obj->motorHandle)); break;
+  case MB_Motor_Reg_MagnCurrent: RegData = MB_FloatTransToIQ8(MOTOR_getMotorMagnCurr_A(obj->motorHandle)); break;
 
   // System state Parameters
   case MB_Motor_Reg_Speed_krpm: RegData = MB_IQtoModubus(MOTOR_getMotorSpeed(obj->motorHandle)); break;

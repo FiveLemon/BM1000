@@ -47,34 +47,29 @@ extern "C" {
 
 typedef enum
 {
-  Fsm_State_Idle = 0,
-
-  Fsm_State_MotorFunc,
-
-  Fsm_State_Spinning,
-  Fsm_State_Reverse,
-
-  Fsm_State_Slowdown,
-
-  Fsm_State_ConstTorque,
-  Fsm_State_MagneticBrake,
-
-  Fsm_State_FullyClose,
-  Fsm_State_InchingOpen,
-  Fsm_State_FullyOpen,
+  Fsm_State_Idle            = 0x00,
+  Fsm_State_MotorFunc       = 0x01,
+  Fsm_State_Spinning        = 0x02,
+  Fsm_State_Reverse         = 0x03,
+  Fsm_State_Slowdown        = 0x04,
+  Fsm_State_ConstTorque     = 0x05,
+  Fsm_State_MagneticBrake   = 0x06,
+  Fsm_State_FullyClose      = 0x07,
+  Fsm_State_InchingOpen     = 0x08,
+  Fsm_State_FullyOpen       = 0x09,
 
 #ifdef USE_SpinTAC
-  Fsm_State_VelocityMode,
-  Fsm_State_PositionMode1,
-  Fsm_State_PositionMode2,
+  Fsm_State_VelocityMode    = 0x0a,
+  Fsm_State_PositionMode1   = 0x0b,
+  Fsm_State_PositionMode2   = 0x0c,
 #else
-  Fsm_State_SharedState1,
-  Fsm_State_SharedState2,
-  Fsm_State_SharedState3,
+  Fsm_State_SharedState1    = 0x0a,
+  Fsm_State_SharedState2    = 0x0b,
+  Fsm_State_SharedState3    = 0x0c,
 #endif
 
-  Fsm_State_NormWait,
-  Fsm_State_STOP,
+  Fsm_State_NormWait        = 0x0d,
+  Fsm_State_STOP            = 0x0e,
   Fsm_State_Num
 } FSM_State_e;
 

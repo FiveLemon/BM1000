@@ -269,11 +269,27 @@ inline float MOTOR_getMotorLsq_H(MOTOR_Handle handle)
   return (obj->Lsq_H);
 }
 
+inline void MOTOR_setMOTOR_getMaxCurr_A(MOTOR_Handle handle, const float Crrent_A)
+{
+  MOTOR_Obj *obj = (MOTOR_Obj *)handle;
+
+  obj->MaxCurr_A = Crrent_A;
+
+  return;
+}
+
 inline float MOTOR_getMotorMaxCurr_A(MOTOR_Handle handle)
 {
   MOTOR_Obj *obj = (MOTOR_Obj *)handle;
 
   return (obj->MaxCurr_A);
+}
+
+inline float MOTOR_getMotorMagnCurr_A(MOTOR_Handle handle)
+{
+  MOTOR_Obj *obj = (MOTOR_Obj *)handle;
+
+  return (obj->MagnCurr_A);
 }
 
 //

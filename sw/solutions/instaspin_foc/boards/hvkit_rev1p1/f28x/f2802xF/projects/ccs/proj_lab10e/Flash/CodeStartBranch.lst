@@ -1,7 +1,7 @@
-TMS320C2000 Assembler PC v15.12.3 Wed Nov 22 00:56:15 2017
+TMS320C2000 Assembler PC v6.2.5 Wed Nov 22 09:15:49 2017
 
-Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:/Users/wmj/Desktop/BM1000_v1.1/sw/drivers/cpu/src/32b/f28x/f2802x/CodeStartBranch.asm PAGE    1
+Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
+D:/BM1000_v1.1/sw/drivers/cpu/src/32b/f28x/f2802x/CodeStartBranch.asm PAGE    1
 
        1              ; --COPYRIGHT--,BSD
        2              ;  Copyright (c) 2015, Texas Instruments Incorporated
@@ -58,10 +58,10 @@ C:/Users/wmj/Desktop/BM1000_v1.1/sw/drivers/cpu/src/32b/f28x/f2802x/CodeStartBra
       53              ;// PC, it is not the same as a full reset of the device. 
       54              ;// 
       55              ;// The compiler may warn that the entry point for the project is other then
-TMS320C2000 Assembler PC v15.12.3 Wed Nov 22 00:56:15 2017
+TMS320C2000 Assembler PC v6.2.5 Wed Nov 22 09:15:49 2017
 
-Tools Copyright (c) 1996-2015 Texas Instruments Incorporated
-C:/Users/wmj/Desktop/BM1000_v1.1/sw/drivers/cpu/src/32b/f28x/f2802x/CodeStartBranch.asm PAGE    2
+Tools Copyright (c) 1996-2014 Texas Instruments Incorporated
+D:/BM1000_v1.1/sw/drivers/cpu/src/32b/f28x/f2802x/CodeStartBranch.asm PAGE    2
 
       56              ;//  _c_init00.  _c_init00 is the C environment setup and is run before 
       57              ;// main() is entered. The code_start code will re-direct the execution 

@@ -244,12 +244,11 @@ void main(void)
   // enable debug interrupts
   HAL_enableDebugInt(halHandle);
 
-
   // disable the PWM
   HAL_disablePwm(halHandle);
 
-
   while(HAL_readGpio(halHandle, (GPIO_Number_e)HAL_Gpio_RelayOnFlag_b));
+
   HAL_setGpioLow(halHandle, (GPIO_Number_e)HAL_Gpio_ShutDown);
   HAL_setGpioLow(halHandle, (GPIO_Number_e)HAL_Gpio_DspClrOcOut_b);
   usDelay(US_TO_CNT(100));
@@ -301,6 +300,7 @@ void main(void)
 
 		// set the max Speed loop out value to control the current in stall
 		CTRL_setSpd_outMaxRatio_pu(ctrlHandle, MOTOR_getMaxCurrentRatio(proctrlHandle->motorHandle));
+
 
 
 	  #ifdef  USE_SpinTAC
