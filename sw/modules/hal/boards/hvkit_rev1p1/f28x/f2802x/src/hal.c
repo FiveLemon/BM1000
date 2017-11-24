@@ -769,7 +769,7 @@ void HAL_setParams(HAL_Handle handle,const USER_Params *pUserParams)
   HAL_setupPwms(handle,
                 (float_t)pUserParams->systemFreq_MHz,
                 pUserParams->pwmPeriod_usec,
-                USER_NUM_PWM_TICKS_PER_ISR_TICK);
+				USER_NUM_PWM_TICKS_PER_ISR_TICK);
 
   // setup the spiA
   //HAL_setupSpiA(handle);

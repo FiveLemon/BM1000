@@ -58,11 +58,9 @@
 
 // Include header files used in the main function
 
-#define US_TO_CNT(A) ((((long double) A * (long double)USER_SYSTEM_FREQ_MHz) - 9.0L) / 5.0L)
 // **************************************************************************
 // the defines
 
-#define LED_BLINK_FREQ_Hz   100
 //(uint_least32_t)(USER_ISR_FREQ_Hz / LED_BLINK_FREQ_Hz)
 
 // **************************************************************************
@@ -92,8 +90,6 @@ CTRL_Obj *controller_obj;
 CTRL_Obj ctrl;				//v1p7 format
 #endif
 
-
-uint16_t gLEDcnt = 0;
 
 #ifdef FLASH
 // Used for running BackGround in flash, and ISR in RAM
@@ -156,7 +152,6 @@ void main(void)
   ctrlHandle = CTRL_initCtrl(estNumber,&ctrl,sizeof(ctrl));	//v1p7 format default
 #endif
 
-
   {
     CTRL_Version version;
 
@@ -181,12 +176,13 @@ void main(void)
 
   // initialize the user parameters
   USER_setSysParams(&gUserParams);
+
+  USER_setParams(&gUserParams);
+  USER_checkDefErrors(&gUserParams);
+
   // set the hardware abstraction layer parameters
   HAL_setParams(halHandle,&gUserParams);
 
-  USER_setParams(&gUserParams);
-
-  USER_checkDefErrors(&gUserParams);
 
 #ifdef TMS320F28069
   HAL_setBoardAddr(halHandle, HAL_BoardAddr_Motor7);
@@ -198,25 +194,6 @@ void main(void)
   MB_setSlaveAddress(proctrlHandle->modbusHandle, (HAL_getBoardAddr(halHandle) + 0x11) );
 
   MOTOR_setMotorID(proctrlHandle->motorHandle, HAL_getBoardAddr(halHandle));
-
-  // Initial Motor Parameter must be after Get Board Address
-  USER_setMotorParams(&gUserParams);
-
-  USER_setWaitTimeParams(&gUserParams);
-
-  // choice board current shut resister value by Board Address
-  USER_setBoardParams(&gUserParams);
-
-  // must be after BoardParams function
-  HAL_setupAdcParams(halHandle,&gUserParams);
-
-  // check for errors in user parameters
-  USER_checkForErrors(&gUserParams);
-
-  // store user parameter error in global variable
-  MOTOR_setMotorErrorCode(proctrlHandle->motorHandle, USER_getErrorCode(&gUserParams));
-
-  MOTOR_getMaxCurrent(proctrlHandle->motorHandle, &gUserParams);
 
 
 #ifdef USE_SpinTAC
@@ -247,12 +224,29 @@ void main(void)
   // disable the PWM
   HAL_disablePwm(halHandle);
 
-  while(HAL_readGpio(halHandle, (GPIO_Number_e)HAL_Gpio_RelayOnFlag_b));
+  PROCTRL_ShutDown(proctrlHandle);
 
-  HAL_setGpioLow(halHandle, (GPIO_Number_e)HAL_Gpio_ShutDown);
-  HAL_setGpioLow(halHandle, (GPIO_Number_e)HAL_Gpio_DspClrOcOut_b);
-  usDelay(US_TO_CNT(100));
-  HAL_setGpioHigh(halHandle, (GPIO_Number_e)HAL_Gpio_DspClrOcOut_b);
+  // Initial Motor Parameter must be after Get Board Address
+  USER_setMotorParams(&gUserParams);
+
+  // choice board current shut resister value by Board Address
+  // must be after MotorParams
+  USER_setBoardParams(&gUserParams);
+
+  // must be after BoardParams function
+  USER_setWaitTimeParams(&gUserParams);
+
+  // must be after BoardParams function
+  HAL_setupAdcParams(halHandle,&gUserParams);
+
+  // check for errors in user parameters
+  USER_checkBoardParamsErrors(&gUserParams);
+  USER_checkMotorParamsError(&gUserParams);
+
+  MOTOR_getMaxCurrent(proctrlHandle->motorHandle, &gUserParams);
+  // store user parameter error in global variable
+  MOTOR_setMotorErrorCode(proctrlHandle->motorHandle, USER_getErrorCode(&gUserParams));
+
 
 
   for(;;)
@@ -263,21 +257,31 @@ void main(void)
 		{
 
 		   MB_Poll(proctrlHandle->modbusHandle);
+
+		   // store user parameter error in global variable
+		   MOTOR_setMotorErrorCode(proctrlHandle->motorHandle, USER_getErrorCode(&gUserParams));
 		   // do not allow code execution if there is a user parameter error
 		   PROCTRL_CheckMotorError(proctrlHandle);
+		   PROCTRL_CheckRelayOnFlag(proctrlHandle);
+		   PROCTRL_CheckEmgStop(proctrlHandle);
 
 		};
+
+
+	    PROCTRL_clrOverCurrent(proctrlHandle);
+
 
       #ifdef  USE_SpinTAC
 		// setup the SpinTAC Components
 		ST_setupPosConv(proctrlHandle->stHandle, proctrlHandle->pUserParams);
 
 		ST_setupPosCtl(proctrlHandle->stHandle, proctrlHandle->pUserParams);
+
+        ST_setupPosMove(proctrlHandle->stHandle, &gUserParams);
       #endif
+
 		// enable DC bus compensation
 		CTRL_setFlag_enableDcBusComp(ctrlHandle, true);
-
-		FSM_getPortStatus(proctrlHandle->fsmHandle);
 
 		FSM_ParamInit(proctrlHandle->fsmHandle);
 
@@ -407,31 +411,7 @@ interrupt void mainISR(void)
   }
 #endif
 
-  // toggle status LED (100Hz @  ISR 10kHz)
-  if(++gLEDcnt >= 100)
-  {
-    static uint16_t MeasCnt = 0;
-
-	gLEDcnt = 0;
-
-	if(FSM_RunTimeState(proctrlHandle->fsmHandle) == true)
-	{
-	  FSM_RunTimeCnt(proctrlHandle->fsmHandle);
-	}
-
-
-	if(++MeasCnt >= 10 )
-	{
-	 MeasCnt = 0;
-
-	PROCTRL_getChipTemperture(proctrlHandle, &(proctrlHandle->AdcData));
-	PROCTRL_getDCbusVoltage(proctrlHandle, &(proctrlHandle->AdcData));
-	}
-
-  }
-
-  PROCTRL_getSensorData(proctrlHandle, &(proctrlHandle->AdcData));
-
+  PROCTRL_RunInISR(proctrlHandle);
 
   return;
 } // end of mainISR() function

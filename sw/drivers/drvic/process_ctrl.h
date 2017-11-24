@@ -90,7 +90,8 @@ typedef struct _PROCTRL_Obj_
   SLIP_Obj            slip;
 #endif
 
-  bool                Ext_Int_Flag;
+  //bool                Ext_Int_Flag;
+  uint16_t            IsrRunCnt;
  // bool                global_update_flag;
 
 
@@ -131,7 +132,7 @@ void motor_StopCtrl(CTRL_Handle handle);
 void recalcKpKi(CTRL_Handle handle, USER_Params *pUserParams);
 //! \brief     Set electrical frequency limit to zero while identifying an induction motor
 //!
-void setFeLimitZero(CTRL_Handle handle);
+void setFeLimitZero(CTRL_Handle handle, USER_Params *pUserParams);
 //! \brief     Calculates Dir_qFmt for ACIM
 //!
 void acim_Dir_qFmtCalc(CTRL_Handle handle);
@@ -139,9 +140,13 @@ void acim_Dir_qFmtCalc(CTRL_Handle handle);
 void runRsOnLine(PROCTRL_Handle handle,  USER_Params *pUserParams);
 
 void PROCTRL_updateKpKiGains(PROCTRL_Handle handle);
+
 void PROCTRL_CheckMotorError(PROCTRL_Handle handle);
+void PROCTRL_CheckRelayOnFlag(PROCTRL_Handle handle);
+void PROCTRL_CheckEmgStop(PROCTRL_Handle handle);
 void PROCTRL_chkError(PROCTRL_Handle handle, USER_Params *pUserParams);
 void PROCTRL_chkMotorIdentified(PROCTRL_Handle handle, USER_Params *pUserParams);
+
 
 void PROCTRL_UpdateMotorSpeed(PROCTRL_Handle handle);
 void PROCTRL_UpdateMotorTorque(PROCTRL_Handle handle);
@@ -159,13 +164,8 @@ void PROCTRL_getScaleActors(PROCTRL_Handle handle, USER_Params *pUserParams);
 void PROCTRL_setDcBrakeEnable(PROCTRL_Handle handle);
 void PROCTRL_setDcBrakeCurrent(PROCTRL_Handle handle);
 
-
-
 void PROCTRL_getDCbusVoltage(PROCTRL_Handle handle, HAL_AdcData_t *adcData);
 void PROCTRL_getChipTemperture(PROCTRL_Handle handle, HAL_AdcData_t *adcData);
-
-//void PROCTRL_getMotorTurns_mech(PROCTRL_Handle handle);
-//void PROCTRL_getAbsAngle_mech(PROCTRL_Handle handle);
 
 void PROCTRL_MainLoop(PROCTRL_Handle handle, USER_Params *pUserParams);
 //==============================================================================//
@@ -193,6 +193,114 @@ void Find_ZeroPoint(PROCTRL_Handle handle);
 
 
 
+
+
+inline void PROCTRL_clrOverCurrent(PROCTRL_Handle handle)
+{
+  PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
+
+  FSM_clrOverCurrentReg(obj->fsmHandle);
+
+  return;
+}
+
+inline void PROCTRL_ShutDown(PROCTRL_Handle handle)
+{
+  PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
+
+  FSM_ShutDowm(obj->fsmHandle);
+
+  return;
+}
+
+
+inline void PROCTRL_RunInISR(PROCTRL_Handle handle)
+{
+  PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
+
+
+  // toggle status LED (100Hz @  ISR 10kHz)
+  if(++(obj->IsrRunCnt) >= 100)
+  {
+    static uint16_t MeasCnt = 0;
+
+    obj->IsrRunCnt = 0;
+
+	if(FSM_RunTimeState(obj->fsmHandle) == true)
+	{
+	  FSM_RunTimeCnt(obj->fsmHandle);
+	}
+
+
+
+
+	if(++MeasCnt >= 10 )
+	{
+	 MeasCnt = 0;
+
+	PROCTRL_getChipTemperture(handle, &(obj->AdcData));
+	PROCTRL_getDCbusVoltage(handle, &(obj->AdcData));
+	}
+
+  }
+
+  PROCTRL_getSensorData(handle, &(obj->AdcData));
+
+  return;
+}
+
+
+
+//! \brief      Recalculates Inductances with the correct Q Format
+//! \param[in]  handle       The controller (CTRL) handle
+extern void USER_softwareUpdate1p6(CTRL_Handle handle, USER_Params *pUserParams);
+
+
+//! \brief      Updates Id and Iq PI gains
+//! \param[in]  handle       The controller (CTRL) handle
+extern void USER_calcPIgains(CTRL_Handle handle, USER_Params *pUserParams);
+
+
+//! \brief      Computes the scale factor needed to convert from torque created by Ld, Lq, Id and Iq, from per unit to Nm
+//! \return     The scale factor to convert torque from (Ld - Lq) * Id * Iq from per unit to Nm, in IQ24 format
+extern _iq USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf(USER_Params *pUserParams);
+
+
+//! \brief      Computes the scale factor needed to convert from torque created by flux and Iq, from per unit to Nm
+//! \return     The scale factor to convert torque from Flux * Iq from per unit to Nm, in IQ24 format
+extern _iq USER_computeTorque_Flux_Iq_pu_to_Nm_sf(USER_Params *pUserParams);
+
+
+//! \brief      Computes the scale factor needed to convert from per unit to Wb
+//! \return     The scale factor to convert from flux per unit to flux in Wb, in IQ24 format
+extern _iq USER_computeFlux_pu_to_Wb_sf(USER_Params *pUserParams);
+
+
+//! \brief      Computes the scale factor needed to convert from per unit to V/Hz
+//! \return     The scale factor to convert from flux per unit to flux in V/Hz, in IQ24 format
+extern _iq USER_computeFlux_pu_to_VpHz_sf(USER_Params *pUserParams);
+
+
+//! \brief      Computes Flux in Wb or V/Hz depending on the scale factor sent as parameter
+//! \param[in]  handle       The controller (CTRL) handle
+//! \param[in]  sf           The scale factor to convert flux from per unit to Wb or V/Hz
+//! \return     The flux in Wb or V/Hz depending on the scale factor sent as parameter, in IQ24 format
+extern _iq USER_computeFlux(CTRL_Handle handle, const _iq sf);
+
+//! \brief      Computes Torque in Nm
+//! \param[in]  handle          The controller (CTRL) handle
+//! \param[in]  torque_Flux_sf  The scale factor to convert torque from (Ld - Lq) * Id * Iq from per unit to Nm
+//! \param[in]  torque_Ls_sf    The scale factor to convert torque from Flux * Iq from per unit to Nm
+//! \return     The torque in Nm, in IQ24 format
+extern _iq USER_computeTorque_Nm(CTRL_Handle handle, const _iq torque_Flux_sf, const _iq torque_Ls_sf);
+
+
+//! \brief      Computes Torque in lbin
+//! \param[in]  handle          The controller (CTRL) handle
+//! \param[in]  torque_Flux_sf  The scale factor to convert torque from (Ld - Lq) * Id * Iq from per unit to lbin
+//! \param[in]  torque_Ls_sf    The scale factor to convert torque from Flux * Iq from per unit to lbin
+//! \return     The torque in lbin, in IQ24 format
+extern _iq USER_computeTorque_lbin(CTRL_Handle handle, const _iq torque_Flux_sf, const _iq torque_Ls_sf);
 
 
 #ifdef __cplusplus 

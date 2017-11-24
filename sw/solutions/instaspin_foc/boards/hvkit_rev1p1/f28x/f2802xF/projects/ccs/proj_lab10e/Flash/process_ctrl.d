@@ -1,6 +1,8 @@
 # FIXED
 
 process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/drvic/process_ctrl.c
+process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/math.h
+process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/linkage.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/drvic/process_ctrl.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h
@@ -8,7 +10,6 @@ process_ctrl.obj: D:/BM1000_v1.1/sw/modules/types/src/types.h
 process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdbool.h
 process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/yvals.h
 process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdarg.h
-process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/linkage.h
 process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/_lock.h
 process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/string.h
 process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdint.h
@@ -51,7 +52,7 @@ process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2802x/spi.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/sci/src/32b/f28x/f2802x/sci.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h
-process_ctrl.obj: D:/BM1000_v1.1/sw/solutions/instaspin_foc/boards/hvkit_rev1p1/f28x/f2802xF/src/user.h
+process_ctrl.obj: D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Flux_states.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Ls_states.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Rs_states.h
@@ -66,6 +67,8 @@ process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/inttypes.h
 process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/_fmt_specifier.h
 
 D:/BM1000_v1.1/sw/drivers/drvic/process_ctrl.c: 
+C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/math.h: 
+C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/linkage.h: 
 D:/BM1000_v1.1/sw/drivers/drvic/process_ctrl.h: 
 D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h: 
 D:/BM1000_v1.1/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h: 
@@ -73,7 +76,6 @@ D:/BM1000_v1.1/sw/modules/types/src/types.h:
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdbool.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/yvals.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdarg.h: 
-C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/linkage.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/_lock.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/string.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdint.h: 
@@ -116,7 +118,7 @@ D:/BM1000_v1.1/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.h:
 D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2802x/spi.h: 
 D:/BM1000_v1.1/sw/drivers/sci/src/32b/f28x/f2802x/sci.h: 
 D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h: 
-D:/BM1000_v1.1/sw/solutions/instaspin_foc/boards/hvkit_rev1p1/f28x/f2802xF/src/user.h: 
+D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Flux_states.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Ls_states.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Rs_states.h: 

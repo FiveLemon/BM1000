@@ -1,6 +1,8 @@
 # FIXED
 
 process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/drvic/process_ctrl.c
+process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/math.h
+process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/linkage.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/drvic/process_ctrl.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/i2c/src/32b/f28x/f2806x/i2c.h
@@ -8,7 +10,6 @@ process_ctrl.obj: D:/BM1000_v1.1/sw/modules/types/src/types.h
 process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdbool.h
 process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/yvals.h
 process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdarg.h
-process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/linkage.h
 process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/_lock.h
 process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/string.h
 process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdint.h
@@ -53,7 +54,7 @@ process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/sci/src/32b/f28x/f2806x/sci.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2806x/spi.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/qep/src/32b/f28x/f2806x/qep.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h
-process_ctrl.obj: D:/BM1000_v1.1/sw/solutions/instaspin_motion/boards/hvkit_rev1p1/f28x/f2806xM/src/user.h
+process_ctrl.obj: D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Flux_states.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Ls_states.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Rs_states.h
@@ -62,7 +63,6 @@ process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/drvic/fsm.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/modules/hal/boards/hvkit_rev1p1/f28x/f2806x/src/hal.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/modules/svgen/src/32b/svgen_current.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/drvic/motor.h
-process_ctrl.obj: D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrlQEP.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/drivers/drvic/spintac_position.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/modules/spintac/src/32b/spintac_pos_conv.h
 process_ctrl.obj: D:/BM1000_v1.1/sw/modules/spintac/src/32b/spintac_version.h
@@ -76,6 +76,8 @@ process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/inttypes.h
 process_ctrl.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/_fmt_specifier.h
 
 D:/BM1000_v1.1/sw/drivers/drvic/process_ctrl.c: 
+C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/math.h: 
+C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/linkage.h: 
 D:/BM1000_v1.1/sw/drivers/drvic/process_ctrl.h: 
 D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h: 
 D:/BM1000_v1.1/sw/drivers/i2c/src/32b/f28x/f2806x/i2c.h: 
@@ -83,7 +85,6 @@ D:/BM1000_v1.1/sw/modules/types/src/types.h:
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdbool.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/yvals.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdarg.h: 
-C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/linkage.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/_lock.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/string.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdint.h: 
@@ -128,7 +129,7 @@ D:/BM1000_v1.1/sw/drivers/sci/src/32b/f28x/f2806x/sci.h:
 D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2806x/spi.h: 
 D:/BM1000_v1.1/sw/drivers/qep/src/32b/f28x/f2806x/qep.h: 
 D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h: 
-D:/BM1000_v1.1/sw/solutions/instaspin_motion/boards/hvkit_rev1p1/f28x/f2806xM/src/user.h: 
+D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Flux_states.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Ls_states.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Rs_states.h: 
@@ -137,7 +138,6 @@ D:/BM1000_v1.1/sw/drivers/drvic/fsm.h:
 D:/BM1000_v1.1/sw/modules/hal/boards/hvkit_rev1p1/f28x/f2806x/src/hal.h: 
 D:/BM1000_v1.1/sw/modules/svgen/src/32b/svgen_current.h: 
 D:/BM1000_v1.1/sw/drivers/drvic/motor.h: 
-D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrlQEP.h: 
 D:/BM1000_v1.1/sw/drivers/drvic/spintac_position.h: 
 D:/BM1000_v1.1/sw/modules/spintac/src/32b/spintac_pos_conv.h: 
 D:/BM1000_v1.1/sw/modules/spintac/src/32b/spintac_version.h: 

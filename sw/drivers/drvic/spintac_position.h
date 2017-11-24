@@ -105,7 +105,7 @@ extern "C" {
 
 //! \brief Defines the default inertia for the system, PU/(pu/s^2)
 //! \brief This value should be calculated from the inertia estimated with SpinTAC Identify
-#define ST_SYSTEM_INERTIA_PU (USER_SYSTEM_INERTIA * ST_SPEED_KRPM_PER_PU * (1.0 / USER_IQ_FULL_SCALE_CURRENT_A))
+//#define ST_SYSTEM_INERTIA_PU (USER_SYSTEM_INERTIA * ST_SPEED_KRPM_PER_PU * (1.0 / USER_IQ_FULL_SCALE_CURRENT_A))
 
 //! \brief Defines the default friction for the system, PU/(pu/s^2)
 //! \brief This value should be calculated from the friction estimated with SpinTAC Identify
@@ -251,12 +251,12 @@ inline void ST_setupPosConv(ST_Handle handle, USER_Params *pUserParams) {
     // Initalize SpinTAC Position Convert
 	STPOSCONV_setSampleTime_sec(obj->posConvHandle, _IQ24(ST_SAMPLE_TIME));
 	STPOSCONV_setERevMaximums_erev(obj->posConvHandle, _IQ24(ST_EREV_MAXIMUM), 0);
-	STPOSCONV_setUnitConversion(obj->posConvHandle, USER_IQ_FULL_SCALE_FREQ_Hz, ST_SAMPLE_TIME, USER_MOTOR_NUM_POLE_PAIRS);
+	STPOSCONV_setUnitConversion(obj->posConvHandle, pUserParams->iqFullScaleFreq_Hz, ST_SAMPLE_TIME, pUserParams->motor_numPolePairs);
 	STPOSCONV_setMRevMaximum_mrev(obj->posConvHandle, _IQ24(ST_MREV_ROLLOVER));
 	STPOSCONV_setLowPassFilterTime_tick(obj->posConvHandle, 3);
 	if(pUserParams->motor_type ==  MOTOR_Type_Induction) {
 		// The Slip Compensator is only needed for ACIM
-		STPOSCONV_setupSlipCompensator(obj->posConvHandle, ST_SAMPLE_TIME, USER_IQ_FULL_SCALE_FREQ_Hz, pUserParams->motor_Rr , pUserParams->motor_Ls_d);
+		STPOSCONV_setupSlipCompensator(obj->posConvHandle, ST_SAMPLE_TIME, pUserParams->iqFullScaleFreq_Hz, pUserParams->motor_Rr , pUserParams->motor_Ls_d);
 	}
 	STPOSCONV_setEnable(obj->posConvHandle, true);
 }
@@ -267,28 +267,35 @@ inline void ST_setupPosCtl(ST_Handle handle, USER_Params *pUserParams) {
 	// get object from the handle
 	ST_Obj *obj = (ST_Obj *)handle;
 	_iq24 maxCurrent_PU = _IQ24(pUserParams->maxCurrent / pUserParams->iqFullScaleCurrent_A);
-	
+	_iq24 St_Speed_Krpm_per_pu =  ((0.001 * 60.0 * pUserParams->iqFullScaleFreq_Hz) / pUserParams->motor_numPolePairs);
+    _iq24 St_System_Inertia_pu = _IQ24(USER_SYSTEM_INERTIA * St_Speed_Krpm_per_pu * (1.0 / pUserParams->iqFullScaleCurrent_A));
+    _iq24 St_System_Friction_pu= _IQ24(USER_SYSTEM_FRICTION * St_Speed_Krpm_per_pu * (1.0 / pUserParams->iqFullScaleCurrent_A));
+
+
 	// Initalize SpinTAC Position Control
 	STPOSCTL_setAxis(obj->posCtlHandle, ST_AXIS0);
 	STPOSCTL_setSampleTime_sec(obj->posCtlHandle, _IQ24(ST_SAMPLE_TIME));
 	STPOSCTL_setOutputMaximums(obj->posCtlHandle, maxCurrent_PU, -maxCurrent_PU);
-	STPOSCTL_setVelocityMaximum(obj->posCtlHandle, _IQ24(USER_MOTOR_MAX_SPEED_KRPM * ST_SPEED_PU_PER_KRPM));
+	STPOSCTL_setVelocityMaximum(obj->posCtlHandle, _IQ24(USER_MOTOR_MAX_SPEED_KRPM * St_Speed_Krpm_per_pu));
 	STPOSCTL_setPositionRolloverMaximum_mrev(obj->posCtlHandle, _IQ24(ST_MREV_ROLLOVER));
-	STPOSCTL_setUnitConversion(obj->posCtlHandle, USER_IQ_FULL_SCALE_FREQ_Hz, USER_MOTOR_NUM_POLE_PAIRS);
+	STPOSCTL_setUnitConversion(obj->posCtlHandle, pUserParams->iqFullScaleFreq_Hz, pUserParams->motor_numPolePairs);
 	STPOSCTL_setPositionErrorMaximum_mrev(obj->posCtlHandle, _IQ24(ST_POS_ERROR_MAXIMUM_MREV));
 	STPOSCTL_setRampDisturbanceFlag(obj->posCtlHandle, false);
 	STPOSCTL_setFilterEnableFlag(obj->posCtlHandle, true);
-	STPOSCTL_setInertia(obj->posCtlHandle, _IQ24(ST_SYSTEM_INERTIA_PU));
-	STPOSCTL_setFriction(obj->posCtlHandle, _IQ24(ST_SYSTEM_FRICTION_PU));
+	STPOSCTL_setInertia(obj->posCtlHandle, _IQ24(St_System_Inertia_pu));
+	STPOSCTL_setFriction(obj->posCtlHandle, _IQ24(St_System_Friction_pu));
 	STPOSCTL_setBandwidth_radps(obj->posCtlHandle, _IQ20(USER_SYSTEM_BANDWIDTH));
 	STPOSCTL_setEnable(obj->posCtlHandle, false);
 }
 
 //! \brief      Setups SpinTAC Position Move
-inline void ST_setupPosMove(ST_Handle handle) {
+inline void ST_setupPosMove(ST_Handle handle, USER_Params *pUserParams)
+{
 
 	// get object from the handle
 	ST_Obj *obj = (ST_Obj *)handle;
+	_iq24 St_Speed_Krpm_per_pu = ((0.001 * 60.0 * pUserParams->iqFullScaleFreq_Hz) / pUserParams->motor_numPolePairs);
+
 
 	// Initalize SpinTAC Position Move
 	STPOSMOVE_setAxis(obj->posMoveHandle, ST_AXIS0);
@@ -296,11 +303,11 @@ inline void ST_setupPosMove(ST_Handle handle) {
 	STPOSMOVE_setCurveType(obj->posMoveHandle, ST_MOVE_CUR_STCRV);
 	STPOSMOVE_setSampleTime_sec(obj->posMoveHandle, _IQ24(ST_SAMPLE_TIME));
 	STPOSMOVE_setMRevMaximum_mrev(obj->posMoveHandle, _IQ24(ST_MREV_ROLLOVER));
-	STPOSMOVE_setUnitConversion(obj->posMoveHandle, USER_IQ_FULL_SCALE_FREQ_Hz, USER_MOTOR_NUM_POLE_PAIRS);
+	STPOSMOVE_setUnitConversion(obj->posMoveHandle, pUserParams->iqFullScaleFreq_Hz, pUserParams->motor_numPolePairs);
 	STPOSMOVE_setVelocityStart(obj->posMoveHandle, 0);
 	STPOSMOVE_setPositionStart_mrev(obj->posMoveHandle, 0);
 	STPOSMOVE_setVelocityEnd(obj->posMoveHandle, 0);
-	STPOSMOVE_setVelocityLimit(obj->posMoveHandle, _IQ24(USER_MOTOR_MAX_SPEED_KRPM * ST_SPEED_PU_PER_KRPM));
+	STPOSMOVE_setVelocityLimit(obj->posMoveHandle, _IQ24(USER_MOTOR_MAX_SPEED_KRPM * St_Speed_Krpm_per_pu));
 	STPOSMOVE_setAccelerationLimit(obj->posMoveHandle, _IQ24(0.4));
 	STPOSMOVE_setDecelerationLimit(obj->posMoveHandle, _IQ24(0.4));
 	STPOSMOVE_setJerkLimit(obj->posMoveHandle, _IQ20(1.0));

@@ -1,0 +1,447 @@
+/* --COPYRIGHT--,BSD
+ * Copyright (c) 2012, LineStream Technologies Incorporated
+ * Copyright (c) 2012, Texas Instruments Incorporated
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+* *  Neither the names of Texas Instruments Incorporated, LineStream
+ *    Technologies Incorporated, nor the names of its contributors may be
+ *    used to endorse or promote products derived from this software without
+ *    specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * --/COPYRIGHT--*/
+//! \file   solutions/instaspin_motion/src/proj_lab13c.c
+//! \brief  Motion Sequence Example with SpinTAC Plan
+//!
+//! (C) Copyright 2012, LineStream Technologies, Inc.
+//! (C) Copyright 2011, Texas Instruments, Inc.
+
+//! \defgroup PROJ_LAB13C PROJ_LAB13C
+//@{
+
+//! \defgroup PROJ_LAB13C_OVERVIEW Project Overview
+//!
+//! Motion Sequence Example with SpinTAC Plan
+//!
+
+// **************************************************************************
+// the includes
+
+// system includes
+#include <math.h>
+#include "main.h"
+
+#ifdef FLASH
+#pragma CODE_SECTION(mainISR,"ramfuncs");
+#endif
+
+// Include header files used in the main function
+
+#define US_TO_CNT(A) ((((long double) A * (long double)USER_SYSTEM_FREQ_MHz) - 9.0L) / 5.0L)
+// **************************************************************************
+// the defines
+
+#define LED_BLINK_FREQ_Hz   100
+//(uint_least32_t)(USER_ISR_FREQ_Hz / LED_BLINK_FREQ_Hz)
+
+// **************************************************************************
+// the globals
+
+CTRL_Handle ctrlHandle;
+
+#ifdef CSM_ENABLE
+#pragma DATA_SECTION(halHandle,"rom_accessed_data");
+#endif
+HAL_Handle halHandle;
+
+PROCTRL_Obj  MyProcessCtrl;
+PROCTRL_Handle proctrlHandle;
+
+
+#ifdef CSM_ENABLE
+#pragma DATA_SECTION(gUserParams,"rom_accessed_data");
+#endif
+USER_Params gUserParams;
+
+
+
+#ifdef FAST_ROM_V1p6
+CTRL_Obj *controller_obj;
+#else
+CTRL_Obj ctrl;				//v1p7 format
+#endif
+
+
+#ifdef FLASH
+// Used for running BackGround in flash, and ISR in RAM
+extern uint16_t *RamfuncsLoadStart, *RamfuncsLoadEnd, *RamfuncsRunStart;
+
+#ifdef CSM_ENABLE
+extern uint16_t *econst_start, *econst_end, *econst_ram_load;
+extern uint16_t *switch_start, *switch_end, *switch_ram_load;
+#endif
+
+#endif
+
+// **************************************************************************
+// the functions
+
+
+void main(void)
+{
+  uint_least8_t estNumber = 0;
+
+#ifdef FAST_ROM_V1p6
+  uint_least8_t ctrlNumber = 0;
+#endif
+
+  // Only used if running from FLASH
+  // Note that the variable FLASH is defined by the project
+  #ifdef FLASH
+  // Copy time critical code and Flash setup code to RAM
+  // The RamfuncsLoadStart, RamfuncsLoadEnd, and RamfuncsRunStart
+  // symbols are created by the linker. Refer to the linker files.
+  memCopy((uint16_t *)&RamfuncsLoadStart,(uint16_t *)&RamfuncsLoadEnd,(uint16_t *)&RamfuncsRunStart);
+
+  #ifdef CSM_ENABLE
+    //copy .econst to unsecure RAM
+    if(*econst_end - *econst_start)
+      {
+        memCopy((uint16_t *)&econst_start,(uint16_t *)&econst_end,(uint16_t *)&econst_ram_load);
+      }
+
+    //copy .switch ot unsecure RAM
+    if(*switch_end - *switch_start)
+      {
+        memCopy((uint16_t *)&switch_start,(uint16_t *)&switch_end,(uint16_t *)&switch_ram_load);
+      }
+  #endif
+  #endif
+
+  // initialize the hardware abstraction layer
+  halHandle = HAL_init(&hal,sizeof(hal));
+
+  proctrlHandle = PROCTRL_init(&MyProcessCtrl,sizeof(MyProcessCtrl));
+  MOTOR_CtrlVersion_Init(proctrlHandle->motorHandle);
+
+
+  // initialize the controller
+#ifdef FAST_ROM_V1p6
+  ctrlHandle = CTRL_initCtrl(ctrlNumber, estNumber);  		//v1p6 format (06xF and 06xM devices)
+  controller_obj = (CTRL_Obj *)ctrlHandle;
+#else
+  ctrlHandle = CTRL_initCtrl(estNumber,&ctrl,sizeof(ctrl));	//v1p7 format default
+#endif
+
+  {
+    CTRL_Version version;
+
+    // get the version number
+    CTRL_getVersion(ctrlHandle,&version);
+    MOTOR_setCtrlVersion(proctrlHandle->motorHandle, &version);
+  }
+
+
+  PROCTRL_setCtrlHandle(proctrlHandle, ctrlHandle);
+  PROCTRL_setUserParams(proctrlHandle, &gUserParams);
+  PROCTRL_setHalHandle(proctrlHandle, halHandle);
+
+#ifdef Use_Flying_Statrt
+  PROCTRL_setupFlyingStart(proctrlHandle);
+#endif
+
+  PROCTRL_setupModbus(proctrlHandle);
+  PROCTRL_setupMotors(proctrlHandle);
+  PROCTRL_setupFSM(proctrlHandle);
+
+
+  // initialize the user parameters
+  USER_setSysParams(&gUserParams);
+
+  // set the hardware abstraction layer parameters
+  HAL_setParams(halHandle,&gUserParams);
+
+  USER_setParams(&gUserParams);
+
+  USER_checkDefErrors(&gUserParams);
+
+
+#ifdef TMS320F28069
+  HAL_setBoardAddr(halHandle, HAL_BoardAddr_Motor7);
+#endif
+
+  // Setup Board Address
+  USER_setMotorIDs(&gUserParams, HAL_getBoardAddr(halHandle));
+
+  MB_setSlaveAddress(proctrlHandle->modbusHandle, (HAL_getBoardAddr(halHandle) + 0x11) );
+
+  MOTOR_setMotorID(proctrlHandle->motorHandle, HAL_getBoardAddr(halHandle));
+
+
+#ifdef USE_SpinTAC
+  PROCTRL_setupSpinTAC(proctrlHandle);
+  MOTOR_SpinTAC_Vars_Init(proctrlHandle->motorHandle);
+#endif
+
+
+  // setup faults
+  HAL_setupFaults(halHandle);
+
+  // initialize the interrupt vector table
+  HAL_initIntVectorTable(halHandle);
+
+  // enable the ADC interrupts
+  HAL_enableAdcInts(halHandle);
+
+  HAL_enableSciaInt(halHandle);
+
+  HAL_enableTimer1Int(halHandle, &Timer1ISR);
+
+  // enable global interrupts
+  HAL_enableGlobalInts(halHandle);
+
+  // enable debug interrupts
+  HAL_enableDebugInt(halHandle);
+
+  // disable the PWM
+  HAL_disablePwm(halHandle);
+
+  PROCTRL_ShutDown(proctrlHandle);
+
+
+  // Initial Motor Parameter must be after Get Board Address
+  USER_setMotorParams(&gUserParams);
+
+  // choice board current shut resister value by Board Address
+  USER_setBoardParams(&gUserParams);
+
+  // must be after BoardParams function
+  USER_setWaitTimeParams(&gUserParams);
+
+  // must be after BoardParams function
+  HAL_setupAdcParams(halHandle,&gUserParams);
+
+  // check for errors in user parameters
+  USER_checkBoardParamsErrors(&gUserParams);
+  USER_checkMotorParamsError(&gUserParams);
+
+  // store user parameter error in global variable
+  MOTOR_setMotorErrorCode(proctrlHandle->motorHandle, USER_getErrorCode(&gUserParams));
+  MOTOR_getMaxCurrent(proctrlHandle->motorHandle, &gUserParams);
+
+
+  for(;;)
+  {
+
+	// Waiting for enable system flag to be set
+	while(!(MOTOR_getSysEnable(proctrlHandle->motorHandle)))
+		{
+
+		   MB_Poll(proctrlHandle->modbusHandle);
+		   // do not allow code execution if there is a user parameter error
+		   PROCTRL_CheckMotorError(proctrlHandle);
+		   PROCTRL_CheckRelayOnFlag(proctrlHandle);
+		   PROCTRL_CheckEmgStop(proctrlHandle);
+
+		};
+
+
+	    PROCTRL_clrOverCurrent(proctrlHandle);
+
+
+      #ifdef  USE_SpinTAC
+		// setup the SpinTAC Components
+		ST_setupPosConv(proctrlHandle->stHandle, proctrlHandle->pUserParams);
+
+		ST_setupPosCtl(proctrlHandle->stHandle, proctrlHandle->pUserParams);
+      #endif
+
+		// enable DC bus compensation
+		CTRL_setFlag_enableDcBusComp(ctrlHandle, true);
+
+		FSM_ParamInit(proctrlHandle->fsmHandle);
+
+		if(MOTOR_getFlag_MotorParamsEst(proctrlHandle->motorHandle))
+		{
+			MOTOR_disableFlag_UserParams(proctrlHandle->motorHandle);
+		}
+		else
+		{
+			MOTOR_enableFlag_UserParams(proctrlHandle->motorHandle);
+		}
+
+		PROCTRL_getScaleActors(proctrlHandle, &gUserParams);
+
+		// set the default controller parameters
+		CTRL_setParams(ctrlHandle,&gUserParams);
+
+		PROCTRL_setDcBrakeCurrent(proctrlHandle);
+
+		// set the max Speed loop out value to control the current in stall
+		CTRL_setSpd_outMaxRatio_pu(ctrlHandle, MOTOR_getMaxCurrentRatio(proctrlHandle->motorHandle));
+
+
+
+	  #ifdef  USE_SpinTAC
+		CTRL_setFlag_enableEncAngle(ctrlHandle, true);
+		CTRL_setFlag_enableSpeedCtrl(ctrlHandle, false);
+      #else
+		CTRL_setFlag_enableSpeedCtrl(ctrlHandle, true);
+	  #endif
+
+		// enable/disable the use of motor parameters being loaded from user.h
+		CTRL_setFlag_enableUserMotorParams(ctrlHandle,  proctrlHandle->motorHandle->Flag_enableUserParams);
+
+		// enable/disable Rs recalibration during motor startup
+		EST_setFlag_enableRsRecalc(ctrlHandle->estHandle, proctrlHandle->motorHandle->Flag_enableRsRecalc);
+
+		// enable/disable automatic calculation of bias values
+		CTRL_setFlag_enableOffset(ctrlHandle, proctrlHandle->motorHandle->Flag_enableOffsetcalc);
+
+		// loop while the enable system flag is true
+	   while(MOTOR_getSysEnable(proctrlHandle->motorHandle))
+	   {
+			 MB_Poll(proctrlHandle->modbusHandle);
+			 PROCTRL_MainLoop(proctrlHandle, &gUserParams);
+
+	   } // end of while(gFlag_enableSys) loop
+
+
+	// disable the PWM
+	HAL_disablePwm(halHandle);
+	// set the default controller parameters (Reset the control to re-identify the motor)
+	proctrlHandle->motorHandle->Flag_Run_Identify = false;
+
+
+  } // end of for(;;) loop
+
+
+} // end of main() function
+
+
+interrupt void mainISR(void)
+{
+
+#ifdef USE_SpinTAC
+
+  static uint16_t stCnt = 0;
+  CTRL_Obj *obj = (CTRL_Obj *)ctrlHandle;
+  // compute the electrical angle
+  ENC_calcElecAngle(proctrlHandle->encHandle, HAL_getQepPosnCounts(halHandle));
+#endif
+  // acknowledge the ADC interrupt
+  HAL_acqAdcInt(halHandle,ADC_IntNumber_1);
+
+  // convert the ADC data
+  HAL_readAdcData(halHandle, &(proctrlHandle->AdcData));
+
+#ifdef USE_SpinTAC
+  if(proctrlHandle->motorHandle->Flag_UseSpinTAC == true)
+  {
+
+  // Run the SpinTAC Components
+  if(stCnt++ >= ISR_TICKS_PER_SPINTAC_TICK) {
+	  ST_runPosConv(proctrlHandle);
+	  ST_runPosMove(proctrlHandle);
+	  ST_runPosCtl(proctrlHandle->stHandle, ctrlHandle);
+	  stCnt = 1;
+   }
+
+  }
+  else
+#endif
+  {
+    // run the flying start
+     FS_run(ctrlHandle, proctrlHandle->fsHandle);
+  }
+
+#ifdef USE_SpinTAC
+  if(CTRL_getMotorType(ctrlHandle) == MOTOR_Type_Induction) {
+	// update the electrical angle for the SLIP module
+	SLIP_setElectricalAngle(proctrlHandle->slipHandle, ENC_getElecAngle(proctrlHandle->encHandle));
+	// compute the amount of slip
+	SLIP_run(proctrlHandle->slipHandle);
+	CTRL_setEncAngle_pu(ctrlHandle, SLIP_getMagneticAngle(proctrlHandle->slipHandle));
+   }
+  else
+  {
+    CTRL_setEncAngle_pu(ctrlHandle, ENC_getElecAngle(proctrlHandle->encHandle));
+  }
+#endif
+
+  // run the controller
+  CTRL_run(ctrlHandle,halHandle,&(proctrlHandle->AdcData), &(proctrlHandle->PwmData));
+
+  // write the PWM compare values
+  HAL_writePwmData(halHandle,&(proctrlHandle->PwmData));
+
+  // setup the controller
+  CTRL_setup(ctrlHandle);
+
+#ifdef USE_SpinTAC
+  // if we are forcing alignment, using the Rs Recalculation, align the eQEP angle with the rotor angle
+  if((EST_getState(obj->estHandle) == EST_State_Rs) && (CTRL_getMotorType(ctrlHandle) == MOTOR_Type_Pm))
+  {
+	  ENC_setZeroOffset(proctrlHandle->encHandle, (uint32_t)(HAL_getQepPosnMaximum(halHandle) - HAL_getQepPosnCounts(halHandle)));
+  }
+#endif
+
+  PROCTRL_RunInISR(proctrlHandle);
+
+  return;
+} // end of mainISR() function
+
+
+
+interrupt void Timer1ISR(void)
+{
+
+    MB_RTUTimerFSM(proctrlHandle->modbusHandle);
+	TIMER_clearFlag(halHandle->timerHandle[1]);
+    //TIMER_stop(halHandle->timerHandle[1]);
+
+}
+
+interrupt void UART_TxReadyISR(void)
+{
+    MB_RTUTransmitFSM(proctrlHandle->modbusHandle);
+
+	SCI_clearTxFifoInt(halHandle->sciHandle);
+	PIE_clearInt(halHandle->pieHandle,PIE_GroupNumber_9);
+
+}
+
+interrupt void UART_RxISR(void)
+{
+    MB_RTUReceiveFSM(proctrlHandle->modbusHandle);
+
+	SCI_clearRxFifoOvf(halHandle->sciHandle);
+	SCI_clearRxFifoInt(halHandle->sciHandle);
+	PIE_clearInt(halHandle->pieHandle,PIE_GroupNumber_9);
+
+}
+
+
+//@} //defgroup
+// end of file

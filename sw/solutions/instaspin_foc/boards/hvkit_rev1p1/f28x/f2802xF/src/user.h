@@ -68,10 +68,7 @@ extern "C" {
 
 // **************************************************************************
 // the defines
-// the defines
 
-//#define BOARD_I_SENSE_RESISTOR  R20m_DE2
-//#define BOARD_I_SENSE_RESISTOR  R100m_DE5
 
 //
 //! \brief CURRENTS AND VOLTAGES
@@ -89,16 +86,16 @@ extern "C" {
 //! \brief WARNING: if you know the value of your Bemf constant, and you know you are operating at a multiple speed due to field weakening, be sure to set this value higher than the expected Bemf voltage
 //! \brief It is recommended to start with a value ~3x greater than the USER_ADC_FULL_SCALE_VOLTAGE_V and increase to 4-5x if scenarios where a Bemf calculation may exceed these limits
 //! \brief This value is also used to calculate the minimum flux value: USER_IQ_FULL_SCALE_VOLTAGE_V/USER_EST_FREQ_Hz/0.7
-#define USER_IQ_FULL_SCALE_VOLTAGE_V      (500.0)   // 450.0 Example for hvkit_rev1p1 typical usage
+//#define USER_IQ_FULL_SCALE_VOLTAGE_V      (500.0)   // 450.0 Example for hvkit_rev1p1 typical usage
 
 //! \brief Defines the maximum voltage at the input to the AD converter
 //! \brief The value that will be represented by the maximum ADC input (3.3V) and conversion (0FFFh)
 //! \brief Hardware dependent, this should be based on the voltage sensing and scaling to the ADC input
-#define USER_ADC_FULL_SCALE_VOLTAGE_V       (454.0)      // 409.6 hvkit_rev1p1 voltage scaling
+//#define USER_ADC_FULL_SCALE_VOLTAGE_V       (454.0)      // 409.6 hvkit_rev1p1 voltage scaling
 
 //! \brief Defines the voltage scale factor for the system
 //! \brief Compile time calculation for scale factor (ratio) used throughout the system
-#define USER_VOLTAGE_SF               ((float_t)((USER_ADC_FULL_SCALE_VOLTAGE_V)/(USER_IQ_FULL_SCALE_VOLTAGE_V)))
+//#define USER_VOLTAGE_SF               ((float_t)((USER_ADC_FULL_SCALE_VOLTAGE_V)/(USER_IQ_FULL_SCALE_VOLTAGE_V)))
 
 
 #define USER_NUM_CURRENT_SENSORS            (3)   // 3 Preferred setting for best performance across full speed range, allows for 100% duty cycle
@@ -373,7 +370,8 @@ extern void USER_setMotorIDs(USER_Params *pUserParams, const uint_least8_t motor
 
 //! \brief      Checks for errors in the user parameter values
 //! \param[in]  pUserParams  The pointer to the user param structure
-extern void USER_checkForErrors(USER_Params *pUserParams);
+extern void USER_checkBoardParamsErrors(USER_Params *pUserParams);
+extern void USER_checkMotorParamsError(USER_Params *pUserParams);
 
 extern void USER_checkDefErrors(USER_Params *pUserParams);
 
@@ -388,57 +386,6 @@ extern USER_ErrorCode_e USER_getErrorCode(USER_Params *pUserParams);
 //! \param[in]  errorCode    The error code
 extern void USER_setErrorCode(USER_Params *pUserParams,const USER_ErrorCode_e errorCode);
 
-
-//! \brief      Recalculates Inductances with the correct Q Format
-//! \param[in]  handle       The controller (CTRL) handle
-extern void USER_softwareUpdate1p6(CTRL_Handle handle, USER_Params *pUserParams);
-
-
-//! \brief      Updates Id and Iq PI gains
-//! \param[in]  handle       The controller (CTRL) handle
-extern void USER_calcPIgains(CTRL_Handle handle, USER_Params *pUserParams);
-
-
-//! \brief      Computes the scale factor needed to convert from torque created by Ld, Lq, Id and Iq, from per unit to Nm
-//! \return     The scale factor to convert torque from (Ld - Lq) * Id * Iq from per unit to Nm, in IQ24 format
-extern _iq USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf(USER_Params *pUserParams);
-
-
-//! \brief      Computes the scale factor needed to convert from torque created by flux and Iq, from per unit to Nm
-//! \return     The scale factor to convert torque from Flux * Iq from per unit to Nm, in IQ24 format
-extern _iq USER_computeTorque_Flux_Iq_pu_to_Nm_sf(USER_Params *pUserParams);
-
-
-//! \brief      Computes the scale factor needed to convert from per unit to Wb
-//! \return     The scale factor to convert from flux per unit to flux in Wb, in IQ24 format
-extern _iq USER_computeFlux_pu_to_Wb_sf(USER_Params *pUserParams);
-
-
-//! \brief      Computes the scale factor needed to convert from per unit to V/Hz
-//! \return     The scale factor to convert from flux per unit to flux in V/Hz, in IQ24 format
-extern _iq USER_computeFlux_pu_to_VpHz_sf(USER_Params *pUserParams);
-
-
-//! \brief      Computes Flux in Wb or V/Hz depending on the scale factor sent as parameter
-//! \param[in]  handle       The controller (CTRL) handle
-//! \param[in]  sf           The scale factor to convert flux from per unit to Wb or V/Hz
-//! \return     The flux in Wb or V/Hz depending on the scale factor sent as parameter, in IQ24 format
-extern _iq USER_computeFlux(CTRL_Handle handle, const _iq sf);
-
-//! \brief      Computes Torque in Nm
-//! \param[in]  handle          The controller (CTRL) handle
-//! \param[in]  torque_Flux_sf  The scale factor to convert torque from (Ld - Lq) * Id * Iq from per unit to Nm
-//! \param[in]  torque_Ls_sf    The scale factor to convert torque from Flux * Iq from per unit to Nm
-//! \return     The torque in Nm, in IQ24 format
-extern _iq USER_computeTorque_Nm(CTRL_Handle handle, const _iq torque_Flux_sf, const _iq torque_Ls_sf);
-
-
-//! \brief      Computes Torque in lbin
-//! \param[in]  handle          The controller (CTRL) handle
-//! \param[in]  torque_Flux_sf  The scale factor to convert torque from (Ld - Lq) * Id * Iq from per unit to lbin
-//! \param[in]  torque_Ls_sf    The scale factor to convert torque from Flux * Iq from per unit to lbin
-//! \return     The torque in lbin, in IQ24 format
-extern _iq USER_computeTorque_lbin(CTRL_Handle handle, const _iq torque_Flux_sf, const _iq torque_Ls_sf);
 
 
 #ifdef __cplusplus

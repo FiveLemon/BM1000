@@ -307,10 +307,7 @@ void FSM_ParamInit(FSM_Handle handle)
 
   FSM_State_Box_Init(handle, JM_FSM_Vars);
 
-#ifdef USE_SpinTAC
-  ST_setupPosMove(obj->stHandle);
 
-#endif
 
 }
 
@@ -866,6 +863,7 @@ inline void FSM_CheckEmgStop(FSM_Handle handle)
   return;
 }
 
+
 void FSM_CheckErrors(FSM_Handle handle)
 {
   FSM_Obj *obj = (FSM_Obj *)handle;
@@ -904,14 +902,14 @@ void FSM_RunSpinTAC_Velocity(FSM_Handle handle)
 
 	// Run SpinTAC Position Profile Generator
 	// If we are not running a profile, and the PosStep_MRev has been modified
-	if(_IQmpy(obj->motorHandle->MaxVel_krpm, _IQ(ST_SPEED_PU_PER_KRPM)) != STPOSMOVE_getVelocityEnd(stObj->posMoveHandle)) {
+	if(_IQmpy(obj->motorHandle->MaxVel_krpm, obj->motorHandle->Speed_Krpm_per_pu) != STPOSMOVE_getVelocityEnd(stObj->posMoveHandle)) {
 		// Get the configuration for SpinTAC Velocity Profile Generator
 		STPOSMOVE_setCurveType(stObj->posMoveHandle, obj->motorHandle->SpinTAC.PosMoveCurveType);
 		STPOSMOVE_setProfileType(stObj->posMoveHandle, ST_POS_MOVE_VEL_TYPE);
-		STPOSMOVE_setVelocityEnd(stObj->posMoveHandle, _IQmpy(obj->motorHandle->MaxVel_krpm, _IQ(ST_SPEED_PU_PER_KRPM)));
-		STPOSMOVE_setAccelerationLimit(stObj->posMoveHandle, _IQmpy(obj->motorHandle->MaxAccel_krpmps, _IQ(ST_SPEED_PU_PER_KRPM)));
-		STPOSMOVE_setDecelerationLimit(stObj->posMoveHandle, _IQmpy(obj->motorHandle->MaxDecel_krpmps, _IQ(ST_SPEED_PU_PER_KRPM)));
-		STPOSMOVE_setJerkLimit(stObj->posMoveHandle, _IQ20mpy(obj->motorHandle->MaxJrk_krpmps2, _IQ20(ST_SPEED_PU_PER_KRPM)));
+		STPOSMOVE_setVelocityEnd(stObj->posMoveHandle, _IQmpy(obj->motorHandle->MaxVel_krpm, obj->motorHandle->Speed_Krpm_per_pu));
+		STPOSMOVE_setAccelerationLimit(stObj->posMoveHandle, _IQmpy(obj->motorHandle->MaxAccel_krpmps, obj->motorHandle->Speed_Krpm_per_pu));
+		STPOSMOVE_setDecelerationLimit(stObj->posMoveHandle, _IQmpy(obj->motorHandle->MaxDecel_krpmps, obj->motorHandle->Speed_Krpm_per_pu));
+		STPOSMOVE_setJerkLimit(stObj->posMoveHandle, _IQ20mpy(obj->motorHandle->MaxJrk_krpmps2, _IQtoIQ20(obj->motorHandle->Speed_Krpm_per_pu)));
 		// Enable the SpinTAC Position Profile Generator
 		STPOSMOVE_setEnable(stObj->posMoveHandle, true);
 	}
@@ -931,10 +929,10 @@ void FSM_RunSpinTAC_Position(FSM_Handle handle)
 		// Get the configuration for SpinTAC Position Move
 		STPOSMOVE_setCurveType(stObj->posMoveHandle, obj->motorHandle->SpinTAC.PosMoveCurveType);
 		STPOSMOVE_setPositionStep_mrev(stObj->posMoveHandle, obj->motorHandle->PosStepInt_MRev,  obj->motorHandle->PosStepFrac_MRev);
-		STPOSMOVE_setVelocityLimit(stObj->posMoveHandle, _IQmpy(obj->motorHandle->MaxVel_krpm, _IQ(ST_SPEED_PU_PER_KRPM)));
-		STPOSMOVE_setAccelerationLimit(stObj->posMoveHandle, _IQmpy(obj->motorHandle->MaxAccel_krpmps, _IQ(ST_SPEED_PU_PER_KRPM)));
-		STPOSMOVE_setDecelerationLimit(stObj->posMoveHandle, _IQmpy(obj->motorHandle->MaxDecel_krpmps, _IQ(ST_SPEED_PU_PER_KRPM)));
-		STPOSMOVE_setJerkLimit(stObj->posMoveHandle, _IQ20mpy(obj->motorHandle->MaxJrk_krpmps2, _IQ20(ST_SPEED_PU_PER_KRPM)));
+		STPOSMOVE_setVelocityLimit(stObj->posMoveHandle, _IQmpy(obj->motorHandle->MaxVel_krpm, obj->motorHandle->Speed_Krpm_per_pu));
+		STPOSMOVE_setAccelerationLimit(stObj->posMoveHandle, _IQmpy(obj->motorHandle->MaxAccel_krpmps, obj->motorHandle->Speed_Krpm_per_pu));
+		STPOSMOVE_setDecelerationLimit(stObj->posMoveHandle, _IQmpy(obj->motorHandle->MaxDecel_krpmps, obj->motorHandle->Speed_Krpm_per_pu));
+		STPOSMOVE_setJerkLimit(stObj->posMoveHandle, _IQ20mpy(obj->motorHandle->MaxJrk_krpmps2, _IQtoIQ20(obj->motorHandle->Speed_Krpm_per_pu)));
 		// Enable the SpinTAC Position Profile Generator
 		STPOSMOVE_setEnable(stObj->posMoveHandle, true);
 		// clear the position step command
@@ -1173,24 +1171,8 @@ void FSM_clrOverCurrentReg(FSM_Handle handle)
   return;
 }
 
-void FSM_getPortStatus(FSM_Handle handle)
-{
-  FSM_Obj *obj = (FSM_Obj *)handle;
-
-  HAL_readGpio(obj->halHandle,(GPIO_Number_e)HAL_Gpio_CpldOcOut);
-
-  return;
-}
 
 
-void FSM_ShutDowm(FSM_Handle handle)
-{
-  FSM_Obj *obj = (FSM_Obj *)handle;
-
-  HAL_setGpioHigh(obj->halHandle, (GPIO_Number_e)HAL_Gpio_ShutDown);
-
-  return;
-}
 
 //=================================================================================
 

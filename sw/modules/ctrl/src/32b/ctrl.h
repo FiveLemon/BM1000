@@ -1585,6 +1585,7 @@ inline void CTRL_setMaxVsMag_pu(CTRL_Handle handle,const _iq maxVsMag)
   return;
 } // end of CTRL_setmaxVsMag_pu() function
 
+
 /*
 inline void CTRL_resetCycleMech_cnt(CTRL_Handle handle)
 {
@@ -2192,7 +2193,7 @@ inline void CTRL_setSpdMax(CTRL_Handle handle, const _iq spdMax)
 inline _iq CTRL_angleDelayComp(CTRL_Handle handle, const _iq angle_pu)
 {
   CTRL_Obj *obj = (CTRL_Obj *)handle;
-  _iq angleDelta_pu = _IQmpy(EST_getFm_pu(obj->estHandle),_IQ(USER_IQ_FULL_SCALE_FREQ_Hz/(USER_PWM_FREQ_kHz*1000.0)));
+  _iq angleDelta_pu = _IQmpy(EST_getFm_pu(obj->estHandle), obj->Freq_Hz_PerPwmPeriod);
   _iq angleUncomp_pu = angle_pu;
   _iq angleCompFactor = _IQ(1.0 + (float_t)USER_NUM_PWM_TICKS_PER_ISR_TICK * (float_t)USER_NUM_ISR_TICKS_PER_CTRL_TICK * ((float_t)USER_NUM_CTRL_TICKS_PER_EST_TICK - 0.5));
   _iq angleDeltaComp_pu = _IQmpy(angleDelta_pu, angleCompFactor);

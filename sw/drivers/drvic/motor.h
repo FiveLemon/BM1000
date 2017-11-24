@@ -6,13 +6,13 @@
 // **************************************************************************
 // the includes
 
+#include "sw/modules/ctrl/src/32b/ctrl.h"
 // drivers
 #ifdef QEP
-#include "sw/modules/ctrl/src/32b/ctrlQEP.h"
+//#include "sw/modules/ctrl/src/32b/ctrlQEP.h"
 #include "sw/drivers/drvic/spintac_position.h"
-#else
-#include "sw/modules/ctrl/src/32b/ctrl.h"
 #endif
+
 #include "hal.h"
 #include "user.h"
 
@@ -101,6 +101,7 @@ typedef struct _MOTOR_Obj_
 
   _iq     OverModulation;
   _iq     RsOnLineCurrent_A;
+  _iq     Speed_Krpm_per_pu;
 
 
   _iq     Kp_Idq;
@@ -121,22 +122,13 @@ typedef struct _MOTOR_Obj_
   _iq Ibrake_Ratio;
 
 
-
   MATH_vec3 I_bias;
   MATH_vec3 V_bias;
 
 
- // _iq IdSet_A;
-  //_iq IqSet_A;
-  //_iq SpeedRef_pu;
-  //_iq SvgenMaxModulation_ticks;
-  //_iq IdRef_pu;
-  //_iq IqRef_pu;
-  // _iq VsRef;
-
-
   _iq       Sensor0_Value;
   _iq       Sensor1_Value;
+  uint16_t  SwitchSensor;
 
   _iq       ZeroPoint_Value;
 
@@ -144,9 +136,6 @@ typedef struct _MOTOR_Obj_
   _iq       VdcBus_kV;
   uint16_t  MotorID;
 
-
- // _iq     AbsAngle_mech;
- // int16_t Turns_mech;
 
 #ifdef USE_SpinTAC
   ST_Vars_t SpinTAC;

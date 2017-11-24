@@ -339,6 +339,8 @@ void CTRL_setParams(CTRL_Handle handle,USER_Params *pUserParams)
   BRAKE_setBrakeEnable(obj->brakeHandle, false);
   CTRL_setSpd_outMaxRatio_pu(handle, _IQ(1.0));
 
+  obj->Freq_Hz_PerPwmPeriod = _IQ(pUserParams->iqFullScaleFreq_Hz/(USER_PWM_FREQ_kHz*1000.0));
+
   CTRL_setIdRated_pu(handle,_IQ(pUserParams->IdRated/pUserParams->iqFullScaleCurrent_A));
 
   CTRL_setVab_in_pu(handle,&Vab_in_pu);

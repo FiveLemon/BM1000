@@ -18,7 +18,7 @@ mb.obj: D:/BM1000_v1.1/sw/drivers/cpu/src/32b/f28x/f2806x/cpu.h
 mb.obj: D:/BM1000_v1.1/sw/drivers/timer/src/32b/f28x/f2806x/timer.h
 mb.obj: D:/BM1000_v1.1/sw/drivers/gpio/src/32b/f28x/f2806x/gpio.h
 mb.obj: D:/BM1000_v1.1/sw/drivers/drvic/motor.h
-mb.obj: D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrlQEP.h
+mb.obj: D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrl.h
 mb.obj: D:/BM1000_v1.1/sw/modules/iqmath/src/32b/IQmathLib.h
 mb.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/limits.h
 mb.obj: D:/BM1000_v1.1/sw/modules/clarke/src/32b/clarke.h
@@ -55,8 +55,7 @@ mb.obj: D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2806x/spi.h
 mb.obj: D:/BM1000_v1.1/sw/drivers/i2c/src/32b/f28x/f2806x/i2c.h
 mb.obj: D:/BM1000_v1.1/sw/drivers/qep/src/32b/f28x/f2806x/qep.h
 mb.obj: D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h
-mb.obj: D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h
-mb.obj: D:/BM1000_v1.1/sw/solutions/instaspin_motion/boards/hvkit_rev1p1/f28x/f2806xM/src/user.h
+mb.obj: D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h
 mb.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Flux_states.h
 mb.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Ls_states.h
 mb.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Rs_states.h
@@ -71,7 +70,6 @@ mb.obj: D:/BM1000_v1.1/sw/modules/hal/boards/hvkit_rev1p1/f28x/f2806x/src/hal.h
 mb.obj: D:/BM1000_v1.1/sw/modules/svgen/src/32b/svgen_current.h
 mb.obj: D:/BM1000_v1.1/sw/drivers/drvic/fsm.h
 mb.obj: D:/BM1000_v1.1/sw/modules/flyingStart/src/32b/flyingStart.h
-mb.obj: D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrl.h
 mb.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdlib.h
 mb.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdlibf.h
 mb.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/string.h
@@ -94,7 +92,7 @@ D:/BM1000_v1.1/sw/drivers/cpu/src/32b/f28x/f2806x/cpu.h:
 D:/BM1000_v1.1/sw/drivers/timer/src/32b/f28x/f2806x/timer.h: 
 D:/BM1000_v1.1/sw/drivers/gpio/src/32b/f28x/f2806x/gpio.h: 
 D:/BM1000_v1.1/sw/drivers/drvic/motor.h: 
-D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrlQEP.h: 
+D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrl.h: 
 D:/BM1000_v1.1/sw/modules/iqmath/src/32b/IQmathLib.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/limits.h: 
 D:/BM1000_v1.1/sw/modules/clarke/src/32b/clarke.h: 
@@ -131,8 +129,7 @@ D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2806x/spi.h:
 D:/BM1000_v1.1/sw/drivers/i2c/src/32b/f28x/f2806x/i2c.h: 
 D:/BM1000_v1.1/sw/drivers/qep/src/32b/f28x/f2806x/qep.h: 
 D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h: 
-D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h: 
-D:/BM1000_v1.1/sw/solutions/instaspin_motion/boards/hvkit_rev1p1/f28x/f2806xM/src/user.h: 
+D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Flux_states.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Ls_states.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Rs_states.h: 
@@ -147,7 +144,6 @@ D:/BM1000_v1.1/sw/modules/hal/boards/hvkit_rev1p1/f28x/f2806x/src/hal.h:
 D:/BM1000_v1.1/sw/modules/svgen/src/32b/svgen_current.h: 
 D:/BM1000_v1.1/sw/drivers/drvic/fsm.h: 
 D:/BM1000_v1.1/sw/modules/flyingStart/src/32b/flyingStart.h: 
-D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrl.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdlib.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdlibf.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/string.h: 

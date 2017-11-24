@@ -35,8 +35,7 @@ brake.obj: D:/BM1000_v1.1/sw/drivers/qep/src/32b/f28x/f2806x/qep.h
 brake.obj: D:/BM1000_v1.1/sw/modules/offset/src/32b/offset.h
 brake.obj: D:/BM1000_v1.1/sw/modules/filter/src/32b/filter_fo.h
 brake.obj: D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h
-brake.obj: D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h
-brake.obj: D:/BM1000_v1.1/sw/solutions/instaspin_motion/boards/hvkit_rev1p1/f28x/f2806xM/src/user.h
+brake.obj: D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h
 brake.obj: D:/BM1000_v1.1/sw/modules/motor/src/32b/motor.h
 brake.obj: D:/BM1000_v1.1/sw/modules/est/src/32b/est.h
 brake.obj: D:/BM1000_v1.1/sw/modules/est/src/est_states.h
@@ -92,8 +91,7 @@ D:/BM1000_v1.1/sw/drivers/qep/src/32b/f28x/f2806x/qep.h:
 D:/BM1000_v1.1/sw/modules/offset/src/32b/offset.h: 
 D:/BM1000_v1.1/sw/modules/filter/src/32b/filter_fo.h: 
 D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h: 
-D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h: 
-D:/BM1000_v1.1/sw/solutions/instaspin_motion/boards/hvkit_rev1p1/f28x/f2806xM/src/user.h: 
+D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h: 
 D:/BM1000_v1.1/sw/modules/motor/src/32b/motor.h: 
 D:/BM1000_v1.1/sw/modules/est/src/32b/est.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_states.h: 

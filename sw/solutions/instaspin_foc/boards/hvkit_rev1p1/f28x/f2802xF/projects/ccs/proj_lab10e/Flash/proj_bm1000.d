@@ -20,11 +20,10 @@ proj_bm1000.obj: D:/BM1000_v1.1/sw/modules/est/src/est_states.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/modules/svgen/src/32b/svgen_current.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/modules/fw/src/32b/fw.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/modules/slip/src/32b/slip.h
-proj_bm1000.obj: D:/BM1000_v1.1/sw/modules/iqmath/src/32b/IQLog.h
+proj_bm1000.obj: D:/BM1000_v1.1/sw/drivers/drvic/process_ctrl.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.h
-proj_bm1000.obj: D:/BM1000_v1.1/sw/drivers/drvic/process_ctrl.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/modules/flyingStart/src/32b/flyingStart.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrl.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/modules/clarke/src/32b/clarke.h
@@ -58,7 +57,7 @@ proj_bm1000.obj: D:/BM1000_v1.1/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2802x/spi.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/drivers/sci/src/32b/f28x/f2802x/sci.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h
-proj_bm1000.obj: D:/BM1000_v1.1/sw/solutions/instaspin_foc/boards/hvkit_rev1p1/f28x/f2802xF/src/user.h
+proj_bm1000.obj: D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Flux_states.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Ls_states.h
 proj_bm1000.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Rs_states.h
@@ -91,11 +90,10 @@ D:/BM1000_v1.1/sw/modules/est/src/est_states.h:
 D:/BM1000_v1.1/sw/modules/svgen/src/32b/svgen_current.h: 
 D:/BM1000_v1.1/sw/modules/fw/src/32b/fw.h: 
 D:/BM1000_v1.1/sw/modules/slip/src/32b/slip.h: 
-D:/BM1000_v1.1/sw/modules/iqmath/src/32b/IQLog.h: 
+D:/BM1000_v1.1/sw/drivers/drvic/process_ctrl.h: 
 D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h: 
 D:/BM1000_v1.1/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h: 
 D:/BM1000_v1.1/sw/drivers/cpu/src/32b/f28x/f2802x/cpu.h: 
-D:/BM1000_v1.1/sw/drivers/drvic/process_ctrl.h: 
 D:/BM1000_v1.1/sw/modules/flyingStart/src/32b/flyingStart.h: 
 D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrl.h: 
 D:/BM1000_v1.1/sw/modules/clarke/src/32b/clarke.h: 
@@ -129,7 +127,7 @@ D:/BM1000_v1.1/sw/drivers/wdog/src/32b/f28x/f2802x/wdog.h:
 D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2802x/spi.h: 
 D:/BM1000_v1.1/sw/drivers/sci/src/32b/f28x/f2802x/sci.h: 
 D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h: 
-D:/BM1000_v1.1/sw/solutions/instaspin_foc/boards/hvkit_rev1p1/f28x/f2802xF/src/user.h: 
+D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Flux_states.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Ls_states.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Rs_states.h: 

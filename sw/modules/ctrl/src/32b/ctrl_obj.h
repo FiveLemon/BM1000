@@ -298,6 +298,8 @@ typedef struct _CTRL_Obj_
  // VIB_COMP_Handle    vib_compHandle;
 
  // _iq                AbsAngle_mech_pu;
+  _iq                Freq_Hz_PerPwmPeriod;  // _IQ(obj->iqFullScaleFreq_Hz/(USER_PWM_FREQ_kHz*1000.0))
+ // _iq                angleCompFactor; //_IQ(1.0 + (float_t)USER_NUM_PWM_TICKS_PER_ISR_TICK * (float_t)USER_NUM_ISR_TICKS_PER_CTRL_TICK * ((float_t)USER_NUM_CTRL_TICKS_PER_EST_TICK - 0.5));
 
 
 } CTRL_Obj;

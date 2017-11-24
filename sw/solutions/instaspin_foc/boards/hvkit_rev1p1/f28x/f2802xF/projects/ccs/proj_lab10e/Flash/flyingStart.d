@@ -50,7 +50,7 @@ flyingStart.obj: D:/BM1000_v1.1/sw/drivers/sci/src/32b/f28x/f2802x/sci.h
 flyingStart.obj: D:/BM1000_v1.1/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h
 flyingStart.obj: D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h
 flyingStart.obj: D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h
-flyingStart.obj: D:/BM1000_v1.1/sw/solutions/instaspin_foc/boards/hvkit_rev1p1/f28x/f2802xF/src/user.h
+flyingStart.obj: D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h
 flyingStart.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Flux_states.h
 flyingStart.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Ls_states.h
 flyingStart.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Rs_states.h
@@ -106,7 +106,7 @@ D:/BM1000_v1.1/sw/drivers/sci/src/32b/f28x/f2802x/sci.h:
 D:/BM1000_v1.1/sw/drivers/i2c/src/32b/f28x/f2802x/i2c.h: 
 D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h: 
 D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h: 
-D:/BM1000_v1.1/sw/solutions/instaspin_foc/boards/hvkit_rev1p1/f28x/f2802xF/src/user.h: 
+D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Flux_states.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Ls_states.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Rs_states.h: 

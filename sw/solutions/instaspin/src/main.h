@@ -48,10 +48,9 @@
 #include "sw/modules/fw/src/32b/fw.h"
 #include "sw/modules/slip/src/32b/slip.h"
 
-#include "sw/modules/iqmath/src/32b/IQLog.h"
+//#include "sw/modules/iqmath/src/32b/IQLog.h"
 
 // drivers
-#include "sw/drivers/drvic/pca9555.h"
 #include "sw/drivers/drvic/process_ctrl.h"
 
 // platforms
@@ -130,7 +129,7 @@ void updateKpKiGains(CTRL_Handle handle);
 
 //! \brief     Set electrical frequency limit to zero while identifying an induction motor
 //!
-void setFeLimitZero(CTRL_Handle handle);
+//void setFeLimitZero(CTRL_Handle handle);
 
 
 //! \brief     Calculates Dir_qFmt for ACIM

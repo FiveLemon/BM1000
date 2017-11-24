@@ -52,8 +52,7 @@ fsm.obj: D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2806x/spi.h
 fsm.obj: D:/BM1000_v1.1/sw/drivers/i2c/src/32b/f28x/f2806x/i2c.h
 fsm.obj: D:/BM1000_v1.1/sw/drivers/qep/src/32b/f28x/f2806x/qep.h
 fsm.obj: D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h
-fsm.obj: D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h
-fsm.obj: D:/BM1000_v1.1/sw/solutions/instaspin_motion/boards/hvkit_rev1p1/f28x/f2806xM/src/user.h
+fsm.obj: D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h
 fsm.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Flux_states.h
 fsm.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Ls_states.h
 fsm.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Rs_states.h
@@ -61,7 +60,6 @@ fsm.obj: D:/BM1000_v1.1/sw/modules/fast/src/32b/userParams.h
 fsm.obj: D:/BM1000_v1.1/sw/modules/hal/boards/hvkit_rev1p1/f28x/f2806x/src/hal.h
 fsm.obj: D:/BM1000_v1.1/sw/modules/svgen/src/32b/svgen_current.h
 fsm.obj: D:/BM1000_v1.1/sw/drivers/drvic/motor.h
-fsm.obj: D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrlQEP.h
 fsm.obj: D:/BM1000_v1.1/sw/drivers/drvic/spintac_position.h
 fsm.obj: D:/BM1000_v1.1/sw/modules/spintac/src/32b/spintac_pos_conv.h
 fsm.obj: D:/BM1000_v1.1/sw/modules/spintac/src/32b/spintac_version.h
@@ -121,8 +119,7 @@ D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2806x/spi.h:
 D:/BM1000_v1.1/sw/drivers/i2c/src/32b/f28x/f2806x/i2c.h: 
 D:/BM1000_v1.1/sw/drivers/qep/src/32b/f28x/f2806x/qep.h: 
 D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h: 
-D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h: 
-D:/BM1000_v1.1/sw/solutions/instaspin_motion/boards/hvkit_rev1p1/f28x/f2806xM/src/user.h: 
+D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Flux_states.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Ls_states.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Rs_states.h: 
@@ -130,7 +127,6 @@ D:/BM1000_v1.1/sw/modules/fast/src/32b/userParams.h:
 D:/BM1000_v1.1/sw/modules/hal/boards/hvkit_rev1p1/f28x/f2806x/src/hal.h: 
 D:/BM1000_v1.1/sw/modules/svgen/src/32b/svgen_current.h: 
 D:/BM1000_v1.1/sw/drivers/drvic/motor.h: 
-D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrlQEP.h: 
 D:/BM1000_v1.1/sw/drivers/drvic/spintac_position.h: 
 D:/BM1000_v1.1/sw/modules/spintac/src/32b/spintac_pos_conv.h: 
 D:/BM1000_v1.1/sw/modules/spintac/src/32b/spintac_version.h: 

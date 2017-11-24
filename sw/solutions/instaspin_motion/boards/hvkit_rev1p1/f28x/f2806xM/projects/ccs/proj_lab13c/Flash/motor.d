@@ -4,7 +4,7 @@ motor.obj: D:/BM1000_v1.1/sw/drivers/drvic/motor.c
 motor.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/math.h
 motor.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/linkage.h
 motor.obj: D:/BM1000_v1.1/sw/drivers/drvic/motor.h
-motor.obj: D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrlQEP.h
+motor.obj: D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrl.h
 motor.obj: D:/BM1000_v1.1/sw/modules/iqmath/src/32b/IQmathLib.h
 motor.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/limits.h
 motor.obj: D:/BM1000_v1.1/sw/modules/clarke/src/32b/clarke.h
@@ -52,8 +52,7 @@ motor.obj: D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2806x/spi.h
 motor.obj: D:/BM1000_v1.1/sw/drivers/i2c/src/32b/f28x/f2806x/i2c.h
 motor.obj: D:/BM1000_v1.1/sw/drivers/qep/src/32b/f28x/f2806x/qep.h
 motor.obj: D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h
-motor.obj: D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h
-motor.obj: D:/BM1000_v1.1/sw/solutions/instaspin_motion/boards/hvkit_rev1p1/f28x/f2806xM/src/user.h
+motor.obj: D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h
 motor.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Flux_states.h
 motor.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Ls_states.h
 motor.obj: D:/BM1000_v1.1/sw/modules/est/src/est_Rs_states.h
@@ -71,7 +70,7 @@ D:/BM1000_v1.1/sw/drivers/drvic/motor.c:
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/math.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/linkage.h: 
 D:/BM1000_v1.1/sw/drivers/drvic/motor.h: 
-D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrlQEP.h: 
+D:/BM1000_v1.1/sw/modules/ctrl/src/32b/ctrl.h: 
 D:/BM1000_v1.1/sw/modules/iqmath/src/32b/IQmathLib.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/limits.h: 
 D:/BM1000_v1.1/sw/modules/clarke/src/32b/clarke.h: 
@@ -119,8 +118,7 @@ D:/BM1000_v1.1/sw/drivers/spi/src/32b/f28x/f2806x/spi.h:
 D:/BM1000_v1.1/sw/drivers/i2c/src/32b/f28x/f2806x/i2c.h: 
 D:/BM1000_v1.1/sw/drivers/qep/src/32b/f28x/f2806x/qep.h: 
 D:/BM1000_v1.1/sw/modules/usDelay/src/32b/usDelay.h: 
-D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h: 
-D:/BM1000_v1.1/sw/solutions/instaspin_motion/boards/hvkit_rev1p1/f28x/f2806xM/src/user.h: 
+D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Flux_states.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Ls_states.h: 
 D:/BM1000_v1.1/sw/modules/est/src/est_Rs_states.h: 

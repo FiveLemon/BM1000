@@ -323,8 +323,7 @@ void FSM_RunSpinTAC_Position(FSM_Handle handle);
 void FSM_RunTrans(FSM_Handle handle);
 void FSM_SelectMode(FSM_Handle handle);
 void FSM_clrOverCurrentReg(FSM_Handle handle);
-void FSM_getPortStatus(FSM_Handle handle);
-void FSM_ShutDowm(FSM_Handle handle);
+//void FSM_ShutDowm(FSM_Handle handle);
 
 
 void FSM_RunExitState(FSM_Handle handle);
@@ -573,20 +572,31 @@ inline bool FSM_getStallMode(FSM_Handle handle)
   return (obj->Flag_StallEnable);
 }
 
-inline void FSM_setObjPosInt(FSM_Handle handle, const int16_t ObjPos)
+inline void FSM_ShutDowm(FSM_Handle handle)
 {
   FSM_Obj *obj = (FSM_Obj *)handle;
 
-  obj->NewAbsPos.PosInt_MRev = ObjPos;
+  HAL_setGpioHigh(obj->halHandle, (GPIO_Number_e)HAL_Gpio_ShutDown);
 
   return;
 }
 
-inline void FSM_setObjPosFrac(FSM_Handle handle, const _iq ObjPos)
+//===========================Pos Cmd Driver Code ========================
+
+inline void FSM_setObjPosInt(FSM_Handle handle, const int16_t ObjPos)
 {
   FSM_Obj *obj = (FSM_Obj *)handle;
 
-  obj->NewAbsPos.PosFrac_MRev = _IQfrac(ObjPos);
+  obj->NewAbsPos.PosInt_MRev = (int32_t)ObjPos;
+
+  return;
+}
+
+inline void FSM_setObjPosFrac(FSM_Handle handle, const int16_t ObjPos)
+{
+  FSM_Obj *obj = (FSM_Obj *)handle;
+
+  obj->NewAbsPos.PosFrac_MRev = _IQfrac(_IQ15toIQ(ObjPos));
 
   return;
 }

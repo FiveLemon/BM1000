@@ -472,7 +472,7 @@ eMBErrorCode MB_Poll(MB_Handle handle)
 //====================================================================================
 
 
-inline int16_t MB_IQtoModubus(_iq Data)
+inline int16_t MB_IQtoIQ7(_iq Data)
 {
   int16_t Data_t;
 
@@ -481,7 +481,25 @@ inline int16_t MB_IQtoModubus(_iq Data)
   return (Data_t);
 }
 
-inline int16_t MB_IQ20toModubus(_iq20 Data)
+inline int16_t MB_IQtoIQ10(_iq Data)
+{
+  int16_t Data_t;
+
+  Data_t = (int16_t)_IQtoIQ10(Data);
+
+  return (Data_t);
+}
+
+inline int16_t MB_IQtoIQ13(_iq Data)
+{
+  int16_t Data_t;
+
+  Data_t = (int16_t)_IQtoIQ13(Data);
+
+  return (Data_t);
+}
+
+inline int16_t MB_IQ20toIQ7(_iq20 Data)
 {
   int16_t Data_t;
 
@@ -490,16 +508,8 @@ inline int16_t MB_IQ20toModubus(_iq20 Data)
   return (Data_t);
 }
 
-inline int16_t MB_IQtoModubus_X128(_iq Data)
-{
-  int16_t Data_t;
 
-  Data_t = (int16_t)_IQtoIQ14(Data);
-
-  return (Data_t);
-}
-
-inline int16_t MB_IQtoModubus_L16bit(_iq Data)
+inline int16_t MB_IQtoL16bit(_iq Data)
 {
   int16_t Data_t;
 
@@ -508,7 +518,16 @@ inline int16_t MB_IQtoModubus_L16bit(_iq Data)
   return (Data_t);
 }
 
-inline _iq MB_ModubusToIQ(int16_t Data)
+inline _iq MB_IQ10ToIQ(int16_t Data)
+{
+ _iq Data_t;
+
+ Data_t = _IQ10toIQ((long)Data);
+
+  return (Data_t);
+}
+
+inline _iq MB_IQ7ToIQ(int16_t Data)
 {
  _iq Data_t;
 
@@ -517,14 +536,25 @@ inline _iq MB_ModubusToIQ(int16_t Data)
   return (Data_t);
 }
 
-inline _iq20 MB_ModubusToIQ20(int16_t Data)
+inline _iq20 MB_IQ8ToIQ20(int16_t Data)
 {
- _iq Data_t;
+ _iq20 Data_t;
 
- Data_t = _IQ7toIQ((long)Data);
+ Data_t = (_iq20)((long)Data << 12);
 
- return (_IQtoIQ20(Data_t));
+ return (Data_t);
 }
+
+#ifdef USE_SpinTAC
+inline _iq20 MB_IQ7ToIQ20(int16_t Data)
+{
+ _iq20 Data_t;
+
+ Data_t = (_iq20)((long)Data << 13);
+
+ return (Data_t);
+}
+#endif
 
 int16_t MB_FloatTransToIQ7(float Data)
 {
@@ -543,7 +573,6 @@ int16_t MB_FloatTransToIQ8(float Data)
 
    return (Data_t);
 }
-
 
 int16_t MB_FloatTransToIQ7X1000(float Data)
 {
@@ -581,7 +610,7 @@ void MB_FuncReadHoldingRegister(MB_Handle handle)
   case MB_Motor_Reg_SysFlag: RegData = MOTOR_getMotorFlag(obj->motorHandle); break;
   case MB_Motor_Reg_CtrlState: RegData = (uint16_t)MOTOR_getCtrlState(obj->motorHandle); break;
   case MB_Motor_Reg_EstState: RegData = (uint16_t)MOTOR_getEstState(obj->motorHandle); break;
-  case MB_Motor_Reg_ErrorCode: RegData = MOTOR_getMotorErrorCode(obj->motorHandle); break;
+  case MB_Motor_Reg_ErrorCode: RegData = (uint16_t)MOTOR_getMotorErrorCode(obj->motorHandle); break;
 
   //  Motor Parameters
   case MB_Motor_Reg_motor_ID: RegData = MOTOR_getMotorID(obj->motorHandle); break;
@@ -593,29 +622,29 @@ void MB_FuncReadHoldingRegister(MB_Handle handle)
   case MB_Motor_Reg_MagnCurrent: RegData = MB_FloatTransToIQ8(MOTOR_getMotorMagnCurr_A(obj->motorHandle)); break;
 
   // System state Parameters
-  case MB_Motor_Reg_Speed_krpm: RegData = MB_IQtoModubus(MOTOR_getMotorSpeed(obj->motorHandle)); break;
-  case MB_Motor_Reg_Torque_Nm:  RegData = MB_IQtoModubus(MOTOR_getMotorTorque_Nm(obj->motorHandle)); break;
-  case MB_Motor_Reg_VdcBus_kV:  RegData = MB_IQtoModubus_X128(MOTOR_getDcBus_Voltage(obj->motorHandle)); break;
-  case MB_Motor_Reg_ChipTemp: RegData = MB_IQ20toModubus(MOTOR_getChipTemp(obj->motorHandle)); break;
-  case MB_Motor_Reg_AnaSensor1: RegData = MB_IQtoModubus_L16bit(MOTOR_getAnalogSensor1(obj->motorHandle)); break;
-  case MB_Motor_Reg_AnaSensor2: RegData = MB_IQtoModubus_L16bit(MOTOR_getAnalogSensor2(obj->motorHandle)); break;
+  case MB_Motor_Reg_Speed_krpm: RegData = MB_IQtoIQ10(MOTOR_getMotorSpeed(obj->motorHandle)); break;
+  case MB_Motor_Reg_Torque_Nm:  RegData = MB_IQtoIQ10(MOTOR_getMotorTorque_Nm(obj->motorHandle)); break;
+  case MB_Motor_Reg_VdcBus_kV:  RegData = MB_IQtoIQ13(MOTOR_getDcBus_Voltage(obj->motorHandle)); break;
+  case MB_Motor_Reg_ChipTemp:   RegData = MB_IQ20toIQ7(MOTOR_getChipTemp(obj->motorHandle)); break;
+  case MB_Motor_Reg_AnaSensor1: RegData = MB_IQtoL16bit(MOTOR_getAnalogSensor1(obj->motorHandle)); break;
+  case MB_Motor_Reg_AnaSensor2: RegData = MB_IQtoL16bit(MOTOR_getAnalogSensor2(obj->motorHandle)); break;
   case MB_Motor_Reg_SwitchSensor:  break;
 
   // System setting Parameters
-  case MB_Motor_Reg_RefSpeed_krpm: RegData = MB_IQtoModubus(MOTOR_getMotorRefSpeed(obj->motorHandle)); break;
-  case MB_Motor_Reg_MaxAccel_krpmps: RegData = MB_IQtoModubus(MOTOR_getMotorMaxAccel(obj->motorHandle)); break;
-  case MB_Motor_Reg_MaxDecel_krpmps: RegData = MB_IQtoModubus(MOTOR_getMotorMaxDecel(obj->motorHandle)); break;
-  case MB_Motor_Reg_MaxJrk_krpmps2: RegData = MB_IQ20toModubus(MOTOR_getMotorMaxJrk(obj->motorHandle)); break;
-  case MB_Motor_Reg_CurrentRatio: RegData = MB_IQtoModubus(MOTOR_getMaxCurrentRatio(obj->motorHandle)); break;
-  case MB_Motor_Reg_IbrakeRatio: RegData = MB_IQtoModubus_X128(MOTOR_getIbrake_Ratio(obj->motorHandle)); break;
+  case MB_Motor_Reg_RefSpeed_krpm: RegData = MB_IQtoIQ10(MOTOR_getMotorRefSpeed(obj->motorHandle)); break;
+  case MB_Motor_Reg_MaxAccel_krpmps: RegData = MB_IQtoIQ10(MOTOR_getMotorMaxAccel(obj->motorHandle)); break;
+  case MB_Motor_Reg_MaxDecel_krpmps: RegData = MB_IQtoIQ10(MOTOR_getMotorMaxDecel(obj->motorHandle)); break;
+  case MB_Motor_Reg_MaxJrk_krpmps2: RegData = MB_IQ20toIQ7(MOTOR_getMotorMaxJrk(obj->motorHandle)); break;
+  case MB_Motor_Reg_CurrentRatio: RegData = MB_IQtoIQ7(MOTOR_getMaxCurrentRatio(obj->motorHandle)); break;
+  case MB_Motor_Reg_IbrakeRatio: RegData = MB_IQtoIQ7(MOTOR_getIbrake_Ratio(obj->motorHandle)); break;
 
   // Motor PID Parameter
-  case MB_Motor_Reg_Idq_Kp: RegData = MB_IQtoModubus(MOTOR_getCurrent_Kp(obj->motorHandle)); break;
-  case MB_Motor_Reg_Idq_Ki: RegData = MB_IQtoModubus(MOTOR_getCurrent_Ki(obj->motorHandle)); break;
-  case MB_Motor_Reg_Spd_Kp: RegData = MB_IQtoModubus(MOTOR_getSpeed_Kp(obj->motorHandle)); break;
-  case MB_Motor_Reg_Spd_Ki: RegData = MB_IQtoModubus(MOTOR_getSpeed_Ki(obj->motorHandle)); break;
+  case MB_Motor_Reg_Idq_Kp: RegData = MB_IQtoIQ7(MOTOR_getCurrent_Kp(obj->motorHandle)); break;
+  case MB_Motor_Reg_Idq_Ki: RegData = MB_IQtoIQ7(MOTOR_getCurrent_Ki(obj->motorHandle)); break;
+  case MB_Motor_Reg_Spd_Kp: RegData = MB_IQtoIQ7(MOTOR_getSpeed_Kp(obj->motorHandle)); break;
+  case MB_Motor_Reg_Spd_Ki: RegData = MB_IQtoIQ7(MOTOR_getSpeed_Ki(obj->motorHandle)); break;
   #ifdef USE_SpinTAC
-  case MB_Motor_Reg_BwRadps: RegData = MB_IQ20toModubus(MOTOR_getCtlBw_radps(obj->motorHandle)); break;
+  case MB_Motor_Reg_BwRadps: RegData = MB_IQ20toIQ7(MOTOR_getCtlBw_radps(obj->motorHandle)); break;
   #else
   case MB_Motor_Reg_BwRadps: break;
   #endif
@@ -626,7 +655,7 @@ void MB_FuncReadHoldingRegister(MB_Handle handle)
   case MB_Motor_Reg_FsmEditState: RegData = (uint16_t)FSM_get485EditState(obj->fsmHandle); break;
   case MB_Motor_Reg_FsmEditOpt: RegData = (uint16_t)FSM_get485EditOptions(obj->fsmHandle); break;
   case MB_Motor_Reg_FsmStParams: RegData = FSM_485Read_State_Box(obj->fsmHandle); break;
-  case MB_Motor_Reg_FsmEditRefSpd: RegData = MB_IQtoModubus(FSM_get485RefSpeed(obj->fsmHandle)); break;
+  case MB_Motor_Reg_FsmEditRefSpd: RegData = MB_IQtoIQ10(FSM_get485RefSpeed(obj->fsmHandle)); break;
   case MB_Motor_Reg_FsmEditCondValue: break;
   case MB_Motor_Reg_FsmEditCondition: break;
   case MB_Motor_Reg_FsmEditRunAction: break;
@@ -681,20 +710,20 @@ void MB_FuncWriteHoldingRegister(MB_Handle handle)
 
 
   // System setting Parameters
-  case MB_Motor_Reg_RefSpeed_krpm: MOTOR_setMotorRefSpeed(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
-  case MB_Motor_Reg_MaxAccel_krpmps: MOTOR_setMotorMaxAccel(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
-  case MB_Motor_Reg_MaxDecel_krpmps: MOTOR_setMotorMaxDecel(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
-  case MB_Motor_Reg_MaxJrk_krpmps2: MOTOR_setMotorMaxJrk(obj->motorHandle, MB_ModubusToIQ20(RegData)); break;
-  case MB_Motor_Reg_CurrentRatio: MOTOR_setMaxCurrentRatio(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
-  case MB_Motor_Reg_IbrakeRatio: MOTOR_setIbrake_Ratio(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
+  case MB_Motor_Reg_RefSpeed_krpm: MOTOR_setMotorRefSpeed(obj->motorHandle, MB_IQ10ToIQ(RegData)); break;
+  case MB_Motor_Reg_MaxAccel_krpmps: MOTOR_setMotorMaxAccel(obj->motorHandle, MB_IQ10ToIQ(RegData)); break;
+  case MB_Motor_Reg_MaxDecel_krpmps: MOTOR_setMotorMaxDecel(obj->motorHandle, MB_IQ10ToIQ(RegData)); break;
+  case MB_Motor_Reg_MaxJrk_krpmps2: MOTOR_setMotorMaxJrk(obj->motorHandle, MB_IQ8ToIQ20(RegData)); break;
+  case MB_Motor_Reg_CurrentRatio: MOTOR_setMaxCurrentRatio(obj->motorHandle, MB_IQ7ToIQ(RegData)); break;
+  case MB_Motor_Reg_IbrakeRatio: MOTOR_setIbrake_Ratio(obj->motorHandle, MB_IQ7ToIQ(RegData)); break;
 
   // Motor PID Parameter
-  case MB_Motor_Reg_Idq_Kp:  MOTOR_setCurrent_Kp(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
-  case MB_Motor_Reg_Idq_Ki:  MOTOR_setCurrent_Ki(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
-  case MB_Motor_Reg_Spd_Kp:  MOTOR_setMotorSpd_Kp(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
-  case MB_Motor_Reg_Spd_Ki:  MOTOR_setMotorSpd_Ki(obj->motorHandle, MB_ModubusToIQ(RegData)); break;
+  case MB_Motor_Reg_Idq_Kp:  MOTOR_setCurrent_Kp(obj->motorHandle, MB_IQ7ToIQ(RegData)); break;
+  case MB_Motor_Reg_Idq_Ki:  MOTOR_setCurrent_Ki(obj->motorHandle, MB_IQ7ToIQ(RegData)); break;
+  case MB_Motor_Reg_Spd_Kp:  MOTOR_setMotorSpd_Kp(obj->motorHandle, MB_IQ7ToIQ(RegData)); break;
+  case MB_Motor_Reg_Spd_Ki:  MOTOR_setMotorSpd_Ki(obj->motorHandle, MB_IQ7ToIQ(RegData)); break;
   #ifdef USE_SpinTAC
-  case MB_Motor_Reg_BwRadps: MOTOR_setCtlBw_radps(obj->motorHandle, MB_ModubusToIQ20(RegData)); break;
+  case MB_Motor_Reg_BwRadps: MOTOR_setCtlBw_radps(obj->motorHandle, MB_IQ7ToIQ20(RegData)); break;
   #else
   case MB_Motor_Reg_BwRadps: break;
   #endif
@@ -714,9 +743,9 @@ void MB_FuncWriteHoldingRegister(MB_Handle handle)
 
   // Position Parameter
   case MB_Motor_Reg_FsmObjPosInt:  FSM_setObjPosInt(obj->fsmHandle, RegData); break;
-  case MB_Motor_Reg_FsmObjPosFrac: FSM_setObjPosFrac(obj->fsmHandle, MB_ModubusToIQ(RegData)); break;
+  case MB_Motor_Reg_FsmObjPosFrac: FSM_setObjPosFrac(obj->fsmHandle, RegData); break;
   case MB_Motor_Reg_FsmObjPosRough: FSM_setObjPosRough(obj->fsmHandle, RegData); break;
-  case MB_Motor_Reg_FsmCurPosInt: break;
+  case MB_Motor_Reg_FsmCurPosInt:  break;
   case MB_Motor_Reg_FsmCurPosFrac: break;
   case MB_Motor_Reg_FsmCurPosRough: break;
 

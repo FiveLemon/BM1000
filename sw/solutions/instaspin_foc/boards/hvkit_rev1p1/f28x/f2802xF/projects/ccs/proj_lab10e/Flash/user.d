@@ -3,7 +3,7 @@
 user.obj: D:/BM1000_v1.1/sw/modules/user/src/32b/user.c
 user.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/math.h
 user.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/linkage.h
-user.obj: D:/BM1000_v1.1/sw/solutions/instaspin_foc/boards/hvkit_rev1p1/f28x/f2802xF/src/user.h
+user.obj: D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h
 user.obj: D:/BM1000_v1.1/sw/modules/types/src/types.h
 user.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdbool.h
 user.obj: C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/yvals.h
@@ -59,7 +59,7 @@ user.obj: D:/BM1000_v1.1/sw/drivers/drvic/pca9555.h
 D:/BM1000_v1.1/sw/modules/user/src/32b/user.c: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/math.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/linkage.h: 
-D:/BM1000_v1.1/sw/solutions/instaspin_foc/boards/hvkit_rev1p1/f28x/f2802xF/src/user.h: 
+D:/BM1000_v1.1/sw/solutions/instaspin/src/user.h: 
 D:/BM1000_v1.1/sw/modules/types/src/types.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/stdbool.h: 
 C:/ti/ccsv6/tools/compiler/c2000_6.2.5/include/yvals.h: 

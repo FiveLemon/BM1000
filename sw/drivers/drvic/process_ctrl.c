@@ -5,7 +5,7 @@
 	> Created Time: Sat 08 Jul 2017 09:35:56 AM CST
  ************************************************************************/
 
-
+#include <math.h>
 #include "sw/drivers/drvic/process_ctrl.h"
 
 
@@ -44,7 +44,7 @@ PROCTRL_Handle PROCTRL_init(void *pMemory,const size_t numBytes)
    obj->stHandle = ST_init(&obj->st_obj, sizeof(obj->st_obj));
 #endif
 
-   obj->Ext_Int_Flag = false;
+  // obj->Ext_Int_Flag = false;
    obj->PwmData.Tabc.value[0] = _IQ(0.0);
    obj->PwmData.Tabc.value[1] = _IQ(0.0);
    obj->PwmData.Tabc.value[2] = _IQ(0.0);
@@ -98,7 +98,7 @@ void PROCTRL_setupSpinTAC(PROCTRL_Handle handle)
 {
    PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
    // setup the ENC module
-   ENC_setup(obj->encHandle, 1, obj->pUserParams->motor_numPolePairs , USER_MOTOR_ENCODER_LINES, 0, USER_IQ_FULL_SCALE_FREQ_Hz, USER_ISR_FREQ_Hz, 8000.0);
+   ENC_setup(obj->encHandle, 1, obj->pUserParams->motor_numPolePairs , USER_MOTOR_ENCODER_LINES, 0, obj->pUserParams->iqFullScaleFreq_Hz, USER_ISR_FREQ_Hz, 8000.0);
 
    // setup the SLIP module
    SLIP_setup(obj->slipHandle, _IQ(obj->pUserParams->ctrlPeriod_sec));
@@ -198,7 +198,7 @@ void recalcKpKi(CTRL_Handle handle, USER_Params *pUserParams)
 } // end of recalcKpKi() function
 
 
-void setFeLimitZero(CTRL_Handle handle)
+void setFeLimitZero(CTRL_Handle handle, USER_Params *pUserParams)
 {
   CTRL_Obj *obj = (CTRL_Obj *)handle;
   EST_State_e EstState = EST_getState(obj->estHandle);
@@ -214,9 +214,9 @@ void setFeLimitZero(CTRL_Handle handle)
     }
   else
     {
-	  fe_neg_max_pu = _IQ30(-USER_ZEROSPEEDLIMIT);
+	  fe_neg_max_pu = _IQ30(-pUserParams->zeroSpeedLimit);
 
-	  fe_pos_min_pu = _IQ30(USER_ZEROSPEEDLIMIT);
+	  fe_pos_min_pu = _IQ30(pUserParams->zeroSpeedLimit);
     }
 
   EST_setFe_neg_max_pu(obj->estHandle, fe_neg_max_pu);
@@ -347,19 +347,6 @@ void motor_StopCtrl(CTRL_Handle handle)
 
 }
 
-void PROCTRL_CheckMotorError(PROCTRL_Handle handle)
-{
-  PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
-
-  if(obj->motorHandle->UserErrorCode != USER_ErrorCode_NoError)
-	{
-	  obj->motorHandle->Flag_enableSys = false;
-	}
-
-}
-
-
-
 
 void PROCTRL_updateKpKiGains(PROCTRL_Handle handle)
 {
@@ -452,7 +439,7 @@ void PROCTRL_chkMotorIdentified(PROCTRL_Handle handle, USER_Params *pUserParams)
         CTRL_setSpd_ref_krpm(obj->ctrlHandle, obj->motorHandle->SpeedRef_krpm);
 
         // set the speed acceleration
-        _iq MaxAccel_krpms_sf = _IQ((pUserParams->motor_numPolePairs)*1000.0/USER_TRAJ_FREQ_Hz/USER_IQ_FULL_SCALE_FREQ_Hz/60.0);
+        _iq MaxAccel_krpms_sf = _IQ((pUserParams->motor_numPolePairs)*1000.0/USER_TRAJ_FREQ_Hz/(pUserParams->iqFullScaleFreq_Hz)/60.0);
         CTRL_setMaxAccel_pu(obj->ctrlHandle,_IQmpy(MaxAccel_krpms_sf, obj->motorHandle->MaxAccel_krpmps));
 
         // set the Id reference
@@ -579,25 +566,6 @@ void PROCTRL_chkError(PROCTRL_Handle handle, USER_Params *pUserParams)
 }
 
 
-void PROCTRL_getPortData(PROCTRL_Handle handle)
-{
-  PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
-
- if(obj->Ext_Int_Flag)
-  {
-   obj->Ext_Int_Flag = false;
-
-#ifndef TMS320F28069
-   //PCA955x_GetStatus(obj->halHandle->pca955xHandle,PCA955x_PortNum_Port1);
-#endif
-
-  }
-
-  return;
-
-}
-
-
 void PROCTRL_getSensorData(PROCTRL_Handle handle, const HAL_AdcData_t *pAdcData)
 {
   PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
@@ -669,7 +637,7 @@ void PROCTRL_MainLoop(PROCTRL_Handle handle, USER_Params *pUserParams)
  if(CTRL_getMotorType(obj->ctrlHandle) == MOTOR_Type_Induction)
    {
      // set electrical frequency limit to zero while identifying an induction motor
-     setFeLimitZero(obj->ctrlHandle);
+     setFeLimitZero(obj->ctrlHandle, pUserParams);
 
      // calculate Dir_qFmt for acim motors
      acim_Dir_qFmtCalc(obj->ctrlHandle);
@@ -699,13 +667,12 @@ void PROCTRL_MainLoop(PROCTRL_Handle handle, USER_Params *pUserParams)
  }
 
 
-
 #ifdef USE_SpinTAC
  // set the SpinTAC (ST) bandwidth scale
  STPOSCTL_setBandwidth_radps(obj->st_obj.posCtlHandle, obj->motorHandle->SpinTAC.PosCtlBw_radps);
 
  // set the maximum and minimum values for Iq reference
- STPOSCTL_setOutputMaximums(obj->st_obj.posCtlHandle, _IQmpy(obj->motorHandle->SpinTAC.PosCtlOutputMax_A, _IQ(1.0/USER_IQ_FULL_SCALE_CURRENT_A)), _IQmpy(obj->motorHandle->SpinTAC.PosCtlOutputMin_A, _IQ(1.0/USER_IQ_FULL_SCALE_CURRENT_A)));
+ STPOSCTL_setOutputMaximums(obj->st_obj.posCtlHandle, _IQmpy(obj->motorHandle->SpinTAC.PosCtlOutputMax_A, _IQ(1.0/pUserParams->iqFullScaleCurrent_A)), _IQmpy(obj->motorHandle->SpinTAC.PosCtlOutputMin_A, _IQ(1.0/pUserParams->iqFullScaleCurrent_A)));
 #endif
 
 
@@ -727,7 +694,7 @@ void PROCTRL_UpdateMotorSpeed (PROCTRL_Handle handle)
 #ifdef USE_SpinTAC
   ST_Obj *stObj = (ST_Obj *)(obj->stHandle);
   // get the speed estimate
-  obj->motorHandle->Speed_krpm = _IQmpy(STPOSCONV_getVelocityFiltered(stObj->posConvHandle), _IQ(ST_SPEED_KRPM_PER_PU));
+  obj->motorHandle->Speed_krpm = _IQmpy(STPOSCONV_getVelocityFiltered(stObj->posConvHandle), obj->motorHandle->Speed_Krpm_per_pu);
 
 #else
   // get the speed estimate
@@ -850,7 +817,7 @@ void PROCTRL_getDCbusVoltage(PROCTRL_Handle handle, HAL_AdcData_t *adcData)
   static _iq Sum = 0x40000000;
 
   // Get the DC buss voltage
-  Sum +=  _IQmpy(adcData->dcBus,_IQ(USER_IQ_FULL_SCALE_VOLTAGE_V/1000.0));
+  Sum +=  _IQmpy(adcData->dcBus,_IQ(500/1000.0)); //USER_ADC_FULL_SCALE_VOLTAGE_V
   Sum -= Avage;
   Avage = Sum >> 2;
 
@@ -910,52 +877,7 @@ void PROCTRL_setDcBrakeCurrent(PROCTRL_Handle handle)
   return;
 }
 
-/*
-void PROCTRL_getAbsAngle_mech(PROCTRL_Handle handle)
-{
-  PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
 
-  const _iq Kalman_Q = _IQ(0.02);
-  const _iq Kalman_R = _IQ(0.5);
-  static _iq p_Last0 = 0;
-
-  _iq AbsAngle_mech_Current;
-
-  _iq x_Mid;
-  _iq p_Mid;
-  _iq InputData;
-
-  float Kg;
-
-  x_Mid = obj->motorHandle->AbsAngle_mech;
-  p_Mid = p_Last0 + Kalman_Q;
-  InputData = obj->ctrlHandle->AbsAngle_mech_pu;
-
-  Kg = (1.0 * p_Mid)/(p_Mid + Kalman_R);
-
-  if(InputData > x_Mid)
-    AbsAngle_mech_Current = x_Mid + (_iq)(Kg * (InputData - x_Mid));
-  else
-    AbsAngle_mech_Current = x_Mid - (_iq)(Kg * (x_Mid - InputData));
-
-  p_Last0 = p_Mid - (_iq)(Kg * p_Mid);
-
-  obj->motorHandle->AbsAngle_mech = AbsAngle_mech_Current;
-
-  return;
-}
-*/
-
-/*
-void PROCTRL_getMotorTurns_mech(PROCTRL_Handle handle)
-{
-  PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
-
-  obj->motorHandle->Turns_mech = CTRL_getCycleMech_cnt(obj->ctrlHandle);
-
-  return;
-}
-*/
 
 #ifdef USE_SpinTAC
 
@@ -1022,10 +944,10 @@ void PROCTRL_UpdateSpinTAC(PROCTRL_Handle handle)
   obj->motorHandle->SpinTAC.PosCtlStatus = STPOSCTL_getStatus(stObj->posCtlHandle);
 
   // get the inertia setting
-  obj->motorHandle->SpinTAC.InertiaEstimate_Aperkrpm = _IQmpy(STPOSCTL_getInertia(stObj->posCtlHandle), _IQ(ST_SPEED_PU_PER_KRPM * USER_IQ_FULL_SCALE_CURRENT_A));
+  obj->motorHandle->SpinTAC.InertiaEstimate_Aperkrpm = _IQmpy(STPOSCTL_getInertia(stObj->posCtlHandle), _IQmpy(obj->motorHandle->Speed_Krpm_per_pu, _IQ(obj->pUserParams->iqFullScaleCurrent_A)));
 
   // get the friction setting
-  obj->motorHandle->SpinTAC.FrictionEstimate_Aperkrpm = _IQmpy(STPOSCTL_getFriction(stObj->posCtlHandle), _IQ(ST_SPEED_PU_PER_KRPM * USER_IQ_FULL_SCALE_CURRENT_A));
+  obj->motorHandle->SpinTAC.FrictionEstimate_Aperkrpm = _IQmpy(STPOSCTL_getFriction(stObj->posCtlHandle), _IQmpy(obj->motorHandle->Speed_Krpm_per_pu, _IQ(obj->pUserParams->iqFullScaleCurrent_A)));
 
   // get the Position Controller error
   obj->motorHandle->SpinTAC.PosCtlErrorID = STPOSCTL_getErrorID(stObj->posCtlHandle);
@@ -1062,6 +984,284 @@ void PROCTRL_UpdateSpinTAC(PROCTRL_Handle handle)
 
 #endif
 
+
+
+void PROCTRL_CheckMotorError(PROCTRL_Handle handle)
+{
+  PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
+
+  if(obj->motorHandle->UserErrorCode != USER_ErrorCode_NoError)
+	{
+	  obj->motorHandle->Flag_enableSys = false;
+	}
+
+  return;
+}
+
+void PROCTRL_CheckRelayOnFlag(PROCTRL_Handle handle)
+{
+  PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
+
+  if(HAL_readGpio(obj->halHandle, (GPIO_Number_e)HAL_Gpio_RelayOnFlag_b))
+  {
+	  obj->motorHandle->Flag_enableSys = false;
+  }
+
+  return;
+}
+
+void PROCTRL_CheckEmgStop(PROCTRL_Handle handle)
+{
+  PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
+
+  if(HAL_readGpio(obj->halHandle, (GPIO_Number_e)HAL_Gpio_Stop_flag_in))
+  {
+	  obj->motorHandle->Flag_enableSys = false;
+  }
+
+  return;
+}
+
+void PROCTRL_CheckOverCurrent(PROCTRL_Handle handle)
+{
+  PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
+
+  HAL_readGpio(obj->halHandle,(GPIO_Number_e)HAL_Gpio_CpldOcOut);
+
+  return;
+
+}
+
+
+
+void USER_softwareUpdate1p6(CTRL_Handle handle, USER_Params *pUserParams)
+{
+  CTRL_Obj *obj = (CTRL_Obj *)handle;
+  float_t fullScaleInductance = (pUserParams->iqFullScaleVoltage_V)/((pUserParams->iqFullScaleCurrent_A)*USER_VOLTAGE_FILTER_POLE_rps);
+  float_t Ls_coarse_max = _IQ30toF(EST_getLs_coarse_max_pu(obj->estHandle));
+  int_least8_t lShift = ceil(log(obj->motorParams.Ls_d_H/(Ls_coarse_max*fullScaleInductance))/log(2.0));
+  uint_least8_t Ls_qFmt = 30 - lShift;
+  float_t L_max = fullScaleInductance * pow(2.0,lShift);
+  _iq Ls_d_pu = _IQ30(obj->motorParams.Ls_d_H / L_max);
+  _iq Ls_q_pu = _IQ30(obj->motorParams.Ls_q_H / L_max);
+
+
+  // store the results
+  EST_setLs_d_pu(obj->estHandle,Ls_d_pu);
+  EST_setLs_q_pu(obj->estHandle,Ls_q_pu);
+  EST_setLs_qFmt(obj->estHandle,Ls_qFmt);
+
+  return;
+} // end of softwareUpdate1p6() function
+
+
+#ifndef NO_CTRL
+void USER_calcPIgains(CTRL_Handle handle, USER_Params *pUserParams)
+{
+  CTRL_Obj *obj = (CTRL_Obj *)handle;
+  float_t fullScaleCurrent = (pUserParams->iqFullScaleCurrent_A);
+  float_t fullScaleVoltage = (pUserParams->iqFullScaleVoltage_V);
+  float_t ctrlPeriod_sec = CTRL_getCtrlPeriod_sec(handle);
+  float_t Ls_d;
+  float_t Ls_q;
+  float_t Rs;
+  float_t RoverLs_d;
+  float_t RoverLs_q;
+  _iq Kp_Id;
+  _iq Ki_Id;
+  _iq Kp_Iq;
+  _iq Ki_Iq;
+  _iq Kd;
+
+#ifdef __TMS320C28XX_FPU32__
+  int32_t tmp;
+
+  // when calling EST_ functions that return a float, and fpu32 is enabled, an integer is needed as a return
+  // so that the compiler reads the returned value from the accumulator instead of fpu32 registers
+  tmp = EST_getLs_d_H(obj->estHandle);
+  Ls_d = *((float_t *)&tmp);
+
+  tmp = EST_getLs_q_H(obj->estHandle);
+  Ls_q = *((float_t *)&tmp);
+
+  tmp = EST_getRs_Ohm(obj->estHandle);
+  Rs = *((float_t *)&tmp);
+#else
+  Ls_d = EST_getLs_d_H(obj->estHandle);
+
+  Ls_q = EST_getLs_q_H(obj->estHandle);
+
+  Rs = EST_getRs_Ohm(obj->estHandle);
+#endif
+
+  RoverLs_d = Rs/Ls_d;
+  Kp_Id = _IQ((0.25*Ls_d*fullScaleCurrent)/(ctrlPeriod_sec*fullScaleVoltage));
+  Ki_Id = _IQ(RoverLs_d*ctrlPeriod_sec);
+
+  RoverLs_q = Rs/Ls_q;
+  Kp_Iq = _IQ((0.25*Ls_q*fullScaleCurrent)/(ctrlPeriod_sec*fullScaleVoltage));
+  Ki_Iq = _IQ(RoverLs_q*ctrlPeriod_sec);
+
+  Kd = _IQ(0.0);
+
+  // set the Id controller gains
+  PID_setKi(obj->pidHandle_Id,Ki_Id);
+  CTRL_setGains(handle,CTRL_Type_PID_Id,Kp_Id,Ki_Id,Kd);
+
+  // set the Iq controller gains
+  PID_setKi(obj->pidHandle_Iq,Ki_Iq);
+  CTRL_setGains(handle,CTRL_Type_PID_Iq,Kp_Iq,Ki_Iq,Kd);
+
+  return;
+} // end of calcPIgains() function
+#endif
+
+
+
+
+//! \brief     Computes the scale factor needed to convert from torque created by Ld, Lq, Id and Iq, from per unit to Nm
+//!
+_iq USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf(USER_Params *pUserParams)
+{
+  float_t FullScaleInductance = ((pUserParams->iqFullScaleVoltage_V)/((pUserParams->iqFullScaleCurrent_A)*USER_VOLTAGE_FILTER_POLE_rps));
+  float_t FullScaleCurrent = (pUserParams->iqFullScaleCurrent_A);
+  float_t lShift = ceil(log((pUserParams->motor_Ls_d)/(0.7*FullScaleInductance))/log(2.0));
+
+  return(_IQ(FullScaleInductance*FullScaleCurrent*FullScaleCurrent*(pUserParams->motor_numPolePairs)*1.5*pow(2.0,lShift)));
+} // end of USER_computeTorque_Ls_Id_Iq_pu_to_Nm_sf() function
+
+
+//! \brief     Computes the scale factor needed to convert from torque created by flux and Iq, from per unit to Nm
+//!
+_iq USER_computeTorque_Flux_Iq_pu_to_Nm_sf(USER_Params *pUserParams)
+{
+  float_t FullScaleFlux = (pUserParams->iqFullScaleVoltage_V/(float_t)USER_EST_FREQ_Hz);
+  float_t FullScaleCurrent = (pUserParams->iqFullScaleCurrent_A);
+  float_t maxFlux = (pUserParams->motor_ratedFlux*((pUserParams->motor_type==MOTOR_Type_Induction)?0.05:0.7));
+  float_t lShift = -ceil(log(FullScaleFlux/maxFlux)/log(2.0));
+
+  return(_IQ(FullScaleFlux/(2.0*MATH_PI)*FullScaleCurrent*(pUserParams->motor_numPolePairs)*1.5*pow(2.0,lShift)));
+} // end of USER_computeTorque_Flux_Iq_pu_to_Nm_sf() function
+
+
+//! \brief     Computes the scale factor needed to convert from per unit to Wb
+//!
+_iq USER_computeFlux_pu_to_Wb_sf(USER_Params *pUserParams)
+{
+  float_t FullScaleFlux = (pUserParams->iqFullScaleVoltage_V/(float_t)USER_EST_FREQ_Hz);
+  float_t maxFlux = (pUserParams->motor_ratedFlux*((pUserParams->motor_type==MOTOR_Type_Induction)?0.05:0.7));
+  float_t lShift = -ceil(log(FullScaleFlux/maxFlux)/log(2.0));
+
+  return(_IQ(FullScaleFlux/(2.0*MATH_PI)*pow(2.0,lShift)));
+} // end of USER_computeFlux_pu_to_Wb_sf() function
+
+
+//! \brief     Computes the scale factor needed to convert from per unit to V/Hz
+//!
+_iq USER_computeFlux_pu_to_VpHz_sf(USER_Params *pUserParams)
+{
+  float_t FullScaleFlux = (pUserParams->iqFullScaleVoltage_V/(float_t)USER_EST_FREQ_Hz);
+  float_t maxFlux = ((pUserParams->motor_ratedFlux)*(((pUserParams->motor_type)==MOTOR_Type_Induction)?0.05:0.7));
+  float_t lShift = -ceil(log(FullScaleFlux/maxFlux)/log(2.0));
+
+  return(_IQ(FullScaleFlux*pow(2.0,lShift)));
+} // end of USER_computeFlux_pu_to_VpHz_sf() function
+
+
+//! \brief     Computes Flux in Wb or V/Hz depending on the scale factor sent as parameter
+//!
+_iq USER_computeFlux(CTRL_Handle handle, const _iq sf)
+{
+  CTRL_Obj *obj = (CTRL_Obj *)handle;
+
+  return(_IQmpy(EST_getFlux_pu(obj->estHandle),sf));
+} // end of USER_computeFlux() function
+
+
+//! \brief     Computes Torque in Nm
+//!
+_iq USER_computeTorque_Nm(CTRL_Handle handle, const _iq torque_Flux_sf, const _iq torque_Ls_sf)
+{
+  CTRL_Obj *obj = (CTRL_Obj *)handle;
+
+  _iq Flux_pu = EST_getFlux_pu(obj->estHandle);
+  _iq Id_pu = PID_getFbackValue(obj->pidHandle_Id);
+  _iq Iq_pu = PID_getFbackValue(obj->pidHandle_Iq);
+  _iq Ld_minus_Lq_pu = _IQ30toIQ(EST_getLs_d_pu(obj->estHandle)-EST_getLs_q_pu(obj->estHandle));
+  _iq Torque_Flux_Iq_Nm = _IQmpy(_IQmpy(Flux_pu,Iq_pu),torque_Flux_sf);
+  _iq Torque_Ls_Id_Iq_Nm = _IQmpy(_IQmpy(_IQmpy(Ld_minus_Lq_pu,Id_pu),Iq_pu),torque_Ls_sf);
+  _iq Torque_Nm = Torque_Flux_Iq_Nm + Torque_Ls_Id_Iq_Nm;
+
+  return(Torque_Nm);
+} // end of USER_computeTorque_Nm() function
+
+
+//! \brief     Computes Torque in Nm
+//!
+_iq USER_computeTorque_lbin(CTRL_Handle handle, const _iq torque_Flux_sf, const _iq torque_Ls_sf)
+{
+  CTRL_Obj *obj = (CTRL_Obj *)handle;
+
+  _iq Flux_pu = EST_getFlux_pu(obj->estHandle);
+  _iq Id_pu = PID_getFbackValue(obj->pidHandle_Id);
+  _iq Iq_pu = PID_getFbackValue(obj->pidHandle_Iq);
+  _iq Ld_minus_Lq_pu = _IQ30toIQ(EST_getLs_d_pu(obj->estHandle)-EST_getLs_q_pu(obj->estHandle));
+  _iq Torque_Flux_Iq_Nm = _IQmpy(_IQmpy(Flux_pu,Iq_pu),torque_Flux_sf);
+  _iq Torque_Ls_Id_Iq_Nm = _IQmpy(_IQmpy(_IQmpy(Ld_minus_Lq_pu,Id_pu),Iq_pu),torque_Ls_sf);
+  _iq Torque_Nm = Torque_Flux_Iq_Nm + Torque_Ls_Id_Iq_Nm;
+
+  return(_IQmpy(Torque_Nm, _IQ(MATH_Nm_TO_lbin_SF)));
+} // end of USER_computeTorque_lbin() function
+
+
+
+
+/*
+void PROCTRL_getAbsAngle_mech(PROCTRL_Handle handle)
+{
+  PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
+
+  const _iq Kalman_Q = _IQ(0.02);
+  const _iq Kalman_R = _IQ(0.5);
+  static _iq p_Last0 = 0;
+
+  _iq AbsAngle_mech_Current;
+
+  _iq x_Mid;
+  _iq p_Mid;
+  _iq InputData;
+
+  float Kg;
+
+  x_Mid = obj->motorHandle->AbsAngle_mech;
+  p_Mid = p_Last0 + Kalman_Q;
+  InputData = obj->ctrlHandle->AbsAngle_mech_pu;
+
+  Kg = (1.0 * p_Mid)/(p_Mid + Kalman_R);
+
+  if(InputData > x_Mid)
+    AbsAngle_mech_Current = x_Mid + (_iq)(Kg * (InputData - x_Mid));
+  else
+    AbsAngle_mech_Current = x_Mid - (_iq)(Kg * (x_Mid - InputData));
+
+  p_Last0 = p_Mid - (_iq)(Kg * p_Mid);
+
+  obj->motorHandle->AbsAngle_mech = AbsAngle_mech_Current;
+
+  return;
+}
+*/
+
+/*
+void PROCTRL_getMotorTurns_mech(PROCTRL_Handle handle)
+{
+  PROCTRL_Obj *obj = (PROCTRL_Obj *)handle;
+
+  obj->motorHandle->Turns_mech = CTRL_getCycleMech_cnt(obj->ctrlHandle);
+
+  return;
+}
+*/
 
 //=========================================== End of File =========================================
 

@@ -70,8 +70,6 @@
 #include "sw/modules/types/src/types.h"
 #include "sw/modules/usDelay/src/32b/usDelay.h"
 
-#include "sw/drivers/drvic/pca9555.h"
-
 
 // platforms
 #include "user.h"
